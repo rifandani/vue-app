@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@/i18n/i18n-vue'
-import { NavBar } from '@/modules/shared/components/organisms'
 import { Icon } from '@iconify/vue'
 import { RouterLink } from 'vue-router'
+import { typesafeI18n } from '../../../../i18n/i18n-vue'
 
 //#region VALUES
 const { LL } = typesafeI18n()

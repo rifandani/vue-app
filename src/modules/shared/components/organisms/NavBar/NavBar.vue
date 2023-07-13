@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { RouterLink } from 'vue-router'
-import { SvgIcon } from '@/modules/shared/components/atoms'
-import { NavbarMenuContent } from '@/modules/shared/components/molecules'
+import { SvgIcon } from '../../atoms'
+import { NavbarMenuContent } from '../../molecules'
 import { useNavBar } from './useNavBar.hook'
 
 const { LL, logout } = useNavBar()

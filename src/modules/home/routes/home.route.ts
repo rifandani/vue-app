@@ -1,13 +1,15 @@
 import type { RouteRecordRaw } from 'vue-router'
-import { authGuard } from '@/modules/shared/guards/route.guard'
 
 const HomePage = () => import('../pages/Home/HomePage.vue')
 
 export const homeRoutes: RouteRecordRaw[] = [
   {
+    name: 'home',
     path: '/',
-    component: HomePage,
-    beforeEnter: authGuard
+    component: HomePage
+    // beforeEnter: (from, to, next) => {
+    //   return authGuard(from, to, next)
+    // }
   },
   {
     path: '/home',

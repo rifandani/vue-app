@@ -2,8 +2,8 @@
 import { shuffle } from '@rifandani/nxact-yutiriti'
 import { onUnmounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
-import { loadLocale } from '@/i18n/i18n-util.sync'
-import { typesafeI18n } from '@/i18n/i18n-vue'
+import { loadLocale } from '../../../../i18n/i18n-util.sync'
+import { typesafeI18n } from '../../../../i18n/i18n-vue'
 
 //#region VALUES
 const { LL, locale, setLocale } = typesafeI18n()

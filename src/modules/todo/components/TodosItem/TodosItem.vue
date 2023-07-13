@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@/i18n/i18n-vue'
 import { twJoin } from 'tailwind-merge'
 import { RouterLink } from 'vue-router'
+import { typesafeI18n } from '../../../../i18n/i18n-vue'
 import type { TodoSchema } from '../../api/todo.schema'
 
 //#region VALUES

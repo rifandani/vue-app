@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@/i18n/i18n-vue'
-import { WrapTranslation } from '@/modules/shared/components/atoms'
 import { Icon } from '@iconify/vue'
 import { RouterLink } from 'vue-router'
-import LoginForm from '../../components/LoginForm/LoginForm.vue'
+import vueschool from '../../../../assets/vueschool.svg'
+import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import { WrapTranslation } from '../../../shared/components/atoms'
 
 const { LL } = typesafeI18n()
 </script>
@@ -26,7 +26,7 @@ const { LL } = typesafeI18n()
             {{ LL.auth.welcome() }}
           </p>
 
-          <LoginForm />
+          <!-- <LoginForm /> -->
 
           <div class="py-12 text-center">
             <p>
@@ -41,7 +41,12 @@ const { LL } = typesafeI18n()
       <!-- Image Section -->
       <section class="w-1/2 shadow-2xl">
         <span class="relative hidden h-screen w-full md:flex md:items-center md:justify-center">
-          <img src="@/assets/vueschool.svg" alt="login page cover" loading="lazy" />
+          <img
+            :src="vueschool"
+            class="h-full object-cover object-right"
+            alt="login page cover"
+            loading="lazy"
+          />
         </span>
       </section>
     </div>

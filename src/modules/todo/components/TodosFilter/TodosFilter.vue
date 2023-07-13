@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@/i18n/i18n-vue'
-import { limits } from '@/modules/todo/constants/todos.constant'
+import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import { limits } from '../../constants/todos.constant'
 
 //#region VALUES
 const { LL } = typesafeI18n()

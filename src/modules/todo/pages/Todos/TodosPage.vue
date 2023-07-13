@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@/i18n/i18n-vue'
-import { NavBar } from '@/modules/shared/components/organisms'
+import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import { NavBar } from '../../../shared/components/organisms'
 import TodosCreate from '../../components/TodosCreate/TodosCreate.vue'
 import TodosFilter from '../../components/TodosFilter/TodosFilter.vue'
 import TodosList from '../../components/TodosList/TodosList.vue'

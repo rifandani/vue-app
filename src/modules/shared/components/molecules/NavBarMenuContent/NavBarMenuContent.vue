@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useLocalStorage } from '@vueuse/core'
-import { typesafeI18n } from '@/i18n/i18n-vue'
-import type { LoginApiResponseSchema } from '@/modules/auth/api/auth.schema'
-import { themes } from '@/modules/shared/constants/global.constant'
+import { typesafeI18n } from '../../../../../i18n/i18n-vue'
+import type { LoginApiResponseSchema } from '../../../../auth/api/auth.schema'
+import { themes } from '../../../constants/global.constant'
 
 const emit = defineEmits<{
   logout: []

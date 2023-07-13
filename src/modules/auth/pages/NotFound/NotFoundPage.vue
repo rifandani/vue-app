@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@/i18n/i18n-vue'
 import { useLocalStorage } from '@vueuse/core'
+import { typesafeI18n } from '../../../../i18n/i18n-vue'
 import type { LoginApiResponseSchema } from '../../api/auth.schema'
 
 const { LL } = typesafeI18n()

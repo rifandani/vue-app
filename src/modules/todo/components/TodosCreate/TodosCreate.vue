@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@/i18n/i18n-vue'
 import { useQueryClient } from '@tanstack/vue-query'
+import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import { useTodoListQuery } from '../../stores/useTodoListQuery.store'
 
 //#region VALUES
 const { LL } = typesafeI18n()
 const queryClient = useQueryClient()
-// const { queryOptions } = createTodoListQuery()
+const { route } = useTodoListQuery()
+console.log('🚀 ~ file: TodosCreate.vue:10 ~ route:', route)
 // const todoCreateMutation = createTodoCreateMutation({ queryKey: $queryOptions.queryKey })
 
 // const { form } = createForm<TodoSchema>({
