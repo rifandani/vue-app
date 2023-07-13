@@ -4,6 +4,7 @@ import { RouterLink } from 'vue-router'
 import vueschool from '../../../../assets/vueschool.svg'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
 import { WrapTranslation } from '../../../shared/components/atoms'
+import LoginForm from '../../components/LoginForm/LoginForm.vue'
 
 const { LL } = typesafeI18n()
 </script>
@@ -26,7 +27,7 @@ const { LL } = typesafeI18n()
             {{ LL.auth.welcome() }}
           </p>
 
-          <!-- <LoginForm /> -->
+          <LoginForm />
 
           <div class="py-12 text-center">
             <p>
