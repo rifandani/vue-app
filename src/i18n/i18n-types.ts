@@ -44,7 +44,7 @@ type RootTranslation = {
 	}
 	home: {
 		/**
-		 * S​v​e​l​t​e​ ​A​p​p​ ​u​s​i​n​g​:
+		 * V​u​e​ ​A​p​p​ ​u​s​i​n​g​:
 		 */
 		title: string
 		/**
@@ -187,7 +187,7 @@ type RootTranslation = {
 		 */
 		noPageContent: string
 		/**
-		 * S​v​e​l​t​e​ ​T​e​m​p​l​a​t​e
+		 * V​u​e​ ​T​e​m​p​l​a​t​e
 		 */
 		appName: string
 		/**
@@ -271,7 +271,7 @@ export type TranslationFunctions = {
 	}
 	home: {
 		/**
-		 * Svelte App using:
+		 * Vue App using:
 		 */
 		title: () => LocalizedString
 		/**
@@ -401,7 +401,7 @@ export type TranslationFunctions = {
 		 */
 		noPageContent: () => LocalizedString
 		/**
-		 * Svelte Template
+		 * Vue Template
 		 */
 		appName: () => LocalizedString
 		/**

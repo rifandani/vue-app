@@ -3,7 +3,7 @@ import { Icon } from '@iconify/vue'
 import { RouterLink } from 'vue-router'
 import { SvgIcon } from '../../atoms'
 import { NavbarMenuContent } from '../../molecules'
-import { useNavBar } from './useNavBar.hook'
+import { useNavBar } from './useNavBar'
 
 const { LL, logout } = useNavBar()
 </script>

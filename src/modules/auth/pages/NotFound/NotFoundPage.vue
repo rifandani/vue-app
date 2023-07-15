@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useLocalStorage } from '@vueuse/core'
+import { RouterLink } from 'vue-router'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import type { LoginApiResponseSchema } from '../../api/auth.schema'
+import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
 
 const { LL } = typesafeI18n()
-const user = useLocalStorage<LoginApiResponseSchema | null>('user', null)
+const user = useUserStorage()
 </script>
 
 <template>
@@ -14,8 +14,12 @@ const user = useLocalStorage<LoginApiResponseSchema | null>('user', null)
     </h1>
     <p data-testid="notFound-subtitle" class="mb-5">{{ LL.auth.gone() }}</p>
 
-    <Link href="/" data-testid="notFound-link" class="link-neutral link hover:skew-x-12">
+    <RouterLink
+      to="/"
+      data-testid="notFound-link"
+      class="link text-primary-content hover:skew-x-12"
+    >
       {{ LL.auth.backTo({ isLoggedIn: user?.id ? 'true' : 'false' }) }}
-    </Link>
+    </RouterLink>
   </main>
 </template>

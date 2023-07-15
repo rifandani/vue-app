@@ -1,5 +1,7 @@
-import type { ButtonHTMLAttributes, SVGAttributes, TableHTMLAttributes } from 'vue'
+import type { IntrinsicElementAttributes } from 'vue'
 
-export type SvgProps = SVGAttributes
-export type ButtonProps = ButtonHTMLAttributes
-export type TableProps = TableHTMLAttributes
+export type SvgProps = IntrinsicElementAttributes['svg']
+export type ButtonProps = IntrinsicElementAttributes['button']
+export type TableProps = IntrinsicElementAttributes['table']
+export type FormProps = IntrinsicElementAttributes['form']
+export type InputProps = IntrinsicElementAttributes['input']

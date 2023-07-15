@@ -5,16 +5,16 @@
 Vue 3 template built with:
 
 - `typescript` + `eslint` + `prettier` -> dev productivity
-- `svelte-spa-router` -> hash based routing
-- `vite` + `vitest` + `@testing-library/svelte` -> unit test, integration test, coverage
+- `vue-router` -> routing
+- `vue-use` -> useful composables
+- `pinia` -> state management
+- `vite` + `vitest` + `@testing-library/vue` -> unit test, integration test, coverage
 - `msw` -> browser and server mocking
 - `tailwindcss` + `tailwind-merge` + `daisyui` -> styling
-- `@formkit/auto-animate` -> automate transition animation when component mount/unmount
-- `@kobalte/core` -> unstyled UI component library (similar to `radix-ui` in React)
-- `redaxios` + `@tanstack/svelte-query` -> data fetching
+- `redaxios` + `@tanstack/vue-query` -> data fetching
 - `zod` -> schema validation
-- `felte` -> form management
-- `@iconify/svelte` -> icon on demand
+- `vee-validate` + `@vee-validate/zod` -> form management
+- `@iconify/vue` -> icon on demand
 - `type-fest` -> useful type helpers
 - `typesafe-i18n` -> typesafe i18n
 
@@ -67,13 +67,6 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-## NOTES
-
-- [ ] Toast
-- [ ] animations
-- [ ] fix all tests
-- [ ] add `/docs` folder, including all my decisions or technical considerations.
-
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
@@ -88,3 +81,10 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
    1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
    2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+
+## NOTES
+
+- [ ] install `@zagjs/vue` for toast
+- [ ] animations
+- [ ] fix all tests
+- [ ] add `/docs` folder, including all my decisions or technical considerations.

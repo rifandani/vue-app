@@ -1,4 +1,4 @@
-import type { Translation } from '../i18n-types';
+import type { Translation } from '../i18n-types'
 
 const id = {
   auth: {
@@ -7,19 +7,19 @@ const id = {
     registerHere: 'Tidak punya akun? <>Daftar disini<>',
     notFound404: '404: Tidak Ditemukan',
     gone: 'Halaman Kosong',
-    backTo: 'Kembali ke {isLoggedIn|{true: beranda, false: login}}',
+    backTo: 'Kembali ke {isLoggedIn|{true: beranda, false: login}}'
   },
   home: {
-    title: 'Aplikasi Svelte menggunakan:',
+    title: 'Aplikasi Vue menggunakan:',
     sortBtn: 'Sortir Tombol',
     clock: 'Jam',
     toggleClock: 'Beralih Jam',
     clickToggleClock: 'Klik beralih jam untuk mengulang kalkulasi jam',
     changeLang: 'Ganti Bahasa',
-    getStarted: 'Mulai',
+    getStarted: 'Mulai'
   },
   todo: {
-    backTo: 'Kembali ke {target}',
+    backTo: 'Kembali ke {target}'
   },
   forms: {
     username: 'Username',
@@ -33,7 +33,7 @@ const id = {
     add: 'Tambah {icon}',
     remove: 'Hapus {icon}',
     limit: 'Batas',
-    todoPlaceholder: 'Apa yang akan anda lakukan selanjutnya...',
+    todoPlaceholder: 'Apa yang akan anda lakukan selanjutnya...'
   },
   common: {
     loading: 'Menunggu...',
@@ -47,21 +47,21 @@ const id = {
     xDeleteError: '{feature} gagal dihapus',
     error: '❌ {module|capitalize} eror',
     noPageContent: 'Tidak Ada Konten',
-    appName: 'Templat Svelte',
+    appName: 'Templat Vue',
     theme: 'Tema',
     add: 'Tambah {icon}',
     update: 'Ubah {icon}',
     remove: 'Hapus {icon}',
-    empty: 'Tidak Ada Data',
+    empty: 'Tidak Ada Data'
   },
   success: {
-    action: '{module} berhasil {action}',
+    action: '{module} berhasil {action}'
   },
   error: {
     minLength: '{field} harus memiliki minimal {length} karakter',
     passwordMinLength: 'password harus memiliki minimal 6 karakter',
-    action: '{module} gagal di {action}',
-  },
-} satisfies Translation;
+    action: '{module} gagal di {action}'
+  }
+} satisfies Translation
 
-export default id;
+export default id

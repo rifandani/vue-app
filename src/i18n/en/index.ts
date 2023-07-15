@@ -10,7 +10,7 @@ const en = {
     backTo: 'Go back to {isLoggedIn|{true: home, false: login}}'
   },
   home: {
-    title: 'Svelte App using:',
+    title: 'Vue App using:',
     sortBtn: 'Sort Buttons',
     clock: 'Clock',
     toggleClock: 'Toggle Clock',
@@ -47,7 +47,7 @@ const en = {
     xDeleteError: '{feature:string} failed to delete',
     error: '❌ {module:string|capitalize} error',
     noPageContent: 'No Page Content',
-    appName: 'Svelte Template',
+    appName: 'Vue Template',
     theme: 'Theme',
     add: 'Add {icon:string}',
     update: 'Update {icon:string}',

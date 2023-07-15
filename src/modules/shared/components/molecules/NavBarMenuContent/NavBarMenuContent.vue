@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { useLocalStorage } from '@vueuse/core'
 import { typesafeI18n } from '../../../../../i18n/i18n-vue'
-import type { LoginApiResponseSchema } from '../../../../auth/api/auth.schema'
+import { useUserStorage } from '../../../composables/useUserStorage/useUserStorage.composable'
 import { themes } from '../../../constants/global.constant'
 
 const emit = defineEmits<{
@@ -9,7 +8,7 @@ const emit = defineEmits<{
 }>()
 
 const { LL } = typesafeI18n()
-const user = useLocalStorage<LoginApiResponseSchema | null>('user', null)
+const user = useUserStorage()
 </script>
 
 <template>
@@ -41,7 +40,7 @@ const user = useLocalStorage<LoginApiResponseSchema | null>('user', null)
     </ul>
   </li>
 
-  <li v-if="user?.username" class="ml-0 lg:ml-3 lg:mt-0">
+  <li v-if="user" class="ml-0 lg:ml-3 lg:mt-0">
     <button
       class="btn-primary btn-sm btn normal-case tracking-wide text-primary-content"
       @click="emit('logout')"

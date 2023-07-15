@@ -2,6 +2,7 @@
 import { shuffle } from '@rifandani/nxact-yutiriti'
 import { onUnmounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
+import type { Translation } from '../../../../i18n/i18n-types'
 import { loadLocale } from '../../../../i18n/i18n-util.sync'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
 
@@ -19,13 +20,13 @@ const buttons = ref([
     id: 'sort',
     class: 'btn-neutral btn',
     onClick: () => {},
-    text: LL.value.home.sortBtn()
+    text: 'sortBtn' as keyof Translation['home']
   },
   {
     id: 'clock',
     class: 'btn-active btn',
     onClick: () => (showClock.value = !showClock.value),
-    text: LL.value.home.toggleClock()
+    text: 'toggleClock' as keyof Translation['home']
   },
   {
     id: 'language',
@@ -37,13 +38,13 @@ const buttons = ref([
       // change locale store
       setLocale(newLocale)
     },
-    text: LL.value.home.changeLang()
+    text: 'changeLang' as keyof Translation['home']
   },
   {
     id: 'start',
     class: 'btn-secondary btn',
     onClick: () => push('/todos'),
-    text: LL.value.home.getStarted()
+    text: 'getStarted' as keyof Translation['home']
   }
 ])
 
@@ -75,7 +76,6 @@ watchEffect(() => {
   // recalculate `hours` when `minutes` changes
   hours.value = minutes.value > 0 ? (minutes.value % 2 === 0 ? hours.value + 1 : hours.value) : 0
 })
-
 //#endregion
 
 onUnmounted(() => clearTimeout(timeoutId.value))
@@ -98,9 +98,9 @@ onUnmounted(() => clearTimeout(timeoutId.value))
       :key="btn.id"
       :data-testid="btn.id"
       :class="btn.class"
-      @click="btn.id === 'sort' ? () => (buttons = shuffle(buttons)) : btn.onClick"
+      @click="() => (btn.id === 'sort' ? (buttons = shuffle(buttons)) : btn.onClick())"
     >
-      {{ btn.text }}
+      {{ LL.home[btn.text]() }}
     </button>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { LocalizedString } from 'typesafe-i18n'
-import { useWrapTranslation } from './useWrapTranslation.hook'
+import { useWrapTranslation } from './useWrapTranslation'
 
 type Props = {
   message: LocalizedString

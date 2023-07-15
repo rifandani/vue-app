@@ -2,7 +2,11 @@
 import { twJoin } from 'tailwind-merge'
 import { RouterLink } from 'vue-router'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
 import type { TodoSchema } from '../../api/todo.schema'
+import { useTodoDeleteMutation } from '../../composables/useTodoDeleteMutation.composable'
+import { useTodoListParams } from '../../composables/useTodoListParams.composable'
+import { useTodoUpdateMutation } from '../../composables/useTodoUpdateMutation.composable'
 
 //#region VALUES
 const props = defineProps<{
@@ -10,43 +14,47 @@ const props = defineProps<{
 }>()
 
 const { LL } = typesafeI18n()
-// const { queryOptions } = createTodoListQuery();
-// const { store: user } = createLocalStorage<LoginApiResponseSchema>('user');
-// $: todoUpdateMutation = createTodoUpdateMutation({ queryKey: $queryOptions.queryKey });
-// $: todoDeleteMutation = createTodoDeleteMutation({ queryKey: $queryOptions.queryKey });
+const user = useUserStorage()
+const { queryKey } = useTodoListParams()
+const todoUpdateMutation = useTodoUpdateMutation({ queryKey })
+const todoDeleteMutation = useTodoDeleteMutation({ queryKey })
 //#endregion
 
 //#region HANDLERS
-// const onChangeTodo: HTMLInputAttributes['on:change'] = () => {
-//   $todoUpdateMutation.mutate({ ...todo, completed: !todo.completed });
-// };
+const onChangeTodo = () => {
+  todoUpdateMutation.mutate({ ...props.todo, completed: !props.todo.completed })
+}
 
-// const onDeleteTodo: HTMLFormAttributes['on:submit'] = (ev) => {
-//   // don't allow if not the correct auth user
-//   if (todo.userId !== $user.id) return;
+const onDeleteTodo = (ev: Event) => {
+  // don't allow if not the correct auth user
+  if (props.todo.userId !== user.value?.id) return
 
-//   // parse form data & get todo id from input hidden with name/id `todoId`
-//   const formData = new FormData(ev.currentTarget);
-//   const { todoId } = Object.fromEntries(formData.entries());
+  const target = ev.target as HTMLFormElement
+  // parse form data & get todo id from input hidden with name/id `todoId`
+  const formData = new FormData(target)
+  const { todoId } = Object.fromEntries(formData.entries())
 
-//   $todoDeleteMutation.mutate(Number(todoId));
-// };
+  todoDeleteMutation.mutate(Number(todoId))
+}
 //#endregion
 </script>
 
 <template>
-  <!-- on:submit|preventDefault={onDeleteTodo} -->
-  <form data-testid="form" class="mb-2 flex items-center justify-between">
-    <input id="todoId" data-testid="input-todoId" value="{todo.id}" type="hidden" name="todoId" />
+  <form
+    data-testid="form"
+    class="mb-2 flex items-center justify-between"
+    @submit.prevent="onDeleteTodo"
+  >
+    <input id="todoId" data-testid="input-todoId" type="hidden" name="todoId" :value="todo.id" />
 
-    <!-- on:change={onChangeTodo} -->
     <input
       :id="`todo-${todo.id}`"
-      :name="`todo-${todo.id}`"
-      :checked="todo.completed"
       data-testid="input-todo"
       class="checkbox-accent checkbox"
       type="checkbox"
+      :name="`todo-${todo.id}`"
+      :checked="todo.completed"
+      @change="onChangeTodo"
     />
 
     <RouterLink
@@ -62,8 +70,12 @@ const { LL } = typesafeI18n()
       {{ todo.todo }}
     </RouterLink>
 
-    <!-- {#if todo.userId === $user.id} -->
-    <button data-testid="button-remove" class="btn-accent btn-sm btn normal-case" type="submit">
+    <button
+      v-if="todo.userId === user?.id"
+      data-testid="button-remove"
+      class="btn-accent btn-sm btn normal-case"
+      type="submit"
+    >
       {{ LL.forms.remove({ icon: '💥' }) }}
     </button>
   </form>

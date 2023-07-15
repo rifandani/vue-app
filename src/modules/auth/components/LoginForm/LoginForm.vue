@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { useMutation } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
-import { useLocalStorage } from '@vueuse/core'
-import { twMerge } from 'tailwind-merge'
+import { twJoin } from 'tailwind-merge'
 import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
 import type { ErrorApiResponseSchema } from '../../../shared/api/error.schema'
+import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
 import { login } from '../../api/auth.api'
 import { loginSchema, type LoginApiResponseSchema, type LoginSchema } from '../../api/auth.schema'
 
 const { LL } = typesafeI18n()
-const user = useLocalStorage<LoginApiResponseSchema | null>('user', null)
+const user = useUserStorage()
 const { push } = useRouter()
 
 const loginMutation = useMutation<LoginApiResponseSchema, ErrorApiResponseSchema, LoginSchema>({
@@ -23,14 +23,15 @@ const loginMutation = useMutation<LoginApiResponseSchema, ErrorApiResponseSchema
   }
 })
 
-const { meta, errors, handleSubmit, defineInputBinds } = useForm({
+const { defineInputBinds, handleSubmit, errors, meta } = useForm({
   validationSchema: toTypedSchema(loginSchema),
   initialValues: {
     username: '',
     password: ''
   }
 })
-
+const username = defineInputBinds('username', { validateOnInput: true })
+const password = defineInputBinds('password', { validateOnInput: true })
 const onSubmit = handleSubmit((values, context) => {
   loginMutation.mutate(values, {
     onError: () => {
@@ -39,9 +40,6 @@ const onSubmit = handleSubmit((values, context) => {
     }
   })
 })
-
-const username = defineInputBinds('username')
-const password = defineInputBinds('password')
 </script>
 
 <template>
@@ -54,21 +52,16 @@ const password = defineInputBinds('password')
 
       <input
         v-bind="username"
-        :placeholder="LL.forms.usernamePlaceholder()"
-        :class="
-          twMerge(
-            'input mt-1 shadow-md'
-            errors?.username?.length ? 'input-error' : 'input-primary'
-          )
-        "
         id="username"
+        :placeholder="LL.forms.usernamePlaceholder()"
+        :class="twJoin(['input mt-1 shadow-md', errors.username ? 'input-error' : 'input-primary'])"
         data-testid="input-username"
         name="username"
         type="text"
         required
       />
 
-      <p v-if="errors?.username?.length" class="pl-5 pt-1 text-error">
+      <p v-if="errors.username" class="pl-5 pt-1 text-error">
         {{ LL.error.minLength({ field: 'username', length: 3 }) }}
       </p>
     </div>
@@ -80,22 +73,17 @@ const password = defineInputBinds('password')
       </label>
 
       <input
+        id="password"
         v-bind="password"
         :placeholder="LL.forms.passwordPlaceholder()"
-        :class="
-          twMerge(
-            'input mt-1 shadow-md'
-            errors?.password?.length ? 'input-error' : 'input-primary'
-          )
-        "
-        id="password"
+        :class="twJoin(['input mt-1 shadow-md', errors.password ? 'input-error' : 'input-primary'])"
         data-testid="input-password"
         type="password"
         name="password"
         required
       />
 
-      <p v-if="errors?.password?.length" class="pl-5 pt-1 text-error">
+      <p v-if="errors.password" class="pl-5 pt-1 text-error">
         {{ LL.error.passwordMinLength() }}
       </p>
     </div>
@@ -112,7 +100,7 @@ const password = defineInputBinds('password')
       data-testid="button-submit"
       class="btn-primary btn mt-8 normal-case"
     >
-      {{ loginMutation.isLoading ? LL.forms.loginLoading() : LL.forms.login() }}
+      {{ loginMutation.isLoading.value ? LL.forms.loginLoading() : LL.forms.login() }}
     </button>
   </form>
 </template>

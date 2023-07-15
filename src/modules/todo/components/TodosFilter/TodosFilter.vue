@@ -1,19 +1,22 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import { useTodoListParams } from '../../composables/useTodoListParams.composable'
 import { limits } from '../../constants/todos.constant'
 
 //#region VALUES
+const router = useRouter()
 const { LL } = typesafeI18n()
-// const { searchParams, queryParams } = createTodoListReadable();
-// $: selectedOption = $queryParams.limit.toString();
+const { queryParams } = useTodoListParams()
+const selectedOption = computed(() => queryParams.value.limit.toString())
 //#endregion
 
 //#region HANDLERS
-// const onChangeLimit: HTMLSelectAttributes['on:change'] = async ({ currentTarget }) => {
-//   // set to url params
-//   $searchParams.set('limit', currentTarget.value);
-//   await push(`/todos?${$searchParams.toString()}`);
-// };
+const onChangeLimit = async (evt: Event) => {
+  const target = evt.target as HTMLInputElement
+  await router.replace({ query: { limit: target.value } })
+}
 //#endregion
 </script>
 
@@ -23,20 +26,20 @@ const { LL } = typesafeI18n()
       <span class="label-text text-primary-content">{{ LL.forms.limit() }}</span>
     </label>
 
-    <!-- on:change={onChangeLimit} -->
-    <!-- value={selectedOption} -->
     <select
       id="limit"
       data-testid="select-limit"
       class="select-bordered select-secondary select"
       name="limit"
+      :value="selectedOption"
+      @change="onChangeLimit"
     >
-      <!-- :selected="limit === selectedOption" -->
       <option
         v-for="limit in limits"
         :key="limit"
         :data-testid="`option-limit-${limit}`"
         :value="limit"
+        :selected="limit === selectedOption"
       >
         {{ limit }}
       </option>

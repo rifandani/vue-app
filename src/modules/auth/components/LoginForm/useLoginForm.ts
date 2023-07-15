@@ -1,16 +1,18 @@
 import { useMutation } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
-import { useLocalStorage } from '@vueuse/core'
 import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
 import type { ErrorApiResponseSchema } from '../../../shared/api/error.schema'
+import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
 import { login } from '../../api/auth.api'
 import { loginSchema, type LoginApiResponseSchema, type LoginSchema } from '../../api/auth.schema'
 
+// NOTE: not used due to weird type error
+// "The inferred type of useLoginForm cannot be named without a reference to..."
 export const useLoginForm = () => {
   const { LL } = typesafeI18n()
-  const user = useLocalStorage<LoginApiResponseSchema | null>('user', null)
+  const user = useUserStorage()
   const { push } = useRouter()
 
   const loginMutation = useMutation<LoginApiResponseSchema, ErrorApiResponseSchema, LoginSchema>({
@@ -31,7 +33,6 @@ export const useLoginForm = () => {
   })
 
   const onSubmit = form.handleSubmit((values, context) => {
-    console.log('🚀 ~ file: LoginForm.vue:52 ~ onSubmit ~ values:', { values, context })
     loginMutation.mutate(values, {
       onError: () => {
         // reset form
