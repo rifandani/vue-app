@@ -1,61 +1,90 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { RouterLink } from 'vue-router'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
+import { toTypedSchema } from '@vee-validate/zod'
+import { useForm } from 'vee-validate'
+import { computed } from 'vue'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { z } from 'zod'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import type { ErrorApiResponseSchema } from '../../../shared/api/error.schema'
+import { NavBar } from '../../../shared/components/organisms'
+import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
+import { todoApi, todoKeys } from '../../api/todo.api'
+import {
+  todoSchema,
+  type UpdateTodoApiResponseSchema,
+  type UpdateTodoSchema
+} from '../../api/todo.schema'
+import { useTodoDetailParams } from '../../composables/useTodoDetailParams.composable'
 
 //#region VALUES
-const { LL } = typesafeI18n()
-// const id = derived(params, ($params) => {
-//   // initial load, `$params === undefined`
-//   // -1 to make query options `enabled: false`
-//   if (!$params) return -1
-
-//   // will throw error if `params.id` is not a number
-//   const id = z.coerce.number().parse($params.id)
-//   return Number(id)
-// })
-// const { queryOptions } = createTodoDetailQuery(id)
+const route = useRoute()
+const { push } = useRouter()
+const queryClient = useQueryClient()
+const user = useUserStorage()
 // const { toaster } = createToast()
-// const queryClient = useQueryClient()
+const { LL } = typesafeI18n()
+const id = computed(() => {
+  // initial load, `route.params === undefined`
+  // -1 to make query options `enabled: false`
+  if (!route.params) return -1
 
-// $: todoQuery = createQuery($queryOptions)
-// $: todoUpdateMutation = createMutation<
-//   UpdateTodoApiResponseSchema,
-//   ErrorApiResponseSchema,
-//   UpdateTodoSchema
-// >({
-//   mutationFn: (updateTodo) => todoApi.update(updateTodo),
-//   onSuccess: async (updatedTodo) => {
-//     // NOTE: the order of function call MATTERS
-//     push('/todos')
-//     queryClient.removeQueries({ queryKey: todoKeys.detail(updatedTodo.id) }) // delete the query cache
-//     await queryClient.invalidateQueries({ queryKey: todoKeys.lists() })
-//   },
-//   onSettled: (_updateTodo, error) => {
-//     toaster.create({
-//       type: error ? 'error' : 'success',
-//       title: error
-//         ? $LL.common.xUpdateError({ feature: 'Todo' })
-//         : $LL.common.xUpdateSuccess({ feature: 'Todo' })
-//     })
-//   }
-// })
-// const { form } = createForm<Pick<UpdateTodoSchema, 'todo'>>({
-//   onSubmit: (values) => {
-//     const payload: UpdateTodoSchema = {
-//       ...values,
-//       id: $todoQuery.data?.id,
-//       completed: $todoQuery.data?.completed
-//     }
+  // will throw error if `params.id` is not a number
+  const id = z.coerce.number().parse(route.params.id)
+  return Number(id)
+})
+const { queryOptions } = useTodoDetailParams({ id })
 
-//     $todoUpdateMutation.mutate(payload)
-//   }
-// })
+const { isLoading, isError, isSuccess, error, data } = useQuery(queryOptions.value)
+const {
+  isError: mutationIsError,
+  error: mutationError,
+  mutate
+} = useMutation<UpdateTodoApiResponseSchema, ErrorApiResponseSchema, UpdateTodoSchema>({
+  mutationFn: (updateTodo) => todoApi.update(updateTodo),
+  onSuccess: async (updatedTodo) => {
+    // NOTE: the order of function call MATTERS
+    await push('/todos')
+    queryClient.removeQueries({ queryKey: computed(() => todoKeys.detail(updatedTodo.id)) }) // delete the query cache
+    await queryClient.invalidateQueries({ queryKey: computed(() => todoKeys.lists()) })
+  },
+  onSettled: (_updateTodo, error) => {
+    // toaster.create({
+    //   type: error ? 'error' : 'success',
+    //   title: error
+    //     ? $LL.common.xUpdateError({ feature: 'Todo' })
+    //     : $LL.common.xUpdateSuccess({ feature: 'Todo' })
+    // })
+  }
+})
+
+const initialValues = computed(() => ({
+  todo: data.value?.todo ?? LL.value.common.loading(),
+  id: data.value?.id ?? 1,
+  completed: data.value?.completed ?? false,
+  userId: data.value?.userId ?? 1
+}))
+const { defineInputBinds, handleSubmit, errors } = useForm({
+  initialValues,
+  validationSchema: toTypedSchema(todoSchema)
+})
+const todo = defineInputBinds('todo', { validateOnInput: true })
+const onSubmit = handleSubmit((values) => {
+  const payload = {
+    todo: values.todo,
+    id: data.value?.id ?? values.id,
+    completed: data.value?.completed ?? values.completed
+  }
+
+  mutate(payload)
+})
 //#endregion
 </script>
 
 <template>
   <NavBar>
+    <pre>{{ errors }}</pre>
     <section class="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
       <div class="mb-10 flex w-full flex-col space-y-2">
         <RouterLink to="/todos" class="btn-link w-fit normal-case text-primary-content">
@@ -67,42 +96,39 @@ const { LL } = typesafeI18n()
         </h1>
       </div>
 
-      <!-- {#if $todoUpdateMutation.isError} -->
-      <div class="alert alert-error mt-2 shadow-lg">
+      <div v-if="mutationIsError && mutationError" class="alert alert-error mt-2 shadow-lg">
         <div class="flex items-center">
           <span>
             {{ LL.common.error({ module: 'Todo Mutation' }) }}:{{ ' ' }}
-            <!-- {$todoUpdateMutation.error.message} -->
+            {{ mutationError.message }}
           </span>
         </div>
       </div>
 
-      <!-- {#if $todoQuery.isLoading} -->
-      <div class="flex items-center justify-center py-5">
+      <div v-if="isLoading" class="flex items-center justify-center py-5">
         <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-secondary-content" />
       </div>
 
-      <!-- {#if $todoQuery.isError} -->
-      <div class="alert alert-error mt-2 shadow-lg">
+      <div v-if="isError" class="alert alert-error mt-2 shadow-lg">
         <div class="flex items-center">
           <span>{{ LL.common.error({ module: 'Todos' }) }}:</span>
-          <!-- <pre>{JSON.stringify($todoQuery.error, null, 2)}</pre> -->
+          <pre>{{ JSON.stringify(error, null, 2) }}</pre>
         </div>
       </div>
 
-      <!-- {#if $todoQuery.isSuccess} -->
-      <form data-testid="form" class="join">
-        <!-- :value="todoQuery.data?.todo ?? LL.common.loading()" -->
+      <form v-if="isSuccess && data" data-testid="form" class="join" @submit="onSubmit">
         <input
           id="todo"
-          data-testid="input-todo"
-          class="input-bordered input-accent input join-item w-full text-accent-content"
           name="todo"
           type="text"
+          data-testid="input-todo"
+          class="input-bordered input-accent input join-item w-full text-accent-content"
           required
+          v-bind="todo"
         />
 
         <button
+          v-if="user?.id === data.userId"
           data-testid="button-submit"
           class="btn-accent join-item btn normal-case"
           type="submit"

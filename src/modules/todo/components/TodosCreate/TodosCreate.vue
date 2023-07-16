@@ -56,7 +56,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
   <form
     data-testid="form"
     class="form-control mb-3 w-full duration-300 lg:flex-row"
-    @submit.prevent="onSubmit"
+    @submit="onSubmit"
   >
     <input
       v-bind="todo"
@@ -68,10 +68,6 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
       required
       :placeholder="LL.forms.todoPlaceholder()"
     />
-
-    <pre>
-      {{ errors }}
-    </pre>
 
     <button
       data-testid="button-submit"

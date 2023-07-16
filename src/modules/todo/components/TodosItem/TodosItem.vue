@@ -40,11 +40,7 @@ const onDeleteTodo = (ev: Event) => {
 </script>
 
 <template>
-  <form
-    data-testid="form"
-    class="mb-2 flex items-center justify-between"
-    @submit.prevent="onDeleteTodo"
-  >
+  <form data-testid="form" class="mb-2 flex items-center justify-between" @submit="onDeleteTodo">
     <input id="todoId" data-testid="input-todoId" type="hidden" name="todoId" :value="todo.id" />
 
     <input
