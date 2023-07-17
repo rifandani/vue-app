@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useToast } from '@ark-ui/vue'
 import { random } from '@rifandani/nxact-yutiriti'
 import { useQueryClient } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -12,11 +13,12 @@ import { useTodoListParams } from '../../composables/useTodoListParams.composabl
 //#region VALUES
 const { LL } = typesafeI18n()
 const user = useUserStorage()
+const toast = useToast()
 const queryClient = useQueryClient()
 const { queryKey } = useTodoListParams()
 const todoCreateMutation = useTodoCreateMutation({ queryKey })
 
-const { errors, defineInputBinds, handleSubmit } = useForm({
+const { defineInputBinds, handleSubmit } = useForm({
   validationSchema: toTypedSchema(todoSchema),
   initialValues: {
     id: 1, // doesn't matter, we override it later on `onSubmit` anyway
@@ -37,12 +39,12 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
       // reset form
       resetForm()
 
-      // toaster.create({
-      //   type: error ? 'error' : 'success',
-      //   title: error
-      //     ? $LL.error.action({ module: 'Todo', action: 'create' })
-      //     : $LL.success.action({ module: 'Todo', action: 'created' })
-      // })
+      toast.value.create({
+        type: error ? 'error' : 'success',
+        title: error
+          ? LL.value.error.action({ module: 'Todo', action: 'create' })
+          : LL.value.success.action({ module: 'Todo', action: 'created' })
+      })
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
       if (error) queryClient.setQueryData(queryKey, context?.previousTodosQueryResponse)

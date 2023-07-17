@@ -17,6 +17,7 @@ Vue 3 template built with:
 - `@iconify/vue` -> icon on demand
 - `type-fest` -> useful type helpers
 - `typesafe-i18n` -> typesafe i18n
+- `@ark-ui/vue` -> agnostic, unstyled, accessible component library based on state machine
 
 ## Development
 
@@ -84,7 +85,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## NOTES
 
-- [ ] install `@zagjs/vue` for toast
 - [ ] animations
 - [ ] fix all tests
 - [ ] add `/docs` folder, including all my decisions or technical considerations.
+- [x] tried `@zagjs/vue` + `@zagjs/toast`. Doesn't work. Not fully typed in the `BaseToast` component where we get `actor` as props. Progress state is not reactive.

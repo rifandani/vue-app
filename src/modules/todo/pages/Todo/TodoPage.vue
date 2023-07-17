@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useToast } from '@ark-ui/vue'
 import { Icon } from '@iconify/vue'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
@@ -23,7 +24,7 @@ const route = useRoute()
 const { push } = useRouter()
 const queryClient = useQueryClient()
 const user = useUserStorage()
-// const { toaster } = createToast()
+const toast = useToast()
 const { LL } = typesafeI18n()
 const id = computed(() => {
   // initial load, `route.params === undefined`
@@ -50,12 +51,12 @@ const {
     await queryClient.invalidateQueries({ queryKey: computed(() => todoKeys.lists()) })
   },
   onSettled: (_updateTodo, error) => {
-    // toaster.create({
-    //   type: error ? 'error' : 'success',
-    //   title: error
-    //     ? $LL.common.xUpdateError({ feature: 'Todo' })
-    //     : $LL.common.xUpdateSuccess({ feature: 'Todo' })
-    // })
+    toast.value.create({
+      type: error ? 'error' : 'success',
+      title: error
+        ? LL.value.common.xUpdateError({ feature: 'Todo' })
+        : LL.value.common.xUpdateSuccess({ feature: 'Todo' })
+    })
   }
 })
 
@@ -65,7 +66,7 @@ const initialValues = computed(() => ({
   completed: data.value?.completed ?? false,
   userId: data.value?.userId ?? 1
 }))
-const { defineInputBinds, handleSubmit, errors } = useForm({
+const { defineInputBinds, handleSubmit } = useForm({
   initialValues,
   validationSchema: toTypedSchema(todoSchema)
 })
@@ -84,7 +85,6 @@ const onSubmit = handleSubmit((values) => {
 
 <template>
   <NavBar>
-    <pre>{{ errors }}</pre>
     <section class="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
       <div class="mb-10 flex w-full flex-col space-y-2">
         <RouterLink to="/todos" class="btn-link w-fit normal-case text-primary-content">

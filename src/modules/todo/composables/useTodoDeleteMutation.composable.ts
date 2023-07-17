@@ -1,3 +1,4 @@
+import { useToast } from '@ark-ui/vue'
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
 import type { ComputedRef } from 'vue'
 import { typesafeI18n } from '../../../i18n/i18n-vue'
@@ -16,10 +17,7 @@ type CreateTodoDeleteMutationProps = {
 export const useTodoDeleteMutation = ({ queryKey }: CreateTodoDeleteMutationProps) => {
   const queryClient = useQueryClient()
   const { LL } = typesafeI18n()
-  // const { toaster } = createToast();
-
-  const errorTitle = LL.value.error.action({ module: 'Todo', action: 'delete' })
-  const successTitle = LL.value.success.action({ module: 'Todo', action: 'deleted' })
+  const toast = useToast()
 
   return useMutation<
     DeleteTodoApiResponseSchema,
@@ -47,10 +45,12 @@ export const useTodoDeleteMutation = ({ queryKey }: CreateTodoDeleteMutationProp
     },
     mutationFn: (id) => todoApi.delete(id),
     onSettled: (_id, error, _variables, context) => {
-      // toaster.create({
-      //   type: error ? 'error' : 'success',
-      //   title: error ? errorTitle : successTitle,
-      // });
+      toast.value.create({
+        type: error ? 'error' : 'success',
+        title: error
+          ? LL.value.error.action({ module: 'Todo', action: 'delete' })
+          : LL.value.success.action({ module: 'Todo', action: 'deleted' })
+      })
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
       if (error) queryClient.setQueryData(queryKey, context?.previousTodosQueryResponse)

@@ -2,10 +2,13 @@
 import { themeChange } from 'theme-change'
 import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
+import AppToastProvider from './AppToastProvider.vue'
 
 onMounted(() => themeChange(false))
 </script>
 
 <template>
-  <RouterView />
+  <AppToastProvider>
+    <RouterView />
+  </AppToastProvider>
 </template>
