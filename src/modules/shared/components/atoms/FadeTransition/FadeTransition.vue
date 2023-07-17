@@ -1,0 +1,29 @@
+<script setup lang="ts">
+const props = defineProps<{
+  css?: boolean
+  duration?:
+    | number
+    | {
+        enter: number
+        leave: number
+      }
+}>()
+</script>
+
+<template>
+  <Transition name="fade" v-bind="props">
+    <slot></slot>
+  </Transition>
+</template>
+
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>

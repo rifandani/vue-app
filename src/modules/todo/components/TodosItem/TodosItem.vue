@@ -33,6 +33,7 @@ const onDeleteTodo = (ev: Event) => {
   // parse form data & get todo id from input hidden with name/id `todoId`
   const formData = new FormData(target)
   const { todoId } = Object.fromEntries(formData.entries())
+  console.log('🚀 ~ file: TodosItem.vue:35 ~ onDeleteTodo ~ formData:', { todoId })
 
   todoDeleteMutation.mutate(Number(todoId))
 }

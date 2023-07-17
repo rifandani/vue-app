@@ -2,6 +2,7 @@
 import { Icon } from '@iconify/vue'
 import { useQuery } from '@tanstack/vue-query'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import { ListSlideTransition } from '../../../shared/components/atoms'
 import { useTodoListParams } from '../../composables/useTodoListParams.composable'
 import TodosItem from '../TodosItem/TodosItem.vue'
 
@@ -29,6 +30,8 @@ const { isLoading, isError, error, isSuccess, data } = useQuery(queryOptions.val
       {{ LL.common.empty() }}
     </p>
 
-    <TodosItem v-for="todo in data.todos" v-else :key="todo.id" :todo="todo" />
+    <ListSlideTransition v-else>
+      <TodosItem v-for="todo in data.todos" :key="todo.id" :todo="todo" />
+    </ListSlideTransition>
   </template>
 </template>

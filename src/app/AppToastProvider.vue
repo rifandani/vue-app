@@ -9,7 +9,7 @@ import {
   ToastTitle
 } from '@ark-ui/vue'
 import { Icon } from '@iconify/vue'
-import { twMerge } from 'tailwind-merge'
+import { ListSlideTransition } from '../modules/shared/components/atoms'
 
 const max = 5
 </script>
@@ -23,40 +23,35 @@ const max = 5
         v-slot="{ toasts }"
         :placement="placement"
       >
-        <Toast
-          v-for="toast in toasts"
-          :key="toast.id"
-          :toast="toast"
-          :class="`alert alert-${toast.state.context.type} relative block overflow-hidden p-0 shadow-lg min-w-[20rem] max-w-[20rem]`"
-        >
-          <div
-            :class="
-              twMerge([
-                'flex items-center justify-between p-3',
-                !toast.state.context?.description && 'pb-5'
-              ])
-            "
+        <ListSlideTransition>
+          <Toast
+            v-for="toast in toasts"
+            :key="toast.id"
+            :toast="toast"
+            :class="`alert alert-${toast.state.context.type} relative block overflow-hidden p-0 shadow-lg min-w-[20rem] max-w-[20rem]`"
           >
-            <ToastTitle :class="`font-bold text-${toast.state.context.type}-content`" />
+            <div class="flex items-center justify-between p-3">
+              <ToastTitle :class="`font-bold text-${toast.state.context.type}-content`" />
 
-            <ToastCloseTrigger>
-              <button class="btn-ghost btn-xs btn">
-                <Icon icon="lucide:x" height="1.5em" />
-              </button>
-            </ToastCloseTrigger>
-          </div>
+              <ToastCloseTrigger>
+                <button class="btn-ghost btn-xs btn">
+                  <Icon icon="lucide:x" height="1.5em" />
+                </button>
+              </ToastCloseTrigger>
+            </div>
 
-          <ToastDescription
-            class="line-clamp-3 max-w-[90%] whitespace-pre-wrap break-words px-3 pb-5 text-sm"
-          />
+            <ToastDescription
+              class="line-clamp-3 max-w-[90%] whitespace-pre-wrap break-words px-3 pb-5 text-sm"
+            />
 
-          <!-- NOTE: not reactive -->
-          <progress
-            :class="`progress progress-${toast.state.context.type} absolute bottom-0`"
-            :value="toast.state.context.remaining"
-            :max="toast.state.context.duration"
-          />
-        </Toast>
+            <!-- NOTE: not reactive -->
+            <progress
+              :class="`progress progress-${toast.state.context.type} absolute bottom-0`"
+              :value="toast.state.context.remaining"
+              :max="toast.state.context.duration"
+            />
+          </Toast>
+        </ListSlideTransition>
       </ToastGroup>
     </ToastPlacements>
 

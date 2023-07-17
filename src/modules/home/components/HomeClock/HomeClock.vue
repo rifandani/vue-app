@@ -5,6 +5,7 @@ import { useRouter } from 'vue-router'
 import type { Translation } from '../../../../i18n/i18n-types'
 import { loadLocale } from '../../../../i18n/i18n-util.sync'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import { FadeTransition, ListSlideTransition } from '../../../shared/components/atoms'
 
 //#region VALUES
 const { LL, locale, setLocale } = typesafeI18n()
@@ -82,15 +83,18 @@ onUnmounted(() => clearTimeout(timeoutId.value))
 </script>
 
 <template>
-  <div v-if="showClock" data-testid="show-clock" class="stats mt-8 shadow">
-    <div class="stat">
-      <div class="stat-title">{{ LL.home.clock() }}:</div>
-      <div class="stat-value">{{ hours }} : {{ minutes }} : {{ seconds }} {{ '' }}</div>
-      <div class="stat-desc">{{ LL.home.clickToggleClock() }}</div>
+  <FadeTransition>
+    <div v-if="showClock" data-testid="show-clock" class="stats mt-8 shadow">
+      <div class="stat">
+        <div class="stat-title">{{ LL.home.clock() }}:</div>
+        <div class="stat-value">{{ hours }} : {{ minutes }} : {{ seconds }} {{ '' }}</div>
+        <div class="stat-desc">{{ LL.home.clickToggleClock() }}</div>
+      </div>
     </div>
-  </div>
+  </FadeTransition>
 
-  <div
+  <ListSlideTransition
+    tag="ul"
     class="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   >
     <button
@@ -102,5 +106,7 @@ onUnmounted(() => clearTimeout(timeoutId.value))
     >
       {{ LL.home[btn.text]() }}
     </button>
-  </div>
+  </ListSlideTransition>
 </template>
+
+<style scoped></style>
