@@ -5,7 +5,7 @@ import { useRouter } from 'vue-router'
 import type { Translation } from '../../../../i18n/i18n-types'
 import { loadLocale } from '../../../../i18n/i18n-util.sync'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import { FadeTransition, ListSlideTransition } from '../../../shared/components/atoms'
+import { FadeTransition } from '../../../shared/components/atoms'
 
 //#region VALUES
 const { LL, locale, setLocale } = typesafeI18n()
@@ -93,7 +93,8 @@ onUnmounted(() => clearTimeout(timeoutId.value))
     </div>
   </FadeTransition>
 
-  <ListSlideTransition
+  <TransitionGroup
+    name="list"
     tag="ul"
     class="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   >
@@ -106,7 +107,24 @@ onUnmounted(() => clearTimeout(timeoutId.value))
     >
       {{ LL.home[btn.text]() }}
     </button>
-  </ListSlideTransition>
+  </TransitionGroup>
 </template>
 
-<style scoped></style>
+<style scoped>
+.list-move, /* apply transition to moving elements */
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+/* ensure leaving items are taken out of layout flow so that moving animations can be calculated correctly. */
+.list-leave-active {
+  position: absolute;
+}
+</style>

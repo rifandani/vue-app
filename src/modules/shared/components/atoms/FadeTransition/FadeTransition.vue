@@ -1,17 +1,5 @@
-<script setup lang="ts">
-const props = defineProps<{
-  css?: boolean
-  duration?:
-    | number
-    | {
-        enter: number
-        leave: number
-      }
-}>()
-</script>
-
 <template>
-  <Transition name="fade" v-bind="props">
+  <Transition name="fade">
     <slot></slot>
   </Transition>
 </template>

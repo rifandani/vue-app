@@ -1,17 +1,12 @@
 <script setup lang="ts">
 const props = defineProps<{
-  css?: boolean
-  duration?:
-    | number
-    | {
-        enter: number
-        leave: number
-      }
+  class?: string
+  tag?: string
 }>()
 </script>
 
 <template>
-  <TransitionGroup name="list" v-bind="props">
+  <TransitionGroup :class="props.class" :tag="props.tag" name="list">
     <slot></slot>
   </TransitionGroup>
 </template>
