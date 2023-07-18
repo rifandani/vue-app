@@ -32,20 +32,52 @@ export function removeHash(to: RouteLocationNormalized) {
 }
 
 /**
- * check 'user' data in local storage
+ * before enter guard
  */
-export const authGuard: NavigationGuard = (to, from, next) => {
+export const loginGuard: NavigationGuard = (_to, _from, next) => {
   const user = localStorage.getItem('user')
-  console.log('🚀 ~ file: route.guard.ts:39 ~ user:', { user, from, to })
 
-  if (!user) return false // { name: 'login' }
+  // there is NO "user" data in local storage
+  if (!user) return next()
 
-  const parsedUser = JSON.parse(user) as LoginApiResponseSchema
+  const parsedUser = JSON.parse(user as string) as LoginApiResponseSchema
   // will throw an Error if `parsedUser` is not correct
   // then, will trigger callback registered via `router.onError()`
-  loginApiResponseSchema.parse(parsedUser)
+  const response = loginApiResponseSchema.safeParse(parsedUser)
 
-  if (to.path === '/login') return false // { name: 'home' }
+  // valid "user" data in local storage, but still going to /login
+  if (response.success) return next({ path: '/' })
+
+  return next()
+}
+
+/**
+ * for authorized user
+ */
+export const authGuard: NavigationGuard = (to, _from, next) => {
+  const user = localStorage.getItem('user')
+
+  const parsedUser = JSON.parse(user as string) as LoginApiResponseSchema
+  // will throw an Error if `parsedUser` is not correct
+  // then, will trigger callback registered via `router.onError()`
+  const response = loginApiResponseSchema.safeParse(parsedUser)
+
+  // NOT valid "user" data in local storage
+  if (!response.success) return next({ path: '/login' })
+  // valid "user" data in local storage, but still going to /login
+  if (to.path === '/login') return next({ path: '/' })
+
+  return next()
+}
+
+/**
+ * for unauthorized user
+ */
+export const unauthGuard: NavigationGuard = (_to, _from, next) => {
+  const user = localStorage.getItem('user')
+
+  // there is NO "user" data in local storage
+  if (!user) return next({ path: '/login' })
 
   return next()
 }
