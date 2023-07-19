@@ -56,14 +56,14 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 
 <template>
   <form
-    data-testid="form"
+    id="create-form"
     class="form-control mb-3 w-full duration-300 lg:flex-row"
     @submit="onSubmit"
   >
     <input
       v-bind="todo"
       id="todo"
-      data-testid="input-todo"
+      data-testid="create-input"
       class="input-bordered input-accent input w-full text-accent-content lg:w-10/12"
       name="todo"
       type="text"
@@ -72,7 +72,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
     />
 
     <button
-      data-testid="button-submit"
+      id="create-button"
       class="btn-accent btn ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
       type="submit"
     >

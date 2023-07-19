@@ -23,7 +23,7 @@ const { LL } = typesafeI18n()
         <div
           class="my-auto flex flex-col justify-center px-8 pt-8 md:justify-start md:px-24 md:pt-0 lg:px-32"
         >
-          <p class="text-center text-3xl text-primary" data-testid="title">
+          <p id="login-title" class="text-center text-3xl text-primary">
             {{ LL.auth.welcome() }}
           </p>
 

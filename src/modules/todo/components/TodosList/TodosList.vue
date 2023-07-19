@@ -14,11 +14,11 @@ const { isLoading, isError, error, isSuccess, data } = useQuery(queryOptions.val
 </script>
 
 <template>
-  <div v-if="isLoading" class="flex items-center justify-center py-5">
+  <div v-if="isLoading" id="list-loading" class="flex items-center justify-center py-5">
     <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-secondary-content" />
   </div>
 
-  <div v-if="isError" class="alert alert-error mt-2 shadow-lg">
+  <div v-if="isError" id="list-error" class="alert alert-error mt-2 shadow-lg">
     <div class="flex items-center">
       <span>{{ LL.common.error({ module: 'Todos' }) }}:</span>
       <pre>{{ JSON.stringify(error, null, 2) }}</pre>
@@ -26,7 +26,7 @@ const { isLoading, isError, error, isSuccess, data } = useQuery(queryOptions.val
   </div>
 
   <template v-if="isSuccess && data">
-    <p v-if="!data.todos.length" class="flex items-center justify-center py-5">
+    <p v-if="!data.todos.length" id="list-empty" class="flex items-center justify-center py-5">
       {{ LL.common.empty() }}
     </p>
 

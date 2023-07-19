@@ -96,7 +96,11 @@ const onSubmit = handleSubmit((values) => {
         </h1>
       </div>
 
-      <div v-if="mutationIsError && mutationError" class="alert alert-error mt-2 shadow-lg">
+      <div
+        v-if="mutationIsError && mutationError"
+        id="todo-mutationError"
+        class="alert alert-error mt-2 shadow-lg"
+      >
         <div class="flex items-center">
           <span>
             {{ LL.common.error({ module: 'Todo Mutation' }) }}:{{ ' ' }}
@@ -105,23 +109,23 @@ const onSubmit = handleSubmit((values) => {
         </div>
       </div>
 
-      <div v-if="isLoading" class="flex items-center justify-center py-5">
+      <div v-if="isLoading" id="todo-loading" class="flex items-center justify-center py-5">
         <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-secondary-content" />
       </div>
 
-      <div v-if="isError" class="alert alert-error mt-2 shadow-lg">
+      <div v-if="isError" id="todo-error" class="alert alert-error mt-2 shadow-lg">
         <div class="flex items-center">
           <span>{{ LL.common.error({ module: 'Todos' }) }}:</span>
           <pre>{{ JSON.stringify(error, null, 2) }}</pre>
         </div>
       </div>
 
-      <form v-if="isSuccess && data" data-testid="form" class="join" @submit="onSubmit">
+      <form v-if="isSuccess && data" id="todo-form" class="join" @submit="onSubmit">
         <input
           id="todo"
           name="todo"
           type="text"
-          data-testid="input-todo"
+          data-testid="todo-input"
           class="input-bordered input-accent input join-item w-full text-accent-content"
           required
           v-bind="todo"
@@ -129,7 +133,7 @@ const onSubmit = handleSubmit((values) => {
 
         <button
           v-if="user?.id === data.userId"
-          data-testid="button-submit"
+          id="todo-button"
           class="btn-accent join-item btn normal-case"
           type="submit"
         >

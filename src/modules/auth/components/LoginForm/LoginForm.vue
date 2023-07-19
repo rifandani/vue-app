@@ -43,7 +43,7 @@ const onSubmit = handleSubmit((values, context) => {
 </script>
 
 <template>
-  <form data-testid="form" class="form-control pt-3 md:pt-8" @submit="onSubmit">
+  <form id="login-form" class="form-control pt-3 md:pt-8" @submit="onSubmit">
     <!-- username -->
     <div class="form-control pt-4">
       <label class="label" for="username">
@@ -53,12 +53,12 @@ const onSubmit = handleSubmit((values, context) => {
       <input
         v-bind="username"
         id="username"
-        :placeholder="LL.forms.usernamePlaceholder()"
-        :class="twJoin(['input mt-1 shadow-md', errors.username ? 'input-error' : 'input-primary'])"
-        data-testid="input-username"
+        data-testid="login-input-username"
         name="username"
         type="text"
         required
+        :placeholder="LL.forms.usernamePlaceholder()"
+        :class="twJoin(['input mt-1 shadow-md', errors.username ? 'input-error' : 'input-primary'])"
       />
 
       <p v-if="errors.username" class="pl-5 pt-1 text-error">
@@ -75,12 +75,12 @@ const onSubmit = handleSubmit((values, context) => {
       <input
         id="password"
         v-bind="password"
-        :placeholder="LL.forms.passwordPlaceholder()"
-        :class="twJoin(['input mt-1 shadow-md', errors.password ? 'input-error' : 'input-primary'])"
-        data-testid="input-password"
+        data-testid="login-input-password"
         type="password"
         name="password"
         required
+        :placeholder="LL.forms.passwordPlaceholder()"
+        :class="twJoin(['input mt-1 shadow-md', errors.password ? 'input-error' : 'input-primary'])"
       />
 
       <p v-if="errors.password" class="pl-5 pt-1 text-error">
@@ -95,10 +95,10 @@ const onSubmit = handleSubmit((values, context) => {
     </div>
 
     <button
-      :disabled="!meta.valid || loginMutation.isLoading.value"
+      id="login-button"
       type="submit"
-      data-testid="button-submit"
       class="btn-primary btn mt-8 normal-case"
+      :disabled="!meta.valid || loginMutation.isLoading.value"
     >
       {{ loginMutation.isLoading.value ? LL.forms.loginLoading() : LL.forms.login() }}
     </button>

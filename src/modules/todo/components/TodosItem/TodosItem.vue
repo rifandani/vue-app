@@ -40,12 +40,18 @@ const onDeleteTodo = (ev: Event) => {
 </script>
 
 <template>
-  <form data-testid="form" class="mb-2 flex items-center justify-between" @submit="onDeleteTodo">
-    <input id="todoId" data-testid="input-todoId" type="hidden" name="todoId" :value="todo.id" />
+  <form id="item-form" class="mb-2 flex items-center justify-between" @submit="onDeleteTodo">
+    <input
+      id="todoId"
+      data-testid="item-input-todoId"
+      type="hidden"
+      name="todoId"
+      :value="todo.id"
+    />
 
     <input
       :id="`todo-${todo.id}`"
-      data-testid="input-todo"
+      data-testid="item-input-todo"
       class="checkbox-accent checkbox"
       type="checkbox"
       :name="`todo-${todo.id}`"
@@ -54,6 +60,7 @@ const onDeleteTodo = (ev: Event) => {
     />
 
     <RouterLink
+      id="item-link"
       :to="`/todos/${todo.id}`"
       :class="
         twJoin(
@@ -61,14 +68,13 @@ const onDeleteTodo = (ev: Event) => {
           todo.completed && 'line-through'
         )
       "
-      data-testid="p-todo"
     >
       {{ todo.todo }}
     </RouterLink>
 
     <button
       v-if="todo.userId === user?.id"
-      data-testid="button-remove"
+      id="item-button"
       class="btn-accent btn-sm btn normal-case"
       type="submit"
     >
