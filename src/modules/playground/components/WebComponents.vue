@@ -41,6 +41,8 @@ onUnmounted(() => {
   >
     <button class="btn-info btn-xs btn" @click="handleClickTambah">Tambah</button>
 
-    <my-counter :initial-count="initialCount" />
+    <my-counter :initial-count="initialCount"></my-counter>
+
+    <dark-mode-switch></dark-mode-switch>
   </section>
 </template>
