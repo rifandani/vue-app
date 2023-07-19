@@ -21,7 +21,7 @@ const { LL, logout } = useNavBar()
           </label>
         </div>
 
-        <RouterLink to="/" class="link-primary link mx-2 flex-1 px-2">
+        <RouterLink :to="{ name: 'home' }" class="link-primary link mx-2 flex-1 px-2">
           <span class="flex items-center space-x-2 pl-2 text-2xl">
             <SvgIcon id="icon-vue" class="h-6 w-6" />
             <p class="font-semibold tracking-wider text-primary">{{ LL.common.appName() }}</p>

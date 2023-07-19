@@ -14,7 +14,11 @@ const user = useUserStorage()
     </h1>
     <p id="notFound-subtitle" class="mb-5">{{ LL.auth.gone() }}</p>
 
-    <RouterLink id="notFound-link" to="/" class="link text-primary-content hover:skew-x-12">
+    <RouterLink
+      id="notFound-link"
+      :to="{ name: 'home' }"
+      class="link text-primary-content hover:skew-x-12"
+    >
       {{ LL.auth.backTo({ isLoggedIn: user?.id ? 'true' : 'false' }) }}
     </RouterLink>
   </main>

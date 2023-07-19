@@ -20,9 +20,8 @@ const colorMode = useColorMode({
 
 <template>
   <li>
-    <!-- inactiveClassName: 'link-neutral' -->
     <RouterLink
-      to="/todos"
+      :to="{ name: 'todos' }"
       active-class="link-secondary"
       class="link-hover link mx-0 px-3 tracking-wide text-primary lg:mx-3"
     >

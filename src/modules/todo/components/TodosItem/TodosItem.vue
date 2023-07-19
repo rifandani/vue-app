@@ -61,7 +61,7 @@ const onDeleteTodo = (ev: Event) => {
 
     <RouterLink
       id="item-link"
-      :to="`/todos/${todo.id}`"
+      :to="{ name: 'todo', params: { id: todo.id } }"
       :class="
         twJoin(
           'ml-5 w-full text-left text-lg text-secondary-content hover:font-bold',

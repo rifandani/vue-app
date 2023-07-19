@@ -87,7 +87,7 @@ const onSubmit = handleSubmit((values) => {
   <NavBar>
     <section class="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
       <div class="mb-10 flex w-full flex-col space-y-2">
-        <RouterLink to="/todos" class="btn-link w-fit normal-case text-primary-content">
+        <RouterLink :to="{ name: 'todos' }" class="btn-link w-fit normal-case text-primary-content">
           ⬅ {{ LL.todo.backTo({ target: 'Todos' }) }}
         </RouterLink>
 

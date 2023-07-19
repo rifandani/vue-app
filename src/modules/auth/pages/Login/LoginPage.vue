@@ -15,7 +15,10 @@ const { LL } = typesafeI18n()
       <!-- Login Section -->
       <section class="flex w-full flex-col md:w-1/2">
         <div class="flex justify-center pt-12 md:-mb-24 md:justify-start md:pl-12">
-          <RouterLink to="/" class="relative cursor-pointer rounded-full hover:text-primary">
+          <RouterLink
+            :to="{ name: 'home' }"
+            class="relative cursor-pointer rounded-full hover:text-primary"
+          >
             <Icon icon="lucide:home" height="1.5em" />
           </RouterLink>
         </div>
