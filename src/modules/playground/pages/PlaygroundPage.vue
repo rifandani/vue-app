@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import TheDirectives from '../components/TheDirectives.vue'
 import WebComponents from '../components/WebComponents.vue'
 </script>
 
@@ -14,5 +15,6 @@ import WebComponents from '../components/WebComponents.vue'
     </h1>
 
     <WebComponents />
+    <TheDirectives />
   </main>
 </template>
