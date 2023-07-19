@@ -1,11 +1,11 @@
-import type { RouteDefinition } from 'svelte-spa-router';
-import wrap from 'svelte-spa-router/wrap';
-import PlaygroundLoading from '../pages/Playground.loading.svelte';
+import type { RouteRecordRaw } from 'vue-router'
 
-export const playgroundRoute: RouteDefinition = {
-  // exact path, lazy loaded
-  '/playground': wrap({
-    asyncComponent: () => import('../pages/Playground.page.svelte'),
-    loadingComponent: PlaygroundLoading,
-  }),
-};
+const PlaygroundPage = () => import('../pages/PlaygroundPage.vue')
+
+export const playgroundRoute: RouteRecordRaw[] = [
+  {
+    name: 'playground',
+    path: '/playground',
+    component: PlaygroundPage
+  }
+]

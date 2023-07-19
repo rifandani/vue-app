@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 
 import { SetupWorker } from 'msw'
+import MyCounter from './src/lib/wc/MyCounter.ce.vue'
 
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string // prefixed with "VITE_" -> exposed to our Vite-processed code
@@ -16,5 +17,11 @@ declare global {
     msw: {
       worker: SetupWorker
     }
+  }
+}
+
+declare module 'vue' {
+  export interface GlobalComponents {
+    'my-counter': typeof MyCounter
   }
 }
