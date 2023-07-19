@@ -34,6 +34,12 @@ export const themes: Theme[] = [
   'winter'
 ]
 
+// object version of `themes`
+export const modes = themes.reduce((acc, item) => {
+  acc[item] = item
+  return acc
+}, {} as Record<Theme, Theme>)
+
 // Commonly used keyboard constants
 export const ESCAPE = 'Escape'
 export const LEFT_ARROW = 'ArrowLeft'

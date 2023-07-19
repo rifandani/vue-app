@@ -77,7 +77,6 @@
     "pinia": "^2.1.4",
     "redaxios": "^0.5.1",
     "tailwind-merge": "^1.13.2",
-    "theme-change": "^2.5.0",
     "type-fest": "^3.13.0",
     "typesafe-i18n": "^5.24.4",
     "vee-validate": "^4.10.6",
