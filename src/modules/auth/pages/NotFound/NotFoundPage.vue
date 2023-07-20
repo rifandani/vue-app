@@ -9,13 +9,13 @@ const user = useUserStorage()
 
 <template>
   <main class="flex h-screen flex-col items-center justify-center space-y-3 text-primary-content">
-    <h1 id="notFound-title" class="text-3xl font-bold italic">
+    <h1 data-testid="notFound-title" class="text-3xl font-bold italic">
       {{ LL.auth.notFound404() }}
     </h1>
-    <p id="notFound-subtitle" class="mb-5">{{ LL.auth.gone() }}</p>
+    <p data-testid="notFound-subtitle" class="mb-5">{{ LL.auth.gone() }}</p>
 
     <RouterLink
-      id="notFound-link"
+      data-testid="notFound-link"
       :to="{ name: 'home' }"
       class="link text-primary-content hover:skew-x-12"
     >

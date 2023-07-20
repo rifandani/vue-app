@@ -56,7 +56,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 
 <template>
   <form
-    id="create-form"
+    data-testid="create-form"
     class="form-control mb-3 w-full duration-300 lg:flex-row"
     @submit="onSubmit"
   >
@@ -72,7 +72,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
     />
 
     <button
-      id="create-button"
+      data-testid="create-button"
       class="btn-accent btn ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
       type="submit"
     >

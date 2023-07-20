@@ -40,7 +40,11 @@ const onDeleteTodo = (ev: Event) => {
 </script>
 
 <template>
-  <form id="item-form" class="mb-2 flex items-center justify-between" @submit="onDeleteTodo">
+  <form
+    data-testid="item-form"
+    class="mb-2 flex items-center justify-between"
+    @submit="onDeleteTodo"
+  >
     <input
       id="todoId"
       data-testid="item-input-todoId"
@@ -60,7 +64,7 @@ const onDeleteTodo = (ev: Event) => {
     />
 
     <RouterLink
-      id="item-link"
+      data-testid="item-link"
       :to="{ name: 'todo', params: { id: todo.id } }"
       :class="
         twJoin(
@@ -74,7 +78,7 @@ const onDeleteTodo = (ev: Event) => {
 
     <button
       v-if="todo.userId === user?.id"
-      id="item-button"
+      data-testid="item-button"
       class="btn-accent btn-sm btn normal-case"
       type="submit"
     >

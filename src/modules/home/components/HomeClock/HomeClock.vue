@@ -84,7 +84,7 @@ onUnmounted(() => clearTimeout(timeoutId.value))
 
 <template>
   <FadeTransition>
-    <div v-if="showClock" id="home-clock-show" class="stats mt-8 shadow">
+    <div v-if="showClock" data-testid="home-clock-show" class="stats mt-8 shadow">
       <div class="stat">
         <div class="stat-title">{{ LL.home.clock() }}:</div>
         <div class="stat-value">{{ hours }} : {{ minutes }} : {{ seconds }} {{ '' }}</div>
@@ -100,8 +100,8 @@ onUnmounted(() => clearTimeout(timeoutId.value))
   >
     <button
       v-for="btn in buttons"
-      :id="`home-clock-button-${btn.id}`"
       :key="btn.id"
+      :data-testid="`home-clock-button-${btn.id}`"
       :class="btn.class"
       @click="() => (btn.id === 'sort' ? (buttons = shuffle(buttons)) : btn.onClick())"
     >

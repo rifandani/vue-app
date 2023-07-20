@@ -21,14 +21,18 @@ const onChangeLimit = async (evt: Event) => {
 </script>
 
 <template>
-  <form id="filter-form" class="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2">
-    <label id="filter-label" for="limit" class="label">
+  <form
+    data-testid="filter-form"
+    class="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2"
+  >
+    <label data-testid="filter-label" for="limit" class="label">
       <span class="label-text text-primary-content">{{ LL.forms.limit() }}</span>
     </label>
 
     <select
-      id="filter-select"
-      name="filter-select"
+      id="limit"
+      name="limit"
+      data-testid="filter-limit"
       class="select-bordered select-secondary select"
       :value="selectedOption"
       @change="onChangeLimit"

@@ -8,6 +8,9 @@ export default mergeConfig(
   defineConfig({
     test: {
       root: fileURLToPath(new URL('./', import.meta.url)),
+      deps: {
+        inline: ['@vue', '@vueuse']
+      },
       // to see how your tests are running in real time in the terminal, add "default"
       // to generate HTML output and preview the results of your tests, add "html"
       reporters: ['default', 'html'],
@@ -40,10 +43,11 @@ export default mergeConfig(
           '**/.{eslint,mocha,prettier}rc.{js,cjs,yml}',
           // above is default
           'src/setupTests.ts',
-          'src/index.tsx',
+          'src/main.ts',
           'src/mocks/**',
           'src/assets/**',
-          'src/lib/**'
+          'src/lib/**',
+          'src/i18n/**'
         ]
       }
     }

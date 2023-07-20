@@ -20,7 +20,7 @@
     "dev": "vite",
     "start": "npm-run-all --parallel dev typesafe-i18n",
     "build-only": "pnpm msw:delete && vite build",
-    "build": "run-p type-check build-only",
+    "build": "npm-run-all type-check build-only",
     "preview": "vite preview",
     "test": "vitest",
     "test:ui": "vitest --ui",

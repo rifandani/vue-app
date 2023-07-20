@@ -1,38 +1,37 @@
-import { fireEvent, render, screen } from '@testing-library/svelte';
-import TestWrapper from '../../../shared/components/atoms/TestWrapper.app.svelte';
-import HomeClock from './HomeClock.svelte';
+import { fireEvent, render, screen } from '@testing-library/vue'
+import HomeClock from './HomeClock.vue'
 
 describe('HomeClock', () => {
   it('should render properly', () => {
-    const result = render(TestWrapper, { props: { component: HomeClock } });
-    expect(() => result).not.toThrow();
-  });
+    const result = render(HomeClock)
+    expect(() => result).not.toThrow()
+  })
 
   it('should render toggle clock correctly', async () => {
     // ARRANGE
-    render(TestWrapper, { props: { component: HomeClock } });
-    const clockBtn: HTMLButtonElement = screen.getByTestId('clock');
+    render(HomeClock)
+    const clockBtn: HTMLButtonElement = screen.getByTestId('home-clock-button-clock')
 
     // ACT
-    await fireEvent.click(clockBtn);
+    await fireEvent.click(clockBtn)
 
     // ASSERT
-    const div: HTMLDivElement = screen.getByTestId('show-clock');
-    expect(div).toBeInTheDocument();
-  });
+    const div: HTMLDivElement = screen.getByTestId('home-clock-show')
+    expect(div).toBeInTheDocument()
+  })
 
   it('should render buttons correctly', () => {
     // ARRANGE
-    render(TestWrapper, { props: { component: HomeClock } });
-    const sortBtn: HTMLButtonElement = screen.getByTestId('sort');
-    const clockBtn: HTMLButtonElement = screen.getByTestId('clock');
-    const languageBtn: HTMLButtonElement = screen.getByTestId('language');
-    const startBtn: HTMLButtonElement = screen.getByTestId('start');
+    render(HomeClock)
+    const sortBtn: HTMLButtonElement = screen.getByTestId('home-clock-button-sort')
+    const clockBtn: HTMLButtonElement = screen.getByTestId('home-clock-button-clock')
+    const languageBtn: HTMLButtonElement = screen.getByTestId('home-clock-button-language')
+    const startBtn: HTMLButtonElement = screen.getByTestId('home-clock-button-start')
 
     // ASSERT
-    expect(sortBtn).toBeInTheDocument();
-    expect(clockBtn).toBeInTheDocument();
-    expect(languageBtn).toBeInTheDocument();
-    expect(startBtn).toBeInTheDocument();
-  });
-});
+    expect(sortBtn).toBeInTheDocument()
+    expect(clockBtn).toBeInTheDocument()
+    expect(languageBtn).toBeInTheDocument()
+    expect(startBtn).toBeInTheDocument()
+  })
+})

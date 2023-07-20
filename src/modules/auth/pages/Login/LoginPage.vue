@@ -18,6 +18,7 @@ const { LL } = typesafeI18n()
           <RouterLink
             :to="{ name: 'home' }"
             class="relative cursor-pointer rounded-full hover:text-primary"
+            title="Home"
           >
             <Icon icon="lucide:home" height="1.5em" />
           </RouterLink>
@@ -26,7 +27,7 @@ const { LL } = typesafeI18n()
         <div
           class="my-auto flex flex-col justify-center px-8 pt-8 md:justify-start md:px-24 md:pt-0 lg:px-32"
         >
-          <p id="login-title" class="text-center text-3xl text-primary">
+          <p data-testid="login-title" class="text-center text-3xl text-primary">
             {{ LL.auth.welcome() }}
           </p>
 

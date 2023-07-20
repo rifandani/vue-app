@@ -87,18 +87,25 @@ const onSubmit = handleSubmit((values) => {
   <NavBar>
     <section class="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
       <div class="mb-10 flex w-full flex-col space-y-2">
-        <RouterLink :to="{ name: 'todos' }" class="btn-link w-fit normal-case text-primary-content">
+        <RouterLink
+          data-testid="todo-link"
+          :to="{ name: 'todos' }"
+          class="btn-link w-fit normal-case text-primary-content"
+        >
           ⬅ {{ LL.todo.backTo({ target: 'Todos' }) }}
         </RouterLink>
 
-        <h1 class="text-2xl font-semibold tracking-wider text-primary-content">
+        <h1
+          data-testid="todo-title"
+          class="text-2xl font-semibold tracking-wider text-primary-content"
+        >
           {{ LL.common.xDetail({ feature: 'Todo' }) }}
         </h1>
       </div>
 
       <div
         v-if="mutationIsError && mutationError"
-        id="todo-mutationError"
+        data-testid="todo-mutationError"
         class="alert alert-error mt-2 shadow-lg"
       >
         <div class="flex items-center">
@@ -109,18 +116,22 @@ const onSubmit = handleSubmit((values) => {
         </div>
       </div>
 
-      <div v-if="isLoading" id="todo-loading" class="flex items-center justify-center py-5">
+      <div
+        v-if="isLoading"
+        data-testid="todo-loading"
+        class="flex items-center justify-center py-5"
+      >
         <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-secondary-content" />
       </div>
 
-      <div v-if="isError" id="todo-error" class="alert alert-error mt-2 shadow-lg">
+      <div v-if="isError" data-testid="todo-error" class="alert alert-error mt-2 shadow-lg">
         <div class="flex items-center">
           <span>{{ LL.common.error({ module: 'Todos' }) }}:</span>
           <pre>{{ JSON.stringify(error, null, 2) }}</pre>
         </div>
       </div>
 
-      <form v-if="isSuccess && data" id="todo-form" class="join" @submit="onSubmit">
+      <form v-if="isSuccess && data" data-testid="todo-form" class="join" @submit="onSubmit">
         <input
           id="todo"
           name="todo"
@@ -133,7 +144,7 @@ const onSubmit = handleSubmit((values) => {
 
         <button
           v-if="user?.id === data.userId"
-          id="todo-button"
+          data-testid="todo-button"
           class="btn-accent join-item btn normal-case"
           type="submit"
         >

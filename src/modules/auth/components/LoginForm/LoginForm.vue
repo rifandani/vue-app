@@ -43,7 +43,7 @@ const onSubmit = handleSubmit((values, context) => {
 </script>
 
 <template>
-  <form id="login-form" class="form-control pt-3 md:pt-8" @submit="onSubmit">
+  <form data-testid="login-form" class="form-control pt-3 md:pt-8" @submit="onSubmit">
     <!-- username -->
     <div class="form-control pt-4">
       <label class="label" for="username">
@@ -95,7 +95,7 @@ const onSubmit = handleSubmit((values, context) => {
     </div>
 
     <button
-      id="login-button"
+      data-testid="login-button"
       type="submit"
       class="btn-primary btn mt-8 normal-case"
       :disabled="!meta.valid || loginMutation.isLoading.value"
