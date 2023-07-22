@@ -20,7 +20,7 @@ export default mergeConfig(
       setupFiles: ['node_modules/@testing-library/jest-dom/extend-expect.js', 'src/setupTests.ts'],
       exclude: [...configDefaults.exclude, 'e2e/*'],
       // Will call .mockRestore() on all spies before each test. This will clear mock history and reset its implementation to the original one.
-      restoreMocks: true,
+      // restoreMocks: true,
       coverage: {
         provider: 'istanbul', // 'istanbul' / 'v8'
         reporter: ['text', 'json', 'html'],
