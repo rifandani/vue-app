@@ -1,4 +1,5 @@
 export type Theme =
+  | 'auto'
   | 'light'
   | 'dark'
   | 'cupcake'
@@ -27,4 +28,4 @@ export type Theme =
   | 'lemonade'
   | 'night'
   | 'coffee'
-  | 'winter';
+  | 'winter'

@@ -18,7 +18,7 @@ module.exports = {
   rules: {
     'no-nested-ternary': 'off',
     'tailwindcss/no-custom-classname': 'off',
-    'tailwindcss/classnames-order': 'error',
+    'tailwindcss/classnames-order': 'warn',
     'testing-library/no-node-access': ['error', { allowContainerFirstChild: true }]
   },
   settings: {

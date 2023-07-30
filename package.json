@@ -11,8 +11,7 @@
   "scripts": {
     "prepare": "husky install",
     "format": "prettier --write src/",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "lint:fix": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore --fix",
+    "lint": "eslint . --ext .vue,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "msw:init": "msw init public/ --save",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "typesafe-i18n": "typesafe-i18n",

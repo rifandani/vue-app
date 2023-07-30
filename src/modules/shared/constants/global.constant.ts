@@ -3,6 +3,7 @@ import type { Theme } from '../types/theme.type'
 import { isBrowser } from '../utils/helper.util'
 
 export const themes: Theme[] = [
+  'auto',
   'light',
   'dark',
   'cupcake',
