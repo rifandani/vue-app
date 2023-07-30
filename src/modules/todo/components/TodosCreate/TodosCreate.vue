@@ -64,7 +64,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
       v-bind="todo"
       id="todo"
       data-testid="create-input"
-      class="input-bordered input-accent input w-full text-accent-content lg:w-10/12"
+      class="input input-bordered input-accent w-full text-accent-content lg:w-10/12"
       name="todo"
       type="text"
       required
@@ -73,7 +73,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 
     <button
       data-testid="create-button"
-      class="btn-accent btn ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
+      class="btn btn-accent ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
       type="submit"
     >
       {{ LL.forms.add({ icon: '✔' }) }}

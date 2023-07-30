@@ -97,7 +97,7 @@ const onSubmit = handleSubmit((values, context) => {
     <button
       data-testid="login-button"
       type="submit"
-      class="btn-primary btn mt-8 normal-case"
+      class="btn btn-primary mt-8 normal-case"
       :disabled="!meta.valid || loginMutation.isLoading.value"
     >
       {{ loginMutation.isLoading.value ? LL.forms.loginLoading() : LL.forms.login() }}

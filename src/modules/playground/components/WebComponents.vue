@@ -39,7 +39,7 @@ onUnmounted(() => {
     ref="sectionRef"
     class="card flex w-full flex-col items-center space-y-3 rounded-lg border bg-secondary p-5 text-secondary-content shadow-lg"
   >
-    <button class="btn-info btn-xs btn" @click="handleClickTambah">Tambah</button>
+    <button class="btn btn-info btn-xs" @click="handleClickTambah">Tambah</button>
 
     <my-counter :initial-count="initialCount"></my-counter>
 

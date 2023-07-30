@@ -6,7 +6,7 @@ import TodosItem from './TodosItem.vue'
 
 describe('TodosItem', () => {
   const todo: TodoSchema = mockTodo()
-  const onDeleteTodo = vi.fn()
+  // const onDeleteTodo = vi.fn()
   const mockSubmit = vi.fn()
   const mockChangeTodo = vi.fn()
 

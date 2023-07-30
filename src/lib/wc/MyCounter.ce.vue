@@ -8,7 +8,7 @@ import {
 
 const props = defineProps<MyCounterProps>()
 
-const count = ref(props.initialCount)
+const count = ref('')
 // const store = useCounterStore()
 
 // #region HANDLERS

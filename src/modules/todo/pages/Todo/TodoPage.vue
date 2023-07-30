@@ -137,7 +137,7 @@ const onSubmit = handleSubmit((values) => {
           name="todo"
           type="text"
           data-testid="todo-input"
-          class="input-bordered input-accent input join-item w-full text-accent-content"
+          class="input join-item input-bordered input-accent w-full text-accent-content"
           required
           v-bind="todo"
         />
@@ -145,7 +145,7 @@ const onSubmit = handleSubmit((values) => {
         <button
           v-if="user?.id === data.userId"
           data-testid="todo-button"
-          class="btn-accent join-item btn normal-case"
+          class="btn btn-accent join-item normal-case"
           type="submit"
         >
           {{ LL.common.update({ icon: '🖋' }) }}

@@ -79,7 +79,7 @@ const onDeleteTodo = (ev: Event) => {
     <button
       v-if="todo.userId === user?.id"
       data-testid="item-button"
-      class="btn-accent btn-sm btn normal-case"
+      class="btn btn-accent btn-sm normal-case"
       type="submit"
     >
       {{ LL.forms.remove({ icon: '💥' }) }}

@@ -34,7 +34,7 @@ const max = 5
               <ToastTitle :class="`font-bold text-${toast.state.context.type}-content`" />
 
               <ToastCloseTrigger>
-                <button class="btn-ghost btn-xs btn">
+                <button class="btn btn-ghost btn-xs">
                   <Icon icon="lucide:x" height="1.5em" />
                 </button>
               </ToastCloseTrigger>

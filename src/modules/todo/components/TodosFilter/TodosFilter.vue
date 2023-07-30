@@ -33,7 +33,7 @@ const onChangeLimit = async (evt: Event) => {
       id="limit"
       name="limit"
       data-testid="filter-limit"
-      class="select-bordered select-secondary select"
+      class="select select-bordered select-secondary"
       :value="selectedOption"
       @change="onChangeLimit"
     >

@@ -16,7 +16,7 @@ const { LL, logout } = useNavBar()
       <!-- Navbar -->
       <div class="navbar w-full bg-base-300">
         <div class="flex-none lg:hidden">
-          <label for="my-nav-drawer" class="btn-primary btn-square btn">
+          <label for="my-nav-drawer" class="btn btn-square btn-primary">
             <Icon icon="lucide:menu" height="2em" class="text-primary-content" />
           </label>
         </div>
