@@ -36,6 +36,10 @@ vi.mock('@vee-validate/zod', async () => {
   }
 })
 
+vi.mock('typesafe-i18n', () => ({
+  LL: vi.fn()
+}))
+
 // mock ResizeObserver
 const resizeObserverMock = vi.fn(() => ({
   observe: vi.fn(),
@@ -43,6 +47,20 @@ const resizeObserverMock = vi.fn(() => ({
   disconnect: vi.fn()
 }))
 vi.stubGlobal('ResizeObserver', resizeObserverMock)
+
+// mock window matchMedia
+window.matchMedia = function matchMedia(query) {
+  return {
+    media: query,
+    matches: false,
+    onchange: null,
+    addListener: vi.fn(), // Deprecated
+    removeListener: vi.fn(), // Deprecated
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn()
+  }
+}
 
 // implementation of window.resizeTo for dispatching event
 global.resizeTo = function resizeTo(width, height) {

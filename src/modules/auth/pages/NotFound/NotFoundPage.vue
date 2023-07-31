@@ -9,10 +9,10 @@ const user = useUserStorage()
 
 <template>
   <main class="flex h-screen flex-col items-center justify-center space-y-3 text-primary-content">
-    <h1 data-testid="notFound-title" class="text-3xl font-bold italic">
+    <h1 class="text-3xl font-bold italic">
       {{ LL.auth.notFound404() }}
     </h1>
-    <p data-testid="notFound-subtitle" class="mb-5">{{ LL.auth.gone() }}</p>
+    <p class="mb-5">{{ LL.auth.gone() }}</p>
 
     <RouterLink
       data-testid="notFound-link"

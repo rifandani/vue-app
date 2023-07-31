@@ -16,9 +16,10 @@ const { LL } = typesafeI18n()
       <section class="flex w-full flex-col md:w-1/2">
         <div class="flex justify-center pt-12 md:-mb-24 md:justify-start md:pl-12">
           <RouterLink
-            :to="{ name: 'home' }"
+            role="link"
+            aria-label="link-home"
             class="relative cursor-pointer rounded-full hover:text-primary"
-            title="Home"
+            :to="{ name: 'home' }"
           >
             <Icon icon="lucide:home" height="1.5em" />
           </RouterLink>
@@ -36,7 +37,13 @@ const { LL } = typesafeI18n()
           <div class="py-12 text-center">
             <p>
               <WrapTranslation v-slot="{ infix }" :message="LL.auth.registerHere()">
-                <RouterLink to="/register" class="link-primary link">{{ infix }}</RouterLink>
+                <RouterLink
+                  role="link"
+                  aria-label="link-register"
+                  to="/register"
+                  class="link-primary link"
+                  >{{ infix }}</RouterLink
+                >
               </WrapTranslation>
             </p>
           </div>
@@ -47,10 +54,12 @@ const { LL } = typesafeI18n()
       <section class="w-1/2 shadow-2xl">
         <span class="relative hidden h-screen w-full md:flex md:items-center md:justify-center">
           <img
-            :src="vueschool"
+            role="img"
+            aria-label="img-cover"
             class="h-full object-cover object-right"
             alt="login page cover"
             loading="lazy"
+            :src="vueschool"
           />
         </span>
       </section>

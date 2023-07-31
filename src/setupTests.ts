@@ -1,8 +1,11 @@
+import matchers from '@testing-library/jest-dom/matchers'
 import { server } from './mocks/http/server.http'
 import './mocks/module.mock'
 
+expect.extend(matchers)
+
 // Establish API mocking before all tests with MSW
-beforeAll(() => {
+beforeAll(async () => {
   server.listen({
     onUnhandledRequest: 'warn'
   })

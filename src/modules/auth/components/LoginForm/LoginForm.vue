@@ -43,18 +43,19 @@ const onSubmit = handleSubmit((values, context) => {
 </script>
 
 <template>
-  <form data-testid="login-form" class="form-control pt-3 md:pt-8" @submit="onSubmit">
+  <form aria-label="form-login" role="form" class="form-control pt-3 md:pt-8" @submit="onSubmit">
     <!-- username -->
     <div class="form-control pt-4">
       <label class="label" for="username">
-        <span class="label-text">{{ LL.forms.password() }}</span>
+        <span class="label-text">{{ LL.forms.username() }}</span>
       </label>
 
       <input
         v-bind="username"
         id="username"
-        data-testid="login-input-username"
         name="username"
+        role="textbox"
+        aria-label="textbox-username"
         type="text"
         required
         :placeholder="LL.forms.usernamePlaceholder()"
@@ -73,11 +74,12 @@ const onSubmit = handleSubmit((values, context) => {
       </label>
 
       <input
-        id="password"
         v-bind="password"
-        data-testid="login-input-password"
-        type="password"
+        id="password"
         name="password"
+        role="textbox"
+        aria-label="textbox-password"
+        type="password"
         required
         :placeholder="LL.forms.passwordPlaceholder()"
         :class="twJoin(['input mt-1 shadow-md', errors.password ? 'input-error' : 'input-primary'])"
@@ -95,7 +97,7 @@ const onSubmit = handleSubmit((values, context) => {
     </div>
 
     <button
-      data-testid="login-button"
+      id="button-submit"
       type="submit"
       class="btn btn-primary mt-8 normal-case"
       :disabled="!meta.valid || loginMutation.isLoading.value"
