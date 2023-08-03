@@ -74,6 +74,7 @@
     "@tanstack/vue-query": "^4.32.0",
     "@vee-validate/zod": "^4.10.8",
     "@vueuse/core": "^10.2.1",
+    "axios": "^1.4.0",
     "pinia": "^2.1.6",
     "redaxios": "^0.5.1",
     "tailwind-merge": "^1.14.0",
