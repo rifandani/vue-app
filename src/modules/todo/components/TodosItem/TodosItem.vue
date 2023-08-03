@@ -18,6 +18,7 @@ const user = useUserStorage()
 const { queryKey } = useTodoListParams()
 const todoUpdateMutation = useTodoUpdateMutation({ queryKey })
 const todoDeleteMutation = useTodoDeleteMutation({ queryKey })
+console.log('🚀 ~ file: TodosItem.vue:14 ~ props:', { props, user })
 //#endregion
 
 //#region HANDLERS
@@ -41,44 +42,48 @@ const onDeleteTodo = (ev: Event) => {
 
 <template>
   <form
-    data-testid="item-form"
+    aria-label="form-todo"
+    role="form"
     class="mb-2 flex items-center justify-between"
+    :data-testid="`form-${props.todo.id}`"
     @submit="onDeleteTodo"
   >
     <input
       id="todoId"
-      data-testid="item-input-todoId"
-      type="hidden"
       name="todoId"
-      :value="todo.id"
+      type="hidden"
+      data-testid="input-todoId"
+      :value="props.todo.id"
     />
 
     <input
-      :id="`todo-${todo.id}`"
-      data-testid="item-input-todo"
+      :id="`todo-${props.todo.id}`"
       class="checkbox-accent checkbox"
       type="checkbox"
-      :name="`todo-${todo.id}`"
-      :checked="todo.completed"
+      role="checkbox"
+      aria-label="checkbox-todo"
+      :name="`todo-${props.todo.id}`"
+      :checked="props.todo.completed"
       @change="onChangeTodo"
     />
 
     <RouterLink
-      data-testid="item-link"
-      :to="{ name: 'todo', params: { id: todo.id } }"
+      role="link"
+      aria-label="todo"
+      :to="{ name: 'todo', params: { id: props.todo.id } }"
       :class="
         twJoin(
           'ml-5 w-full text-left text-lg text-secondary-content hover:font-bold',
-          todo.completed && 'line-through'
+          props.todo.completed && 'line-through'
         )
       "
     >
-      {{ todo.todo }}
+      {{ props.todo.todo }}
     </RouterLink>
 
     <button
-      v-if="todo.userId === user?.id"
-      data-testid="item-button"
+      v-if="props.todo.userId === user?.id"
+      id="button-submit"
       class="btn btn-accent btn-sm normal-case"
       type="submit"
     >

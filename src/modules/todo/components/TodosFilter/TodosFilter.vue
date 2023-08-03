@@ -22,17 +22,17 @@ const onChangeLimit = async (evt: Event) => {
 
 <template>
   <form
-    data-testid="filter-form"
+    role="form"
+    aria-label="form-filter"
     class="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2"
   >
-    <label data-testid="filter-label" for="limit" class="label">
+    <label for="limit" class="label">
       <span class="label-text text-primary-content">{{ LL.forms.limit() }}</span>
     </label>
 
     <select
       id="limit"
       name="limit"
-      data-testid="filter-limit"
       class="select select-bordered select-secondary"
       :value="selectedOption"
       @change="onChangeLimit"

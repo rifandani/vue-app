@@ -1,16 +1,28 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
+import { typesafeI18n } from '../../../../../i18n/i18n-vue'
+import { useUserStorage } from '../../../composables/useUserStorage/useUserStorage.composable'
 import { SvgIcon } from '../../atoms'
 import { NavbarMenuContent } from '../../molecules'
-import { useNavBar } from './useNavBar'
 
-const { LL, logout } = useNavBar()
+// #region VALUES
+const { replace } = useRouter()
+const { LL } = typesafeI18n()
+const user = useUserStorage()
+// #endregion
+
+//#region HANDLERS
+const logout = (): void => {
+  user.value = null // reset `user` store
+  replace('/login') // back to login
+}
+//#endregion
 </script>
 
 <template>
   <nav class="drawer min-h-screen text-primary-content">
-    <input id="my-nav-drawer" type="checkbox" class="drawer-toggle" />
+    <input id="my-nav-drawer" type="checkbox" aria-label="drawer" class="drawer-toggle" />
 
     <section class="drawer-content flex flex-col">
       <!-- Navbar -->
@@ -21,7 +33,12 @@ const { LL, logout } = useNavBar()
           </label>
         </div>
 
-        <RouterLink :to="{ name: 'home' }" class="link-primary link mx-2 flex-1 px-2">
+        <RouterLink
+          :to="{ name: 'home' }"
+          class="link-primary link mx-2 flex-1 px-2"
+          role="link"
+          aria-label="logo"
+        >
           <span class="flex items-center space-x-2 pl-2 text-2xl">
             <SvgIcon id="icon-vue" class="h-6 w-6" />
             <p class="font-semibold tracking-wider text-primary">{{ LL.common.appName() }}</p>

@@ -7,7 +7,9 @@ vi.mock('vue-router', async () => {
   return {
     ...actual,
     default: vi.fn(() => ({})),
-    useRoute: vi.fn(() => ({})),
+    useRoute: vi.fn(() => ({
+      query: { limit: '10' }
+    })),
     useRouter: vi.fn(() => ({
       push: vi.fn(),
       replace: vi.fn(),

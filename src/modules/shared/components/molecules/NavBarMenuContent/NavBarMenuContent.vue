@@ -19,6 +19,8 @@ const colorMode = useColorMode({
 <template>
   <li>
     <RouterLink
+      role="link"
+      aria-label="todos"
       :to="{ name: 'todos' }"
       active-class="link-secondary"
       class="link-hover link mx-0 px-3 tracking-wide text-primary lg:mx-3"
@@ -26,6 +28,7 @@ const colorMode = useColorMode({
       Todos
     </RouterLink>
   </li>
+
   <li class="dropdown dropdown-top mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
     <button
       tabindex="0"
@@ -39,7 +42,12 @@ const colorMode = useColorMode({
       class="menu dropdown-content rounded-box z-10 block max-h-60 w-72 overflow-y-auto bg-secondary p-2 text-secondary-content shadow lg:w-52"
     >
       <li v-for="mode in modes" :key="mode">
-        <button class="capitalize tracking-wide" type="button" @click="colorMode = mode">
+        <button
+          class="capitalize tracking-wide"
+          type="button"
+          :aria-label="`mode-${mode}`"
+          @click="colorMode = mode"
+        >
           {{ mode }}
         </button>
       </li>

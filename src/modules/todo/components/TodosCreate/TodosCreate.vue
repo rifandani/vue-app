@@ -56,25 +56,27 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 
 <template>
   <form
-    data-testid="create-form"
+    role="form"
+    aria-label="form-add"
     class="form-control mb-3 w-full duration-300 lg:flex-row"
     @submit="onSubmit"
   >
     <input
       v-bind="todo"
       id="todo"
-      data-testid="create-input"
-      class="input input-bordered input-accent w-full text-accent-content lg:w-10/12"
       name="todo"
       type="text"
+      role="textbox"
+      aria-label="textbox-add"
+      class="input input-bordered input-accent w-full text-accent-content lg:w-10/12"
       required
       :placeholder="LL.forms.todoPlaceholder()"
     />
 
     <button
-      data-testid="create-button"
-      class="btn btn-accent ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
+      id="button-add"
       type="submit"
+      class="btn btn-accent ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
     >
       {{ LL.forms.add({ icon: '✔' }) }}
     </button>

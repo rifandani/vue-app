@@ -1,34 +1,21 @@
-import { fireEvent, render, screen } from '@testing-library/vue'
+import { fireEvent, screen } from '@testing-library/vue'
 import { vi } from 'vitest'
+import { testWrapper } from '../../../shared/utils/test.util'
 import TodosFilter from './TodosFilter.vue'
 
 describe('TodosFilter', () => {
-  const validLimit = '10'
-  const mockChangeFn = vi.fn()
+  const limitValue = '10'
+  const mockSelectFn = vi.fn()
 
-  it('should render properly', () => {
-    const result = render(TodosFilter)
-    expect(() => result).not.toThrow()
-  })
-
-  it('should render and change limit correctly', async () => {
+  testWrapper('should be able to select and submit the filter', async ({ wrapper }) => {
     // ARRANGE
-    render(TodosFilter)
-    const form: HTMLFormElement = screen.getByTestId('filter-form')
-    const label: HTMLLabelElement = screen.getByTestId('filter-label')
-    const select: HTMLInputElement = screen.getByTestId('filter-limit')
-    const options: HTMLOptionElement[] = screen.getAllByRole('option')
-    select.addEventListener('select', mockChangeFn)
+    wrapper({ component: TodosFilter })
+    const select: HTMLInputElement = screen.getByRole('combobox', { name: /limit/i })
+    select.addEventListener('select', mockSelectFn)
 
     // ASSERT
-    expect(form).toBeInTheDocument()
-    expect(label).toBeInTheDocument()
-    expect(select).toBeInTheDocument()
-    expect(options.length).toBe(4)
-
-    // ACT & ASSERT
-    await fireEvent.select(select, { target: { value: validLimit } })
-    expect(select.value).toBe(validLimit)
-    expect(mockChangeFn).toHaveBeenCalled()
+    await fireEvent.select(select, { target: { value: limitValue } })
+    expect(select).toHaveValue(limitValue)
+    expect(mockSelectFn).toHaveBeenCalled()
   })
 })

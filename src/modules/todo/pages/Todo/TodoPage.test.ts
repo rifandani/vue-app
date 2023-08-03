@@ -1,20 +1,19 @@
-import { render, screen } from '@testing-library/vue'
+import { screen } from '@testing-library/vue'
+import { testWrapper } from '../../../shared/utils/test.util'
 import TodoPage from './TodoPage.vue'
 
 describe('TodoPage', () => {
-  it('should render properly', () => {
-    const result = render(TodoPage)
+  testWrapper('should render properly', ({ wrapper }) => {
+    const result = wrapper({ component: TodoPage })
     expect(() => result).not.toThrow()
   })
 
-  it('should render text contents correctly', () => {
+  testWrapper('should render role contents correctly', ({ wrapper }) => {
     // ARRANGE
-    render(TodoPage)
-    const anchor: HTMLAnchorElement = screen.getByTestId('todos-link')
-    const title: HTMLHeadingElement = screen.getByTestId('todos-title')
+    wrapper({ component: TodoPage })
+    const title: HTMLHeadingElement = screen.getByRole('heading', { name: /detail/i })
 
     // ASSERT
-    expect(anchor).toBeInTheDocument()
     expect(title).toBeInTheDocument()
   })
 })

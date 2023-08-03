@@ -6,11 +6,9 @@ export const useCounterStore = defineStore('counter', () => {
 
   const increment = () => {
     counter.value = (Number(counter.value) + 1).toString()
-    console.log('🚀 ~ file: useCounter.ts:8 ~ increment ~ counter.value:', counter.value)
   }
   const decrement = () => {
     counter.value = (Number(counter.value) - 1).toString()
-    console.log('🚀 ~ file: useCounter.ts:8 ~ increment ~ counter.value:', counter.value)
   }
 
   return { counter, increment, decrement }

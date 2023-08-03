@@ -88,17 +88,15 @@ const onSubmit = handleSubmit((values) => {
     <section class="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
       <div class="mb-10 flex w-full flex-col space-y-2">
         <RouterLink
-          data-testid="todo-link"
-          :to="{ name: 'todos' }"
+          role="link"
+          aria-label="go-back"
           class="btn-link w-fit normal-case text-primary-content"
+          :to="{ name: 'todos' }"
         >
           ⬅ {{ LL.todo.backTo({ target: 'Todos' }) }}
         </RouterLink>
 
-        <h1
-          data-testid="todo-title"
-          class="text-2xl font-semibold tracking-wider text-primary-content"
-        >
+        <h1 class="text-2xl font-semibold tracking-wider text-primary-content">
           {{ LL.common.xDetail({ feature: 'Todo' }) }}
         </h1>
       </div>
@@ -131,12 +129,19 @@ const onSubmit = handleSubmit((values) => {
         </div>
       </div>
 
-      <form v-if="isSuccess && data" data-testid="todo-form" class="join" @submit="onSubmit">
+      <form
+        v-if="isSuccess && data"
+        aria-label="form-todo"
+        role="form"
+        class="join"
+        @submit="onSubmit"
+      >
         <input
           id="todo"
           name="todo"
           type="text"
-          data-testid="todo-input"
+          role="textbox"
+          aria-label="textbox-todo"
           class="input join-item input-bordered input-accent w-full text-accent-content"
           required
           v-bind="todo"
@@ -144,7 +149,7 @@ const onSubmit = handleSubmit((values) => {
 
         <button
           v-if="user?.id === data.userId"
-          data-testid="todo-button"
+          id="button-submit"
           class="btn btn-accent join-item normal-case"
           type="submit"
         >

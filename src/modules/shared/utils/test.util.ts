@@ -9,6 +9,15 @@ import { detectLocale } from '../../../i18n/i18n-util'
 import { loadLocaleAsync } from '../../../i18n/i18n-util.async'
 import { i18nPlugin } from '../../../i18n/i18n-vue'
 
+export type RenderWrapperParams = {
+  locales: Locales
+}
+export type WrapperParams = {
+  component: any
+  stubs?: string[]
+  props?: any
+}
+
 /**
  * A composable that relies on lifecycle hooks or Provide / Inject needs to be wrapped in a host component to be tested
  *
@@ -51,15 +60,16 @@ export function composableWrapper(composable: AnyFn) {
  * @example
  *
  * const detectedLocale = detectLocale(navigatorDetector)
- * const wrapper = renderWrapper(detectedLocale)
+ * const wrapper = renderWrapper({ loca detectedLocale})
  */
-export function renderWrapper(detectedLocale: Locales) {
-  return (Component: any) =>
-    render(Component, {
+export function renderWrapper({ locales }: RenderWrapperParams) {
+  return ({ component, stubs, props }: WrapperParams) =>
+    render(component, {
       global: {
-        stubs: ['router-link', 'RouterLink'],
-        plugins: [[i18nPlugin, detectedLocale], VueQueryPlugin]
-      }
+        stubs: (stubs ?? []).concat(['router-link', 'RouterLink']),
+        plugins: [[i18nPlugin, locales], VueQueryPlugin]
+      },
+      props
     })
 }
 
@@ -68,15 +78,15 @@ export function renderWrapper(detectedLocale: Locales) {
  * And then pass `wrapper` to the test context.
  * We can also do it in the `beforeAll` by mutating it's context.
  */
-export const testWrapper = test.extend<{ wrapper: (Component: any) => RenderResult }>({
+export const testWrapper = test.extend<{ wrapper: (props: WrapperParams) => RenderResult }>({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   wrapper: async ({ task }, use) => {
     // setup the fixture before each test function
     // detect user's preferred locale
-    const detectedLocale = detectLocale(navigatorDetector)
-    const wrapper = renderWrapper(detectedLocale)
+    const locales = detectLocale(navigatorDetector)
+    const wrapper = renderWrapper({ locales })
 
-    await loadLocaleAsync(detectedLocale)
+    await loadLocaleAsync(locales)
 
     // use the fixture value
     await use(wrapper)
