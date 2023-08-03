@@ -1,13 +1,13 @@
-import { http } from '../../shared/services/api/http.api';
-import { loginApiResponseSchema, type LoginSchema } from './auth.schema';
+import { http } from '../../shared/services/api/http.api'
+import { loginApiResponseSchema, type LoginSchema } from './auth.schema'
 
 export const login = async (creds: LoginSchema) => {
-  const resp = await http.post(`auth/login`, creds);
+  const resp = await http.post(`auth/login`, creds)
 
   // `parse` will throw if `resp.data` is not correct
-  const loginApiResponse = loginApiResponseSchema.parse(resp.data);
+  const loginApiResponse = loginApiResponseSchema.parse(resp.data)
   // set 'Authorization' headers to
-  http.defaults.auth = `Bearer ${loginApiResponse.token}`;
+  http.defaults.headers.common['Authorization'] = `Bearer ${loginApiResponse.token}`
 
-  return loginApiResponse;
-};
+  return loginApiResponse
+}
