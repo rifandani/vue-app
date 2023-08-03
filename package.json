@@ -76,7 +76,6 @@
     "@vueuse/core": "^10.2.1",
     "axios": "^1.4.0",
     "pinia": "^2.1.6",
-    "redaxios": "^0.5.1",
     "tailwind-merge": "^1.14.0",
     "type-fest": "^3.13.1",
     "typesafe-i18n": "^5.25.1",
