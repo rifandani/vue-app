@@ -13,7 +13,7 @@ const selectedOption = computed(() => queryParams.value.limit.toString())
 //#endregion
 
 //#region HANDLERS
-const onChangeLimit = async (evt: Event) => {
+const onChangeLimit = async (evt: FocusEvent) => {
   const target = evt.target as HTMLInputElement
   await router.replace({ query: { limit: target.value } })
 }
@@ -22,30 +22,29 @@ const onChangeLimit = async (evt: Event) => {
 
 <template>
   <form
-    role="form"
     aria-label="form-filter"
     class="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2"
   >
-    <label for="limit" class="label">
+    <label for="limit" class="label flex space-x-3">
       <span class="label-text text-primary-content">{{ LL.forms.limit() }}</span>
-    </label>
 
-    <select
-      id="limit"
-      name="limit"
-      class="select select-bordered select-secondary"
-      :value="selectedOption"
-      @change="onChangeLimit"
-    >
-      <option
-        v-for="limit in limits"
-        :id="`filter-option-${limit}`"
-        :key="limit"
-        :value="limit"
-        :selected="limit === selectedOption"
+      <select
+        id="limit"
+        name="limit"
+        class="select select-bordered select-secondary"
+        :value="selectedOption"
+        @blur="onChangeLimit"
       >
-        {{ limit }}
-      </option>
-    </select>
+        <option
+          v-for="limit in limits"
+          :id="`filter-option-${limit}`"
+          :key="limit"
+          :value="limit"
+          :selected="limit === selectedOption"
+        >
+          {{ limit }}
+        </option>
+      </select>
+    </label>
   </form>
 </template>

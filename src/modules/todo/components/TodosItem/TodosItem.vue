@@ -18,7 +18,6 @@ const user = useUserStorage()
 const { queryKey } = useTodoListParams()
 const todoUpdateMutation = useTodoUpdateMutation({ queryKey })
 const todoDeleteMutation = useTodoDeleteMutation({ queryKey })
-console.log('🚀 ~ file: TodosItem.vue:14 ~ props:', { props, user })
 //#endregion
 
 //#region HANDLERS
@@ -43,7 +42,6 @@ const onDeleteTodo = (ev: Event) => {
 <template>
   <form
     aria-label="form-todo"
-    role="form"
     class="mb-2 flex items-center justify-between"
     :data-testid="`form-${props.todo.id}`"
     @submit="onDeleteTodo"
@@ -60,7 +58,6 @@ const onDeleteTodo = (ev: Event) => {
       :id="`todo-${props.todo.id}`"
       class="checkbox-accent checkbox"
       type="checkbox"
-      role="checkbox"
       aria-label="checkbox-todo"
       :name="`todo-${props.todo.id}`"
       :checked="props.todo.completed"

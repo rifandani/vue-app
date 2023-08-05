@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
+import { homeRoute } from '../../../home/routes/home.route'
 import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
+import { loginRoute } from '../../routes/auth.route'
 
 const { LL } = typesafeI18n()
 const user = useUserStorage()
@@ -16,7 +18,7 @@ const user = useUserStorage()
 
     <RouterLink
       data-testid="notFound-link"
-      :to="{ name: 'home' }"
+      :to="{ name: !!user?.id ? homeRoute.name : loginRoute.name }"
       class="link text-primary-content hover:skew-x-12"
     >
       {{ LL.auth.backTo({ isLoggedIn: user?.id ? 'true' : 'false' }) }}

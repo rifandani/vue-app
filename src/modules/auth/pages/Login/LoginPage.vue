@@ -54,7 +54,6 @@ const { LL } = typesafeI18n()
       <section class="w-1/2 shadow-2xl">
         <span class="relative hidden h-screen w-full md:flex md:items-center md:justify-center">
           <img
-            role="img"
             aria-label="img-cover"
             class="h-full object-cover object-right"
             alt="login page cover"

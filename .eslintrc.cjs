@@ -6,9 +6,10 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest'
   },
-  plugins: ['testing-library', 'jest-dom'],
+  plugins: ['vuejs-accessibility', 'testing-library', 'jest-dom'],
   extends: [
     'plugin:vue/vue3-recommended',
+    'plugin:vuejs-accessibility/recommended',
     'plugin:tailwindcss/recommended',
     'plugin:jest-dom/recommended',
     'eslint:recommended',

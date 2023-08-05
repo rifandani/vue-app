@@ -1,7 +1,7 @@
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { render, type RenderResult } from '@testing-library/vue'
 import type { AnyFn } from '@vueuse/core'
-import { navigatorDetector } from 'typesafe-i18n/detectors'
+import { localStorageDetector } from 'typesafe-i18n/detectors'
 import { test } from 'vitest'
 import { createApp } from 'vue'
 import type { Locales } from '../../../i18n/i18n-types'
@@ -83,7 +83,7 @@ export const testWrapper = test.extend<{ wrapper: (props: WrapperParams) => Rend
   wrapper: async ({ task }, use) => {
     // setup the fixture before each test function
     // detect user's preferred locale
-    const locales = detectLocale(navigatorDetector)
+    const locales = detectLocale(localStorageDetector)
     const wrapper = renderWrapper({ locales })
 
     await loadLocaleAsync(locales)

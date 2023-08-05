@@ -127,6 +127,9 @@ devDependencies:
   eslint-plugin-vue:
     specifier: ^9.16.0
     version: 9.16.0(eslint@8.46.0)
+  eslint-plugin-vuejs-accessibility:
+    specifier: ^2.1.0
+    version: 2.1.0(eslint@8.46.0)
   husky:
     specifier: ^8.0.3
     version: 8.0.3
@@ -2906,6 +2909,10 @@ packages:
     resolution: {integrity: sha512-pmf1rbAStw8UEQ0sr2cdJtWl48ZMuPD9Sto8HVQOq9vx9j2WgDEN6lYoaqFvqEHYOmGA9oRGn7LqWI9ta0YugQ==}
     dev: true
 
+  /emoji-regex@10.2.1:
+    resolution: {integrity: sha512-97g6QgOk8zlDRdgq1WxwgTMgEWGVAQvB5Fdpgc1MkNy56la5SKP9GsMXKDOdqwn90/41a8yPwIGk1Y6WVbeMQA==}
+    dev: true
+
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
     dev: true
@@ -3120,6 +3127,19 @@ packages:
       semver: 7.5.4
       vue-eslint-parser: 9.3.1(eslint@8.46.0)
       xml-name-validator: 4.0.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /eslint-plugin-vuejs-accessibility@2.1.0(eslint@8.46.0):
+    resolution: {integrity: sha512-TM0JWrpOUOmka3v83QkH5uYkwUUNWg2RPa6imnBU1El2kRv0Ws1e9N84VPW2HLLTW+Fo+XsdKmiKLXwtIhCqsg==}
+    peerDependencies:
+      eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      aria-query: 5.3.0
+      emoji-regex: 10.2.1
+      eslint: 8.46.0
+      vue-eslint-parser: 9.3.1(eslint@8.46.0)
     transitivePeerDependencies:
       - supports-color
     dev: true

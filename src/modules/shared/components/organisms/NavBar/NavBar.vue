@@ -28,6 +28,7 @@ const logout = (): void => {
       <!-- Navbar -->
       <div class="navbar w-full bg-base-300">
         <div class="flex-none lg:hidden">
+          <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
           <label for="my-nav-drawer" class="btn btn-square btn-primary">
             <Icon icon="lucide:menu" height="2em" class="text-primary-content" />
           </label>
@@ -60,6 +61,7 @@ const logout = (): void => {
     </section>
 
     <section class="drawer-side">
+      <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
       <label for="my-nav-drawer" class="drawer-overlay" />
 
       <ul class="menu h-full w-80 bg-base-200 p-4">

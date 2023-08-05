@@ -55,6 +55,7 @@
     "eslint-plugin-tailwindcss": "^3.13.0",
     "eslint-plugin-testing-library": "^5.11.0",
     "eslint-plugin-vue": "^9.16.0",
+    "eslint-plugin-vuejs-accessibility": "^2.1.0",
     "husky": "^8.0.3",
     "jsdom": "^22.1.0",
     "msw": "^1.2.3",

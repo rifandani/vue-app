@@ -129,18 +129,11 @@ const onSubmit = handleSubmit((values) => {
         </div>
       </div>
 
-      <form
-        v-if="isSuccess && data"
-        aria-label="form-todo"
-        role="form"
-        class="join"
-        @submit="onSubmit"
-      >
+      <form v-if="isSuccess && data" aria-label="form-todo" class="join" @submit="onSubmit">
         <input
           id="todo"
           name="todo"
           type="text"
-          role="textbox"
           aria-label="textbox-todo"
           class="input join-item input-bordered input-accent w-full text-accent-content"
           required

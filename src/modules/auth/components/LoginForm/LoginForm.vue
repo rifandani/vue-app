@@ -43,24 +43,29 @@ const onSubmit = handleSubmit((values, context) => {
 </script>
 
 <template>
-  <form aria-label="form-login" role="form" class="form-control pt-3 md:pt-8" @submit="onSubmit">
+  <form aria-label="form-login" class="form-control pt-3 md:pt-8" @submit="onSubmit">
     <!-- username -->
     <div class="form-control pt-4">
-      <label class="label" for="username">
+      <label class="label flex-col items-start space-y-3" for="username">
         <span class="label-text">{{ LL.forms.username() }}</span>
-      </label>
 
-      <input
-        v-bind="username"
-        id="username"
-        name="username"
-        role="textbox"
-        aria-label="textbox-username"
-        type="text"
-        required
-        :placeholder="LL.forms.usernamePlaceholder()"
-        :class="twJoin(['input mt-1 shadow-md', errors.username ? 'input-error' : 'input-primary'])"
-      />
+        <input
+          v-bind="username"
+          id="username"
+          name="username"
+          aria-label="textbox-username"
+          aria-labelledby="#username"
+          type="text"
+          required
+          :placeholder="LL.forms.usernamePlaceholder()"
+          :class="
+            twJoin([
+              'input mt-1 w-full shadow-md',
+              errors.username ? 'input-error' : 'input-primary'
+            ])
+          "
+        />
+      </label>
 
       <p v-if="errors.username" class="pl-5 pt-1 text-error">
         {{ LL.error.minLength({ field: 'username', length: 3 }) }}
@@ -69,21 +74,27 @@ const onSubmit = handleSubmit((values, context) => {
 
     <!-- password -->
     <div class="form-control pt-4">
-      <label class="label" for="password">
+      <label class="label flex-col items-start space-y-3" for="password">
         <span class="label-text">{{ LL.forms.password() }}</span>
-      </label>
 
-      <input
-        v-bind="password"
-        id="password"
-        name="password"
-        role="textbox"
-        aria-label="textbox-password"
-        type="password"
-        required
-        :placeholder="LL.forms.passwordPlaceholder()"
-        :class="twJoin(['input mt-1 shadow-md', errors.password ? 'input-error' : 'input-primary'])"
-      />
+        <input
+          v-bind="password"
+          id="password"
+          name="password"
+          role="textbox"
+          aria-label="textbox-password"
+          aria-labelledby="#password"
+          type="password"
+          required
+          :placeholder="LL.forms.passwordPlaceholder()"
+          :class="
+            twJoin([
+              'input mt-1 w-full shadow-md',
+              errors.password ? 'input-error' : 'input-primary'
+            ])
+          "
+        />
+      </label>
 
       <p v-if="errors.password" class="pl-5 pt-1 text-error">
         {{ LL.error.passwordMinLength() }}

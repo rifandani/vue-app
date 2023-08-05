@@ -56,7 +56,6 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 
 <template>
   <form
-    role="form"
     aria-label="form-add"
     class="form-control mb-3 w-full duration-300 lg:flex-row"
     @submit="onSubmit"
@@ -66,7 +65,6 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
       id="todo"
       name="todo"
       type="text"
-      role="textbox"
       aria-label="textbox-add"
       class="input input-bordered input-accent w-full text-accent-content lg:w-10/12"
       required
