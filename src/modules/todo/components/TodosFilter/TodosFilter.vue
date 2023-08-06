@@ -31,6 +31,7 @@ const onChangeLimit = async (evt: FocusEvent) => {
       <select
         id="limit"
         name="limit"
+        aria-label="combobox-filter"
         class="select select-bordered select-secondary"
         :value="selectedOption"
         @blur="onChangeLimit"

@@ -80,7 +80,7 @@ const onDeleteTodo = (ev: Event) => {
 
     <button
       v-if="props.todo.userId === user?.id"
-      id="button-submit"
+      aria-label="button-submit"
       class="btn btn-accent btn-sm normal-case"
       type="submit"
     >

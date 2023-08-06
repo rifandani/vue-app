@@ -6,15 +6,10 @@ import type { TodoSchema } from '../../api/todo.schema'
 import TodosItem from './TodosItem.vue'
 
 describe('TodosItem', () => {
-  // vi.mock('../../../shared/composables/useUserStorage/useUserStorage.composable', () => ({
-  //   useUserStorage: mockLogin()
-  // }))
-
   const todo: TodoSchema = mockTodo()
   // const onDeleteTodo = vi.fn()
   const mockSubmit = vi.fn()
   const mockChangeTodo = vi.fn()
-
   const getItemSpy = vi.spyOn(localStorage, 'getItem')
   // localStorage.getItem = vi.fn(() => JSON.stringify({ id: todo.id }))
 

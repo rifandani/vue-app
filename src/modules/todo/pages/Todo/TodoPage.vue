@@ -142,7 +142,7 @@ const onSubmit = handleSubmit((values) => {
 
         <button
           v-if="user?.id === data.userId"
-          id="button-submit"
+          aria-label="button-submit"
           class="btn btn-accent join-item normal-case"
           type="submit"
         >

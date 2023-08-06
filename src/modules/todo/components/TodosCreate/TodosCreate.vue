@@ -72,7 +72,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
     />
 
     <button
-      id="button-add"
+      aria-label="button-add"
       type="submit"
       class="btn btn-accent ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
     >
