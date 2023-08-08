@@ -11,7 +11,7 @@ Vue 3 template built with:
 - `vite` + `vitest` + `@testing-library/vue` -> unit test, integration test, coverage
 - `msw` -> browser and server mocking
 - `tailwindcss` + `tailwind-merge` + `daisyui` -> styling
-- `redaxios` + `@tanstack/vue-query` -> data fetching
+- `axios` + `@tanstack/vue-query` -> data fetching
 - `zod` -> schema validation
 - `vee-validate` + `@vee-validate/zod` -> form management
 - `@iconify/vue` -> icon on demand
@@ -85,6 +85,6 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## NOTES
 
-- [ ] fix all tests
+- [ ] fix all tests -> `axios` + `vue-query` + `msw` base url somehow does not works.
 - [ ] add `/docs` folder, including all my decisions or technical considerations.
-- [x] tried `@zagjs/vue` + `@zagjs/toast`. Doesn't work. Not fully typed in the `BaseToast` component where we get `actor` as props. Progress state is not reactive.
+- [x] tried `@zagjs/vue` + `@zagjs/toast` but doesn't work well. Not fully typed in the `BaseToast` component where we get `actor` as props. Progress state also not reactive.

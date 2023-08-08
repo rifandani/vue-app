@@ -15,6 +15,14 @@ import DarkModeSwitch from './lib/wc/DarkModeSwitch.ce.vue'
 import MyCounter from './lib/wc/MyCounter.ce.vue'
 import './main.css'
 
+const root = document.getElementById('app')
+
+if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
+  throw new Error(
+    'Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got mispelled?'
+  )
+}
+
 // register web components
 customElements.define('my-counter', defineCustomElement(MyCounter))
 customElements.define('dark-mode-switch', defineCustomElement(DarkModeSwitch))
@@ -34,4 +42,17 @@ app.use(i18nPlugin, detectedLocale)
 app.use(router)
 app.use(pinia)
 app.use(VueQueryPlugin)
-app.mount('#app')
+
+// ONLY include browser worker on 'development' env
+if (import.meta.env.DEV) {
+  void import('./mocks/browser.mock')
+    .then(({ worker }) => {
+      // insert it into global window object, so we can debug the worker in runtime (e.g Chrome DevTools)
+      window.msw = { worker }
+      // start browser worker
+      return worker.start()
+    })
+    .then(() => app.mount('#app'))
+} else {
+  app.mount('#app')
+}

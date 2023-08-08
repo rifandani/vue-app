@@ -3,13 +3,18 @@ import { Icon } from '@iconify/vue'
 import { useQuery } from '@tanstack/vue-query'
 import { typesafeI18n } from '../../../../i18n/i18n-vue'
 import { ListSlideTransition } from '../../../shared/components/atoms'
+import { todoApi } from '../../api/todo.api'
 import { useTodoListParams } from '../../composables/useTodoListParams.composable'
 import TodosItem from '../TodosItem/TodosItem.vue'
 
 //#region VALUES
 const { LL } = typesafeI18n()
-const { queryOptions } = useTodoListParams()
-const { isLoading, isError, error, isSuccess, data } = useQuery(queryOptions.value)
+const { queryKey } = useTodoListParams()
+const { isLoading, isError, error, isSuccess, data } = useQuery({
+  queryKey,
+  queryFn: ({ queryKey }) => todoApi.list(queryKey[2]),
+  staleTime: 30_000
+})
 //#endregion
 </script>
 

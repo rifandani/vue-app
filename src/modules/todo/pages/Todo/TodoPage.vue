@@ -35,9 +35,13 @@ const id = computed(() => {
   const id = z.coerce.number().parse(route.params.id)
   return Number(id)
 })
-const { queryOptions } = useTodoDetailParams({ id })
+const { enabled, queryKey } = useTodoDetailParams({ id })
 
-const { isLoading, isError, isSuccess, error, data } = useQuery(queryOptions.value)
+const { isLoading, isError, isSuccess, error, data } = useQuery({
+  enabled,
+  queryKey,
+  queryFn: ({ queryKey }) => todoApi.detail(queryKey[2])
+})
 const {
   isError: mutationIsError,
   error: mutationError,
