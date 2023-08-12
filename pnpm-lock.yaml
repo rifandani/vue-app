@@ -70,9 +70,6 @@ devDependencies:
   '@tanstack/eslint-plugin-query':
     specifier: ^4.32.5
     version: 4.32.5
-  '@testing-library/dom':
-    specifier: ^9.3.1
-    version: 9.3.1
   '@testing-library/jest-dom':
     specifier: ^5.17.0
     version: 5.17.0
