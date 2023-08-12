@@ -19,11 +19,9 @@ describe('LoginForm', () => {
       const buttonSubmit: HTMLButtonElement = screen.getByRole('button', { name: /login/i })
       formLogin.addEventListener('submit', mockSubmitFn)
 
-      // ACT
+      // ACT & ASSERT
       await fireEvent.update(inputUsername, validUsernameValue)
       await fireEvent.update(inputPassword, validPasswordValue)
-
-      // ASSERT
       expect(inputUsername).toHaveValue(validUsernameValue)
       expect(inputPassword).toHaveValue(validPasswordValue)
       await fireEvent.click(buttonSubmit)

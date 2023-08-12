@@ -17,7 +17,7 @@ export default mergeConfig(
       environment: 'jsdom', // mocking the DOM API
       globals: true, // use APIs globally like jest
       transformMode: { web: [/\.[jt]sx$/] },
-      setupFiles: ['node_modules/@testing-library/jest-dom/extend-expect.js', 'src/setupTests.ts'],
+      setupFiles: ['src/setup-test.ts'],
       exclude: [...configDefaults.exclude, 'e2e/*'],
       coverage: {
         provider: 'istanbul', // 'istanbul' / 'v8'
@@ -40,7 +40,7 @@ export default mergeConfig(
           '**/{karma,rollup,webpack,vite,vitest,jest,ava,babel,nyc,cypress,tsup,build}.config.*',
           '**/.{eslint,mocha,prettier}rc.{js,cjs,yml}',
           // above is default
-          'src/setupTests.ts',
+          'src/setup-test.ts',
           'src/main.ts',
           'src/mocks/**',
           'src/assets/**',

@@ -8,7 +8,7 @@ describe('LoginPage', () => {
     expect(() => result).not.toThrow()
   })
 
-  testWrapper('should render content roles correctly', async ({ wrapper }) => {
+  testWrapper('should render content roles correctly', ({ wrapper }) => {
     // ARRANGE
     wrapper({ component: LoginPage })
     const linkHome: HTMLAnchorElement = screen.getByRole('link', { name: /home/i })
