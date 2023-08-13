@@ -14,7 +14,7 @@ describe('NavBar', () => {
     const link: HTMLAnchorElement = screen.getByRole('link', { name: /logo/i })
     const checkbox: HTMLInputElement = screen.getByRole('checkbox', { name: /drawer/i })
 
-    // ASSERT
+    // ACT & ASSERT
     expect(link).toBeInTheDocument()
     expect(checkbox).toBeInTheDocument()
   })

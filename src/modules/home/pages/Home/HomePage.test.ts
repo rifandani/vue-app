@@ -13,7 +13,7 @@ describe('HomePage', () => {
     wrapper({ component: HomePage })
     const heading: HTMLHeadingElement = screen.getByRole('heading', { name: /vue app/i })
 
-    // ASSERT
+    // ACT & ASSERT
     expect(heading).toBeInTheDocument()
   })
 })

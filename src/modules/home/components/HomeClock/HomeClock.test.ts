@@ -11,25 +11,21 @@ describe('HomeClock', () => {
     wrapper({ component: HomeClock })
     const button: HTMLButtonElement = screen.getByTestId(/home-clock-button-clock/i)
 
-    // ACT
+    // ACT & ASSERT
     await fireEvent.click(button)
-
-    // ASSERT
     expect(screen.queryByTestId('home-clock-show')).toBeInTheDocument()
   })
 
+  // TODO: figure out how to solve the randomness
   testWrapper.todo('should shuffle buttons when sort button clicked', async ({ wrapper }) => {
     // ARRANGE
     wrapper({ component: HomeClock })
     const buttonsBefore: HTMLButtonElement[] = screen.queryAllByTestId(/home-clock-button/i)
     const button: HTMLButtonElement = screen.getByTestId(/home-clock-button-sort/i)
 
-    // ACT
+    // ACT & ASSERT
     await fireEvent.click(button)
     const buttonsAfter: HTMLButtonElement[] = screen.queryAllByTestId(/home-clock-button/i)
-
-    // TODO: figure out how to solve this
-    // ASSERT
     expect(buttonsBefore[0]).not.toHaveTextContent(buttonsAfter[0].textContent as string)
     expect(buttonsBefore[1]).not.toHaveTextContent(buttonsAfter[1].textContent as string)
     expect(buttonsBefore[2]).not.toHaveTextContent(buttonsAfter[2].textContent as string)
@@ -41,13 +37,9 @@ describe('HomeClock', () => {
     wrapper({ component: HomeClock })
     const button: HTMLButtonElement = screen.getByTestId(/home-clock-button-language/i)
 
-    // ASSERT
+    // ACT & ASSERT
     expect(button).toHaveTextContent(/change language/i)
-
-    // ACT
     await fireEvent.click(button)
-
-    // ASSERT
     expect(button).toHaveTextContent(/ganti bahasa/i)
   })
 
@@ -59,10 +51,8 @@ describe('HomeClock', () => {
       const button: HTMLButtonElement = screen.getByTestId(/home-clock-button-start/i)
       button.addEventListener('click', mockButtonFn)
 
-      // ACT
+      // ACT & ASSERT
       await fireEvent.click(button)
-
-      // ASSERT
       expect(mockButtonFn).toHaveBeenCalled()
     }
   )

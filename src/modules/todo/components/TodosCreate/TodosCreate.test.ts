@@ -21,17 +21,13 @@ describe('TodosCreate', () => {
       const formCreate: HTMLFormElement = screen.getByRole('form', createOptions)
       const inputTodo: HTMLInputElement = screen.getByRole('textbox', createOptions)
       const buttonSubmit: HTMLButtonElement = screen.getByRole('button', createOptions)
+      formCreate.addEventListener('submit', mockCreateSubmitFn)
 
-      // ASSERT
+      // ACT & ASSERT
       expect(formCreate).toBeInTheDocument()
       expect(inputTodo).toBeInTheDocument()
       expect(buttonSubmit).toBeInTheDocument()
-
-      // ACT
-      formCreate.addEventListener('submit', mockCreateSubmitFn)
       await fireEvent.update(inputTodo, todoValue)
-
-      // ASSERT
       expect(inputTodo).toHaveValue(todoValue)
       await fireEvent.click(buttonSubmit)
       expect(mockCreateSubmitFn).toHaveBeenCalled()

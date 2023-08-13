@@ -13,7 +13,7 @@ describe('TodosPage', () => {
     wrapper({ component: TodosPage })
     const title = screen.getByRole('heading', { name: /todo list/i })
 
-    // ASSERT
+    // ACT & ASSERT
     expect(title).toBeInTheDocument()
   })
 })

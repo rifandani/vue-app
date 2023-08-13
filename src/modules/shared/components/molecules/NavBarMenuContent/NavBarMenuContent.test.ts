@@ -18,11 +18,10 @@ describe('NavBarMenuContent', () => {
     const link: HTMLAnchorElement = screen.getByRole('link', { name: /todos/i })
     const themeBtn: HTMLButtonElement = screen.getByRole('button', { name: /theme/i })
     const modesBtn: HTMLButtonElement[] = screen.getAllByRole('button', { name: /mode/i })
-
     modesBtn[0].addEventListener('click', mockModeBtn)
-    await fireEvent.click(modesBtn[0])
 
-    // ASSERT
+    // ACT & ASSERT
+    await fireEvent.click(modesBtn[0])
     expect(link).toBeInTheDocument()
     expect(themeBtn).toBeInTheDocument()
     expect(modesBtn).toHaveLength(themes.length)

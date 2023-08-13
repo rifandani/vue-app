@@ -14,7 +14,7 @@ describe('TodoPage', () => {
     const link: HTMLAnchorElement = screen.getByRole('link', { name: /go-back/i })
     const title: HTMLHeadingElement = screen.getByRole('heading', { name: /detail/i })
 
-    // ASSERT
+    // ACT & ASSERT
     expect(link).toBeInTheDocument()
     expect(title).toBeInTheDocument()
   })
