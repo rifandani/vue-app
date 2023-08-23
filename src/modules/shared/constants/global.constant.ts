@@ -1,6 +1,6 @@
 import type { Environment } from '../types/global.type'
 import type { Theme } from '../types/theme.type'
-import { isBrowser } from '../utils/helper.util'
+import { isBrowser } from '../utils/helper/helper.util'
 
 export const themes: Theme[] = [
   'auto',

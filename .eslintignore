@@ -1,3 +1,5 @@
+dist
+html
 __mocks__
 public/mockServiceWorker.js
 index.d.ts

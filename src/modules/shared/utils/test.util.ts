@@ -84,6 +84,7 @@ export const testWrapper = test.extend<{ wrapper: (props: WrapperParams) => Rend
     // setup the fixture before each test function
     // detect user's preferred locale
     const locales = detectLocale(localStorageDetector)
+    // eslint-disable-next-line testing-library/render-result-naming-convention
     const wrapper = renderWrapper({ locales })
 
     await loadLocaleAsync(locales)

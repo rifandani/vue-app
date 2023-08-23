@@ -3,6 +3,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
+  env: { browser: true, node: true, es2020: true },
   parserOptions: {
     ecmaVersion: 'latest'
   },
@@ -13,6 +14,7 @@ module.exports = {
     'plugin:tailwindcss/recommended',
     'plugin:@tanstack/eslint-plugin-query/recommended',
     'plugin:jest-dom/recommended',
+    'plugin:testing-library/vue',
     'eslint:recommended',
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier/skip-formatting'

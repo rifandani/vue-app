@@ -13,7 +13,7 @@ describe('HomeClock', () => {
 
     // ACT & ASSERT
     await fireEvent.click(button)
-    expect(screen.queryByTestId('home-clock-show')).toBeInTheDocument()
+    expect(screen.getByTestId('home-clock-show')).toBeInTheDocument()
   })
 
   // TODO: figure out how to solve the randomness
