@@ -1,14 +1,14 @@
 import { useToast } from '@ark-ui/vue'
+import { typesafeI18n } from '@i18n/i18n-vue'
+import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
-import type { ComputedRef } from 'vue'
-import { typesafeI18n } from '../../../i18n/i18n-vue'
-import type { ErrorApiResponseSchema } from '../../shared/api/error.schema'
-import { todoApi, todoKeys } from '../api/todo.api'
+import { todoApi, todoKeys } from '@todo/api/todo.api'
 import type {
   DeleteTodoApiResponseSchema,
   DeleteTodoSchema,
   TodoListApiResponseSchema
-} from '../api/todo.schema'
+} from '@todo/api/todo.schema'
+import type { ComputedRef } from 'vue'
 
 type CreateTodoDeleteMutationProps = {
   queryKey: ComputedRef<ReturnType<typeof todoKeys.list>>

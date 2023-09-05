@@ -1,5 +1,5 @@
-import type { ResourceParamsSchema } from '../../shared/api/resource.schema'
-import { http } from '../../shared/services/api/http.api'
+import type { ResourceParamsSchema } from '@shared/api/resource.schema'
+import { http } from '@shared/services/api/http.api'
 import {
   createTodoApiResponseSchema,
   deleteTodoApiResponseSchema,

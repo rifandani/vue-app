@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
+import { ListSlideTransition } from '@shared/components/atoms'
 import { useQuery } from '@tanstack/vue-query'
-import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import { ListSlideTransition } from '../../../shared/components/atoms'
-import { todoApi } from '../../api/todo.api'
-import { useTodoListParams } from '../../composables/useTodoListParams.composable'
+import { todoApi } from '@todo/api/todo.api'
+import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
 import TodosItem from '../TodosItem/TodosItem.vue'
 
 //#region VALUES

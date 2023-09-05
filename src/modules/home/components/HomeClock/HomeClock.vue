@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import type { Translation } from '@i18n/i18n-types'
+import { loadLocale } from '@i18n/i18n-util.sync'
+import { typesafeI18n } from '@i18n/i18n-vue'
 import { shuffle } from '@rifandani/nxact-yutiriti'
+import { FadeTransition } from '@shared/components/atoms'
 import { onUnmounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
-import type { Translation } from '../../../../i18n/i18n-types'
-import { loadLocale } from '../../../../i18n/i18n-util.sync'
-import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import { FadeTransition } from '../../../shared/components/atoms'
 
 //#region VALUES
 const { LL, locale, setLocale } = typesafeI18n()

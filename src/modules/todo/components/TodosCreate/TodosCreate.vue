@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { useToast } from '@ark-ui/vue'
+import { typesafeI18n } from '@i18n/i18n-vue'
 import { random } from '@rifandani/nxact-yutiriti'
+import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { useQueryClient } from '@tanstack/vue-query'
+import { todoSchema } from '@todo/api/todo.schema'
+import { useTodoCreateMutation } from '@todo/composables/useTodoCreateMutation.composable'
+import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
-import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
-import { todoSchema } from '../../api/todo.schema'
-import { useTodoCreateMutation } from '../../composables/useTodoCreateMutation.composable'
-import { useTodoListParams } from '../../composables/useTodoListParams.composable'
 
 //#region VALUES
 const { LL } = typesafeI18n()

@@ -1,7 +1,7 @@
+import { themes } from '@shared/constants/global.constant'
+import { testWrapper } from '@shared/utils/test.util'
 import { fireEvent, screen } from '@testing-library/vue'
 import { vi } from 'vitest'
-import { themes } from '../../../constants/global.constant'
-import { testWrapper } from '../../../utils/test.util'
 import NavBarMenuContent from './NavBarMenuContent.vue'
 
 describe('NavBarMenuContent', () => {

@@ -1,12 +1,12 @@
 <script setup lang="ts">
+import { typesafeI18n } from '@i18n/i18n-vue'
+import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
+import type { TodoSchema } from '@todo/api/todo.schema'
+import { useTodoDeleteMutation } from '@todo/composables/useTodoDeleteMutation.composable'
+import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
+import { useTodoUpdateMutation } from '@todo/composables/useTodoUpdateMutation.composable'
 import { twJoin } from 'tailwind-merge'
 import { RouterLink } from 'vue-router'
-import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
-import type { TodoSchema } from '../../api/todo.schema'
-import { useTodoDeleteMutation } from '../../composables/useTodoDeleteMutation.composable'
-import { useTodoListParams } from '../../composables/useTodoListParams.composable'
-import { useTodoUpdateMutation } from '../../composables/useTodoUpdateMutation.composable'
 
 //#region VALUES
 const props = defineProps<{

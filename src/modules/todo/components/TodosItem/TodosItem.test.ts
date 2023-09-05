@@ -1,8 +1,8 @@
+import { mockTodo } from '@mocks/http/entities.http'
+import { testWrapper } from '@shared/utils/test.util'
 import { fireEvent, screen } from '@testing-library/vue'
+import type { TodoSchema } from '@todo/api/todo.schema'
 import { vi } from 'vitest'
-import { mockTodo } from '../../../../mocks/http/entities.http'
-import { testWrapper } from '../../../shared/utils/test.util'
-import type { TodoSchema } from '../../api/todo.schema'
 import TodosItem from './TodosItem.vue'
 
 describe('TodosItem', () => {

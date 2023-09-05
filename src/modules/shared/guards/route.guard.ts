@@ -1,5 +1,5 @@
+import { loginApiResponseSchema, type LoginApiResponseSchema } from '@auth/api/auth.schema'
 import type { NavigationGuard, RouteLocationNormalized } from 'vue-router'
-import { loginApiResponseSchema, type LoginApiResponseSchema } from '../../auth/api/auth.schema'
 
 /**
  * remove url query params

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
 import {
   myCounterEventDecrement,
   myCounterEventIncrement,
   type MyCounterEventDetail
-} from '../../../lib/wc/MyCounter.constant'
+} from '@lib/wc/MyCounter.constant'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const sectionRef = ref<HTMLDivElement>()
 const initialCount = ref('10')

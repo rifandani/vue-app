@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import { loginRoute } from '@auth/routes/auth.route'
+import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
+import { SvgIcon } from '@shared/components/atoms'
+import { NavbarMenuContent } from '@shared/components/molecules'
+import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { RouterLink, useRouter } from 'vue-router'
-import { typesafeI18n } from '../../../../../i18n/i18n-vue'
-import { useUserStorage } from '../../../composables/useUserStorage/useUserStorage.composable'
-import { SvgIcon } from '../../atoms'
-import { NavbarMenuContent } from '../../molecules'
 
 // #region VALUES
 const { replace } = useRouter()
@@ -15,7 +16,7 @@ const user = useUserStorage()
 //#region HANDLERS
 const logout = (): void => {
   user.value = null // reset `user` store
-  replace('/login') // back to login
+  replace(loginRoute.path) // back to login
 }
 //#endregion
 </script>

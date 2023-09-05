@@ -1,6 +1,6 @@
+import { testWrapper } from '@shared/utils/test.util'
 import { fireEvent, screen, type ByRoleOptions } from '@testing-library/vue'
 import { vi } from 'vitest'
-import { testWrapper } from '../../../shared/utils/test.util'
 import TodosCreate from './TodosCreate.vue'
 
 describe('TodosCreate', () => {

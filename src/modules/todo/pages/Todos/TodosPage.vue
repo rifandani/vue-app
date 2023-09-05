@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import { NavBar } from '../../../shared/components/organisms'
-import TodosCreate from '../../components/TodosCreate/TodosCreate.vue'
-import TodosFilter from '../../components/TodosFilter/TodosFilter.vue'
-import TodosList from '../../components/TodosList/TodosList.vue'
+import { typesafeI18n } from '@i18n/i18n-vue'
+import { NavBar } from '@shared/components/organisms'
+import TodosCreate from '@todo/components/TodosCreate/TodosCreate.vue'
+import TodosFilter from '@todo/components/TodosFilter/TodosFilter.vue'
+import TodosList from '@todo/components/TodosList/TodosList.vue'
 
 const { LL } = typesafeI18n()
 </script>
