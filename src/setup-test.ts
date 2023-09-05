@@ -1,6 +1,6 @@
+import { server } from '@mocks/http/server.http'
+import '@mocks/module.mock'
 import '@testing-library/jest-dom' // automatically `expect.extend(matchers)`
-import { server } from './mocks/http/server.http'
-import './mocks/module.mock'
 
 // Establish API mocking before all tests with MSW
 beforeAll(() => {

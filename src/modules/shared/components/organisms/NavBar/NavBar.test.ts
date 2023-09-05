@@ -1,5 +1,5 @@
+import { testWrapper } from '@shared/utils/test.util'
 import { screen } from '@testing-library/vue'
-import { testWrapper } from '../../../utils/test.util'
 import NavBar from './NavBar.vue'
 
 describe('NavBar', () => {

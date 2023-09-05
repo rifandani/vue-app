@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { typesafeI18n } from '@i18n/i18n-vue'
+import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
+import { limits } from '@todo/constants/todos.constant'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
-import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import { useTodoListParams } from '../../composables/useTodoListParams.composable'
-import { limits } from '../../constants/todos.constant'
 
 //#region VALUES
 const router = useRouter()

@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["./app/*"],
+      "@assets/*": ["./assets/*"],
+      "@i18n/*": ["./i18n/*"],
+      "@lib/*": ["./lib/*"],
+      "@mocks/*": ["./mocks/*"],
+      "@auth/*": ["./modules/auth/*"],
+      "@home/*": ["./modules/home/*"],
+      "@playground/*": ["./modules/playground/*"],
+      "@shared/*": ["./modules/shared/*"],
+      "@todo/*": ["./modules/todo/*"]
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { http } from '../../shared/services/api/http.api'
+import { http } from '@shared/services/api/http.api'
 import { loginApiResponseSchema, type LoginSchema } from './auth.schema'
 
 export const login = async (creds: LoginSchema) => {

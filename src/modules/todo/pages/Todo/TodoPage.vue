@@ -1,23 +1,23 @@
 <script setup lang="ts">
 import { useToast } from '@ark-ui/vue'
+import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
+import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
+import { NavBar } from '@shared/components/organisms'
+import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
+import { todoApi, todoKeys } from '@todo/api/todo.api'
+import {
+  todoSchema,
+  type UpdateTodoApiResponseSchema,
+  type UpdateTodoSchema
+} from '@todo/api/todo.schema'
+import { useTodoDetailParams } from '@todo/composables/useTodoDetailParams.composable'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { computed } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { z } from 'zod'
-import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import type { ErrorApiResponseSchema } from '../../../shared/api/error.schema'
-import { NavBar } from '../../../shared/components/organisms'
-import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
-import { todoApi, todoKeys } from '../../api/todo.api'
-import {
-  todoSchema,
-  type UpdateTodoApiResponseSchema,
-  type UpdateTodoSchema
-} from '../../api/todo.schema'
-import { useTodoDetailParams } from '../../composables/useTodoDetailParams.composable'
 
 //#region VALUES
 const route = useRoute()

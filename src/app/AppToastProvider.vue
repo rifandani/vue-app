@@ -9,7 +9,7 @@ import {
   ToastTitle
 } from '@ark-ui/vue'
 import { Icon } from '@iconify/vue'
-import { ListSlideTransition } from '../modules/shared/components/atoms'
+import { ListSlideTransition } from '@shared/components/atoms'
 
 const max = 5
 </script>

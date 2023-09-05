@@ -1,12 +1,12 @@
+import { login } from '@auth/api/auth.api'
+import { loginSchema, type LoginApiResponseSchema, type LoginSchema } from '@auth/api/auth.schema'
+import { typesafeI18n } from '@i18n/i18n-vue'
+import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
+import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { useMutation } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
-import { typesafeI18n } from '../../../../i18n/i18n-vue'
-import type { ErrorApiResponseSchema } from '../../../shared/api/error.schema'
-import { useUserStorage } from '../../../shared/composables/useUserStorage/useUserStorage.composable'
-import { login } from '../../api/auth.api'
-import { loginSchema, type LoginApiResponseSchema, type LoginSchema } from '../../api/auth.schema'
 
 // NOTE: not used due to weird type error
 // "The inferred type of useLoginForm cannot be named without a reference to..."

@@ -1,3 +1,10 @@
+import App from '@app/App.vue'
+import { router } from '@app/router.app'
+import { detectLocale } from '@i18n/i18n-util'
+import { loadLocale } from '@i18n/i18n-util.sync'
+import { i18nPlugin } from '@i18n/i18n-vue'
+import DarkModeSwitch from '@lib/wc/DarkModeSwitch.ce.vue'
+import MyCounter from '@lib/wc/MyCounter.ce.vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
 import {
@@ -6,13 +13,6 @@ import {
   navigatorDetector
 } from 'typesafe-i18n/detectors'
 import { createApp, defineCustomElement } from 'vue'
-import App from './app/App.vue'
-import { router } from './app/router.app'
-import { detectLocale } from './i18n/i18n-util'
-import { loadLocale } from './i18n/i18n-util.sync'
-import { i18nPlugin } from './i18n/i18n-vue'
-import DarkModeSwitch from './lib/wc/DarkModeSwitch.ce.vue'
-import MyCounter from './lib/wc/MyCounter.ce.vue'
 import './main.css'
 
 const root = document.getElementById('app')

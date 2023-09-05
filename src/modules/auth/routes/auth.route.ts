@@ -1,7 +1,7 @@
+import LoginPage from '@auth/pages/Login/LoginPage.vue'
+import NotFoundPage from '@auth/pages/NotFound/NotFoundPage.vue'
+import { loginGuard } from '@shared/guards/route.guard'
 import type { RouteRecordRaw } from 'vue-router'
-import { loginGuard } from '../../shared/guards/route.guard'
-import LoginPage from '../pages/Login/LoginPage.vue'
-import NotFoundPage from '../pages/NotFound/NotFoundPage.vue'
 
 export const loginRoute = {
   name: 'login' as const,

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { vAutoGrow } from '../../shared/directives/autoGrow/autoGrow.directive'
+import { vAutoGrow } from '@shared/directives/autoGrow/autoGrow.directive'
 </script>
 
 <template>

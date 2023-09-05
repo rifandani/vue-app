@@ -1,19 +1,19 @@
 <script setup lang="ts">
-import { useColorMode } from '@vueuse/core';
-import { typesafeI18n } from '../../../../../i18n/i18n-vue';
-import { useUserStorage } from '../../../composables/useUserStorage/useUserStorage.composable';
-import { modes } from '../../../constants/global.constant';
+import { typesafeI18n } from '@i18n/i18n-vue'
+import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
+import { modes } from '@shared/constants/global.constant'
+import { useColorMode } from '@vueuse/core'
 
 const emit = defineEmits<{
-  logout: [];
-}>();
+  logout: []
+}>()
 
-const { LL } = typesafeI18n();
-const user = useUserStorage();
+const { LL } = typesafeI18n()
+const user = useUserStorage()
 const colorMode = useColorMode({
   modes,
-  attribute: 'data-theme',
-});
+  attribute: 'data-theme'
+})
 </script>
 
 <template>
@@ -29,9 +29,7 @@ const colorMode = useColorMode({
     </RouterLink>
   </li>
 
-  <li
-    class="dropdown dropdown-top mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0"
-  >
+  <li class="dropdown dropdown-top mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
     <button
       type="button"
       tabindex="0"

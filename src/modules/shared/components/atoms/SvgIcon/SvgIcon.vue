@@ -1,7 +1,5 @@
 <script setup lang="ts">
-// import type { SVGAttributes } from 'vue';
-// SVGAttributes &
-
+// could also extends SVGAttributes
 type Props = {
   id: 'icon-vue'
 }

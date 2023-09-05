@@ -1,7 +1,7 @@
+import { rest, server } from '@mocks/http/server.http'
+import { getBaseUrl } from '@mocks/util.mock'
+import { testWrapper } from '@shared/utils/test.util'
 import { screen, waitFor } from '@testing-library/vue'
-import { rest, server } from '../../../../mocks/http/server.http'
-import { getBaseUrl } from '../../../../mocks/util.mock'
-import { testWrapper } from '../../../shared/utils/test.util'
 import TodosList from './TodosList.vue'
 
 describe('TodosList', () => {

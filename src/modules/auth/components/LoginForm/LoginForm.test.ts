@@ -1,6 +1,6 @@
+import { testWrapper } from '@shared/utils/test.util'
 import { fireEvent, screen } from '@testing-library/vue'
 import { vi } from 'vitest'
-import { testWrapper } from '../../../shared/utils/test.util'
 import LoginForm from './LoginForm.vue'
 
 describe('LoginForm', () => {
