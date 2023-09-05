@@ -12,8 +12,7 @@ const { LL } = typesafeI18n()
 const { queryKey } = useTodoListParams()
 const { isLoading, isError, error, isSuccess, data } = useQuery({
   queryKey,
-  queryFn: ({ queryKey }) => todoApi.list(queryKey[2]),
-  staleTime: 30_000
+  queryFn: ({ queryKey }) => todoApi.list(queryKey[2])
 })
 //#endregion
 </script>

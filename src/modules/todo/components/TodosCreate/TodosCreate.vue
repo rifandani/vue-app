@@ -18,7 +18,7 @@ const queryClient = useQueryClient()
 const { queryKey } = useTodoListParams()
 const todoCreateMutation = useTodoCreateMutation({ queryKey })
 
-const { defineInputBinds, handleSubmit } = useForm({
+const { defineInputBinds, handleSubmit, isSubmitting } = useForm({
   validationSchema: toTypedSchema(todoSchema),
   initialValues: {
     id: 1, // doesn't matter, we override it later on `onSubmit` anyway
@@ -74,7 +74,8 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
     <button
       aria-label="button-add"
       type="submit"
-      class="btn btn-accent ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
+      class="btn btn-accent ml-0 mt-2 w-full normal-case disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
+      :disabled="isSubmitting"
     >
       {{ LL.forms.add({ icon: '✔' }) }}
     </button>
