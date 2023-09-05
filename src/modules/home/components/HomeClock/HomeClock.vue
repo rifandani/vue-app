@@ -18,36 +18,43 @@ const minutes = ref(0)
 const hours = ref(0)
 const buttons = ref([
   {
-    id: 'sort',
+    id: 'sort' as const,
     class: 'btn-neutral btn',
-    onClick: () => {},
     text: 'sortBtn' as keyof Translation['home']
   },
   {
-    id: 'clock',
+    id: 'clock' as const,
     class: 'btn-active btn',
-    onClick: () => (showClock.value = !showClock.value),
     text: 'toggleClock' as keyof Translation['home']
   },
   {
-    id: 'language',
+    id: 'language' as const,
     class: 'btn-accent btn',
-    onClick: () => {
+    text: 'changeLang' as keyof Translation['home']
+  },
+  {
+    id: 'start' as const,
+    class: 'btn-secondary btn',
+    text: 'getStarted' as keyof Translation['home']
+  }
+])
+
+const onClickMapper = (btnId: 'sort' | 'clock' | 'language' | 'start') => {
+  const mapper: Record<typeof btnId, () => void> = {
+    sort: () => (buttons.value = shuffle(buttons.value)),
+    clock: () => (showClock.value = !showClock.value),
+    language: () => {
       const newLocale = locale.value === 'en' ? 'id' : 'en'
       // update dictionaries and update formatters
       loadLocale(newLocale)
       // change locale store
       setLocale(newLocale)
     },
-    text: 'changeLang' as keyof Translation['home']
-  },
-  {
-    id: 'start',
-    class: 'btn-secondary btn',
-    onClick: () => push('/todos'),
-    text: 'getStarted' as keyof Translation['home']
+    start: () => void push('/todos')
   }
-])
+
+  mapper[btnId]()
+}
 
 watchEffect(() => {
   // recalculate `seconds` every 100 ms
@@ -101,9 +108,10 @@ onUnmounted(() => clearTimeout(timeoutId.value))
     <button
       v-for="btn in buttons"
       :key="btn.id"
+      type="button"
       :data-testid="`home-clock-button-${btn.id}`"
       :class="btn.class"
-      @click="() => (btn.id === 'sort' ? (buttons = shuffle(buttons)) : btn.onClick())"
+      @click="() => onClickMapper(btn.id)"
     >
       {{ LL.home[btn.text]() }}
     </button>

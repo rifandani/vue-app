@@ -25,11 +25,11 @@ const onChangeTodo = () => {
   todoUpdateMutation.mutate({ ...props.todo, completed: !props.todo.completed })
 }
 
-const onDeleteTodo = (ev: Event) => {
+const onDeleteTodo = (evt: Event) => {
   // don't allow if not the correct auth user
   if (props.todo.userId !== user.value?.id) return
 
-  const target = ev.target as HTMLFormElement
+  const target = evt.target as HTMLFormElement
   // parse form data & get todo id from input hidden with name/id `todoId`
   const formData = new FormData(target)
   const { todoId } = Object.fromEntries(formData.entries())
@@ -44,7 +44,7 @@ const onDeleteTodo = (ev: Event) => {
     aria-label="form-todo"
     class="mb-2 flex items-center justify-between"
     :data-testid="`form-${props.todo.id}`"
-    @submit="onDeleteTodo"
+    @submit.prevent="onDeleteTodo"
   >
     <input
       id="todoId"
@@ -81,8 +81,9 @@ const onDeleteTodo = (ev: Event) => {
     <button
       v-if="props.todo.userId === user?.id"
       aria-label="button-submit"
-      class="btn btn-accent btn-sm normal-case"
+      class="btn btn-accent btn-sm normal-case disabled:btn-disabled"
       type="submit"
+      :disabled="todoDeleteMutation.isLoading.value"
     >
       {{ LL.forms.remove({ icon: '💥' }) }}
     </button>

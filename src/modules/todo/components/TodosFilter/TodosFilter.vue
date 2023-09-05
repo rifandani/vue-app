@@ -13,8 +13,8 @@ const selectedOption = computed(() => queryParams.value.limit.toString())
 //#endregion
 
 //#region HANDLERS
-const onChangeLimit = async (evt: FocusEvent) => {
-  const target = evt.target as HTMLInputElement
+const onChangeLimit = async (evt: Event) => {
+  const target = evt.target as HTMLSelectElement
   await router.replace({ query: { limit: target.value } })
 }
 //#endregion
@@ -34,7 +34,7 @@ const onChangeLimit = async (evt: FocusEvent) => {
         aria-label="combobox-filter"
         class="select select-bordered select-secondary"
         :value="selectedOption"
-        @blur="onChangeLimit"
+        @change="onChangeLimit"
       >
         <option
           v-for="limit in limits"

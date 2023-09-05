@@ -70,7 +70,7 @@ const initialValues = computed(() => ({
   completed: data.value?.completed ?? false,
   userId: data.value?.userId ?? 1
 }))
-const { defineInputBinds, handleSubmit } = useForm({
+const { defineInputBinds, handleSubmit, isSubmitting } = useForm({
   initialValues,
   validationSchema: toTypedSchema(todoSchema)
 })
@@ -147,8 +147,9 @@ const onSubmit = handleSubmit((values) => {
         <button
           v-if="user?.id === data.userId"
           aria-label="button-submit"
-          class="btn btn-accent join-item normal-case"
+          class="btn btn-accent join-item normal-case disabled:btn-disabled"
           type="submit"
+          :disabled="isSubmitting"
         >
           {{ LL.common.update({ icon: '🖋' }) }}
         </button>
