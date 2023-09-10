@@ -1,12 +1,11 @@
 <script setup lang="ts">
-const props = defineProps<{
-  class?: string
-  tag?: string
-}>()
+defineOptions({
+  inheritAttrs: false
+})
 </script>
 
 <template>
-  <TransitionGroup :class="props.class" :tag="props.tag" name="list">
+  <TransitionGroup name="list" v-bind="$attrs">
     <slot></slot>
   </TransitionGroup>
 </template>

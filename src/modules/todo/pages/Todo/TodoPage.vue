@@ -8,16 +8,16 @@ import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorag
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import { todoApi, todoKeys } from '@todo/api/todo.api'
 import {
-  todoSchema,
+  updateTodoSchema,
   type UpdateTodoApiResponseSchema,
   type UpdateTodoSchema
 } from '@todo/api/todo.schema'
 import { useTodoDetailParams } from '@todo/composables/useTodoDetailParams.composable'
+import { todosRoute } from '@todo/routes/todo.route'
 import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { computed } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
-import { z } from 'zod'
 
 //#region VALUES
 const route = useRoute()
@@ -31,9 +31,7 @@ const id = computed(() => {
   // -1 to make query options `enabled: false`
   if (!route.params) return -1
 
-  // will throw error if `params.id` is not a number
-  const id = z.coerce.number().parse(route.params.id)
-  return Number(id)
+  return Number(route.params.id)
 })
 const { enabled, queryKey } = useTodoDetailParams({ id })
 
@@ -50,9 +48,9 @@ const {
   mutationFn: (updateTodo) => todoApi.update(updateTodo),
   onSuccess: async (updatedTodo) => {
     // NOTE: the order of function call MATTERS
-    await push('/todos')
-    queryClient.removeQueries({ queryKey: computed(() => todoKeys.detail(updatedTodo.id)) }) // delete the query cache
-    await queryClient.invalidateQueries({ queryKey: computed(() => todoKeys.lists()) })
+    await push(todosRoute.path)
+    queryClient.removeQueries({ queryKey: todoKeys.detail(updatedTodo.id) }) // delete the query cache
+    await queryClient.invalidateQueries({ queryKey: todoKeys.lists() })
   },
   onSettled: (_updateTodo, error) => {
     toast.value.create({
@@ -64,22 +62,20 @@ const {
   }
 })
 
-const initialValues = computed(() => ({
+const initialValues = computed<UpdateTodoSchema>(() => ({
   todo: data.value?.todo ?? LL.value.common.loading(),
   id: data.value?.id ?? 1,
-  completed: data.value?.completed ?? false,
-  userId: data.value?.userId ?? 1
+  completed: data.value?.completed ?? false
 }))
 const { defineInputBinds, handleSubmit, isSubmitting } = useForm({
   initialValues,
-  validationSchema: toTypedSchema(todoSchema)
+  validationSchema: toTypedSchema(updateTodoSchema)
 })
 const todo = defineInputBinds('todo', { validateOnInput: true })
 const onSubmit = handleSubmit((values) => {
   const payload = {
-    todo: values.todo,
-    id: data.value?.id ?? values.id,
-    completed: data.value?.completed ?? values.completed
+    ...initialValues.value,
+    todo: values.todo
   }
 
   mutate(payload)
@@ -94,13 +90,13 @@ const onSubmit = handleSubmit((values) => {
         <RouterLink
           role="link"
           aria-label="go-back"
-          class="btn-link w-fit normal-case text-primary-content"
-          :to="{ name: 'todos' }"
+          class="link w-fit normal-case hover:skew-x-12"
+          :to="todosRoute.path"
         >
           ⬅ {{ LL.todo.backTo({ target: 'Todos' }) }}
         </RouterLink>
 
-        <h1 class="text-2xl font-semibold tracking-wider text-primary-content">
+        <h1 class="text-2xl font-semibold tracking-wider">
           {{ LL.common.xDetail({ feature: 'Todo' }) }}
         </h1>
       </div>
@@ -111,10 +107,8 @@ const onSubmit = handleSubmit((values) => {
         class="alert alert-error mt-2 shadow-lg"
       >
         <div class="flex items-center">
-          <span>
-            {{ LL.common.error({ module: 'Todo Mutation' }) }}:{{ ' ' }}
-            {{ mutationError.message }}
-          </span>
+          <span> {{ LL.common.error({ module: 'Todo Mutation' }) }}:{{ ' ' }} </span>
+          <pre>{{ JSON.stringify(mutationError, null, 2) }}</pre>
         </div>
       </div>
 
@@ -139,7 +133,7 @@ const onSubmit = handleSubmit((values) => {
           name="todo"
           type="text"
           aria-label="textbox-todo"
-          class="input join-item input-bordered input-accent w-full text-accent-content"
+          class="input join-item input-bordered input-primary w-full"
           required
           v-bind="todo"
         />
@@ -147,7 +141,7 @@ const onSubmit = handleSubmit((values) => {
         <button
           v-if="user?.id === data.userId"
           aria-label="button-submit"
-          class="btn btn-accent join-item normal-case disabled:btn-disabled"
+          class="btn btn-primary join-item normal-case disabled:btn-disabled"
           type="submit"
           :disabled="isSubmitting"
         >

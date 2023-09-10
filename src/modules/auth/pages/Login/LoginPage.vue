@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import vueschool from '@assets/vueschool.svg'
 import LoginForm from '@auth/components/LoginForm/LoginForm.vue'
+import { homeRoute } from '@home/routes/home.route'
 import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
 import { WrapTranslation } from '@shared/components/atoms'
@@ -19,7 +20,7 @@ const { LL } = typesafeI18n()
             role="link"
             aria-label="link-home"
             class="relative cursor-pointer rounded-full hover:text-primary"
-            :to="{ name: 'home' }"
+            :to="homeRoute.path"
           >
             <Icon icon="lucide:home" height="1.5em" />
           </RouterLink>

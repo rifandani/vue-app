@@ -12,7 +12,7 @@ export const loginRoute = {
 
 export const notFoundRoute = {
   name: 'not-found' as const,
-  path: '/:pathMatch(.*)*',
+  path: '/:pathMatch(.*)*' as const,
   component: NotFoundPage
 } satisfies RouteRecordRaw
 

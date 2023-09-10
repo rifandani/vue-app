@@ -27,17 +27,23 @@ export const useTodoUpdateMutation = ({ queryKey }: CreateTodoUpdateMutationProp
   >({
     // Called before `mutationFn`:
     onMutate: async ({ id, ...body }) => {
+      const emptyResponse: TodoListApiResponseSchema = {
+        limit: 10,
+        todos: [],
+        skip: 0,
+        total: 0
+      }
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
       await queryClient.cancelQueries({ queryKey })
 
       // Snapshot the previous value
-      const previousTodosQueryResponse = (queryClient.getQueryData(queryKey) ??
-        []) as TodoListApiResponseSchema
+      const previousTodosQueryResponse =
+        (queryClient.getQueryData(queryKey) as TodoListApiResponseSchema) ?? emptyResponse
 
       // Optimistically update to the new value
       queryClient.setQueryData(queryKey, {
         ...previousTodosQueryResponse,
-        todos: previousTodosQueryResponse.todos?.map((_todo) =>
+        todos: previousTodosQueryResponse.todos.map((_todo) =>
           _todo.id === id ? { ..._todo, ...body } : _todo
         )
       })

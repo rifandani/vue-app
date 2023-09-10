@@ -10,7 +10,7 @@ const user = useUserStorage()
 </script>
 
 <template>
-  <main class="flex h-screen flex-col items-center justify-center space-y-3 text-primary-content">
+  <main class="flex h-screen flex-col items-center justify-center space-y-3 bg-base-100">
     <h1 class="text-3xl font-bold italic">
       {{ LL.auth.notFound404() }}
     </h1>
@@ -18,8 +18,8 @@ const user = useUserStorage()
 
     <RouterLink
       data-testid="notFound-link"
-      :to="{ name: !!user?.id ? homeRoute.name : loginRoute.name }"
-      class="link text-primary-content hover:skew-x-12"
+      class="link hover:skew-x-12"
+      :to="!!user?.id ? homeRoute.path : loginRoute.path"
     >
       {{ LL.auth.backTo({ isLoggedIn: user?.id ? 'true' : 'false' }) }}
     </RouterLink>

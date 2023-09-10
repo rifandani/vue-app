@@ -1,5 +1,6 @@
-import { login } from '@auth/api/auth.api'
+import { authApi } from '@auth/api/auth.api'
 import { loginSchema, type LoginApiResponseSchema, type LoginSchema } from '@auth/api/auth.schema'
+import { homeRoute } from '@home/routes/home.route'
 import { typesafeI18n } from '@i18n/i18n-vue'
 import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
@@ -16,11 +17,11 @@ export const useLoginForm = () => {
   const { push } = useRouter()
 
   const loginMutation = useMutation<LoginApiResponseSchema, ErrorApiResponseSchema, LoginSchema>({
-    mutationFn: (creds) => login(creds),
+    mutationFn: (creds) => authApi.login(creds),
     onSuccess: async (resp) => {
       // set user data to local storage
       user.value = resp
-      await push('/')
+      await push(homeRoute.path)
     }
   })
 

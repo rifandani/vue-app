@@ -37,7 +37,7 @@ onUnmounted(() => {
 <template>
   <section
     ref="sectionRef"
-    class="card flex w-full flex-col items-center space-y-3 rounded-lg border bg-secondary p-5 text-secondary-content shadow-lg"
+    class="card flex w-full flex-col items-center space-y-3 rounded-lg border p-5 shadow-lg"
   >
     <button class="btn btn-info btn-xs" @click="handleClickTambah">Tambah</button>
 

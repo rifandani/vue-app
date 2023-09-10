@@ -1,5 +1,11 @@
+<script setup lang="ts">
+defineOptions({
+  inheritAttrs: false
+})
+</script>
+
 <template>
-  <Transition name="fade">
+  <Transition name="fade" v-bind="$attrs">
     <slot></slot>
   </Transition>
 </template>

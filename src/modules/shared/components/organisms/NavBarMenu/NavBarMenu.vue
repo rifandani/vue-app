@@ -2,6 +2,7 @@
 import { typesafeI18n } from '@i18n/i18n-vue'
 import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { modes } from '@shared/constants/global.constant'
+import { todosRoute } from '@todo/routes/todo.route'
 import { useColorMode } from '@vueuse/core'
 
 const emit = defineEmits<{
@@ -21,9 +22,8 @@ const colorMode = useColorMode({
     <RouterLink
       role="link"
       aria-label="todos"
-      :to="{ name: 'todos' }"
-      active-class="link-secondary"
-      class="link-hover link mx-0 px-3 tracking-wide text-primary lg:mx-3"
+      class="link-hover link mx-0 px-3 tracking-wide lg:mx-3"
+      :to="todosRoute.path"
     >
       Todos
     </RouterLink>
@@ -33,14 +33,15 @@ const colorMode = useColorMode({
     <button
       type="button"
       tabindex="0"
-      class="btn btn-secondary btn-sm btn-block normal-case text-secondary-content"
+      aria-label="themes-opener"
+      class="btn btn-outline btn-sm btn-block normal-case"
     >
       {{ LL.common.theme() }}
     </button>
 
     <ul
       tabindex="0"
-      class="menu dropdown-content rounded-box z-10 block max-h-60 w-72 overflow-y-auto bg-secondary p-2 text-secondary-content shadow lg:w-52"
+      class="menu dropdown-content rounded-box z-10 block max-h-60 w-72 overflow-y-auto bg-base-200 p-2 shadow lg:w-52"
     >
       <li v-for="mode in modes" :key="mode">
         <button
@@ -58,7 +59,7 @@ const colorMode = useColorMode({
   <li v-if="user" class="ml-0 lg:ml-3 lg:mt-0">
     <button
       type="button"
-      class="btn btn-primary btn-sm normal-case tracking-wide text-primary-content"
+      class="btn btn-error btn-sm normal-case tracking-wide text-error-content"
       @click="emit('logout')"
     >
       {{ LL.auth.logoutUsername({ username: user.username }) }}

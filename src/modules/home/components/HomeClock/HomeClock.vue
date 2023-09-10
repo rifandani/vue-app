@@ -4,6 +4,7 @@ import { loadLocale } from '@i18n/i18n-util.sync'
 import { typesafeI18n } from '@i18n/i18n-vue'
 import { shuffle } from '@rifandani/nxact-yutiriti'
 import { FadeTransition } from '@shared/components/atoms'
+import { todosRoute } from '@todo/routes/todo.route'
 import { onUnmounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -50,7 +51,7 @@ const onClickMapper = (btnId: 'sort' | 'clock' | 'language' | 'start') => {
       // change locale store
       setLocale(newLocale)
     },
-    start: () => void push('/todos')
+    start: () => void push(todosRoute.path)
   }
 
   mapper[btnId]()
@@ -91,7 +92,7 @@ onUnmounted(() => clearTimeout(timeoutId.value))
 
 <template>
   <FadeTransition>
-    <div v-if="showClock" data-testid="home-clock-show" class="stats mt-8 shadow">
+    <div v-if="showClock" data-testid="home-clock-show" class="stats mt-8 bg-base-200 shadow">
       <div class="stat">
         <div class="stat-title">{{ LL.home.clock() }}:</div>
         <div class="stat-value">{{ hours }} : {{ minutes }} : {{ seconds }} {{ '' }}</div>

@@ -5,6 +5,7 @@ import type { TodoSchema } from '@todo/api/todo.schema'
 import { useTodoDeleteMutation } from '@todo/composables/useTodoDeleteMutation.composable'
 import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
 import { useTodoUpdateMutation } from '@todo/composables/useTodoUpdateMutation.composable'
+import { todosDetailRoute } from '@todo/routes/todo.route'
 import { twJoin } from 'tailwind-merge'
 import { RouterLink } from 'vue-router'
 
@@ -56,7 +57,7 @@ const onDeleteTodo = (evt: Event) => {
 
     <input
       :id="`todo-${props.todo.id}`"
-      class="checkbox-accent checkbox"
+      class="checkbox-primary checkbox"
       type="checkbox"
       aria-label="checkbox-todo"
       :name="`todo-${props.todo.id}`"
@@ -67,10 +68,10 @@ const onDeleteTodo = (evt: Event) => {
     <RouterLink
       role="link"
       aria-label="todo"
-      :to="{ name: 'todo', params: { id: props.todo.id } }"
+      :to="{ name: todosDetailRoute.name, params: { id: props.todo.id } }"
       :class="
         twJoin(
-          'ml-5 w-full text-left text-lg text-secondary-content hover:font-bold',
+          'ml-5 w-full text-left text-lg hover:font-bold',
           props.todo.completed && 'line-through'
         )
       "
@@ -81,7 +82,7 @@ const onDeleteTodo = (evt: Event) => {
     <button
       v-if="props.todo.userId === user?.id"
       aria-label="button-submit"
-      class="btn btn-accent btn-sm normal-case disabled:btn-disabled"
+      class="btn btn-primary btn-sm normal-case disabled:btn-disabled"
       type="submit"
       :disabled="todoDeleteMutation.isLoading.value"
     >
