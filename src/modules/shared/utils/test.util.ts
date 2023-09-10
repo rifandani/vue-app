@@ -67,7 +67,22 @@ export function renderWrapper({ locales }: RenderWrapperParams) {
     render(component, {
       global: {
         stubs: (stubs ?? []).concat(['router-link', 'RouterLink']),
-        plugins: [[i18nPlugin, locales], VueQueryPlugin]
+        plugins: [
+          [i18nPlugin, locales],
+          [
+            VueQueryPlugin,
+            {
+              queryClientConfig: {
+                defaultOptions: {
+                  queries: {
+                    retry: false,
+                    cacheTime: 0
+                  }
+                }
+              }
+            }
+          ]
+        ]
       },
       props
     })

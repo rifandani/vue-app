@@ -1,4 +1,4 @@
-import type { BaseTranslation } from '@i18n/i18n-types'
+import type { BaseTranslation } from '../i18n-types'
 
 const en = {
   auth: {

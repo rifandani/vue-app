@@ -26,23 +26,17 @@ const onChangeLimit = async (evt: Event) => {
     class="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2"
   >
     <label for="limit" class="label flex space-x-3">
-      <span class="label-text text-primary-content">{{ LL.forms.limit() }}</span>
+      <span class="label-text">{{ LL.forms.limit() }}</span>
 
       <select
         id="limit"
         name="limit"
         aria-label="combobox-filter"
-        class="select select-bordered select-secondary"
+        class="select select-bordered select-primary"
         :value="selectedOption"
         @change="onChangeLimit"
       >
-        <option
-          v-for="limit in limits"
-          :id="`filter-option-${limit}`"
-          :key="limit"
-          :value="limit"
-          :selected="limit === selectedOption"
-        >
+        <option v-for="limit in limits" :id="`filter-option-${limit}`" :key="limit" :value="limit">
           {{ limit }}
         </option>
       </select>

@@ -2,19 +2,19 @@ import { themes } from '@shared/constants/global.constant'
 import { testWrapper } from '@shared/utils/test.util'
 import { fireEvent, screen } from '@testing-library/vue'
 import { vi } from 'vitest'
-import NavBarMenuContent from './NavBarMenuContent.vue'
+import NavBarMenu from './NavBarMenu.vue'
 
-describe('NavBarMenuContent', () => {
+describe('NavBarMenu', () => {
   const mockModeBtn = vi.fn()
 
   testWrapper('should render properly', ({ wrapper }) => {
-    const result = wrapper({ component: NavBarMenuContent })
+    const result = wrapper({ component: NavBarMenu })
     expect(() => result).not.toThrow()
   })
 
   testWrapper('should render role contents correctly', async ({ wrapper }) => {
     // ARRANGE
-    wrapper({ component: NavBarMenuContent })
+    wrapper({ component: NavBarMenu })
     const link: HTMLAnchorElement = screen.getByRole('link', { name: /todos/i })
     const themeBtn: HTMLButtonElement = screen.getByRole('button', { name: /theme/i })
     const modesBtn: HTMLButtonElement[] = screen.getAllByRole('button', { name: /mode/i })

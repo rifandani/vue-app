@@ -21,9 +21,9 @@ const todoCreateMutation = useTodoCreateMutation({ queryKey })
 const { defineInputBinds, handleSubmit, isSubmitting } = useForm({
   validationSchema: toTypedSchema(todoSchema),
   initialValues: {
-    id: 1, // doesn't matter, we override it later on `onSubmit` anyway
+    id: 1, // override it later on `onSubmit`
+    userId: 1, // override it later on `onSubmit`
     todo: '',
-    userId: user.value?.id,
     completed: false
   }
 })
@@ -31,7 +31,8 @@ const todo = defineInputBinds('todo', { validateOnInput: true })
 const onSubmit = handleSubmit((values, { resetForm }) => {
   const payload = {
     ...values,
-    id: random(11, 999_999)
+    id: random(11, 999_999),
+    userId: user.value?.id ?? 1
   }
 
   todoCreateMutation.mutate(payload, {
@@ -66,7 +67,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
       name="todo"
       type="text"
       aria-label="textbox-add"
-      class="input input-bordered input-accent w-full text-accent-content lg:w-10/12"
+      class="input input-bordered input-primary w-full lg:w-10/12"
       required
       :placeholder="LL.forms.todoPlaceholder()"
     />
@@ -74,10 +75,10 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
     <button
       aria-label="button-add"
       type="submit"
-      class="btn btn-accent ml-0 mt-2 w-full normal-case disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
+      class="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
       :disabled="isSubmitting"
     >
-      {{ LL.forms.add({ icon: '✔' }) }}
+      {{ LL.forms.add({ icon: '💾' }) }}
     </button>
   </form>
 </template>

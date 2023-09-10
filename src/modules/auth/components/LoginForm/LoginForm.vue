@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { login } from '@auth/api/auth.api'
+import { authApi } from '@auth/api/auth.api'
 import { loginSchema, type LoginApiResponseSchema, type LoginSchema } from '@auth/api/auth.schema'
+import { homeRoute } from '@home/routes/home.route'
 import { typesafeI18n } from '@i18n/i18n-vue'
 import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { useMutation } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
-import { twJoin } from 'tailwind-merge'
 import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
 
@@ -15,11 +15,11 @@ const user = useUserStorage()
 const { push } = useRouter()
 
 const loginMutation = useMutation<LoginApiResponseSchema, ErrorApiResponseSchema, LoginSchema>({
-  mutationFn: (creds) => login(creds),
+  mutationFn: (creds) => authApi.login(creds),
   onSuccess: async (resp) => {
     // set user data to local storage
     user.value = resp
-    await push('/')
+    await push(homeRoute.path)
   }
 })
 
@@ -45,7 +45,7 @@ const onSubmit = handleSubmit((values, context) => {
 <template>
   <form aria-label="form-login" class="form-control pt-3 md:pt-8" @submit="onSubmit">
     <!-- username -->
-    <fieldset class="form-control pt-4">
+    <fieldset class="group/username form-control pt-4">
       <label class="label flex-col items-start space-y-3" for="username">
         <span class="label-text">{{ LL.forms.username() }}</span>
 
@@ -56,15 +56,10 @@ const onSubmit = handleSubmit((values, context) => {
           type="text"
           aria-label="textbox-username"
           aria-labelledby="#username"
-          :aria-invalid="errors.username ? 'true' : 'false'"
           required
+          :aria-invalid="!!errors.username"
           :placeholder="LL.forms.usernamePlaceholder()"
-          :class="
-            twJoin([
-              'input mt-1 w-full shadow-md',
-              errors.username ? 'input-error' : 'input-primary'
-            ])
-          "
+          :class="`input input-primary mt-1 w-full shadow-md aria-[invalid='true']:input-error`"
         />
       </label>
 
@@ -74,7 +69,7 @@ const onSubmit = handleSubmit((values, context) => {
     </fieldset>
 
     <!-- password -->
-    <fieldset class="form-control pt-4">
+    <fieldset class="group/password form-control pt-4">
       <label class="label flex-col items-start space-y-3" for="password">
         <span class="label-text">{{ LL.forms.password() }}</span>
 
@@ -86,15 +81,10 @@ const onSubmit = handleSubmit((values, context) => {
           type="password"
           aria-label="textbox-password"
           aria-labelledby="#password"
-          :aria-invalid="errors.password ? 'true' : 'false'"
+          :aria-invalid="!!errors.password"
           required
           :placeholder="LL.forms.passwordPlaceholder()"
-          :class="
-            twJoin([
-              'input mt-1 w-full shadow-md',
-              errors.password ? 'input-error' : 'input-primary'
-            ])
-          "
+          :class="`input input-primary mt-1 shadow-md aria-[invalid='true']:input-error`"
         />
       </label>
 
