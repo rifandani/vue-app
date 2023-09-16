@@ -70,6 +70,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## NOTES
 
+- [ ] use prime-vue with unstyled setting
 - [ ] fix all tests -> `axios` + `vue-query` + `msw` base url somehow does not works.
 - [ ] add `/docs` folder, including all my decisions or technical considerations.
 - [x] tried `@zagjs/vue` + `@zagjs/toast` but doesn't work well. Not fully typed in the `BaseToast` component where we get `actor` as props. Progress state also not reactive.
