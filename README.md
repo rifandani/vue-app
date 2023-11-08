@@ -2,11 +2,11 @@
 
 [![DeepScan grade](https://deepscan.io/api/teams/13942/projects/25165/branches/782515/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13942&pid=25165&bid=782515)
 
-Vue 3 template built with:
+Bulletproof Vue 3 template built with:
 
 - `typescript` + `eslint` + `prettier` -> dev productivity
 - `vue-router` -> routing
-- `vue-use` -> useful composables
+- `@vueuse/core` -> useful composables
 - `pinia` -> state management
 - `vite` + `vitest` + `@testing-library/vue` -> unit test, integration test, coverage
 - `msw` -> browser and server mocking
@@ -21,6 +21,10 @@ Vue 3 template built with:
 
 ## Development
 
+Rename `.env.development.example` to `.env.development`.
+Rename `.env.staging.example` to `.env.staging`.
+Rename `.env.production.example` to `.env.production`.
+
 ```bash
 # install deps
 $ pnpm install
@@ -32,6 +36,10 @@ $ pnpm msw:init
 $ pnpm start
 ```
 
+## Testing
+
+We are using MSW v2 which utilize Node v18+. Make sure you install Node v18+, because it has a built-in fetch.
+
 ```bash
 # run test
 $ pnpm test
@@ -42,16 +50,18 @@ $ pnpm test:coverage
 
 ## Build
 
-Builds the app for production to the `dist` folder.<br>
-
 ```bash
-# build app
+# build app in "staging" mode
+$ pnpm build:staging
+
+# build app in "production" mode
 $ pnpm build
 ```
 
 ## Deployment
 
-You can deploy the `dist` folder to any static host provider (netlify, surge, now, etc.)
+For now only supports deployment to Vercel.
+Check out `vercel.json` file fo further details.
 
 ## Type Support for `.vue` Imports in TS (from the `create-vue` template)
 
@@ -73,4 +83,3 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 - [ ] use prime-vue with unstyled setting
 - [ ] fix all tests -> `axios` + `vue-query` + `msw` base url somehow does not works.
 - [ ] add `/docs` folder, including all my decisions or technical considerations.
-- [x] tried `@zagjs/vue` + `@zagjs/toast` but doesn't work well. Not fully typed in the `BaseToast` component where we get `actor` as props. Progress state also not reactive.

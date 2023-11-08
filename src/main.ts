@@ -45,7 +45,7 @@ app.use(VueQueryPlugin, {
   queryClientConfig: {
     defaultOptions: {
       queries: {
-        staleTime: 1_000 * 30 // 30sec, this is the default in v5
+        staleTime: 1_000 * 30 // 30s, this is the default in v5
       }
     }
   }
