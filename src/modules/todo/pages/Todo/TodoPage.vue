@@ -18,6 +18,8 @@ import { toTypedSchema } from '@vee-validate/zod'
 import { useForm } from 'vee-validate'
 import { computed } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { z } from 'zod'
+import { fromZodError } from 'zod-validation-error'
 
 //#region VALUES
 const route = useRoute()
@@ -35,16 +37,16 @@ const id = computed(() => {
 })
 const { enabled, queryKey } = useTodoDetailParams({ id })
 
-const { isLoading, isError, isSuccess, error, data } = useQuery({
+const { isLoading, isSuccess, error, data } = useQuery({
   enabled,
   queryKey,
-  queryFn: ({ queryKey }) => todoApi.detail(queryKey[2])
+  queryFn: () => todoApi.detail(queryKey.value[2])
 })
-const {
-  isError: mutationIsError,
-  error: mutationError,
-  mutate
-} = useMutation<UpdateTodoApiResponseSchema, ErrorApiResponseSchema, UpdateTodoSchema>({
+const { error: mutationError, mutate } = useMutation<
+  UpdateTodoApiResponseSchema,
+  ErrorApiResponseSchema,
+  UpdateTodoSchema
+>({
   mutationFn: (updateTodo) => todoApi.update(updateTodo),
   onSuccess: async (updatedTodo) => {
     // NOTE: the order of function call MATTERS
@@ -102,7 +104,7 @@ const onSubmit = handleSubmit((values) => {
       </div>
 
       <div
-        v-if="mutationIsError && mutationError"
+        v-if="!!mutationError"
         data-testid="todo-mutationError"
         class="alert alert-error mt-2 shadow-lg"
       >
@@ -117,13 +119,19 @@ const onSubmit = handleSubmit((values) => {
         data-testid="todo-loading"
         class="flex items-center justify-center py-5"
       >
-        <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-secondary-content" />
+        <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-secondary" />
       </div>
 
-      <div v-if="isError" data-testid="todo-error" class="alert alert-error mt-2 shadow-lg">
-        <div class="flex items-center">
+      <div v-if="error" data-testid="todo-error" class="alert alert-error mt-2 shadow-lg">
+        <div class="flex flex-col items-center">
           <span>{{ LL.common.error({ module: 'Todos' }) }}:</span>
-          <pre>{{ JSON.stringify(error, null, 2) }}</pre>
+          <pre>{{
+            JSON.stringify(
+              error instanceof z.ZodError ? fromZodError(error).message : error.message,
+              null,
+              2
+            )
+          }}</pre>
         </div>
       </div>
 

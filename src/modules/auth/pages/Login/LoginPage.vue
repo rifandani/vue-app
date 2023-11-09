@@ -11,7 +11,7 @@ const { LL } = typesafeI18n()
 </script>
 
 <template>
-  <main class="h-screen bg-white">
+  <main class="h-screen bg-white font-sans">
     <div class="flex w-full flex-wrap">
       <!-- Login Section -->
       <section class="flex w-full flex-col md:w-1/2">

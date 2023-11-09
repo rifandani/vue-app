@@ -45,7 +45,9 @@ app.use(VueQueryPlugin, {
   queryClientConfig: {
     defaultOptions: {
       queries: {
-        staleTime: 1_000 * 30 // 30s, this is the default in v5
+        // gcTime: 1_000 * 60 * 5, // 5 mins. Defaults to 5 mins
+        staleTime: 1_000 * 30, // 30 secs. Defaults to 0
+        networkMode: 'offlineFirst'
       }
     }
   }

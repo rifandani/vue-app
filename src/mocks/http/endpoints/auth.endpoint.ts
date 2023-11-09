@@ -1,38 +1,32 @@
 import { getBaseUrl } from '@mocks/util.mock'
-import { RestHandler, rest } from 'msw'
+import { http, HttpResponse, RequestHandler } from 'msw'
 
-export const authHandlers: RestHandler[] = [
-  rest.post(getBaseUrl('auth/login'), async (req, res, ctx) => {
-    const { email, password } = await req.json<{
+const validEmail = 'email@email.com'
+const validPassword = 'password'
+
+export const authHandlers: RequestHandler[] = [
+  // @ts-expect-error ignore
+  http.post(getBaseUrl('auth/login'), async ({ request }) => {
+    const { email, password } = (await request.json()) as {
       email: string
       password: string
-    }>()
+    }
 
-    if (email === 'email@email.com' && password === 'password') {
-      return res(
-        ctx.json({
+    if (email === validEmail && password === validPassword) {
+      return HttpResponse.json(
+        {
           ok: true,
           login: {
             token: 'token'
           }
-        })
+        },
+        { status: 200 }
       )
     }
 
-    return res(
-      ctx.status(401),
-      ctx.json({ ok: false, error: { code: 'auth/invalid-credentials' } })
+    return HttpResponse.json(
+      { ok: false, error: { code: 'auth/invalid-credentials' } },
+      { status: 401 }
     )
-  }),
-
-  rest.post(getBaseUrl('auth/refresh-token'), (_req, res, ctx) =>
-    res(
-      ctx.json({
-        ok: true,
-        login: {
-          token: 'refreshed-token'
-        }
-      })
-    )
-  )
+  })
 ]

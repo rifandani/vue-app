@@ -76,7 +76,7 @@ export function renderWrapper({ locales }: RenderWrapperParams) {
                 defaultOptions: {
                   queries: {
                     retry: false,
-                    cacheTime: 0
+                    gcTime: 0
                   }
                 }
               }
@@ -99,15 +99,13 @@ export const testWrapper: TestAPI<{
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   wrapper: async ({ task }, use) => {
     // setup the fixture before each test function
-    // detect user's preferred locale
-    const locales = detectLocale(localStorageDetector)
-    // eslint-disable-next-line testing-library/render-result-naming-convention
-    const wrapper = renderWrapper({ locales })
+    const locales = detectLocale(localStorageDetector) // detect user's preferred locale
+    const view = renderWrapper({ locales })
 
     await loadLocaleAsync(locales)
 
     // use the fixture value
-    await use(wrapper)
+    await use(view)
 
     // cleanup the fixture after each test function here...
   }

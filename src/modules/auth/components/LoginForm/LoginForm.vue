@@ -14,7 +14,11 @@ const { LL } = typesafeI18n()
 const user = useUserStorage()
 const { push } = useRouter()
 
-const loginMutation = useMutation<LoginApiResponseSchema, ErrorApiResponseSchema, LoginSchema>({
+const { isPending, isError, mutate } = useMutation<
+  LoginApiResponseSchema,
+  ErrorApiResponseSchema,
+  LoginSchema
+>({
   mutationFn: (creds) => authApi.login(creds),
   onSuccess: async (resp) => {
     // set user data to local storage
@@ -33,7 +37,7 @@ const { defineInputBinds, handleSubmit, errors, meta } = useForm({
 const username = defineInputBinds('username', { validateOnInput: true })
 const password = defineInputBinds('password', { validateOnInput: true })
 const onSubmit = handleSubmit((values, context) => {
-  loginMutation.mutate(values, {
+  mutate(values, {
     onError: () => {
       // reset form
       context.resetForm()
@@ -84,7 +88,7 @@ const onSubmit = handleSubmit((values, context) => {
           :aria-invalid="!!errors.password"
           required
           :placeholder="LL.forms.passwordPlaceholder()"
-          :class="`input input-primary mt-1 shadow-md aria-[invalid='true']:input-error`"
+          :class="`input input-primary w-full mt-1 shadow-md aria-[invalid='true']:input-error`"
         />
       </label>
 
@@ -93,7 +97,7 @@ const onSubmit = handleSubmit((values, context) => {
       </p>
     </fieldset>
 
-    <div v-if="loginMutation.isError.value" class="alert alert-error mt-3 shadow-lg">
+    <div v-if="isError" class="alert alert-error mt-3 shadow-lg">
       <p>{{ LL.forms.error({ icon: '❌' }) }}</p>
     </div>
 
@@ -101,9 +105,9 @@ const onSubmit = handleSubmit((values, context) => {
       id="button-submit"
       type="submit"
       class="btn btn-primary mt-8 normal-case disabled:btn-disabled"
-      :disabled="!meta.valid || loginMutation.isLoading.value"
+      :disabled="!meta.valid || isPending"
     >
-      {{ loginMutation.isLoading.value ? LL.forms.loginLoading() : LL.forms.login() }}
+      {{ isPending ? LL.forms.loginLoading() : LL.forms.login() }} (0lelplR)
     </button>
   </form>
 </template>
