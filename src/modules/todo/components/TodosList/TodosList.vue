@@ -12,14 +12,14 @@ const { LL } = typesafeI18n()
 const { queryKey } = useTodoListParams()
 const { isLoading, isError, error, isSuccess, data } = useQuery({
   queryKey,
-  queryFn: ({ queryKey }) => todoApi.list(queryKey[2])
+  queryFn: () => todoApi.list(queryKey.value[2])
 })
 //#endregion
 </script>
 
 <template>
   <div v-if="isLoading" data-testid="list-loading" class="flex items-center justify-center py-5">
-    <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-primary-content" />
+    <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-primary" />
   </div>
 
   <div v-if="isError" data-testid="list-error" class="alert alert-error mt-2 shadow-lg">

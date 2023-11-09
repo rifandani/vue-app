@@ -13,6 +13,9 @@ type UseTodoCreateMutationProps = {
   queryKey: ComputedRef<ReturnType<typeof todoKeys.list>>
 }
 
+/**
+ * create todo mutation (optimistic update) based on `useTodosParams`
+ */
 export const useTodoCreateMutation = ({ queryKey }: UseTodoCreateMutationProps) => {
   const queryClient = useQueryClient()
 

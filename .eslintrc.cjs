@@ -28,7 +28,7 @@ module.exports = {
   },
   settings: {
     tailwindcss: {
-      callees: ['classnames', 'clsx', 'ctl', 'tw', 'twMerge', 'twJoin'],
+      callees: ['cn', 'clsx', 'ctl', 'tw', 'twMerge', 'twJoin'],
       config: 'tailwind.config.ts'
       // classRegex: '^class(Name)?$', // can be modified to support custom attributes. E.g. "^tw$" for `twin.macro`
     }

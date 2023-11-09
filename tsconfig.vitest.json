@@ -4,6 +4,6 @@
   "compilerOptions": {
     "composite": true,
     "lib": [],
-    "types": ["jsdom", "@testing-library/jest-dom"]
+    "types": ["vitest/globals", "jsdom", "@testing-library/jest-dom"]
   }
 }

@@ -73,3 +73,9 @@ global.resizeTo = function resizeTo(width, height) {
     outerHeight: height
   }).dispatchEvent(new this.Event('resize'))
 }
+
+// mock window scrollTo
+Object.defineProperty(window, 'scrollTo', {
+  writable: true,
+  value: () => {}
+})

@@ -84,7 +84,7 @@ const onDeleteTodo = (evt: Event) => {
       aria-label="button-submit"
       class="btn btn-primary btn-sm normal-case disabled:btn-disabled"
       type="submit"
-      :disabled="todoDeleteMutation.isLoading.value"
+      :disabled="todoDeleteMutation.isPending.value"
     >
       {{ LL.forms.remove({ icon: '💥' }) }}
     </button>

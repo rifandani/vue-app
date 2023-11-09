@@ -3,6 +3,7 @@ import typography from '@tailwindcss/typography'
 import daisyui from 'daisyui'
 import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
+import plugin from 'tailwindcss/plugin'
 const animate = require('tailwindcss-animate')
 
 export default {
@@ -36,7 +37,20 @@ export default {
       }
     }
   },
-  plugins: [typography, forms, daisyui, animate],
+  plugins: [
+    typography,
+    forms,
+    daisyui,
+    animate,
+    plugin(({ matchUtilities }) => {
+      matchUtilities({
+        vg: (value) => ({
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+          [`@apply ${value.replaceAll(',', ' ')}`]: {}
+        })
+      })
+    })
+  ],
   daisyui: {
     logs: false,
     themes: [

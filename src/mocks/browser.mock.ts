@@ -1,4 +1,4 @@
-import { setupWorker, type SetupWorker } from 'msw'
+import { setupWorker } from 'msw/browser'
 
 // This configures a Service Worker with the given request handlers.
-export const worker: SetupWorker = setupWorker()
+export const worker = setupWorker()
