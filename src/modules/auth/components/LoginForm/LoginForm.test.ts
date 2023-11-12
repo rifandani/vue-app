@@ -1,5 +1,6 @@
 import { testWrapper } from '@shared/utils/test.util'
-import { fireEvent, screen } from '@testing-library/vue'
+import userEvent from '@testing-library/user-event'
+import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import LoginForm from './LoginForm.vue'
 
@@ -12,19 +13,20 @@ describe('LoginForm', () => {
     'should be able to type the inputs and submit the login form',
     async ({ wrapper }) => {
       // ARRANGE
+      const user = userEvent.setup()
       wrapper({ component: LoginForm })
-      const formLogin: HTMLFormElement = screen.getByRole('form', { name: /login/i })
-      const inputUsername: HTMLInputElement = screen.getByRole('textbox', { name: /username/i })
-      const inputPassword: HTMLInputElement = screen.getByRole('textbox', { name: /password/i })
-      const buttonSubmit: HTMLButtonElement = screen.getByRole('button', { name: /login/i })
+      const formLogin: HTMLFormElement = screen.getByTestId('form-login')
+      const inputUsername: HTMLInputElement = screen.getByTestId('input-username')
+      const inputPassword: HTMLInputElement = screen.getByTestId('input-password')
+      const buttonLogin: HTMLButtonElement = screen.getByTestId('button-login')
       formLogin.addEventListener('submit', mockSubmitFn)
 
       // ACT & ASSERT
-      await fireEvent.update(inputUsername, validUsernameValue)
-      await fireEvent.update(inputPassword, validPasswordValue)
+      await user.type(inputUsername, validUsernameValue)
+      await user.type(inputPassword, validPasswordValue)
       expect(inputUsername).toHaveValue(validUsernameValue)
       expect(inputPassword).toHaveValue(validPasswordValue)
-      await fireEvent.click(buttonSubmit)
+      await user.click(buttonLogin)
       expect(mockSubmitFn).toHaveBeenCalled()
     }
   )

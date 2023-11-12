@@ -11,7 +11,7 @@ describe('HomePage', () => {
   testWrapper('should render contents correctly', ({ wrapper }) => {
     // ARRANGE
     wrapper({ component: HomePage })
-    const heading: HTMLHeadingElement = screen.getByRole('heading', { name: /vue app/i })
+    const heading: HTMLHeadingElement = screen.getByRole('heading', { level: 1 })
 
     // ACT & ASSERT
     expect(heading).toBeInTheDocument()

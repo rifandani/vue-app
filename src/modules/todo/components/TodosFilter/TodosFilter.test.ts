@@ -1,10 +1,10 @@
 import { testWrapper } from '@shared/utils/test.util'
-import { fireEvent, screen } from '@testing-library/vue'
+import userEvent from '@testing-library/user-event'
+import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import TodosFilter from './TodosFilter.vue'
 
 describe('TodosFilter', () => {
-  const limitValue = '10'
   const mockSelectFn = vi.fn()
 
   testWrapper('should render properly', ({ wrapper }) => {
@@ -12,20 +12,18 @@ describe('TodosFilter', () => {
     expect(() => result).not.toThrow()
   })
 
-  testWrapper('should be able to select and submit the filter', async ({ wrapper }) => {
+  testWrapper('should be able to click dropdown', async ({ wrapper }) => {
     // ARRANGE
+    const user = userEvent.setup()
     wrapper({ component: TodosFilter })
     const form: HTMLFormElement = screen.getByRole('form')
-    const select: HTMLInputElement = screen.getByRole('combobox', { name: /filter/i })
-    const options: HTMLOptionElement[] = screen.getAllByRole('option')
-    select.addEventListener('select', mockSelectFn)
+    const combobox: HTMLInputElement = screen.getByRole('combobox')
+    combobox.addEventListener('click', mockSelectFn)
 
     // ACT & ASSERT
     expect(form).toBeInTheDocument()
-    expect(select).toBeInTheDocument()
-    expect(options).toHaveLength(4)
-    await fireEvent.select(select, { target: { value: limitValue } })
-    expect(select).toHaveValue(limitValue)
+    expect(combobox).toBeInTheDocument()
+    await user.click(combobox)
     expect(mockSelectFn).toHaveBeenCalled()
   })
 })

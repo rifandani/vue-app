@@ -9,6 +9,7 @@ import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorag
 import { useMutation } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
 import Button from 'primevue/button'
+import InlineMessage from 'primevue/inlinemessage'
 import InputText from 'primevue/inputtext'
 import Password from 'primevue/password'
 import { twJoin } from 'tailwind-merge'
@@ -52,7 +53,7 @@ const onSubmit = handleSubmit((values, context) => {
 </script>
 
 <template>
-  <form aria-label="form-login" class="form-control pt-3 md:pt-8" @submit="onSubmit">
+  <form data-testid="form-login" class="form-control pt-3 md:pt-8" @submit="onSubmit">
     <!-- username -->
     <label class="group/username flex flex-col items-start space-y-3 pt-4" for="username">
       <span class="label-text">{{ LL.forms.username() }}</span>
@@ -61,14 +62,15 @@ const onSubmit = handleSubmit((values, context) => {
         v-bind="username"
         id="username"
         name="username"
+        data-testid="input-username"
+        aria-labelledby="#username-error"
         type="text"
-        aria-label="textbox-username"
-        required
+        :required="true"
         :placeholder="LL.forms.usernamePlaceholder()"
         :class="twJoin('mt-1 w-full', !!errors.username && 'p-invalid')"
       />
 
-      <small v-if="errors.username" id="text-error" class="p-error pt-1" role="alert">{{
+      <small v-if="errors.username" id="username-error" class="p-error pt-1" role="alert">{{
         LL.error.minLength({ field: 'username', length: 3 })
       }}</small>
     </label>
@@ -83,26 +85,25 @@ const onSubmit = handleSubmit((values, context) => {
         name="password"
         role="textbox"
         type="text"
-        aria-label="textbox-password"
-        aria-labelledby="#password"
-        required
+        aria-labelledby="#password-error"
+        :required="true"
         :feedback="false"
-        :pt="{ input: 'w-full' }"
+        :pt="{ input: { class: 'w-full', 'data-testid': 'input-password' } }"
         :placeholder="LL.forms.passwordPlaceholder()"
         :class="twJoin('mt-1 w-full', !!errors.username && 'p-invalid')"
       />
 
-      <small v-if="errors.password" id="text-error" class="p-error pt-1" role="alert">{{
+      <small v-if="errors.password" id="password-error" class="p-error pt-1" role="alert">{{
         LL.error.passwordMinLength()
       }}</small>
     </label>
 
-    <div v-if="isError" data-testid="todo-error" class="mt-3 flex flex-col items-center">
+    <div v-if="isError" data-testid="login-error" class="mt-3 flex flex-col items-center">
       <InlineMessage severity="error">{{ LL.forms.error({ icon: '❌' }) }}:</InlineMessage>
     </div>
 
     <Button
-      id="button-submit"
+      data-testid="button-login"
       type="submit"
       class="mt-8 w-full normal-case"
       :label="`${isPending ? LL.forms.loginLoading() : LL.forms.login()} (0lelplR)`"
