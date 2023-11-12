@@ -78,9 +78,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## NOTES
+## Notes
 
-- [ ] use styled primevue with tailwind support
-- [ ] remove daisyui
 - [ ] fix all tests -> `axios` + `vue-query` + `msw` base url somehow does not works.
 - [ ] add `/docs` folder, including all my decisions or technical considerations.

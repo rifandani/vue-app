@@ -3,7 +3,8 @@
   "include": ["vite.config.*", "vitest.config.*", "postcss.config.*", "tailwind.config.*"],
   "compilerOptions": {
     "composite": true,
-    "module": "Node16",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
     "types": ["node"]
   }
 }
