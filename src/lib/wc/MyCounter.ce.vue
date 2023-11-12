@@ -58,7 +58,6 @@ watchEffect(() => {
 <!-- as of vue@3.3.4, there is no way to tell it to disable shadow dom -->
 <style>
 :host {
-  --color: #fafcc3;
   --bg-normal: #fafaf9;
   --bg-hover: #f5f5f4;
   --font-size: 16px;
@@ -72,7 +71,7 @@ watchEffect(() => {
 .text {
   margin: 0 1rem;
   font-size: var(--font-size);
-  color: var(--color);
+  color: var(--primary-color);
 }
 
 .btn {

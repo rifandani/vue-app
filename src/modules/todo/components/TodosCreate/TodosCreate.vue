@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { useToast } from '@ark-ui/vue'
 import { typesafeI18n } from '@i18n/i18n-vue'
 import { random } from '@rifandani/nxact-yutiriti'
 import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
@@ -8,6 +7,9 @@ import { todoSchema } from '@todo/api/todo.schema'
 import { useTodoCreateMutation } from '@todo/composables/useTodoCreateMutation.composable'
 import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
 import { toTypedSchema } from '@vee-validate/zod'
+import Button from 'primevue/button'
+import InputText from 'primevue/inputtext'
+import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
 
 //#region VALUES
@@ -18,7 +20,7 @@ const queryClient = useQueryClient()
 const { queryKey } = useTodoListParams()
 const todoCreateMutation = useTodoCreateMutation({ queryKey })
 
-const { defineInputBinds, handleSubmit, isSubmitting } = useForm({
+const { defineComponentBinds, handleSubmit, isSubmitting, errors } = useForm({
   validationSchema: toTypedSchema(todoSchema),
   initialValues: {
     id: 1, // override it later on `onSubmit`
@@ -27,7 +29,7 @@ const { defineInputBinds, handleSubmit, isSubmitting } = useForm({
     completed: false
   }
 })
-const todo = defineInputBinds('todo', { validateOnInput: true })
+const todo = defineComponentBinds('todo')
 const onSubmit = handleSubmit((values, { resetForm }) => {
   const payload = {
     ...values,
@@ -40,9 +42,10 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
       // reset form
       resetForm()
 
-      toast.value.create({
-        type: error ? 'error' : 'success',
-        title: error
+      toast.add({
+        life: 3_000,
+        severity: error ? 'error' : 'success',
+        detail: error
           ? LL.value.error.action({ module: 'Todo', action: 'create' })
           : LL.value.success.action({ module: 'Todo', action: 'created' })
       })
@@ -58,27 +61,27 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 <template>
   <form
     aria-label="form-add"
-    class="form-control mb-3 w-full duration-300 lg:flex-row"
+    class="mb-3 flex w-full flex-col duration-300 lg:flex-row"
     @submit="onSubmit"
   >
-    <input
+    <InputText
       v-bind="todo"
       id="todo"
       name="todo"
       type="text"
       aria-label="textbox-add"
-      class="input input-bordered input-primary w-full lg:w-10/12"
+      class="w-full lg:w-10/12"
       required
       :placeholder="LL.forms.todoPlaceholder()"
+      :class="{ 'p-invalid': !!errors.todo }"
     />
 
-    <button
+    <Button
       aria-label="button-add"
-      class="btn btn-primary ml-0 mt-2 w-full normal-case text-primary-content disabled:btn-disabled lg:ml-2 lg:mt-0 lg:w-2/12"
+      class="ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
       type="submit"
+      :label="LL.forms.add()"
       :disabled="isSubmitting"
-    >
-      {{ LL.forms.add({ icon: '💾' }) }}
-    </button>
+    />
   </form>
 </template>

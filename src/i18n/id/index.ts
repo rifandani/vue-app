@@ -3,6 +3,7 @@ import type { Translation } from '../i18n-types'
 const id = {
   auth: {
     welcome: 'Selamat Datang Kembali',
+    logout: 'Keluar',
     logoutUsername: 'Keluar ({username})',
     registerHere: 'Tidak punya akun? <>Daftar disini<>',
     notFound404: '404: Tidak Ditemukan',
@@ -10,7 +11,7 @@ const id = {
     backTo: 'Kembali ke {isLoggedIn|{true: beranda, false: login}}'
   },
   home: {
-    title: 'Aplikasi Vue menggunakan:',
+    title: 'Templat Vue Anti Galau',
     sortBtn: 'Sortir Tombol',
     clock: 'Jam',
     toggleClock: 'Beralih Jam',
@@ -21,6 +22,12 @@ const id = {
   todo: {
     backTo: 'Kembali ke {target}'
   },
+  user: {
+    preferences: 'Preferensi',
+    likedTodos: 'Todos disukai',
+    savedTodos: 'Todos disimpan',
+    yourComments: 'Komentar anda'
+  },
   forms: {
     username: 'Username',
     usernamePlaceholder: 'Username anda...',
@@ -30,8 +37,9 @@ const id = {
     loginLoading: 'Sedang masuk...',
     login: 'Masuk',
     register: 'Daftar',
-    add: 'Tambah {icon}',
-    remove: 'Hapus {icon}',
+    add: 'Tambah',
+    update: 'Ubah',
+    remove: 'Hapus',
     limit: 'Batas',
     todoPlaceholder: 'Apa yang akan anda lakukan selanjutnya...'
   },
@@ -45,14 +53,20 @@ const id = {
     xUpdateError: '{feature} gagal diubah',
     xDeleteSuccess: '{feature} berhasil dihapus',
     xDeleteError: '{feature} gagal dihapus',
-    error: '❌ {module|capitalize} eror',
+    error: '{module|capitalize} eror',
     noPageContent: 'Tidak Ada Konten',
     appName: 'Templat Vue',
     theme: 'Tema',
-    add: 'Tambah {icon}',
-    update: 'Ubah {icon}',
-    remove: 'Hapus {icon}',
-    empty: 'Tidak Ada Data'
+    empty: 'Tidak Ada Data',
+    unauthorized: 'Tidak ada akses. Silahkan masuk terlebih dahulu.',
+    authorized: 'Sudah Ada Akses',
+    unsavedChanges: 'Buang perubahan yang belum disimpan - anda yakin?',
+    system: 'Sistem',
+    light: 'Terang',
+    dark: 'Gelap',
+    create: 'Buat',
+    settings: 'Pengaturan',
+    account: 'Akun'
   },
   success: {
     action: '{module} berhasil {action}'

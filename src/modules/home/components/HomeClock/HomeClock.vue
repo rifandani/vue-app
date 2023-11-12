@@ -5,8 +5,10 @@ import { typesafeI18n } from '@i18n/i18n-vue'
 import { shuffle } from '@rifandani/nxact-yutiriti'
 import { FadeTransition } from '@shared/components/atoms'
 import { todosRoute } from '@todo/routes/todo.route'
+import Button from 'primevue/button'
 import { onUnmounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
+import TheClock from './TheClock.vue'
 
 //#region VALUES
 const { LL, locale, setLocale } = typesafeI18n()
@@ -20,22 +22,22 @@ const hours = ref(0)
 const buttons = ref([
   {
     id: 'sort' as const,
-    class: 'btn-neutral btn',
+    severity: 'info',
     text: 'sortBtn' as keyof Translation['home']
   },
   {
     id: 'clock' as const,
-    class: 'btn-active btn',
+    severity: 'help',
     text: 'toggleClock' as keyof Translation['home']
   },
   {
     id: 'language' as const,
-    class: 'btn-accent btn',
+    severity: 'secondary',
     text: 'changeLang' as keyof Translation['home']
   },
   {
     id: 'start' as const,
-    class: 'btn-secondary btn',
+    severity: 'warning',
     text: 'getStarted' as keyof Translation['home']
   }
 ])
@@ -92,30 +94,23 @@ onUnmounted(() => clearTimeout(timeoutId.value))
 
 <template>
   <FadeTransition>
-    <div v-if="showClock" data-testid="home-clock-show" class="stats mt-8 bg-base-200 shadow">
-      <div class="stat">
-        <div class="stat-title">{{ LL.home.clock() }}:</div>
-        <div class="stat-value">{{ hours }} : {{ minutes }} : {{ seconds }} {{ '' }}</div>
-        <div class="stat-desc">{{ LL.home.clickToggleClock() }}</div>
-      </div>
-    </div>
+    <TheClock v-if="showClock" :seconds="seconds" :minutes="minutes" :hours="hours" />
   </FadeTransition>
 
   <TransitionGroup
     name="list"
     tag="ul"
-    class="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    class="mt-8 grid grid-cols-1 gap-2 p-0 duration-300 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   >
-    <button
+    <Button
       v-for="btn in buttons"
       :key="btn.id"
       type="button"
+      :label="LL.home[btn.text]()"
+      :severity="btn.severity"
       :data-testid="`home-clock-button-${btn.id}`"
-      :class="btn.class"
       @click="() => onClickMapper(btn.id)"
-    >
-      {{ LL.home[btn.text]() }}
-    </button>
+    />
   </TransitionGroup>
 </template>
 

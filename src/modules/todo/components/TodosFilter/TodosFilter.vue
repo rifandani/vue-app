@@ -2,6 +2,8 @@
 import { typesafeI18n } from '@i18n/i18n-vue'
 import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
 import { limits } from '@todo/constants/todos.constant'
+import type { DropdownChangeEvent } from 'primevue/dropdown'
+import Dropdown from 'primevue/dropdown'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
@@ -13,9 +15,8 @@ const selectedOption = computed(() => queryParams.value.limit.toString())
 //#endregion
 
 //#region HANDLERS
-const onChangeLimit = async (evt: Event) => {
-  const target = evt.target as HTMLSelectElement
-  await router.replace({ query: { limit: target.value } })
+const onChangeLimit = async ({ value }: DropdownChangeEvent) => {
+  await router.replace({ query: { limit: value } })
 }
 //#endregion
 </script>
@@ -25,21 +26,16 @@ const onChangeLimit = async (evt: Event) => {
     aria-label="form-filter"
     class="mb-3 flex w-full flex-col duration-300 md:flex-row md:space-x-2"
   >
-    <label for="limit" class="label flex space-x-3">
-      <span class="label-text">{{ LL.forms.limit() }}</span>
-
-      <select
+    <label for="limit" class="flex items-center space-x-3">
+      <p class="text-base font-normal">{{ LL.forms.limit() }}</p>
+      <Dropdown
         id="limit"
         name="limit"
         aria-label="combobox-filter"
-        class="select select-bordered select-primary"
-        :value="selectedOption"
+        :model-value="selectedOption"
+        :options="limits"
         @change="onChangeLimit"
-      >
-        <option v-for="limit in limits" :id="`filter-option-${limit}`" :key="limit" :value="limit">
-          {{ limit }}
-        </option>
-      </select>
+      />
     </label>
   </form>
 </template>

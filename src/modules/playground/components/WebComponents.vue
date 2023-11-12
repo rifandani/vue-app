@@ -4,6 +4,7 @@ import {
   myCounterEventIncrement,
   type MyCounterEventDetail
 } from '@lib/wc/MyCounter.constant'
+import Button from 'primevue/button'
 import { onMounted, onUnmounted, ref } from 'vue'
 
 const sectionRef = ref<HTMLDivElement>()
@@ -37,9 +38,11 @@ onUnmounted(() => {
 <template>
   <section
     ref="sectionRef"
-    class="card flex w-full flex-col items-center space-y-3 rounded-lg border p-5 shadow-lg"
+    class="flex w-full flex-col items-center gap-3 rounded-md p-5 shadow-md"
   >
-    <button class="btn btn-info btn-xs" @click="handleClickTambah">Tambah</button>
+    <h4>Web Components</h4>
+
+    <Button label="Increment from parent" @click="handleClickTambah" />
 
     <my-counter :initial-count="initialCount"></my-counter>
 

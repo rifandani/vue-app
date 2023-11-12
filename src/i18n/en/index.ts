@@ -3,6 +3,7 @@ import type { BaseTranslation } from '../i18n-types'
 const en = {
   auth: {
     welcome: 'Welcome Back',
+    logout: 'Logout',
     logoutUsername: 'Logout ({username:string})',
     registerHere: "Don't have an account? <>Register here<>",
     notFound404: '404: Not Found',
@@ -10,7 +11,7 @@ const en = {
     backTo: 'Go back to {isLoggedIn|{true: home, false: login}}'
   },
   home: {
-    title: 'Vue App using:',
+    title: 'Bulletproof Vue 3 Template',
     sortBtn: 'Sort Buttons',
     clock: 'Clock',
     toggleClock: 'Toggle Clock',
@@ -21,6 +22,12 @@ const en = {
   todo: {
     backTo: 'Go back to {target:string}'
   },
+  user: {
+    preferences: 'Preferences',
+    likedTodos: 'Liked todos',
+    savedTodos: 'saved todos',
+    yourComments: 'Your comments'
+  },
   forms: {
     username: 'Username',
     usernamePlaceholder: 'Your username...',
@@ -30,8 +37,9 @@ const en = {
     loginLoading: 'Logging in...',
     login: 'Login',
     register: 'Register',
-    add: 'Add {icon:string}',
-    remove: 'Remove {icon:string}',
+    add: 'Add',
+    update: 'Update',
+    remove: 'Remove',
     limit: 'Limit',
     todoPlaceholder: 'What should you do next...'
   },
@@ -45,14 +53,20 @@ const en = {
     xUpdateError: '{feature:string} failed to update',
     xDeleteSuccess: '{feature:string} successfully deleted',
     xDeleteError: '{feature:string} failed to delete',
-    error: '❌ {module:string|capitalize} error',
+    error: '{module:string|capitalize} error',
     noPageContent: 'No Page Content',
     appName: 'Vue Template',
     theme: 'Theme',
-    add: 'Add {icon:string}',
-    update: 'Update {icon:string}',
-    remove: 'Remove {icon:string}',
-    empty: 'Empty Data'
+    empty: 'Empty Data',
+    unauthorized: 'Unauthorized. Please login first',
+    authorized: 'Already authorized',
+    unsavedChanges: 'Discard unsaved changes - are you sure?',
+    system: 'System',
+    light: 'Light',
+    dark: 'Dark',
+    create: 'Create',
+    settings: 'Settings',
+    account: 'Account'
   },
   success: {
     action: '{module:string} successfully {action:string}'

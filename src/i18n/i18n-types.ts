@@ -20,6 +20,10 @@ type RootTranslation = {
 		 */
 		welcome: string
 		/**
+		 * L​o​g​o​u​t
+		 */
+		logout: string
+		/**
 		 * L​o​g​o​u​t​ ​(​{​u​s​e​r​n​a​m​e​}​)
 		 * @param {string} username
 		 */
@@ -44,7 +48,7 @@ type RootTranslation = {
 	}
 	home: {
 		/**
-		 * V​u​e​ ​A​p​p​ ​u​s​i​n​g​:
+		 * B​u​l​l​e​t​p​r​o​o​f​ ​V​u​e​ ​3​ ​T​e​m​p​l​a​t​e
 		 */
 		title: string
 		/**
@@ -78,6 +82,24 @@ type RootTranslation = {
 		 * @param {string} target
 		 */
 		backTo: RequiredParams<'target'>
+	}
+	user: {
+		/**
+		 * P​r​e​f​e​r​e​n​c​e​s
+		 */
+		preferences: string
+		/**
+		 * L​i​k​e​d​ ​t​o​d​o​s
+		 */
+		likedTodos: string
+		/**
+		 * s​a​v​e​d​ ​t​o​d​o​s
+		 */
+		savedTodos: string
+		/**
+		 * Y​o​u​r​ ​c​o​m​m​e​n​t​s
+		 */
+		yourComments: string
 	}
 	forms: {
 		/**
@@ -114,15 +136,17 @@ type RootTranslation = {
 		 */
 		register: string
 		/**
-		 * A​d​d​ ​{​i​c​o​n​}
-		 * @param {string} icon
+		 * A​d​d
 		 */
-		add: RequiredParams<'icon'>
+		add: string
 		/**
-		 * R​e​m​o​v​e​ ​{​i​c​o​n​}
-		 * @param {string} icon
+		 * U​p​d​a​t​e
 		 */
-		remove: RequiredParams<'icon'>
+		update: string
+		/**
+		 * R​e​m​o​v​e
+		 */
+		remove: string
 		/**
 		 * L​i​m​i​t
 		 */
@@ -178,7 +202,7 @@ type RootTranslation = {
 		 */
 		xDeleteError: RequiredParams<'feature'>
 		/**
-		 * ❌​ ​{​m​o​d​u​l​e​|​c​a​p​i​t​a​l​i​z​e​}​ ​e​r​r​o​r
+		 * {​m​o​d​u​l​e​|​c​a​p​i​t​a​l​i​z​e​}​ ​e​r​r​o​r
 		 * @param {string} module
 		 */
 		error: RequiredParams<'module|capitalize'>
@@ -195,24 +219,45 @@ type RootTranslation = {
 		 */
 		theme: string
 		/**
-		 * A​d​d​ ​{​i​c​o​n​}
-		 * @param {string} icon
-		 */
-		add: RequiredParams<'icon'>
-		/**
-		 * U​p​d​a​t​e​ ​{​i​c​o​n​}
-		 * @param {string} icon
-		 */
-		update: RequiredParams<'icon'>
-		/**
-		 * R​e​m​o​v​e​ ​{​i​c​o​n​}
-		 * @param {string} icon
-		 */
-		remove: RequiredParams<'icon'>
-		/**
 		 * E​m​p​t​y​ ​D​a​t​a
 		 */
 		empty: string
+		/**
+		 * U​n​a​u​t​h​o​r​i​z​e​d​.​ ​P​l​e​a​s​e​ ​l​o​g​i​n​ ​f​i​r​s​t
+		 */
+		unauthorized: string
+		/**
+		 * A​l​r​e​a​d​y​ ​a​u​t​h​o​r​i​z​e​d
+		 */
+		authorized: string
+		/**
+		 * D​i​s​c​a​r​d​ ​u​n​s​a​v​e​d​ ​c​h​a​n​g​e​s​ ​-​ ​a​r​e​ ​y​o​u​ ​s​u​r​e​?
+		 */
+		unsavedChanges: string
+		/**
+		 * S​y​s​t​e​m
+		 */
+		system: string
+		/**
+		 * L​i​g​h​t
+		 */
+		light: string
+		/**
+		 * D​a​r​k
+		 */
+		dark: string
+		/**
+		 * C​r​e​a​t​e
+		 */
+		create: string
+		/**
+		 * S​e​t​t​i​n​g​s
+		 */
+		settings: string
+		/**
+		 * A​c​c​o​u​n​t
+		 */
+		account: string
 	}
 	success: {
 		/**
@@ -249,6 +294,10 @@ export type TranslationFunctions = {
 		 */
 		welcome: () => LocalizedString
 		/**
+		 * Logout
+		 */
+		logout: () => LocalizedString
+		/**
 		 * Logout ({username})
 		 */
 		logoutUsername: (arg: { username: string }) => LocalizedString
@@ -271,7 +320,7 @@ export type TranslationFunctions = {
 	}
 	home: {
 		/**
-		 * Vue App using:
+		 * Bulletproof Vue 3 Template
 		 */
 		title: () => LocalizedString
 		/**
@@ -304,6 +353,24 @@ export type TranslationFunctions = {
 		 * Go back to {target}
 		 */
 		backTo: (arg: { target: string }) => LocalizedString
+	}
+	user: {
+		/**
+		 * Preferences
+		 */
+		preferences: () => LocalizedString
+		/**
+		 * Liked todos
+		 */
+		likedTodos: () => LocalizedString
+		/**
+		 * saved todos
+		 */
+		savedTodos: () => LocalizedString
+		/**
+		 * Your comments
+		 */
+		yourComments: () => LocalizedString
 	}
 	forms: {
 		/**
@@ -339,13 +406,17 @@ export type TranslationFunctions = {
 		 */
 		register: () => LocalizedString
 		/**
-		 * Add {icon}
+		 * Add
 		 */
-		add: (arg: { icon: string }) => LocalizedString
+		add: () => LocalizedString
 		/**
-		 * Remove {icon}
+		 * Update
 		 */
-		remove: (arg: { icon: string }) => LocalizedString
+		update: () => LocalizedString
+		/**
+		 * Remove
+		 */
+		remove: () => LocalizedString
 		/**
 		 * Limit
 		 */
@@ -393,7 +464,7 @@ export type TranslationFunctions = {
 		 */
 		xDeleteError: (arg: { feature: string }) => LocalizedString
 		/**
-		 * ❌ {module|capitalize} error
+		 * {module|capitalize} error
 		 */
 		error: (arg: { module: string }) => LocalizedString
 		/**
@@ -409,21 +480,45 @@ export type TranslationFunctions = {
 		 */
 		theme: () => LocalizedString
 		/**
-		 * Add {icon}
-		 */
-		add: (arg: { icon: string }) => LocalizedString
-		/**
-		 * Update {icon}
-		 */
-		update: (arg: { icon: string }) => LocalizedString
-		/**
-		 * Remove {icon}
-		 */
-		remove: (arg: { icon: string }) => LocalizedString
-		/**
 		 * Empty Data
 		 */
 		empty: () => LocalizedString
+		/**
+		 * Unauthorized. Please login first
+		 */
+		unauthorized: () => LocalizedString
+		/**
+		 * Already authorized
+		 */
+		authorized: () => LocalizedString
+		/**
+		 * Discard unsaved changes - are you sure?
+		 */
+		unsavedChanges: () => LocalizedString
+		/**
+		 * System
+		 */
+		system: () => LocalizedString
+		/**
+		 * Light
+		 */
+		light: () => LocalizedString
+		/**
+		 * Dark
+		 */
+		dark: () => LocalizedString
+		/**
+		 * Create
+		 */
+		create: () => LocalizedString
+		/**
+		 * Settings
+		 */
+		settings: () => LocalizedString
+		/**
+		 * Account
+		 */
+		account: () => LocalizedString
 	}
 	success: {
 		/**

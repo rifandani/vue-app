@@ -1,17 +1,18 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-@tailwind variants;
+@layer tailwind-base, primevue, tailwind-utilities;
 
-@layer base {
-  html,
+@layer tailwind-base {
+  /* this breaks primevue TextInput styles */
+  /* @tailwind base; */
+}
+
+@layer primevue {
   body {
-    @apply bg-base-100 scroll-smooth min-h-full;
-
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
+    margin: 0; /* Remove the margin in all browsers. */
   }
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+  @tailwind variants;
 }

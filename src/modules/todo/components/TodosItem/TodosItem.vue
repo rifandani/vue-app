@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { typesafeI18n } from '@i18n/i18n-vue'
+import { Icon } from '@iconify/vue'
 import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import type { TodoSchema } from '@todo/api/todo.schema'
 import { useTodoDeleteMutation } from '@todo/composables/useTodoDeleteMutation.composable'
 import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
 import { useTodoUpdateMutation } from '@todo/composables/useTodoUpdateMutation.composable'
 import { todosDetailRoute } from '@todo/routes/todo.route'
+import Button from 'primevue/button'
+import Checkbox from 'primevue/checkbox'
 import { twJoin } from 'tailwind-merge'
 import { RouterLink } from 'vue-router'
 
@@ -55,13 +58,12 @@ const onDeleteTodo = (evt: Event) => {
       :value="props.todo.id"
     />
 
-    <input
-      :id="`todo-${props.todo.id}`"
-      class="checkbox-primary checkbox"
-      type="checkbox"
+    <Checkbox
+      binary
       aria-label="checkbox-todo"
       :name="`todo-${props.todo.id}`"
-      :checked="props.todo.completed"
+      :input-id="`todo-${props.todo.id}`"
+      :model-value="props.todo.completed"
       @change="onChangeTodo"
     />
 
@@ -72,21 +74,26 @@ const onDeleteTodo = (evt: Event) => {
       :class="
         twJoin(
           'ml-5 w-full text-left text-lg hover:font-bold',
-          props.todo.completed && 'line-through'
+          props.todo.completed ? 'line-through' : 'no-underline',
+          props.todo.userId === user?.id ? 'text-color-primary' : 'text-color'
         )
       "
     >
       {{ props.todo.todo }}
     </RouterLink>
 
-    <button
+    <Button
       v-if="props.todo.userId === user?.id"
+      outlined
+      rounded
       aria-label="button-submit"
-      class="btn btn-primary btn-sm normal-case disabled:btn-disabled"
+      class="min-w-fit p-2 normal-case"
       type="submit"
+      size="small"
+      severity="danger"
       :disabled="todoDeleteMutation.isPending.value"
     >
-      {{ LL.forms.remove({ icon: '💥' }) }}
-    </button>
+      <Icon icon="lucide:trash-2" class="text-red-500" />
+    </Button>
   </form>
 </template>

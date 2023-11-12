@@ -64,7 +64,7 @@ const logout = (): void => {
       <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
       <label for="my-nav-drawer" class="drawer-overlay" />
 
-      <ul class="menu h-full w-80 bg-base-100 p-4">
+      <ul class="menu bg-base-100 h-full w-80 p-4">
         <!-- Sidebar content here -->
         <NavBarMenu @logout="logout" />
       </ul>

@@ -1,4 +1,3 @@
-import { useToast } from '@ark-ui/vue'
 import { typesafeI18n } from '@i18n/i18n-vue'
 import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
@@ -8,6 +7,7 @@ import type {
   UpdateTodoApiResponseSchema,
   UpdateTodoSchema
 } from '@todo/api/todo.schema'
+import { useToast } from 'primevue/usetoast'
 import type { ComputedRef } from 'vue'
 
 type CreateTodoUpdateMutationProps = {
@@ -53,9 +53,10 @@ export const useTodoUpdateMutation = ({ queryKey }: CreateTodoUpdateMutationProp
     },
     mutationFn: (updateTodo) => todoApi.update(updateTodo),
     onSettled: (_updateTodo, error, _variables, context) => {
-      toast.value.create({
-        type: error ? 'error' : 'success',
-        title: error
+      toast.add({
+        life: 3_000,
+        severity: error ? 'error' : 'success',
+        detail: error
           ? LL.value.error.action({ module: 'Todo', action: 'update' })
           : LL.value.success.action({ module: 'Todo', action: 'updated' })
       })

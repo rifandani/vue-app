@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { useToast } from '@ark-ui/vue'
 import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
 import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
-import { NavBar } from '@shared/components/organisms'
+import TheNavbar from '@shared/components/organisms/TheNavbar/TheNavbar.vue'
 import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import { todoApi, todoKeys } from '@todo/api/todo.api'
@@ -15,6 +14,11 @@ import {
 import { useTodoDetailParams } from '@todo/composables/useTodoDetailParams.composable'
 import { todosRoute } from '@todo/routes/todo.route'
 import { toTypedSchema } from '@vee-validate/zod'
+import Button from 'primevue/button'
+import InlineMessage from 'primevue/inlinemessage'
+import InputGroup from 'primevue/inputgroup'
+import InputText from 'primevue/inputtext'
+import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
 import { computed } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
@@ -55,9 +59,10 @@ const { error: mutationError, mutate } = useMutation<
     await queryClient.invalidateQueries({ queryKey: todoKeys.lists() })
   },
   onSettled: (_updateTodo, error) => {
-    toast.value.create({
-      type: error ? 'error' : 'success',
-      title: error
+    toast.add({
+      life: 3_000,
+      severity: error ? 'error' : 'success',
+      detail: error
         ? LL.value.common.xUpdateError({ feature: 'Todo' })
         : LL.value.common.xUpdateSuccess({ feature: 'Todo' })
     })
@@ -86,76 +91,70 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <NavBar>
-    <section class="flex flex-col justify-center px-10 py-20 md:px-24 lg:px-40 xl:px-52">
-      <div class="mb-10 flex w-full flex-col space-y-2">
-        <RouterLink
-          role="link"
-          aria-label="go-back"
-          class="link w-fit normal-case hover:skew-x-12"
-          :to="todosRoute.path"
-        >
-          ⬅ {{ LL.todo.backTo({ target: 'Todos' }) }}
-        </RouterLink>
+  <TheNavbar />
 
-        <h1 class="text-2xl font-semibold tracking-wider">
-          {{ LL.common.xDetail({ feature: 'Todo' }) }}
-        </h1>
-      </div>
-
-      <div
-        v-if="!!mutationError"
-        data-testid="todo-mutationError"
-        class="alert alert-error mt-2 shadow-lg"
+  <main class="container mx-auto flex flex-col items-center py-5 duration-300">
+    <div class="mb-10 flex w-full flex-col space-y-2">
+      <RouterLink
+        role="link"
+        aria-label="go-back"
+        class="w-fit normal-case text-color-primary no-underline hover:text-green-700"
+        :to="todosRoute.path"
       >
-        <div class="flex items-center">
-          <span> {{ LL.common.error({ module: 'Todo Mutation' }) }}:{{ ' ' }} </span>
-          <pre>{{ JSON.stringify(mutationError, null, 2) }}</pre>
-        </div>
-      </div>
+        ⬅ {{ LL.todo.backTo({ target: 'Todos' }) }}
+      </RouterLink>
 
-      <div
-        v-if="isLoading"
-        data-testid="todo-loading"
-        class="flex items-center justify-center py-5"
+      <h1 class="text-3xl font-medium sm:text-4xl">
+        {{ LL.common.xDetail({ feature: 'Todo' }) }}
+      </h1>
+    </div>
+
+    <div v-if="!!mutationError" data-testid="todo-mutationError" class="flex flex-col items-center">
+      <InlineMessage severity="error">{{
+        LL.common.error({ module: 'Todo Mutation' })
+      }}</InlineMessage>
+      <pre class="text-red-500">{{ JSON.stringify(mutationError, null, 2) }}</pre>
+    </div>
+
+    <div v-if="isLoading" data-testid="todo-loading" class="flex items-center justify-center py-5">
+      <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-color-primary" />
+    </div>
+
+    <div v-if="error" data-testid="todo-error" class="flex flex-col items-center">
+      <InlineMessage severity="error"
+        >{{ LL.common.error({ module: 'Todo Detail' }) }}:</InlineMessage
       >
-        <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-secondary" />
-      </div>
+      <pre class="text-red-500">{{
+        JSON.stringify(
+          error instanceof z.ZodError ? fromZodError(error).message : error.message,
+          null,
+          2
+        )
+      }}</pre>
+    </div>
 
-      <div v-if="error" data-testid="todo-error" class="alert alert-error mt-2 shadow-lg">
-        <div class="flex flex-col items-center">
-          <span>{{ LL.common.error({ module: 'Todos' }) }}:</span>
-          <pre>{{
-            JSON.stringify(
-              error instanceof z.ZodError ? fromZodError(error).message : error.message,
-              null,
-              2
-            )
-          }}</pre>
-        </div>
-      </div>
-
-      <form v-if="isSuccess && data" aria-label="form-todo" class="join" @submit="onSubmit">
-        <input
+    <form v-if="isSuccess && data" aria-label="form-todo" class="w-full" @submit="onSubmit">
+      <InputGroup>
+        <InputText
+          v-bind="todo"
           id="todo"
           name="todo"
           type="text"
           aria-label="textbox-todo"
-          class="input join-item input-bordered input-primary w-full"
+          class="w-full lg:w-10/12"
           required
-          v-bind="todo"
         />
 
-        <button
+        <Button
           v-if="user?.id === data.userId"
           aria-label="button-submit"
-          class="btn btn-primary join-item normal-case disabled:btn-disabled"
+          class="min-w-fit normal-case"
           type="submit"
           :disabled="isSubmitting"
         >
-          {{ LL.common.update({ icon: '🖋' }) }}
-        </button>
-      </form>
-    </section>
-  </NavBar>
+          {{ LL.forms.update() }}
+        </Button>
+      </InputGroup>
+    </form>
+  </main>
 </template>

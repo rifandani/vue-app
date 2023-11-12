@@ -7,6 +7,11 @@ import DarkModeSwitch from '@lib/wc/DarkModeSwitch.ce.vue'
 import MyCounter from '@lib/wc/MyCounter.ce.vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
+import AnimateOnScroll from 'primevue/animateonscroll'
+import PrimeVue from 'primevue/config'
+import Ripple from 'primevue/ripple'
+import StyleClass from 'primevue/styleclass'
+import ToastService from 'primevue/toastservice'
 import {
   htmlLangAttributeDetector,
   localStorageDetector,
@@ -52,6 +57,12 @@ app.use(VueQueryPlugin, {
     }
   }
 })
+// primevue
+app.use(PrimeVue, { ripple: true })
+app.use(ToastService)
+app.directive('animateonscroll', AnimateOnScroll)
+app.directive('styleclass', StyleClass)
+app.directive('ripple', Ripple)
 
 // ONLY include browser worker on 'development' env
 if (import.meta.env.DEV) {
