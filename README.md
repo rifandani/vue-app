@@ -10,14 +10,14 @@ Bulletproof Vue 3 template built with:
 - `pinia` -> state management
 - `vite` + `vitest` + `@testing-library/vue` -> unit test, integration test, coverage
 - `msw` -> browser and server mocking
-- `tailwindcss` + `tailwind-merge` + `daisyui` -> styling
+- `tailwindcss` + `tailwind-merge` -> styling
 - `axios` + `@tanstack/vue-query` -> data fetching
 - `zod` -> schema validation
 - `vee-validate` + `@vee-validate/zod` -> form management
 - `@iconify/vue` -> icon on demand
 - `type-fest` -> useful type helpers
 - `typesafe-i18n` -> typesafe i18n
-- `@ark-ui/vue` -> agnostic, unstyled, accessible component library based on state machine
+- `primevue` -> styled/unstyled, responsive, accessible, and feature-rich UI component library
 
 ## Development
 
@@ -80,6 +80,7 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## NOTES
 
-- [ ] use prime-vue with unstyled setting
+- [ ] use styled primevue with tailwind support
+- [ ] remove daisyui
 - [ ] fix all tests -> `axios` + `vue-query` + `msw` base url somehow does not works.
 - [ ] add `/docs` folder, including all my decisions or technical considerations.

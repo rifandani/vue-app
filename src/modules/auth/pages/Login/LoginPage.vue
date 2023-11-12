@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import vueschool from '@assets/vueschool.svg'
+import starScatter from '@assets/star-scatter.svg'
 import LoginForm from '@auth/components/LoginForm/LoginForm.vue'
 import { homeRoute } from '@home/routes/home.route'
 import { typesafeI18n } from '@i18n/i18n-vue'
@@ -19,7 +19,7 @@ const { LL } = typesafeI18n()
           <RouterLink
             role="link"
             aria-label="link-home"
-            class="relative cursor-pointer rounded-full hover:text-primary"
+            class="relative cursor-pointer rounded-full hover:text-color-primary"
             :to="homeRoute.path"
           >
             <Icon icon="lucide:home" height="1.5em" />
@@ -29,7 +29,7 @@ const { LL } = typesafeI18n()
         <div
           class="my-auto flex flex-col justify-center px-8 pt-8 md:justify-start md:px-24 md:pt-0 lg:px-32"
         >
-          <h1 class="text-center text-3xl text-primary">
+          <h1 class="text-center text-3xl text-color-primary">
             {{ LL.auth.welcome() }}
           </h1>
 
@@ -41,7 +41,7 @@ const { LL } = typesafeI18n()
                 role="link"
                 aria-label="link-register"
                 to="/register"
-                class="link-primary link"
+                class="no-underline"
                 >{{ infix }}</RouterLink
               >
             </WrapTranslation>
@@ -54,10 +54,10 @@ const { LL } = typesafeI18n()
         <span class="relative hidden h-screen w-full md:flex md:items-center md:justify-center">
           <img
             aria-label="img-cover"
-            class="h-full object-cover object-right"
+            class="h-full w-[inherit] object-cover object-right"
             alt="login page cover"
             loading="lazy"
-            :src="vueschool"
+            :src="starScatter"
           />
         </span>
       </section>

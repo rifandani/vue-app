@@ -4,10 +4,8 @@ import WebComponents from '@playground/components/WebComponents.vue'
 </script>
 
 <template>
-  <main
-    class="flex min-h-screen flex-col items-center justify-center space-y-5 px-10 py-20 duration-300 md:px-24 lg:px-40 xl:px-52"
-  >
-    <h1 data-testid="title" class="mb-10 text-2xl font-semibold tracking-wider">Playground</h1>
+  <main class="container mx-auto flex flex-col items-center py-5 duration-300">
+    <h1 data-testid="title" class="text-3xl font-medium sm:text-4xl">Playground</h1>
 
     <WebComponents />
     <TheDirectives />

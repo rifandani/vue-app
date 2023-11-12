@@ -4,5 +4,14 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [tsconfigPaths({ loose: true }), vue()]
+  plugins: [
+    tsconfigPaths({ loose: true }),
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (tag) => ['my-counter', 'dark-mode-switch'].includes(tag)
+        }
+      }
+    })
+  ]
 })

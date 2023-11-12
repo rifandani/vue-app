@@ -3,10 +3,15 @@ import { authApi } from '@auth/api/auth.api'
 import { loginSchema, type LoginApiResponseSchema, type LoginSchema } from '@auth/api/auth.schema'
 import { homeRoute } from '@home/routes/home.route'
 import { typesafeI18n } from '@i18n/i18n-vue'
+import { Icon } from '@iconify/vue'
 import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { useMutation } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
+import Button from 'primevue/button'
+import InputText from 'primevue/inputtext'
+import Password from 'primevue/password'
+import { twJoin } from 'tailwind-merge'
 import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
 
@@ -27,15 +32,15 @@ const { isPending, isError, mutate } = useMutation<
   }
 })
 
-const { defineInputBinds, handleSubmit, errors, meta } = useForm({
+const { defineComponentBinds, handleSubmit, errors } = useForm({
   validationSchema: toTypedSchema(loginSchema),
   initialValues: {
     username: '',
     password: ''
   }
 })
-const username = defineInputBinds('username', { validateOnInput: true })
-const password = defineInputBinds('password', { validateOnInput: true })
+const username = defineComponentBinds('username')
+const password = defineComponentBinds('password')
 const onSubmit = handleSubmit((values, context) => {
   mutate(values, {
     onError: () => {
@@ -49,65 +54,63 @@ const onSubmit = handleSubmit((values, context) => {
 <template>
   <form aria-label="form-login" class="form-control pt-3 md:pt-8" @submit="onSubmit">
     <!-- username -->
-    <fieldset class="group/username form-control pt-4">
-      <label class="label flex-col items-start space-y-3" for="username">
-        <span class="label-text">{{ LL.forms.username() }}</span>
+    <label class="group/username flex flex-col items-start space-y-3 pt-4" for="username">
+      <span class="label-text">{{ LL.forms.username() }}</span>
 
-        <input
-          v-bind="username"
-          id="username"
-          name="username"
-          type="text"
-          aria-label="textbox-username"
-          aria-labelledby="#username"
-          required
-          :aria-invalid="!!errors.username"
-          :placeholder="LL.forms.usernamePlaceholder()"
-          :class="`input input-primary mt-1 w-full shadow-md aria-[invalid='true']:input-error`"
-        />
-      </label>
+      <InputText
+        v-bind="username"
+        id="username"
+        name="username"
+        type="text"
+        aria-label="textbox-username"
+        required
+        :placeholder="LL.forms.usernamePlaceholder()"
+        :class="twJoin('mt-1 w-full', !!errors.username && 'p-invalid')"
+      />
 
-      <p v-if="errors.username" role="alert" class="pl-5 pt-1 text-error">
-        {{ LL.error.minLength({ field: 'username', length: 3 }) }}
-      </p>
-    </fieldset>
+      <small v-if="errors.username" id="text-error" class="p-error pt-1" role="alert">{{
+        LL.error.minLength({ field: 'username', length: 3 })
+      }}</small>
+    </label>
 
     <!-- password -->
-    <fieldset class="group/password form-control pt-4">
-      <label class="label flex-col items-start space-y-3" for="password">
-        <span class="label-text">{{ LL.forms.password() }}</span>
+    <label class="group/password flex flex-col items-start space-y-3 pt-4" for="password">
+      <span class="label-text">{{ LL.forms.password() }}</span>
 
-        <input
-          v-bind="password"
-          id="password"
-          name="password"
-          role="textbox"
-          type="password"
-          aria-label="textbox-password"
-          aria-labelledby="#password"
-          :aria-invalid="!!errors.password"
-          required
-          :placeholder="LL.forms.passwordPlaceholder()"
-          :class="`input input-primary w-full mt-1 shadow-md aria-[invalid='true']:input-error`"
-        />
-      </label>
+      <Password
+        v-bind="password"
+        id="password"
+        name="password"
+        role="textbox"
+        type="text"
+        aria-label="textbox-password"
+        aria-labelledby="#password"
+        required
+        :feedback="false"
+        :pt="{ input: 'w-full' }"
+        :placeholder="LL.forms.passwordPlaceholder()"
+        :class="twJoin('mt-1 w-full', !!errors.username && 'p-invalid')"
+      />
 
-      <p v-if="errors.password" role="alert" class="pl-5 pt-1 text-error">
-        {{ LL.error.passwordMinLength() }}
-      </p>
-    </fieldset>
+      <small v-if="errors.password" id="text-error" class="p-error pt-1" role="alert">{{
+        LL.error.passwordMinLength()
+      }}</small>
+    </label>
 
-    <div v-if="isError" class="alert alert-error mt-3 shadow-lg">
-      <p>{{ LL.forms.error({ icon: '❌' }) }}</p>
+    <div v-if="isError" data-testid="todo-error" class="mt-3 flex flex-col items-center">
+      <InlineMessage severity="error">{{ LL.forms.error({ icon: '❌' }) }}:</InlineMessage>
     </div>
 
-    <button
+    <Button
       id="button-submit"
       type="submit"
-      class="btn btn-primary mt-8 normal-case disabled:btn-disabled"
-      :disabled="!meta.valid || isPending"
+      class="mt-8 w-full normal-case"
+      :label="`${isPending ? LL.forms.loginLoading() : LL.forms.login()} (0lelplR)`"
+      :loading="isPending"
     >
-      {{ isPending ? LL.forms.loginLoading() : LL.forms.login() }} (0lelplR)
-    </button>
+      <template #loadingicon>
+        <Icon icon="svg-spinners:90-ring" />
+      </template>
+    </Button>
   </form>
 </template>

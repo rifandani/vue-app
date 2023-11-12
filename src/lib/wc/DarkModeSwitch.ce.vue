@@ -4,9 +4,9 @@ import { useDark, useToggle } from '@vueuse/core'
 
 const isDark = useDark({
   selector: 'html',
-  attribute: 'data-theme',
-  valueDark: 'bumblebee',
-  valueLight: 'cupcake'
+  attribute: 'class',
+  valueDark: 'dark',
+  valueLight: ''
 })
 const toggleDark = useToggle(isDark)
 
@@ -53,7 +53,9 @@ button {
   font-size: var(--font-size);
   overflow: hidden;
   padding: 0.4em;
-  transition: background-color 0.3s ease, color 0.3s cubic-bezier(0.64, 0, 0.78, 0);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s cubic-bezier(0.64, 0, 0.78, 0);
 }
 
 button:hover,
