@@ -79,6 +79,9 @@ devDependencies:
   '@testing-library/jest-dom':
     specifier: ^6.1.4
     version: 6.1.4(vitest@0.34.6)
+  '@testing-library/user-event':
+    specifier: ^14.5.1
+    version: 14.5.1(@testing-library/dom@9.3.3)
   '@testing-library/vue':
     specifier: ^8.0.0
     version: 8.0.0(@vue/compiler-sfc@3.3.8)(vue@3.3.8)
@@ -117,7 +120,7 @@ devDependencies:
     version: 8.53.0
   eslint-plugin-jest-dom:
     specifier: ^5.1.0
-    version: 5.1.0(eslint@8.53.0)
+    version: 5.1.0(@testing-library/dom@9.3.3)(eslint@8.53.0)
   eslint-plugin-tailwindcss:
     specifier: ^3.13.0
     version: 3.13.0(tailwindcss@3.3.5)
@@ -1123,6 +1126,15 @@ packages:
       lodash: 4.17.21
       redent: 3.0.0
       vitest: 0.34.6(@vitest/ui@0.34.6)(jsdom@22.1.0)
+    dev: true
+
+  /@testing-library/user-event@14.5.1(@testing-library/dom@9.3.3):
+    resolution: {integrity: sha512-UCcUKrUYGj7ClomOo2SpNVvx4/fkd/2BbIHDCle8A0ax+P3bU7yJwDBDrS6ZwdTMARWTGODX1hEsCcO+7beJjg==}
+    engines: {node: '>=12', npm: '>=6'}
+    peerDependencies:
+      '@testing-library/dom': '>=7.21.4'
+    dependencies:
+      '@testing-library/dom': 9.3.3
     dev: true
 
   /@testing-library/vue@8.0.0(@vue/compiler-sfc@3.3.8)(vue@3.3.8):
@@ -2633,7 +2645,7 @@ packages:
       eslint: 8.53.0
     dev: true
 
-  /eslint-plugin-jest-dom@5.1.0(eslint@8.53.0):
+  /eslint-plugin-jest-dom@5.1.0(@testing-library/dom@9.3.3)(eslint@8.53.0):
     resolution: {integrity: sha512-JIXZp+E/h/aGlP/rQc4tuOejiHlZXg65qw8JAJMIJA5VsdjOkss/SYcRSqBrQuEOytEM8JvngUjcz31d1RrCrA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6', yarn: '>=1'}
     peerDependencies:
@@ -2644,6 +2656,7 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.22.6
+      '@testing-library/dom': 9.3.3
       eslint: 8.53.0
       requireindex: 1.2.0
     dev: true

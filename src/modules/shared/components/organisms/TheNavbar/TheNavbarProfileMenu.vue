@@ -70,7 +70,7 @@ const toggleUser = (event: Event) => {
     @click="toggleUser"
   >
     <Avatar
-      :label="user!.username.slice(0, 2)"
+      :label="user?.username.slice(0, 2)"
       shape="circle"
       class="h-11 w-11 bg-surface-300 text-color"
     />
@@ -82,10 +82,10 @@ const toggleUser = (event: Event) => {
         text
         class="relative flex w-full items-center overflow-hidden rounded-none p-2 pl-3 text-color hover:bg-surface-200"
       >
-        <Avatar :label="user!.username.slice(0, 2)" class="mr-2 bg-surface-300" shape="circle" />
+        <Avatar :label="user?.username.slice(0, 2)" class="mr-2 bg-surface-300" shape="circle" />
         <span class="inline-flex flex-col text-left">
-          <span class="truncate font-bold">{{ user!.username }}</span>
-          <span class="truncate text-sm">{{ user!.email }}</span>
+          <span class="truncate font-bold">{{ user?.username }}</span>
+          <span class="truncate text-sm">{{ user?.email }}</span>
         </span>
       </Button>
     </template>

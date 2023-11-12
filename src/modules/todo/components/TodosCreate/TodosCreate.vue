@@ -60,7 +60,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 
 <template>
   <form
-    aria-label="form-add"
+    data-testid="form-create"
     class="mb-3 flex w-full flex-col duration-300 lg:flex-row"
     @submit="onSubmit"
   >
@@ -69,15 +69,15 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
       id="todo"
       name="todo"
       type="text"
-      aria-label="textbox-add"
       class="w-full lg:w-10/12"
-      required
+      data-testid="input-create"
+      :required="true"
       :placeholder="LL.forms.todoPlaceholder()"
       :class="{ 'p-invalid': !!errors.todo }"
     />
 
     <Button
-      aria-label="button-add"
+      data-testid="button-create"
       class="ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12"
       type="submit"
       :label="LL.forms.add()"

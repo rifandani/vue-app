@@ -142,7 +142,7 @@ const onSubmit = handleSubmit((values) => {
           type="text"
           aria-label="textbox-todo"
           class="w-full lg:w-10/12"
-          required
+          :required="true"
         />
 
         <Button

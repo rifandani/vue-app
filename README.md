@@ -80,5 +80,4 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 ## Notes
 
-- [ ] fix all tests -> `axios` + `vue-query` + `msw` base url somehow does not works.
 - [ ] add `/docs` folder, including all my decisions or technical considerations.

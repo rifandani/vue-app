@@ -5,6 +5,8 @@ import { i18nPlugin } from '@i18n/i18n-vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { render, type RenderResult } from '@testing-library/vue'
 import type { AnyFn } from '@vueuse/core'
+import PrimeVue from 'primevue/config'
+import ToastService from 'primevue/toastservice'
 import { localStorageDetector } from 'typesafe-i18n/detectors'
 import { test, type TestAPI } from 'vitest'
 import { createApp } from 'vue'
@@ -81,7 +83,9 @@ export function renderWrapper({ locales }: RenderWrapperParams) {
                 }
               }
             }
-          ]
+          ],
+          [PrimeVue, { ripple: true }],
+          [ToastService]
         ]
       },
       props
