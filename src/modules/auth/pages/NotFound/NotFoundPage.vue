@@ -10,7 +10,7 @@ const user = useUserStorage()
 </script>
 
 <template>
-  <main class="flex h-screen flex-col items-center justify-center space-y-3 bg-base-100">
+  <main class="bg-base-100 flex h-screen flex-col items-center justify-center space-y-3">
     <h1 class="text-3xl font-bold italic">
       {{ LL.auth.notFound404() }}
     </h1>

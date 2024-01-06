@@ -29,7 +29,7 @@ const colorMode = useColorMode({
     </RouterLink>
   </li>
 
-  <li class="dropdown dropdown-top mb-3 mt-auto lg:dropdown-end lg:dropdown-bottom lg:my-0">
+  <li class="dropdown dropdown-top lg:dropdown-end lg:dropdown-bottom mb-3 mt-auto lg:my-0">
     <button
       type="button"
       tabindex="0"
@@ -41,7 +41,7 @@ const colorMode = useColorMode({
 
     <ul
       tabindex="0"
-      class="menu dropdown-content rounded-box z-10 block max-h-60 w-72 overflow-y-auto bg-base-200 p-2 shadow lg:w-52"
+      class="menu dropdown-content rounded-box bg-base-200 z-10 block max-h-60 w-72 overflow-y-auto p-2 shadow lg:w-52"
     >
       <li v-for="mode in modes" :key="mode">
         <button
@@ -59,7 +59,7 @@ const colorMode = useColorMode({
   <li v-if="user" class="ml-0 lg:ml-3 lg:mt-0">
     <button
       type="button"
-      class="btn btn-error btn-sm normal-case tracking-wide text-error-content"
+      class="btn btn-error btn-sm text-error-content normal-case tracking-wide"
       @click="emit('logout')"
     >
       {{ LL.auth.logoutUsername({ username: user.username }) }}

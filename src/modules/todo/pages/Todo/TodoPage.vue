@@ -74,11 +74,11 @@ const initialValues = computed<UpdateTodoSchema>(() => ({
   id: data.value?.id ?? 1,
   completed: data.value?.completed ?? false
 }))
-const { defineInputBinds, handleSubmit, isSubmitting } = useForm({
-  initialValues,
+const { defineField, handleSubmit, isSubmitting } = useForm<UpdateTodoSchema>({
+  initialValues: initialValues.value,
   validationSchema: toTypedSchema(updateTodoSchema)
 })
-const todo = defineInputBinds('todo', { validateOnInput: true })
+const [todo, todoAttrs] = defineField('todo', { validateOnInput: true })
 const onSubmit = handleSubmit((values) => {
   const payload = {
     ...initialValues.value,
@@ -136,8 +136,9 @@ const onSubmit = handleSubmit((values) => {
     <form v-if="isSuccess && data" aria-label="form-todo" class="w-full" @submit="onSubmit">
       <InputGroup>
         <InputText
-          v-bind="todo"
           id="todo"
+          v-model="todo"
+          v-bind="todoAttrs"
           name="todo"
           type="text"
           aria-label="textbox-todo"
