@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
 import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import type { TodoSchema } from '@todo/api/todo.schema'
@@ -17,7 +16,6 @@ const props = defineProps<{
   todo: TodoSchema
 }>()
 
-const { LL } = typesafeI18n()
 const user = useUserStorage()
 const { queryKey } = useTodoListParams()
 const todoUpdateMutation = useTodoUpdateMutation({ queryKey })
