@@ -1,7 +1,8 @@
 /// <reference types="vitest" />
 import vue from '@vitejs/plugin-vue'
 import { fileURLToPath } from 'node:url'
-import { defineConfig } from 'vite'
+import { visualizer } from 'rollup-plugin-visualizer'
+import { PluginOption, defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { configDefaults } from 'vitest/config'
 
@@ -15,7 +16,10 @@ export default defineConfig({
           isCustomElement: (tag) => ['my-counter', 'dark-mode-switch'].includes(tag)
         }
       }
-    })
+    }),
+    visualizer({
+      filename: 'html/visualizer-stats.html'
+    }) as unknown as PluginOption
   ],
   test: {
     root: fileURLToPath(new URL('./', import.meta.url)),
