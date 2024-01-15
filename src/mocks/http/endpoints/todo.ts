@@ -2,13 +2,13 @@ import type { RequestHandler } from 'msw'
 import { HttpResponse, http } from 'msw'
 import { mockTodo } from '../entities'
 import { getBaseUrl } from '#mocks/util'
-import { type ResourceParamsSchema, resourceParamsSchema } from '#shared/api/resource.schema'
+import { type ResourceParamsSchema, resourceParamsSchema } from '#shared/schemas/resource'
 import type {
   CreateTodoSchema,
   DeleteTodoApiResponseSchema,
   TodoSchema,
   UpdateTodoSchema,
-} from '#todo/api/todo.schema'
+} from '#todo/schemas/todo'
 
 function getTodos(length: number) {
   return Array.from({ length }, (_, idx) =>
