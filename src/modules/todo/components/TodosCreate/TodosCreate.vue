@@ -12,7 +12,7 @@ import InputText from 'primevue/inputtext'
 import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
 
-//#region VALUES
+// #region VALUES
 const { LL } = typesafeI18n()
 const user = useUserStorage()
 const toast = useToast()
@@ -26,15 +26,15 @@ const { defineComponentBinds, handleSubmit, isSubmitting, errors } = useForm({
     id: 1, // override it later on `onSubmit`
     userId: 1, // override it later on `onSubmit`
     todo: '',
-    completed: false
-  }
+    completed: false,
+  },
 })
 const todo = defineComponentBinds('todo')
 const onSubmit = handleSubmit((values, { resetForm }) => {
   const payload = {
     ...values,
     id: random(11, 999_999),
-    userId: user.value?.id ?? 1
+    userId: user.value?.id ?? 1,
   }
 
   todoCreateMutation.mutate(payload, {
@@ -47,15 +47,16 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
         severity: error ? 'error' : 'success',
         detail: error
           ? LL.value.error.action({ module: 'Todo', action: 'create' })
-          : LL.value.success.action({ module: 'Todo', action: 'created' })
+          : LL.value.success.action({ module: 'Todo', action: 'created' }),
       })
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
-      if (error) queryClient.setQueryData(queryKey, context?.previousTodosQueryResponse)
-    }
+      if (error)
+        queryClient.setQueryData(queryKey, context?.previousTodosQueryResponse)
+    },
   })
 })
-//#endregion
+// #endregion
 </script>
 
 <template>

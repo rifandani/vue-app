@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 import {
+  type MyCounterProps,
   myCounterEventDecrement,
   myCounterEventIncrement,
-  type MyCounterProps
 } from './MyCounter.constant'
 
 const props = defineProps<MyCounterProps>()
@@ -12,7 +12,7 @@ const count = ref('')
 // const store = useCounterStore()
 
 // #region HANDLERS
-const onDecrement = (ev: Event) => {
+function onDecrement(ev: Event) {
   const target = ev.currentTarget as HTMLButtonElement
   const newCount = (Number(count.value) - 1).toString()
 
@@ -21,12 +21,12 @@ const onDecrement = (ev: Event) => {
     new CustomEvent(myCounterEventDecrement, {
       bubbles: true,
       composed: true, // to cross the Shadow DOM boundaries
-      detail: { count: newCount }
-    })
+      detail: { count: newCount },
+    }),
   )
 }
 
-const onIncrement = (ev: Event) => {
+function onIncrement(ev: Event) {
   const target = ev.currentTarget as HTMLButtonElement
   const newCount = (Number(count.value) + 1).toString()
 
@@ -35,8 +35,8 @@ const onIncrement = (ev: Event) => {
     new CustomEvent(myCounterEventIncrement, {
       bubbles: true,
       composed: true, // to cross the Shadow DOM boundaries
-      detail: { count: newCount }
-    })
+      detail: { count: newCount },
+    }),
   )
 }
 // #endregion
@@ -49,9 +49,15 @@ watchEffect(() => {
 
 <template>
   <div part="containerPart" class="container">
-    <button part="btnPart" class="btn" @click="onDecrement">Decrement</button>
-    <p part="countPart" class="text">{{ count }}</p>
-    <button part="btnPart" class="btn" @click="onIncrement">Increment</button>
+    <button part="btnPart" class="btn" @click="onDecrement">
+      Decrement
+    </button>
+    <p part="countPart" class="text">
+      {{ count }}
+    </p>
+    <button part="btnPart" class="btn" @click="onIncrement">
+      Increment
+    </button>
   </div>
 </template>
 

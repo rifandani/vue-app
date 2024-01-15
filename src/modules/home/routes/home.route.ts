@@ -7,13 +7,13 @@ export const homeRoute = {
   name: 'home' as const,
   path: '/' as const,
   component: HomePage,
-  beforeEnter: [unauthGuard, authGuard]
+  beforeEnter: [unauthGuard, authGuard],
 } satisfies RouteRecordRaw
 
 export const homeRoutes: RouteRecordRaw[] = [
   homeRoute,
   {
     path: '/home',
-    redirect: '/'
-  }
+    redirect: '/',
+  },
 ]

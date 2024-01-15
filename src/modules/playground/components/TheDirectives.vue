@@ -7,7 +7,7 @@ import { vAutoGrow } from '@shared/directives/autoGrow/autoGrow.directive'
     <h4>Auto grow directive</h4>
 
     <label for="message">
-      <textarea id="message" v-auto-grow placeholder="Type your message here"></textarea>
+      <textarea id="message" v-auto-grow placeholder="Type your message here" />
     </label>
   </section>
 </template>

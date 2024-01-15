@@ -42,8 +42,9 @@ const { LL } = typesafeI18n()
                 aria-label="link-register"
                 to="/register"
                 class="no-underline"
-                >{{ infix }}</RouterLink
               >
+                {{ infix }}
+              </RouterLink>
             </WrapTranslation>
           </p>
         </div>
@@ -58,7 +59,7 @@ const { LL } = typesafeI18n()
             alt="login page cover"
             loading="lazy"
             :src="starScatter"
-          />
+          >
         </span>
       </section>
     </div>

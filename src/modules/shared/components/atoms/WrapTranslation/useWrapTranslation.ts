@@ -1,11 +1,11 @@
 import type { LocalizedString } from 'typesafe-i18n'
-import { ref, toValue, watchEffect, type MaybeRefOrGetter } from 'vue'
+import { type MaybeRefOrGetter, ref, toValue, watchEffect } from 'vue'
 
-type Props = {
+interface Props {
   message: string
 }
 
-export const useWrapTranslation = (props: MaybeRefOrGetter<Props>) => {
+export function useWrapTranslation(props: MaybeRefOrGetter<Props>) {
   const value = toValue(props)
   const prefix = ref(value.message.split('<>')[0])
   const infix = ref(value.message.split('<>')[1])

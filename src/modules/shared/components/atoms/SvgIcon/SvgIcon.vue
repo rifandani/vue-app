@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // could also extends SVGAttributes
-type Props = {
+interface Props {
   id: 'icon-vue'
 }
 

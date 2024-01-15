@@ -10,7 +10,7 @@ import { onUnmounted, ref, watchEffect } from 'vue'
 import { useRouter } from 'vue-router'
 import TheClock from './TheClock.vue'
 
-//#region VALUES
+// #region VALUES
 const { LL, locale, setLocale } = typesafeI18n()
 const { push } = useRouter()
 
@@ -23,26 +23,26 @@ const buttons = ref([
   {
     id: 'sort' as const,
     severity: 'info',
-    text: 'sortBtn' as keyof Translation['home']
+    text: 'sortBtn' as keyof Translation['home'],
   },
   {
     id: 'clock' as const,
     severity: 'help',
-    text: 'toggleClock' as keyof Translation['home']
+    text: 'toggleClock' as keyof Translation['home'],
   },
   {
     id: 'language' as const,
     severity: 'secondary',
-    text: 'changeLang' as keyof Translation['home']
+    text: 'changeLang' as keyof Translation['home'],
   },
   {
     id: 'start' as const,
     severity: 'warning',
-    text: 'getStarted' as keyof Translation['home']
-  }
+    text: 'getStarted' as keyof Translation['home'],
+  },
 ])
 
-const onClickMapper = (btnId: 'sort' | 'clock' | 'language' | 'start') => {
+function onClickMapper(btnId: 'sort' | 'clock' | 'language' | 'start') {
   const mapper: Record<typeof btnId, () => void> = {
     sort: () => (buttons.value = shuffle(buttons.value)),
     clock: () => (showClock.value = !showClock.value),
@@ -53,7 +53,7 @@ const onClickMapper = (btnId: 'sort' | 'clock' | 'language' | 'start') => {
       // change locale store
       setLocale(newLocale)
     },
-    start: () => void push(todosRoute.path)
+    start: () => void push(todosRoute.path),
   }
 
   mapper[btnId]()
@@ -61,33 +61,31 @@ const onClickMapper = (btnId: 'sort' | 'clock' | 'language' | 'start') => {
 
 watchEffect(() => {
   // recalculate `seconds` every 100 ms
-  {
-    if (showClock.value && !timeoutId.value) {
-      timeoutId.value = setInterval(() => {
-        seconds.value = +(seconds.value + 0.1).toFixed(2)
-      }, 100)
-    }
-    if (!showClock.value && timeoutId.value) {
-      seconds.value = 0
+  if (showClock.value && !timeoutId.value) {
+    timeoutId.value = setInterval(() => {
+      seconds.value = +(seconds.value + 0.1).toFixed(2)
+    }, 100)
+  }
+  if (!showClock.value && timeoutId.value) {
+    seconds.value = 0
 
-      // NOTE: it's important to clear the timeout and set `timeoutId` back to undefined
-      clearTimeout(timeoutId.value)
-      timeoutId.value = undefined
-    }
+    // NOTE: it's important to clear the timeout and set `timeoutId` back to undefined
+    clearTimeout(timeoutId.value)
+    timeoutId.value = undefined
   }
 })
 
 watchEffect(() => {
   // recalculate `minutes` when `seconds` changes
-  minutes.value =
-    seconds.value > 0 ? (seconds.value % 2 === 0 ? minutes.value + 1 : minutes.value) : 0
+  minutes.value
+    = seconds.value > 0 ? (seconds.value % 2 === 0 ? minutes.value + 1 : minutes.value) : 0
 })
 
 watchEffect(() => {
   // recalculate `hours` when `minutes` changes
   hours.value = minutes.value > 0 ? (minutes.value % 2 === 0 ? hours.value + 1 : hours.value) : 0
 })
-//#endregion
+// #endregion
 
 onUnmounted(() => clearTimeout(timeoutId.value))
 </script>
@@ -98,24 +96,19 @@ onUnmounted(() => clearTimeout(timeoutId.value))
   </FadeTransition>
 
   <TransitionGroup
-    name="list"
-    tag="ul"
+    name="list" tag="ul"
     class="mt-8 grid grid-cols-1 gap-2 p-0 duration-300 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
   >
     <Button
-      v-for="btn in buttons"
-      :key="btn.id"
-      type="button"
-      :label="LL.home[btn.text]()"
-      :severity="btn.severity"
-      :data-testid="`home-clock-button-${btn.id}`"
-      @click="() => onClickMapper(btn.id)"
+      v-for="btn in buttons" :key="btn.id" type="button" :label="LL.home[btn.text]()" :severity="btn.severity"
+      :data-testid="`home-clock-button-${btn.id}`" @click="() => onClickMapper(btn.id)"
     />
   </TransitionGroup>
 </template>
 
 <style scoped>
-.list-move, /* apply transition to moving elements */
+.list-move,
+/* apply transition to moving elements */
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;

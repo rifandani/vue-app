@@ -1,11 +1,12 @@
-import { server } from '@mocks/http/server.http'
-import '@mocks/module.mock'
-import '@testing-library/jest-dom' // automatically `expect.extend(matchers)`
+import { server } from '@mocks/http/server'
+
+import '@mocks/module'
+import '@testing-library/jest-dom/vitest'
 
 // Establish API mocking before all tests with MSW
 beforeAll(() => {
   server.listen({
-    onUnhandledRequest: 'warn'
+    onUnhandledRequest: 'warn',
   })
 })
 
@@ -18,4 +19,6 @@ afterEach(() => {
 })
 
 // Clean up after the tests are finished.
-afterAll(() => server.close())
+afterAll(() => {
+  server.close()
+})

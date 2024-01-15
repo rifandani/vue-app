@@ -1,22 +1,23 @@
 import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
-import { todoApi, todoKeys } from '@todo/api/todo.api'
+import type { todoKeys } from '@todo/api/todo.api'
+import { todoApi } from '@todo/api/todo.api'
 import type {
   CreateTodoApiResponseSchema,
   CreateTodoSchema,
-  TodoListApiResponseSchema
+  TodoListApiResponseSchema,
 } from '@todo/api/todo.schema'
 import { defaultLimit } from '@todo/constants/todos.constant'
 import type { ComputedRef } from 'vue'
 
-type UseTodoCreateMutationProps = {
+interface UseTodoCreateMutationProps {
   queryKey: ComputedRef<ReturnType<typeof todoKeys.list>>
 }
 
 /**
  * create todo mutation (optimistic update) based on `useTodosParams`
  */
-export const useTodoCreateMutation = ({ queryKey }: UseTodoCreateMutationProps) => {
+export function useTodoCreateMutation({ queryKey }: UseTodoCreateMutationProps) {
   const queryClient = useQueryClient()
 
   return useMutation<
@@ -32,24 +33,24 @@ export const useTodoCreateMutation = ({ queryKey }: UseTodoCreateMutationProps) 
         limit,
         todos: [],
         skip: 0,
-        total: 0
+        total: 0,
       }
       // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
-      await queryClient.cancelQueries({ queryKey: queryKey })
+      await queryClient.cancelQueries({ queryKey })
 
       // Snapshot the previous value
-      const previousTodosQueryResponse =
-        (queryClient.getQueryData(queryKey) as TodoListApiResponseSchema) ?? emptyResponse
+      const previousTodosQueryResponse
+        = (queryClient.getQueryData(queryKey) as TodoListApiResponseSchema) ?? emptyResponse
 
       // Optimistically update to the new value & delete the last value
       queryClient.setQueryData(queryKey, {
         ...previousTodosQueryResponse,
-        todos: [newTodo, ...previousTodosQueryResponse.todos.slice(0, limit - 1)]
+        todos: [newTodo, ...previousTodosQueryResponse.todos.slice(0, limit - 1)],
       })
 
       // Return a context object with the snapshotted value
       return { previousTodosQueryResponse }
     },
-    mutationFn: (newTodo) => todoApi.create(newTodo)
+    mutationFn: newTodo => todoApi.create(newTodo),
   })
 }

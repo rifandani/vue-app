@@ -3,18 +3,18 @@ import { detectLocale } from '@i18n/i18n-util'
 import { loadLocaleAsync } from '@i18n/i18n-util.async'
 import { i18nPlugin } from '@i18n/i18n-vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
-import { render, type RenderResult } from '@testing-library/vue'
+import { type RenderResult, render } from '@testing-library/vue'
 import type { AnyFn } from '@vueuse/core'
 import PrimeVue from 'primevue/config'
 import ToastService from 'primevue/toastservice'
 import { localStorageDetector } from 'typesafe-i18n/detectors'
-import { test, type TestAPI } from 'vitest'
+import { type TestAPI, test } from 'vitest'
 import { createApp } from 'vue'
 
-export type RenderWrapperParams = {
+export interface RenderWrapperParams {
   locales: Locales
 }
-export type WrapperParams = {
+export interface WrapperParams {
   component: any
   stubs?: string[]
   props?: any
@@ -45,7 +45,7 @@ export function composableWrapper(composable: AnyFn) {
       result = composable()
       // suppress missing template warning
       return () => {}
-    }
+    },
   })
 
   app.mount(document.createElement('div'))
@@ -56,8 +56,6 @@ export function composableWrapper(composable: AnyFn) {
 
 /**
  * render vue SFC with global plugins, like i18n
- *
- * @param Component any vue SFC
  *
  * @example
  *
@@ -78,17 +76,17 @@ export function renderWrapper({ locales }: RenderWrapperParams) {
                 defaultOptions: {
                   queries: {
                     retry: false,
-                    gcTime: 0
-                  }
-                }
-              }
-            }
+                    gcTime: 0,
+                  },
+                },
+              },
+            },
           ],
           [PrimeVue, { ripple: true }],
-          [ToastService]
-        ]
+          [ToastService],
+        ],
       },
-      props
+      props,
     })
 }
 
@@ -100,8 +98,7 @@ export function renderWrapper({ locales }: RenderWrapperParams) {
 export const testWrapper: TestAPI<{
   wrapper: (props: WrapperParams) => RenderResult
 }> = test.extend<{ wrapper: (props: WrapperParams) => RenderResult }>({
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  wrapper: async ({ task }, use) => {
+  wrapper: async (_, use) => {
     // setup the fixture before each test function
     const locales = detectLocale(localStorageDetector) // detect user's preferred locale
     const view = renderWrapper({ locales })
@@ -112,5 +109,5 @@ export const testWrapper: TestAPI<{
     await use(view)
 
     // cleanup the fixture after each test function here...
-  }
+  },
 })

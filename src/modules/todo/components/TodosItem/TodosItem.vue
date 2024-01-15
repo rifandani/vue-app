@@ -11,7 +11,7 @@ import Checkbox from 'primevue/checkbox'
 import { twJoin } from 'tailwind-merge'
 import { RouterLink } from 'vue-router'
 
-//#region VALUES
+// #region VALUES
 const props = defineProps<{
   todo: TodoSchema
 }>()
@@ -20,16 +20,17 @@ const user = useUserStorage()
 const { queryKey } = useTodoListParams()
 const todoUpdateMutation = useTodoUpdateMutation({ queryKey })
 const todoDeleteMutation = useTodoDeleteMutation({ queryKey })
-//#endregion
+// #endregion
 
-//#region HANDLERS
-const onChangeTodo = () => {
+// #region HANDLERS
+function onChangeTodo() {
   todoUpdateMutation.mutate({ ...props.todo, completed: !props.todo.completed })
 }
 
-const onDeleteTodo = (evt: Event) => {
+function onDeleteTodo(evt: Event) {
   // don't allow if not the correct auth user
-  if (props.todo.userId !== user.value?.id) return
+  if (props.todo.userId !== user.value?.id)
+    return
 
   const target = evt.target as HTMLFormElement
   // parse form data & get todo id from input hidden with name/id `todoId`
@@ -38,7 +39,7 @@ const onDeleteTodo = (evt: Event) => {
 
   todoDeleteMutation.mutate(Number(todoId))
 }
-//#endregion
+// #endregion
 </script>
 
 <template>
@@ -54,7 +55,7 @@ const onDeleteTodo = (evt: Event) => {
       type="hidden"
       data-testid="input-todoId"
       :value="props.todo.id"
-    />
+    >
 
     <Checkbox
       binary
@@ -73,7 +74,7 @@ const onDeleteTodo = (evt: Event) => {
         twJoin(
           'ml-5 w-full text-left text-lg hover:font-bold',
           props.todo.completed ? 'line-through' : 'no-underline',
-          props.todo.userId === user?.id ? 'text-color-primary' : 'text-color'
+          props.todo.userId === user?.id ? 'text-color-primary' : 'text-color',
         )
       "
     >

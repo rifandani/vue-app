@@ -7,18 +7,18 @@ import Dropdown from 'primevue/dropdown'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 
-//#region VALUES
+// #region VALUES
 const router = useRouter()
 const { LL } = typesafeI18n()
 const { queryParams } = useTodoListParams()
 const selectedOption = computed(() => queryParams.value.limit.toString())
-//#endregion
+// #endregion
 
-//#region HANDLERS
-const onChangeLimit = async ({ value }: DropdownChangeEvent) => {
+// #region HANDLERS
+async function onChangeLimit({ value }: DropdownChangeEvent) {
   await router.replace({ query: { limit: value } })
 }
-//#endregion
+// #endregion
 </script>
 
 <template>

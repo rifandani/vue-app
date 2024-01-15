@@ -14,7 +14,9 @@ const user = useUserStorage()
     <h1 class="text-3xl font-bold italic">
       {{ LL.auth.notFound404() }}
     </h1>
-    <p class="mb-5">{{ LL.auth.gone() }}</p>
+    <p class="mb-5">
+      {{ LL.auth.gone() }}
+    </p>
 
     <RouterLink
       data-testid="notFound-link"

@@ -32,7 +32,7 @@ export const themes: Theme[] = [
   'lemonade',
   'night',
   'coffee',
-  'winter'
+  'winter',
 ]
 
 // object version of `themes`
@@ -56,7 +56,7 @@ export const ENTER = 'Enter'
 // environments
 export const environment: Environment = {
   browser: isBrowser(),
-  server: !isBrowser()
+  server: !isBrowser(),
 } as const
 
 export const defaultWindow = environment.browser ? window : undefined

@@ -4,7 +4,7 @@ import { shallowRef, triggerRef } from 'vue'
  * Angular's new signal reactivity primitive.
  * dirty-checking
  */
-export const signal = <T>(initialValue: T) => {
+export function signal<T>(initialValue: T) {
   const r = shallowRef(initialValue)
   const s = () => r.value
 

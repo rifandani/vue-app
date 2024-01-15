@@ -6,7 +6,7 @@ const isDark = useDark({
   selector: 'html',
   attribute: 'class',
   valueDark: 'dark',
-  valueLight: ''
+  valueLight: '',
 })
 const toggleDark = useToggle(isDark)
 

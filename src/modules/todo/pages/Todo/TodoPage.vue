@@ -7,9 +7,9 @@ import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorag
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import { todoApi, todoKeys } from '@todo/api/todo.api'
 import {
-  updateTodoSchema,
   type UpdateTodoApiResponseSchema,
-  type UpdateTodoSchema
+  type UpdateTodoSchema,
+  updateTodoSchema,
 } from '@todo/api/todo.schema'
 import { useTodoDetailParams } from '@todo/composables/useTodoDetailParams.composable'
 import { todosRoute } from '@todo/routes/todo.route'
@@ -25,7 +25,7 @@ import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { z } from 'zod'
 import { fromZodError } from 'zod-validation-error'
 
-//#region VALUES
+// #region VALUES
 const route = useRoute()
 const { push } = useRouter()
 const queryClient = useQueryClient()
@@ -35,7 +35,8 @@ const { LL } = typesafeI18n()
 const id = computed(() => {
   // initial load, `route.params === undefined`
   // -1 to make query options `enabled: false`
-  if (!route.params) return -1
+  if (!route.params)
+    return -1
 
   return Number(route.params.id)
 })
@@ -44,14 +45,14 @@ const { enabled, queryKey } = useTodoDetailParams({ id })
 const { isLoading, isSuccess, error, data } = useQuery({
   enabled,
   queryKey,
-  queryFn: () => todoApi.detail(queryKey.value[2])
+  queryFn: () => todoApi.detail(queryKey.value[2]),
 })
 const { error: mutationError, mutate } = useMutation<
   UpdateTodoApiResponseSchema,
   ErrorApiResponseSchema,
   UpdateTodoSchema
 >({
-  mutationFn: (updateTodo) => todoApi.update(updateTodo),
+  mutationFn: updateTodo => todoApi.update(updateTodo),
   onSuccess: async (updatedTodo) => {
     // NOTE: the order of function call MATTERS
     await push(todosRoute.path)
@@ -64,30 +65,30 @@ const { error: mutationError, mutate } = useMutation<
       severity: error ? 'error' : 'success',
       detail: error
         ? LL.value.common.xUpdateError({ feature: 'Todo' })
-        : LL.value.common.xUpdateSuccess({ feature: 'Todo' })
+        : LL.value.common.xUpdateSuccess({ feature: 'Todo' }),
     })
-  }
+  },
 })
 
 const initialValues = computed<UpdateTodoSchema>(() => ({
   todo: data.value?.todo ?? LL.value.common.loading(),
   id: data.value?.id ?? 1,
-  completed: data.value?.completed ?? false
+  completed: data.value?.completed ?? false,
 }))
 const { defineField, handleSubmit, isSubmitting } = useForm<UpdateTodoSchema>({
   initialValues: initialValues.value,
-  validationSchema: toTypedSchema(updateTodoSchema)
+  validationSchema: toTypedSchema(updateTodoSchema),
 })
 const [todo, todoAttrs] = defineField('todo', { validateOnInput: true })
 const onSubmit = handleSubmit((values) => {
   const payload = {
     ...initialValues.value,
-    todo: values.todo
+    todo: values.todo,
   }
 
   mutate(payload)
 })
-//#endregion
+// #endregion
 </script>
 
 <template>
@@ -110,9 +111,11 @@ const onSubmit = handleSubmit((values) => {
     </div>
 
     <div v-if="!!mutationError" data-testid="todo-mutationError" class="flex flex-col items-center">
-      <InlineMessage severity="error">{{
-        LL.common.error({ module: 'Todo Mutation' })
-      }}</InlineMessage>
+      <InlineMessage severity="error">
+        {{
+          LL.common.error({ module: 'Todo Mutation' })
+        }}
+      </InlineMessage>
       <pre class="text-red-500">{{ JSON.stringify(mutationError, null, 2) }}</pre>
     </div>
 
@@ -121,14 +124,14 @@ const onSubmit = handleSubmit((values) => {
     </div>
 
     <div v-if="error" data-testid="todo-error" class="flex flex-col items-center">
-      <InlineMessage severity="error"
-        >{{ LL.common.error({ module: 'Todo Detail' }) }}:</InlineMessage
-      >
+      <InlineMessage severity="error">
+        {{ LL.common.error({ module: 'Todo Detail' }) }}:
+      </InlineMessage>
       <pre class="text-red-500">{{
         JSON.stringify(
           error instanceof z.ZodError ? fromZodError(error).message : error.message,
           null,
-          2
+          2,
         )
       }}</pre>
     </div>

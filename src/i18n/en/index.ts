@@ -5,10 +5,10 @@ const en = {
     welcome: 'Welcome Back',
     logout: 'Logout',
     logoutUsername: 'Logout ({username:string})',
-    registerHere: "Don't have an account? <>Register here<>",
+    registerHere: 'Don\'t have an account? <>Register here<>',
     notFound404: '404: Not Found',
-    gone: "It's gone",
-    backTo: 'Go back to {isLoggedIn|{true: home, false: login}}'
+    gone: 'It\'s gone',
+    backTo: 'Go back to {isLoggedIn|{true: home, false: login}}',
   },
   home: {
     title: 'Bulletproof Vue 3 Template',
@@ -17,16 +17,16 @@ const en = {
     toggleClock: 'Toggle Clock',
     clickToggleClock: 'Click toggle clock to restart the clock',
     changeLang: 'Change Language',
-    getStarted: 'Get Started'
+    getStarted: 'Get Started',
   },
   todo: {
-    backTo: 'Go back to {target:string}'
+    backTo: 'Go back to {target:string}',
   },
   user: {
     preferences: 'Preferences',
     likedTodos: 'Liked todos',
     savedTodos: 'saved todos',
-    yourComments: 'Your comments'
+    yourComments: 'Your comments',
   },
   forms: {
     username: 'Username',
@@ -41,7 +41,7 @@ const en = {
     update: 'Update',
     remove: 'Remove',
     limit: 'Limit',
-    todoPlaceholder: 'What should you do next...'
+    todoPlaceholder: 'What should you do next...',
   },
   common: {
     loading: 'Loading...',
@@ -66,16 +66,16 @@ const en = {
     dark: 'Dark',
     create: 'Create',
     settings: 'Settings',
-    account: 'Account'
+    account: 'Account',
   },
   success: {
-    action: '{module:string} successfully {action:string}'
+    action: '{module:string} successfully {action:string}',
   },
   error: {
     minLength: '{field:string} must contain at least {length:number} characters',
     passwordMinLength: 'password must contain at least 6 characters',
-    action: '{module:string} failed to {action:string}'
-  }
+    action: '{module:string} failed to {action:string}',
+  },
 } satisfies BaseTranslation
 
 export default en

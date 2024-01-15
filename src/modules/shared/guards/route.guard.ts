@@ -1,4 +1,4 @@
-import { loginApiResponseSchema, type LoginApiResponseSchema } from '@auth/api/auth.schema'
+import { type LoginApiResponseSchema, loginApiResponseSchema } from '@auth/api/auth.schema'
 import type { NavigationGuard, RouteLocationNormalized } from 'vue-router'
 
 /**
@@ -13,7 +13,8 @@ import type { NavigationGuard, RouteLocationNormalized } from 'vue-router'
  * ```
  */
 export function removeQueryParams(to: RouteLocationNormalized) {
-  if (Object.keys(to.query).length) return { path: to.path, query: {}, hash: to.hash }
+  if (Object.keys(to.query).length)
+    return { path: to.path, query: {}, hash: to.hash }
 }
 
 /**
@@ -28,7 +29,8 @@ export function removeQueryParams(to: RouteLocationNormalized) {
  * ```
  */
 export function removeHash(to: RouteLocationNormalized) {
-  if (to.hash) return { path: to.path, query: to.query, hash: '' }
+  if (to.hash)
+    return { path: to.path, query: to.query, hash: '' }
 }
 
 /**
@@ -38,7 +40,8 @@ export const loginGuard: NavigationGuard = (_to, _from, next) => {
   const user = localStorage.getItem('user')
 
   // there is NO "user" data in local storage
-  if (!user) return next()
+  if (!user)
+    return next()
 
   const parsedUser = JSON.parse(user as string) as LoginApiResponseSchema
   // will throw an Error if `parsedUser` is not correct
@@ -46,7 +49,8 @@ export const loginGuard: NavigationGuard = (_to, _from, next) => {
   const response = loginApiResponseSchema.safeParse(parsedUser)
 
   // valid "user" data in local storage, but still going to /login
-  if (response.success) return next({ path: '/' })
+  if (response.success)
+    return next({ path: '/' })
 
   return next()
 }
@@ -63,9 +67,11 @@ export const authGuard: NavigationGuard = (to, _from, next) => {
   const response = loginApiResponseSchema.safeParse(parsedUser)
 
   // NOT valid "user" data in local storage
-  if (!response.success) return next({ path: '/login' })
+  if (!response.success)
+    return next({ path: '/login' })
   // valid "user" data in local storage, but still going to /login
-  if (to.path === '/login') return next({ path: '/' })
+  if (to.path === '/login')
+    return next({ path: '/' })
 
   return next()
 }
@@ -77,7 +83,8 @@ export const unauthGuard: NavigationGuard = (_to, _from, next) => {
   const user = localStorage.getItem('user')
 
   // there is NO "user" data in local storage
-  if (!user) return next({ path: '/login' })
+  if (!user)
+    return next({ path: '/login' })
 
   return next()
 }

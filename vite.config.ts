@@ -1,30 +1,35 @@
 /// <reference types="vitest" />
-import vue from '@vitejs/plugin-vue'
+
 import { fileURLToPath } from 'node:url'
+import vue from '@vitejs/plugin-vue'
 import { visualizer } from 'rollup-plugin-visualizer'
-import { PluginOption, defineConfig } from 'vite'
+import type { PluginOption } from 'vite'
+import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { configDefaults } from 'vitest/config'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  server: {
+    port: 3330,
+  },
   plugins: [
     tsconfigPaths({ loose: true }),
     vue({
       template: {
         compilerOptions: {
-          isCustomElement: (tag) => ['my-counter', 'dark-mode-switch'].includes(tag)
-        }
-      }
+          isCustomElement: tag => ['my-counter', 'dark-mode-switch'].includes(tag),
+        },
+      },
     }),
     visualizer({
-      filename: 'html/visualizer-stats.html'
-    }) as unknown as PluginOption
+      filename: 'html/visualizer-stats.html',
+    }) as unknown as PluginOption,
   ],
   test: {
     root: fileURLToPath(new URL('./', import.meta.url)),
     deps: {
-      inline: ['@vue', '@vueuse']
+      inline: ['@vue', '@vueuse'],
     },
     // to see how your tests are running in real time in the terminal, add "default"
     // to generate HTML output and preview the results of your tests, add "html"
@@ -42,7 +47,7 @@ export default defineConfig({
         statements: 50,
         branches: 50,
         functions: 50,
-        lines: 50
+        lines: 50,
       },
       exclude: [
         'coverage/**',
@@ -63,8 +68,8 @@ export default defineConfig({
         'src/mocks/**',
         'src/assets/**',
         'src/lib/**',
-        'src/i18n/**'
-      ]
-    }
-  }
+        'src/i18n/**',
+      ],
+    },
+  },
 })

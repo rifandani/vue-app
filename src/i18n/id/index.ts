@@ -8,7 +8,7 @@ const id = {
     registerHere: 'Tidak punya akun? <>Daftar disini<>',
     notFound404: '404: Tidak Ditemukan',
     gone: 'Halaman Kosong',
-    backTo: 'Kembali ke {isLoggedIn|{true: beranda, false: login}}'
+    backTo: 'Kembali ke {isLoggedIn|{true: beranda, false: login}}',
   },
   home: {
     title: 'Templat Vue Anti Galau',
@@ -17,16 +17,16 @@ const id = {
     toggleClock: 'Beralih Jam',
     clickToggleClock: 'Klik beralih jam untuk mengulang kalkulasi jam',
     changeLang: 'Ganti Bahasa',
-    getStarted: 'Mulai'
+    getStarted: 'Mulai',
   },
   todo: {
-    backTo: 'Kembali ke {target}'
+    backTo: 'Kembali ke {target}',
   },
   user: {
     preferences: 'Preferensi',
     likedTodos: 'Todos disukai',
     savedTodos: 'Todos disimpan',
-    yourComments: 'Komentar anda'
+    yourComments: 'Komentar anda',
   },
   forms: {
     username: 'Username',
@@ -41,7 +41,7 @@ const id = {
     update: 'Ubah',
     remove: 'Hapus',
     limit: 'Batas',
-    todoPlaceholder: 'Apa yang akan anda lakukan selanjutnya...'
+    todoPlaceholder: 'Apa yang akan anda lakukan selanjutnya...',
   },
   common: {
     loading: 'Menunggu...',
@@ -66,16 +66,16 @@ const id = {
     dark: 'Gelap',
     create: 'Buat',
     settings: 'Pengaturan',
-    account: 'Akun'
+    account: 'Akun',
   },
   success: {
-    action: '{module} berhasil {action}'
+    action: '{module} berhasil {action}',
   },
   error: {
     minLength: '{field} harus memiliki minimal {length} karakter',
     passwordMinLength: 'password harus memiliki minimal 6 karakter',
-    action: '{module} gagal di {action}'
-  }
+    action: '{module} gagal di {action}',
+  },
 } satisfies Translation
 
 export default id

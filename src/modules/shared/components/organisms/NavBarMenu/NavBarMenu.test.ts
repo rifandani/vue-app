@@ -4,7 +4,7 @@ import { fireEvent, screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import NavBarMenu from './NavBarMenu.vue'
 
-describe('NavBarMenu', () => {
+describe('navBarMenu', () => {
   const mockModeBtn = vi.fn()
 
   testWrapper('should render properly', ({ wrapper }) => {

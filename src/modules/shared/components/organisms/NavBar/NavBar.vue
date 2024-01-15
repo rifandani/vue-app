@@ -14,17 +14,17 @@ const { LL } = typesafeI18n()
 const user = useUserStorage()
 // #endregion
 
-//#region HANDLERS
-const logout = (): void => {
+// #region HANDLERS
+function logout(): void {
   user.value = null // reset `user` store
   replace(loginRoute.path) // back to login
 }
-//#endregion
+// #endregion
 </script>
 
 <template>
   <nav class="drawer min-h-screen">
-    <input id="my-nav-drawer" type="checkbox" aria-label="drawer" class="drawer-toggle" />
+    <input id="my-nav-drawer" type="checkbox" aria-label="drawer" class="drawer-toggle">
 
     <section class="drawer-content flex flex-col">
       <!-- Navbar -->
@@ -43,7 +43,9 @@ const logout = (): void => {
           :to="homeRoute.path"
         >
           <SvgIcon id="icon-vue" class="h-6 w-6" />
-          <p class="font-semibold tracking-wider">{{ LL.common.appName() }}</p>
+          <p class="font-semibold tracking-wider">
+            {{ LL.common.appName() }}
+          </p>
         </RouterLink>
 
         <div class="hidden flex-none lg:block">
@@ -56,7 +58,9 @@ const logout = (): void => {
 
       <!-- Page content here -->
       <slot>
-        <h1 class="text-lg/10">{{ LL.common.noPageContent() }}</h1>
+        <h1 class="text-lg/10">
+          {{ LL.common.noPageContent() }}
+        </h1>
       </slot>
     </section>
 

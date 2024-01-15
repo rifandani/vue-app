@@ -17,31 +17,31 @@ const { replace } = useRouter()
 const menuUser = ref<InstanceType<typeof Menu> | null>(null)
 const menuItemsUser = ref<MenuItem[]>([
   {
-    separator: true
+    separator: true,
   },
   {
     label: LL.value.user.preferences(),
     items: [
       {
         label: LL.value.user.likedTodos(),
-        icon: 'lucide:heart'
+        icon: 'lucide:heart',
       },
       {
         label: LL.value.user.savedTodos(),
-        icon: 'lucide:star'
+        icon: 'lucide:star',
       },
       {
         label: LL.value.user.yourComments(),
-        icon: 'lucide:messages-square'
-      }
-    ]
+        icon: 'lucide:messages-square',
+      },
+    ],
   },
   {
     label: LL.value.common.settings(),
     items: [
       {
         label: LL.value.common.account(),
-        icon: 'lucide:settings'
+        icon: 'lucide:settings',
       },
       {
         label: LL.value.auth.logout(),
@@ -49,13 +49,13 @@ const menuItemsUser = ref<MenuItem[]>([
         command: () => {
           user.value = null // reset `user` store & localStorage
           replace(loginRoute.path) // back to login
-        }
-      }
-    ]
-  }
+        },
+      },
+    ],
+  },
 ])
 
-const toggleUser = (event: Event) => {
+function toggleUser(event: Event) {
   menuUser.value?.toggle(event)
 }
 </script>

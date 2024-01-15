@@ -21,7 +21,7 @@ const menuItemsTheme = ref<MenuItem[]>([
         showEndIcon: mode.value === 'auto',
         command: () => {
           changeTheme('auto')
-        }
+        },
       },
       {
         icon: 'lucide:sun',
@@ -29,7 +29,7 @@ const menuItemsTheme = ref<MenuItem[]>([
         showEndIcon: mode.value === 'light',
         command: () => {
           changeTheme('light')
-        }
+        },
       },
       {
         icon: 'lucide:moon',
@@ -37,13 +37,13 @@ const menuItemsTheme = ref<MenuItem[]>([
         showEndIcon: mode.value === 'dark',
         command: () => {
           changeTheme('dark')
-        }
-      }
-    ]
-  }
+        },
+      },
+    ],
+  },
 ])
 
-const toggleTheme = (event: Event) => {
+function toggleTheme(event: Event) {
   menuTheme.value?.toggle(event)
 }
 </script>

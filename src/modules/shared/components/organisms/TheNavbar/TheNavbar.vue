@@ -24,23 +24,23 @@ const visible = ref(false)
 const items = ref<MenuItem[]>([
   {
     label: 'Home',
-    route: homeRoute.path
+    route: homeRoute.path,
   },
   {
     label: 'Todos',
-    route: todosRoute.path
+    route: todosRoute.path,
   },
   {
     label: 'Playground',
-    route: playgroundRoute.path
-  }
+    route: playgroundRoute.path,
+  },
 ])
 
-const logout = (): void => {
+function logout(): void {
   user.value = null // reset `user` store
   replace(loginRoute.path) // back to login
 }
-const toggleSidebar = () => {
+function toggleSidebar() {
   visible.value = true
 }
 </script>

@@ -8,14 +8,14 @@ import { useTodoListParams } from '@todo/composables/useTodoListParams.composabl
 import InlineMessage from 'primevue/inlinemessage'
 import TodosItem from '../TodosItem/TodosItem.vue'
 
-//#region VALUES
+// #region VALUES
 const { LL } = typesafeI18n()
 const { queryKey } = useTodoListParams()
 const { isLoading, isError, error, isSuccess, data } = useQuery({
   queryKey,
-  queryFn: () => todoApi.list(queryKey.value[2])
+  queryFn: () => todoApi.list(queryKey.value[2]),
 })
-//#endregion
+// #endregion
 </script>
 
 <template>
@@ -25,7 +25,9 @@ const { isLoading, isError, error, isSuccess, data } = useQuery({
 
   <div v-if="isError" data-testid="list-error" class="mt-2">
     <div class="flex flex-col items-center">
-      <InlineMessage severity="error">{{ LL.common.error({ module: 'Todos' }) }}</InlineMessage>
+      <InlineMessage severity="error">
+        {{ LL.common.error({ module: 'Todos' }) }}
+      </InlineMessage>
       <pre class="text-red-500">{{ JSON.stringify(error, null, 2) }}</pre>
     </div>
   </div>

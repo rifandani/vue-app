@@ -44,8 +44,9 @@ export interface GeneralEventListener<E = Event> {
  * // => 'Hello Tom'
  * ```
  */
-export const template = (str: string, params: Record<string, string>, reg = /{{(.*?)}}/g): string =>
-  str.replace(reg, (_, key: string) => deepReadObject(params, key, ''))
+export function template(str: string, params: Record<string, string>, reg = /{{(.*?)}}/g): string {
+  return str.replace(reg, (_, key: string) => deepReadObject(params, key, ''))
+}
 
 export function clamp({ value, min, max }: Clamp) {
   return Math.min(Math.max(value, min), max)
@@ -84,13 +85,13 @@ export function addEventListener(
   target: Window | Document | EventTarget,
   event: Arrayable<string>,
   handler: EventListenerOrEventListenerObject,
-  options?: boolean | AddEventListenerOptions
+  options?: boolean | AddEventListenerOptions,
 ) {
   const events = Array.isArray(event) ? [...event] : [event]
 
-  events.forEach((_event) => target.addEventListener(_event, handler, options))
+  events.forEach(_event => target.addEventListener(_event, handler, options))
   return () => {
-    events.forEach((_event) => target.removeEventListener(_event, handler, options))
+    events.forEach(_event => target.removeEventListener(_event, handler, options))
   }
 }
 
@@ -100,8 +101,9 @@ export function addEventListener(
  *
  * @param phoneNumber
  */
-export const indonesianPhoneNumberFormat = (phoneNumber?: string) => {
-  if (!phoneNumber) return ''
+export function indonesianPhoneNumberFormat(phoneNumber?: string) {
+  if (!phoneNumber)
+    return ''
   // e.g: +62
   const code = phoneNumber.slice(0, 3)
   const numbers = phoneNumber.slice(3)
@@ -111,15 +113,14 @@ export const indonesianPhoneNumberFormat = (phoneNumber?: string) => {
   const uniqNumber = numbers.slice(3)
   let regexp: RegExp
 
-  if (uniqNumber.length <= 6) {
+  if (uniqNumber.length <= 6)
     regexp = /(\d{3})(\d{1,})/
-  } else if (uniqNumber.length === 7) {
+  else if (uniqNumber.length === 7)
     regexp = /(\d{3})(\d{4})/
-  } else if (uniqNumber.length === 8) {
+  else if (uniqNumber.length === 8)
     regexp = /(\d{4})(\d{4})/
-  } else {
+  else
     regexp = /(\d{4})(\d{5,})/
-  }
 
   const matches = uniqNumber.replace(regexp, '$1-$2')
 
@@ -129,17 +130,18 @@ export const indonesianPhoneNumberFormat = (phoneNumber?: string) => {
 /**
  * convert deep nested object keys to camelCase.
  */
-export const toCamelCase = <T>(object: unknown): T => {
+export function toCamelCase<T>(object: unknown): T {
   let transformedObject = object as Record<string, unknown>
   if (typeof object === 'object' && object !== null) {
-    if (object instanceof Array) {
+    if (Array.isArray(object)) {
       transformedObject = object.map(toCamelCase) as unknown as Record<string, unknown>
-    } else {
+    }
+    else {
       transformedObject = {}
       Object.keys(object).forEach((key) => {
         if ((object as Record<string, unknown>)[key] !== undefined) {
           const firstUnderscore = key.replace(/^_/, '')
-          const newKey = firstUnderscore.replace(/(_\w)|(-\w)/g, (k) => k[1].toUpperCase())
+          const newKey = firstUnderscore.replace(/(_\w)|(-\w)/g, k => k[1].toUpperCase())
           transformedObject[newKey] = toCamelCase((object as Record<string, unknown>)[key])
         }
       })
@@ -151,12 +153,13 @@ export const toCamelCase = <T>(object: unknown): T => {
 /**
  * convert deep nested object keys to snake_case.
  */
-export const toSnakeCase = <T>(object: unknown): T => {
+export function toSnakeCase<T>(object: unknown): T {
   let transformedObject = object as Record<string, unknown>
   if (typeof object === 'object' && object !== null) {
-    if (object instanceof Array) {
+    if (Array.isArray(object)) {
       transformedObject = object.map(toSnakeCase) as unknown as Record<string, unknown>
-    } else {
+    }
+    else {
       transformedObject = {}
       Object.keys(object).forEach((key) => {
         if ((object as Record<string, unknown>)[key] !== undefined) {
@@ -174,10 +177,9 @@ export const toSnakeCase = <T>(object: unknown): T => {
 /**
  * Remove leading zero
  */
-export const removeLeadingZeros = (value: string) => {
-  if (/^([0]{1,})([1-9]{1,})/i.test(value)) {
+export function removeLeadingZeros(value: string) {
+  if (/^([0]{1,})([1-9]{1,})/i.test(value))
     return value.replace(/^(0)/i, '')
-  }
 
   return value.replace(/^[0]{2,}/i, '0')
 }
@@ -185,11 +187,11 @@ export const removeLeadingZeros = (value: string) => {
 /**
  * Remove leading whitespaces
  */
-export const removeLeadingWhitespace = (value?: string) => {
-  if (!value) return ''
-  if (/^[\s]*$/i.test(value)) {
+export function removeLeadingWhitespace(value?: string) {
+  if (!value)
+    return ''
+  if (/^[\s]*$/i.test(value))
     return value.replace(/^[\s]*/i, '')
-  }
 
   return value
 }
@@ -201,7 +203,8 @@ export const removeLeadingWhitespace = (value?: string) => {
  * Otherwise it only view on new tab.
  */
 export function doDownload(url: string): void {
-  if (!url) return
+  if (!url)
+    return
   const link = document.createElement('a')
   link.href = url
   link.download = url
@@ -221,16 +224,16 @@ export const tw = extendTailwindMerge<'alert'>({
       // ↓ The `alert` key here is the class group ID
       //   ↓ Creates group of classes which have conflicting styles
       //     Classes here: 'alert-info', 'alert-success', 'alert-warning', 'alert-error'
-      alert: ['alert-info', 'alert-success', 'alert-warning', 'alert-error']
+      alert: ['alert-info', 'alert-success', 'alert-warning', 'alert-error'],
     },
     // ↓ Here you can define additional conflicts across different groups
     conflictingClassGroups: {
       // ↓ ID of class group which creates a conflict with…
       //     ↓ …classes from groups with these IDs
       // In this case `tw('alert-success alert-error') → 'alert-error'`
-      alert: ['alert']
-    }
-  }
+      alert: ['alert'],
+    },
+  },
 })
 
 /**
@@ -243,9 +246,10 @@ export const tw = extendTailwindMerge<'alert'>({
  * createSearchParamsFromObject({ limit: ['10', '20], skip: 2 }).toString() // -> 'limit=10&limit=20&skip=2'
  * ```
  */
-export const createSearchParamsFromObject = (obj: Record<string, any>) =>
-  new URLSearchParams(
+export function createSearchParamsFromObject(obj: Record<string, any>) {
+  return new URLSearchParams(
     Object.entries(obj).flatMap(([key, values]) =>
-      Array.isArray(values) ? values.map((value) => [key, value]) : [[key, values]]
-    )
+      Array.isArray(values) ? values.map(value => [key, value]) : [[key, values]],
+    ),
   )
+}

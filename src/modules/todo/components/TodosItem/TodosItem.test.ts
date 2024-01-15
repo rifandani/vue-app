@@ -1,11 +1,11 @@
-import { mockTodo } from '@mocks/http/entities.http'
+import { mockTodo } from '@mocks/http/entities'
 import { testWrapper } from '@shared/utils/test.util'
 import { fireEvent, screen } from '@testing-library/vue'
 import type { TodoSchema } from '@todo/api/todo.schema'
 import { vi } from 'vitest'
 import TodosItem from './TodosItem.vue'
 
-describe('TodosItem', () => {
+describe('<TodosItem />', () => {
   const todo: TodoSchema = mockTodo()
   // const onDeleteTodo = vi.fn()
   const mockSubmit = vi.fn()

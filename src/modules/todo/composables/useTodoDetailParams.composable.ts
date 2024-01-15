@@ -1,11 +1,11 @@
 import { todoKeys } from '@todo/api/todo.api'
-import { computed, type ComputedRef } from 'vue'
+import { type ComputedRef, computed } from 'vue'
 
-type UseTodoDetailQuery = {
+interface UseTodoDetailQuery {
   id: ComputedRef<number>
 }
 
-export const useTodoDetailParams = ({ id }: UseTodoDetailQuery) => {
+export function useTodoDetailParams({ id }: UseTodoDetailQuery) {
   const enabled = computed(() => id.value > 0)
   const queryKey = computed(() => todoKeys.detail(id.value))
 

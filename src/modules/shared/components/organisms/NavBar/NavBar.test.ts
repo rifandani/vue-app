@@ -2,7 +2,7 @@ import { testWrapper } from '@shared/utils/test.util'
 import { screen } from '@testing-library/vue'
 import NavBar from './NavBar.vue'
 
-describe('NavBar', () => {
+describe('navBar', () => {
   testWrapper('should render properly', ({ wrapper }) => {
     const result = wrapper({ component: NavBar })
     expect(() => result).not.toThrow()

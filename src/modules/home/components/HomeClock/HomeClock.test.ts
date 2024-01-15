@@ -3,7 +3,7 @@ import { fireEvent, screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import HomeClock from './HomeClock.vue'
 
-describe('HomeClock', () => {
+describe('homeClock', () => {
   const mockButtonFn = vi.fn()
 
   testWrapper('should render clock when toggle clock button clicked', async ({ wrapper }) => {
@@ -54,6 +54,6 @@ describe('HomeClock', () => {
       // ACT & ASSERT
       await fireEvent.click(button)
       expect(mockButtonFn).toHaveBeenCalled()
-    }
+    },
   )
 })

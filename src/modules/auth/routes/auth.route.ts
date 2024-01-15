@@ -7,13 +7,13 @@ export const loginRoute = {
   name: 'login' as const,
   path: '/login' as const,
   component: LoginPage,
-  beforeEnter: [loginGuard]
+  beforeEnter: [loginGuard],
 } satisfies RouteRecordRaw
 
 export const notFoundRoute = {
   name: 'not-found' as const,
   path: '/:pathMatch(.*)*' as const,
-  component: NotFoundPage
+  component: NotFoundPage,
 } satisfies RouteRecordRaw
 
 export const authRoutes: RouteRecordRaw[] = [loginRoute, notFoundRoute]

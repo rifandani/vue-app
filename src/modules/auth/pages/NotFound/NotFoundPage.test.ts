@@ -2,7 +2,7 @@ import { testWrapper } from '@shared/utils/test.util'
 import { screen } from '@testing-library/vue'
 import NotFoundPage from './NotFoundPage.vue'
 
-describe('NotFoundPage', () => {
+describe('notFoundPage', () => {
   testWrapper('should render properly', ({ wrapper }) => {
     const result = wrapper({ component: NotFoundPage })
     expect(() => result).not.toThrow()

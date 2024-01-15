@@ -2,11 +2,6 @@ import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import type { ResourceParamsSchema } from '@shared/api/resource.schema'
 import { http } from '@shared/services/api/http.api'
 import {
-  createTodoApiResponseSchema,
-  deleteTodoApiResponseSchema,
-  todoDetailApiResponseSchema,
-  todoListApiResponseSchema,
-  updateTodoApiResponseSchema,
   type CreateTodoApiResponseSchema,
   type CreateTodoSchema,
   type DeleteTodoApiResponseSchema,
@@ -15,7 +10,12 @@ import {
   type TodoListApiResponseSchema,
   type TodoSchema,
   type UpdateTodoApiResponseSchema,
-  type UpdateTodoSchema
+  type UpdateTodoSchema,
+  createTodoApiResponseSchema,
+  deleteTodoApiResponseSchema,
+  todoDetailApiResponseSchema,
+  todoListApiResponseSchema,
+  updateTodoApiResponseSchema,
 } from './todo.schema'
 
 export const todoKeys = {
@@ -23,13 +23,13 @@ export const todoKeys = {
   lists: () => [...todoKeys.all, 'list'] as const,
   list: (params: ResourceParamsSchema) => [...todoKeys.lists(), params] as const,
   details: () => [...todoKeys.all, 'detail'] as const,
-  detail: (id: TodoSchema['id']) => [...todoKeys.details(), id] as const
+  detail: (id: TodoSchema['id']) => [...todoKeys.details(), id] as const,
 }
 
 export const todoApi = {
   list: async (params: ResourceParamsSchema) => {
     const resp = await http.get<TodoListApiResponseSchema | ErrorApiResponseSchema>('todos', {
-      params
+      params,
     })
 
     // `parse` will throw if `resp.data` is not correct
@@ -43,7 +43,7 @@ export const todoApi = {
   create: async (todo: CreateTodoSchema) => {
     const resp = await http.post<CreateTodoApiResponseSchema | ErrorApiResponseSchema>(
       `todos/add`,
-      todo
+      todo,
     )
 
     return createTodoApiResponseSchema.parse(resp.data)
@@ -51,16 +51,16 @@ export const todoApi = {
   update: async ({ id, ...body }: UpdateTodoSchema) => {
     const resp = await http.put<UpdateTodoApiResponseSchema | ErrorApiResponseSchema>(
       `todos/${id}`,
-      body
+      body,
     )
 
     return updateTodoApiResponseSchema.parse(resp.data)
   },
   delete: async (id: DeleteTodoSchema['id']) => {
     const resp = await http.delete<DeleteTodoApiResponseSchema | ErrorApiResponseSchema>(
-      `todos/${id}`
+      `todos/${id}`,
     )
 
     return deleteTodoApiResponseSchema.parse(resp.data)
-  }
+  },
 } as const

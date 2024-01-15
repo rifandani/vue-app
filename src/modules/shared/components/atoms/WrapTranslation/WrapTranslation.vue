@@ -2,7 +2,7 @@
 import type { LocalizedString } from 'typesafe-i18n'
 import { useWrapTranslation } from './useWrapTranslation'
 
-type Props = {
+interface Props {
   message: LocalizedString
 }
 
@@ -13,6 +13,6 @@ const { prefix, infix, postfix } = useWrapTranslation(() => props)
 
 <template>
   {{ prefix }}
-  <slot :infix="infix"></slot>
+  <slot :infix="infix" />
   {{ postfix }}
 </template>

@@ -8,14 +8,14 @@ export const todosRoute = {
   name: 'todos' as const,
   path: '/todos' as const,
   component: TodosPage,
-  beforeEnter: [unauthGuard, authGuard]
+  beforeEnter: [unauthGuard, authGuard],
 } satisfies RouteRecordRaw
 
 export const todosDetailRoute = {
   name: 'todo' as const,
   path: '/todos/:id' as const,
   component: TodoPage,
-  beforeEnter: [unauthGuard, authGuard]
+  beforeEnter: [unauthGuard, authGuard],
 } satisfies RouteRecordRaw
 
 export const todoRoutes: RouteRecordRaw[] = [todosRoute, todosDetailRoute]

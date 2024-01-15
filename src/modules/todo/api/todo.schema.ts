@@ -6,7 +6,7 @@ export const todoSchema = z.object({
   id: z.number().positive(),
   todo: z.string(),
   completed: z.boolean(),
-  userId: z.number().positive()
+  userId: z.number().positive(),
 })
 export const detailTodoSchema = todoSchema.pick({ id: true })
 export const createTodoSchema = todoSchema
@@ -16,14 +16,14 @@ export const deleteTodoSchema = detailTodoSchema
 
 // #region API SCHEMA
 export const todoListApiResponseSchema = resourceListSchema.extend({
-  todos: z.array(todoSchema)
+  todos: z.array(todoSchema),
 })
 export const todoDetailApiResponseSchema = todoSchema
 export const createTodoApiResponseSchema = todoSchema
 export const updateTodoApiResponseSchema = todoSchema
 export const deleteTodoApiResponseSchema = todoSchema.extend({
   isDeleted: z.literal(true),
-  deletedOn: z.string().datetime()
+  deletedOn: z.string().datetime(),
 })
 // #endregion
 

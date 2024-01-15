@@ -2,7 +2,7 @@ import { testWrapper } from '@shared/utils/test.util'
 import { screen } from '@testing-library/vue'
 import HomePage from './HomePage.vue'
 
-describe('HomePage', () => {
+describe('homePage', () => {
   testWrapper('should render properly', ({ wrapper }) => {
     const result = wrapper({ component: HomePage })
     expect(() => result).not.toThrow()

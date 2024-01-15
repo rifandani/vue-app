@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { authApi } from '@auth/api/auth.api'
-import { loginSchema, type LoginApiResponseSchema, type LoginSchema } from '@auth/api/auth.schema'
+import { type LoginApiResponseSchema, type LoginSchema, loginSchema } from '@auth/api/auth.schema'
 import { homeRoute } from '@home/routes/home.route'
 import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
@@ -25,20 +25,20 @@ const { isPending, isError, mutate } = useMutation<
   ErrorApiResponseSchema,
   LoginSchema
 >({
-  mutationFn: (creds) => authApi.login(creds),
+  mutationFn: creds => authApi.login(creds),
   onSuccess: async (resp) => {
     // set user data to local storage
     user.value = resp
     await push(homeRoute.path)
-  }
+  },
 })
 
 const { defineComponentBinds, handleSubmit, errors } = useForm({
   validationSchema: toTypedSchema(loginSchema),
   initialValues: {
     username: '',
-    password: ''
-  }
+    password: '',
+  },
 })
 const username = defineComponentBinds('username')
 const password = defineComponentBinds('password')
@@ -47,7 +47,7 @@ const onSubmit = handleSubmit((values, context) => {
     onError: () => {
       // reset form
       context.resetForm()
-    }
+    },
   })
 })
 </script>
@@ -88,7 +88,7 @@ const onSubmit = handleSubmit((values, context) => {
         aria-labelledby="#password-error"
         :required="true"
         :feedback="false"
-        :pt="{ input: { class: 'w-full', 'data-testid': 'input-password' } }"
+        :pt="{ input: { root: 'w-full' } }"
         :placeholder="LL.forms.passwordPlaceholder()"
         :class="twJoin('mt-1 w-full', !!errors.username && 'p-invalid')"
       />
@@ -99,7 +99,9 @@ const onSubmit = handleSubmit((values, context) => {
     </label>
 
     <div v-if="isError" data-testid="login-error" class="mt-3 flex flex-col items-center">
-      <InlineMessage severity="error">{{ LL.forms.error({ icon: '❌' }) }}:</InlineMessage>
+      <InlineMessage severity="error">
+        {{ LL.forms.error({ icon: '❌' }) }}:
+      </InlineMessage>
     </div>
 
     <Button

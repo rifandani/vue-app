@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import {
+  type MyCounterEventDetail,
   myCounterEventDecrement,
   myCounterEventIncrement,
-  type MyCounterEventDetail
 } from '@lib/wc/MyCounter.constant'
 import Button from 'primevue/button'
 import { onMounted, onUnmounted, ref } from 'vue'
@@ -11,7 +11,7 @@ const sectionRef = ref<HTMLDivElement>()
 const initialCount = ref('10')
 // const store = useCounterStore()
 
-const handleClickTambah = () => {
+function handleClickTambah() {
   initialCount.value = (Number(initialCount.value) + 1).toString()
 }
 
@@ -44,8 +44,8 @@ onUnmounted(() => {
 
     <Button label="Increment from parent" @click="handleClickTambah" />
 
-    <my-counter :initial-count="initialCount"></my-counter>
+    <my-counter :initial-count="initialCount" />
 
-    <dark-mode-switch></dark-mode-switch>
+    <dark-mode-switch />
   </section>
 </template>

@@ -2,7 +2,7 @@ import { testWrapper } from '@shared/utils/test.util'
 import { screen } from '@testing-library/vue'
 import TodosPage from './TodosPage.vue'
 
-describe('TodosPage', () => {
+describe('todosPage', () => {
   testWrapper('should render properly', ({ wrapper }) => {
     const result = wrapper({ component: TodosPage })
     expect(() => result).not.toThrow()

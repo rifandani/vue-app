@@ -1,16 +1,16 @@
 import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import { http } from '@shared/services/api/http.api'
 import {
-  loginApiResponseSchema,
   type LoginApiResponseSchema,
-  type LoginSchema
+  type LoginSchema,
+  loginApiResponseSchema,
 } from './auth.schema'
 
 export const authApi = {
   login: async (creds: LoginSchema) => {
     const resp = await http.post<LoginApiResponseSchema | ErrorApiResponseSchema>(
       `auth/login`,
-      creds
+      creds,
     )
 
     // `parse` will throw if `resp.data` is not correct
@@ -19,5 +19,5 @@ export const authApi = {
     http.defaults.headers.common.Authorization = `Bearer ${loginApiResponse.token}`
 
     return loginApiResponse
-  }
+  },
 } as const

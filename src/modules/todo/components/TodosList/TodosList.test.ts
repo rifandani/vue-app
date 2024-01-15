@@ -1,11 +1,11 @@
-import { http, server } from '@mocks/http/server.http'
-import { getBaseUrl } from '@mocks/util.mock'
+import { http, server } from '@mocks/http/server'
+import { getBaseUrl } from '@mocks/util'
 import { testWrapper } from '@shared/utils/test.util'
 import { screen, waitFor } from '@testing-library/vue'
 import { HttpResponse } from 'msw'
 import TodosList from './TodosList.vue'
 
-describe('TodosList', () => {
+describe('<TodosList />', () => {
   const loadingId = 'list-loading'
 
   testWrapper('should render properly', ({ wrapper }) => {
@@ -26,8 +26,8 @@ describe('TodosList', () => {
         () => {
           return HttpResponse.json({ message: 'error' }, { status: 500 })
         },
-        { once: true }
-      )
+        { once: true },
+      ),
     )
     wrapper({ component: TodosList })
 

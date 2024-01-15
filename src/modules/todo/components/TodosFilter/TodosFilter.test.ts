@@ -4,7 +4,7 @@ import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import TodosFilter from './TodosFilter.vue'
 
-describe('TodosFilter', () => {
+describe('todosFilter', () => {
   const mockSelectFn = vi.fn()
 
   testWrapper('should render properly', ({ wrapper }) => {

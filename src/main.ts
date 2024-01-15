@@ -1,5 +1,5 @@
-import App from '@app/App.vue'
-import { router } from '@app/router.app'
+import App from '@app/entry.vue'
+import { router } from '@app/router'
 import { detectLocale } from '@i18n/i18n-util'
 import { loadLocale } from '@i18n/i18n-util.sync'
 import { i18nPlugin } from '@i18n/i18n-vue'
@@ -15,7 +15,7 @@ import ToastService from 'primevue/toastservice'
 import {
   htmlLangAttributeDetector,
   localStorageDetector,
-  navigatorDetector
+  navigatorDetector,
 } from 'typesafe-i18n/detectors'
 import { createApp, defineCustomElement } from 'vue'
 import './main.css'
@@ -24,7 +24,7 @@ const root = document.getElementById('app')
 
 if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
   throw new Error(
-    'Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got mispelled?'
+    'Root element not found. Did you forget to add it to your index.html? Or maybe the id attribute got mispelled?',
   )
 }
 
@@ -36,7 +36,7 @@ customElements.define('dark-mode-switch', defineCustomElement(DarkModeSwitch))
 const detectedLocale = detectLocale(
   navigatorDetector,
   htmlLangAttributeDetector,
-  localStorageDetector
+  localStorageDetector,
 )
 const pinia = createPinia()
 const app = createApp(App)
@@ -52,10 +52,10 @@ app.use(VueQueryPlugin, {
       queries: {
         // gcTime: 1_000 * 60 * 5, // 5 mins. Defaults to 5 mins
         staleTime: 1_000 * 30, // 30 secs. Defaults to 0
-        networkMode: 'offlineFirst'
-      }
-    }
-  }
+        networkMode: 'offlineFirst',
+      },
+    },
+  },
 })
 // primevue
 app.use(PrimeVue, { ripple: true })
@@ -66,7 +66,7 @@ app.directive('ripple', Ripple)
 
 // ONLY include browser worker on 'development' env
 if (import.meta.env.DEV) {
-  void import('./mocks/browser.mock')
+  void import('./mocks/browser')
     .then(({ worker }) => {
       // insert it into global window object, so we can debug the worker in runtime (e.g Chrome DevTools)
       window.msw = { worker }
@@ -74,6 +74,7 @@ if (import.meta.env.DEV) {
       return worker.start({ onUnhandledRequest: 'bypass' })
     })
     .then(() => app.mount('#app'))
-} else {
+}
+else {
   app.mount('#app')
 }

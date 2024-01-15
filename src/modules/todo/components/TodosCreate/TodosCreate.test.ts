@@ -4,7 +4,7 @@ import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import TodosCreate from './TodosCreate.vue'
 
-describe('TodosCreate', () => {
+describe('todosCreate', () => {
   const todoValue = 'new todo'
   const mockCreateSubmitFn = vi.fn()
 
@@ -29,6 +29,6 @@ describe('TodosCreate', () => {
       expect(inputTodo).toHaveValue(todoValue)
       await user.click(buttonSubmit)
       expect(mockCreateSubmitFn).toHaveBeenCalled()
-    }
+    },
   )
 })

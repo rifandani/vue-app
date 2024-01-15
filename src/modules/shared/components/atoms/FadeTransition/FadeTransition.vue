@@ -1,12 +1,12 @@
 <script setup lang="ts">
 defineOptions({
-  inheritAttrs: false
+  inheritAttrs: false,
 })
 </script>
 
 <template>
   <Transition name="fade" v-bind="$attrs">
-    <slot></slot>
+    <slot />
   </Transition>
 </template>
 

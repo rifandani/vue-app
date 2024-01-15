@@ -1,5 +1,6 @@
-import { getBaseUrl } from '@mocks/util.mock'
-import { http, HttpResponse, RequestHandler } from 'msw'
+import { getBaseUrl } from '@mocks/util'
+import type { RequestHandler } from 'msw'
+import { HttpResponse, http } from 'msw'
 
 const validEmail = 'email@email.com'
 const validPassword = 'password'
@@ -17,16 +18,16 @@ export const authHandlers: RequestHandler[] = [
         {
           ok: true,
           login: {
-            token: 'token'
-          }
+            token: 'token',
+          },
         },
-        { status: 200 }
+        { status: 200 },
       )
     }
 
     return HttpResponse.json(
       { ok: false, error: { code: 'auth/invalid-credentials' } },
-      { status: 401 }
+      { status: 401 },
     )
-  })
+  }),
 ]

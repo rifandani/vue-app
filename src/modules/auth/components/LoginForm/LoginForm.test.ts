@@ -4,7 +4,7 @@ import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import LoginForm from './LoginForm.vue'
 
-describe('LoginForm', () => {
+describe('loginForm', () => {
   const validUsernameValue = 'kminchelle'
   const validPasswordValue = '0lelplR'
   const mockSubmitFn = vi.fn()
@@ -28,6 +28,6 @@ describe('LoginForm', () => {
       expect(inputPassword).toHaveValue(validPasswordValue)
       await user.click(buttonLogin)
       expect(mockSubmitFn).toHaveBeenCalled()
-    }
+    },
   )
 })

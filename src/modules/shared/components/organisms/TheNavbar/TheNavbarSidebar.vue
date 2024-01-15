@@ -33,7 +33,7 @@ const visibleModel = computed({
   set(value) {
     // IMPORTANT: 'update:' as prefix is required for v-model to work correctly
     emit('update:visible', value)
-  }
+  },
 })
 </script>
 

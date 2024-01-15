@@ -1,10 +1,10 @@
 {
   "extends": ["./tsconfig.paths.json", "@tsconfig/node18/tsconfig.json"],
-  "include": ["vite.config.*", "vitest.config.*", "postcss.config.*", "tailwind.config.*"],
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "types": ["node"]
-  }
+  },
+  "include": ["vite.config.*", "vitest.config.*"]
 }

@@ -13,7 +13,7 @@ const { LL } = typesafeI18n()
 const user = useUserStorage()
 const colorMode = useColorMode({
   modes,
-  attribute: 'data-theme'
+  attribute: 'data-theme',
 })
 </script>
 
