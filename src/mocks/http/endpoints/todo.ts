@@ -1,6 +1,5 @@
-import type { RequestHandler } from 'msw'
-import { HttpResponse, http } from 'msw'
-import { mockTodo } from '../entities'
+import { HttpResponse, type RequestHandler, http } from 'msw'
+import { mockTodo } from '#mocks/http/entities'
 import { getBaseUrl } from '#mocks/util'
 import { type ResourceParamsSchema, resourceParamsSchema } from '#shared/schemas/resource'
 import type {

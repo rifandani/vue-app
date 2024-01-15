@@ -15,6 +15,17 @@ export default antfu(
       'public/mockServiceWorker.js',
       'src/i18n/*.ts',
     ],
+    // typescript: {
+    //   overrides: {
+    //     'ts/consistent-type-imports': [
+    //       'error',
+    //       {
+    //         prefer: 'type-imports',
+    //         disallowTypeAnnotations: false,
+    //       },
+    //     ],
+    //   },
+    // },
     vue: true,
     svelte: false,
     react: false,

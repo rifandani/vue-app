@@ -1,17 +1,84 @@
 /// <reference types="vitest" />
 
+import process from 'node:process'
 import { fileURLToPath } from 'node:url'
 import vue from '@vitejs/plugin-vue'
+import replace from '@rollup/plugin-replace'
 import { visualizer } from 'rollup-plugin-visualizer'
 import type { PluginOption } from 'vite'
 import { defineConfig } from 'vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 import { configDefaults } from 'vitest/config'
+import type { ManifestOptions, VitePWAOptions } from 'vite-plugin-pwa'
+import { VitePWA } from 'vite-plugin-pwa'
+
+const sw = process.env.SW === 'true'
+const claims = process.env.CLAIMS === 'true'
+const pwaOptions: Partial<VitePWAOptions> = {
+  base: '/',
+  mode: 'development',
+  includeAssets: ['*.ico', '*.svg', '*.png'],
+  selfDestroying: process.env.SW_DESTROY === 'true',
+  registerType: claims ? 'autoUpdate' : 'prompt',
+  manifest: {
+    name: 'Vue App',
+    short_name: 'Vue App',
+    description: 'Bulletproof Vue 3 SPA Template',
+    theme_color: '#ffffff',
+    icons: [
+      {
+        src: 'pwa-64x64.png',
+        sizes: '64x64',
+        type: 'image/png',
+      },
+      {
+        src: 'pwa-192x192.png',
+        sizes: '192x192',
+        type: 'image/png',
+      },
+      {
+        src: 'pwa-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'any',
+      },
+      {
+        src: 'maskable-icon-512x512.png',
+        sizes: '512x512',
+        type: 'image/png',
+        purpose: 'maskable',
+      },
+    ],
+    display_override: ['window-controls-overlay'],
+  },
+  devOptions: {
+    enabled: process.env.SW_DEV === 'true',
+    type: process.env.SW === 'true' ? 'module' : 'classic',
+    navigateFallbackAllowlist: [/^index.html$/],
+  },
+  workbox: {
+    globPatterns: [
+      '**/*.{html,css,js,json,txt,ico,svg,jpg,png,webp,woff,woff2,ttf,eot,otf,wasm}',
+    ],
+  },
+}
+
+if (sw) {
+  pwaOptions.srcDir = 'src'
+  pwaOptions.strategies = 'injectManifest'
+  pwaOptions.filename = claims ? 'claims-sw.ts' : 'prompt-sw.ts';
+  (pwaOptions.manifest as Partial<ManifestOptions>).name
+    = 'PWA Inject Manifest';
+  (pwaOptions.manifest as Partial<ManifestOptions>).short_name = 'PWA Inject'
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
   server: {
     port: 3330,
+  },
+  build: {
+    sourcemap: process.env.SOURCE_MAP === 'true',
   },
   plugins: [
     tsconfigPaths({ loose: true }),
@@ -24,6 +91,11 @@ export default defineConfig({
     }),
     visualizer({
       filename: 'html/visualizer-stats.html',
+    }) as unknown as PluginOption,
+    VitePWA(pwaOptions),
+    replace({
+      __DATE__: new Date().toISOString(),
+      __RELOAD_SW__: process.env.RELOAD_SW === 'true' ? 'true' : 'false',
     }) as unknown as PluginOption,
   ],
   test: {

@@ -1,5 +1,4 @@
-import type { RequestHandler } from 'msw'
-import { HttpResponse, http } from 'msw'
+import { HttpResponse, type RequestHandler, http } from 'msw'
 import { getBaseUrl } from '#mocks/util'
 
 const validEmail = 'email@email.com'

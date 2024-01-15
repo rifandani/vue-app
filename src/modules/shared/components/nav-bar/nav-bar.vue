@@ -14,6 +14,7 @@ import { todosRoute } from '#todo/routes'
 import NavBarSidebar from '#shared/components/nav-bar/nav-bar-sidebar.vue'
 import NavBarThemeMenu from '#shared/components/nav-bar/nav-bar-theme-menu.vue'
 import NavBarProfileMenu from '#shared/components/nav-bar/nav-bar-profile-menu.vue'
+import SvgIcon from '#shared/components/svg-icon.vue'
 
 const { LL } = typesafeI18n()
 const { replace } = useRouter()
@@ -47,7 +48,7 @@ function toggleSidebar() {
 <template>
   <NavBarSidebar v-model:visible="visible" @logout="logout" />
 
-  <Menubar :model="items" :pt="{ popupIcon: 'hidden', button: 'hidden', menu: 'ml-auto' }">
+  <Menubar :model="items" :pt="{ root: 'rounded-none', popupIcon: 'hidden', button: 'hidden', menu: 'ml-auto' }">
     <template #start>
       <section class="flex items-center">
         <SvgIcon id="icon-vue" class="h-8 w-8" />

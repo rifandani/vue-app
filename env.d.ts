@@ -1,4 +1,8 @@
 /// <reference types="vite/client" />
+/// <reference types="vite-plugin-pwa/vue" />
+/// <reference types="vite-plugin-pwa/client" />
+/// <reference types="vite-plugin-pwa/info" />
+/// <reference lib="webworker" />
 
 import type { SetupWorker } from 'msw'
 import type { RippleOptions } from 'primevue/ripple'

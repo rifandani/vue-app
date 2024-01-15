@@ -8,6 +8,7 @@ import type { Translation } from '#i18n/i18n-types'
 import { loadLocale } from '#i18n/i18n-util.sync'
 import { typesafeI18n } from '#i18n/i18n-vue'
 import { todosRoute } from '#todo/routes'
+import FadeTransition from '#shared/components/fade-transition.vue'
 
 // #region VALUES
 const { push } = useRouter()
