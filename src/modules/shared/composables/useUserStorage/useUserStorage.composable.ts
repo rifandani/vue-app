@@ -1,5 +1,5 @@
-import type { LoginApiResponseSchema } from '@auth/api/auth.schema'
 import { type RemovableRef, useLocalStorage } from '@vueuse/core'
+import type { LoginApiResponseSchema } from '#auth/api/auth.schema'
 
 type UseUserStorage = RemovableRef<LoginApiResponseSchema | null>
 

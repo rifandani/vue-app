@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { loginRoute } from '@auth/routes/auth.route'
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
-import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import Avatar from 'primevue/avatar'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import type { MenuItem } from 'primevue/menuitem'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUserStorage } from '#shared/composables/useUserStorage/useUserStorage.composable'
+import { loginRoute } from '#auth/routes/auth.route'
+import { typesafeI18n } from '#i18n/i18n-vue'
 
 const { LL } = typesafeI18n()
 const user = useUserStorage()

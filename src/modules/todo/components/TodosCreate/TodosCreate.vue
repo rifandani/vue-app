@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { random } from '@rifandani/nxact-yutiriti'
-import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { useQueryClient } from '@tanstack/vue-query'
-import { todoSchema } from '@todo/api/todo.schema'
-import { useTodoCreateMutation } from '@todo/composables/useTodoCreateMutation.composable'
-import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
 import { toTypedSchema } from '@vee-validate/zod'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
+import { useTodoListParams } from '#todo/composables/useTodoListParams.composable'
+import { useTodoCreateMutation } from '#todo/composables/useTodoCreateMutation.composable'
+import { todoSchema } from '#todo/api/todo.schema'
+import { useUserStorage } from '#shared/composables/useUserStorage/useUserStorage.composable'
+import { typesafeI18n } from '#i18n/i18n-vue'
 
 // #region VALUES
 const { LL } = typesafeI18n()

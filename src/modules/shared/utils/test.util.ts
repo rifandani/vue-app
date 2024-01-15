@@ -1,7 +1,3 @@
-import type { Locales } from '@i18n/i18n-types'
-import { detectLocale } from '@i18n/i18n-util'
-import { loadLocaleAsync } from '@i18n/i18n-util.async'
-import { i18nPlugin } from '@i18n/i18n-vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { type RenderResult, render } from '@testing-library/vue'
 import type { AnyFn } from '@vueuse/core'
@@ -10,6 +6,10 @@ import ToastService from 'primevue/toastservice'
 import { localStorageDetector } from 'typesafe-i18n/detectors'
 import { type TestAPI, test } from 'vitest'
 import { createApp } from 'vue'
+import { i18nPlugin } from '#i18n/i18n-vue'
+import { loadLocaleAsync } from '#i18n/i18n-util.async'
+import { detectLocale } from '#i18n/i18n-util'
+import type { Locales } from '#i18n/i18n-types'
 
 export interface RenderWrapperParams {
   locales: Locales

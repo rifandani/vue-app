@@ -1,14 +1,14 @@
-import { getBaseUrl } from '@mocks/util'
-import { type ResourceParamsSchema, resourceParamsSchema } from '@shared/api/resource.schema'
+import type { RequestHandler } from 'msw'
+import { HttpResponse, http } from 'msw'
+import { mockTodo } from '../entities'
+import { getBaseUrl } from '#mocks/util'
+import { type ResourceParamsSchema, resourceParamsSchema } from '#shared/api/resource.schema'
 import type {
   CreateTodoSchema,
   DeleteTodoApiResponseSchema,
   TodoSchema,
   UpdateTodoSchema,
-} from '@todo/api/todo.schema'
-import type { RequestHandler } from 'msw'
-import { HttpResponse, http } from 'msw'
-import { mockTodo } from '../entities'
+} from '#todo/api/todo.schema'
 
 function getTodos(length: number) {
   return Array.from({ length }, (_, idx) =>

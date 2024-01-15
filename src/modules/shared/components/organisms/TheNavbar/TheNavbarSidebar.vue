@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { homeRoute } from '@home/routes/home.route'
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
-import { playgroundRoute } from '@playground/routes/playground.route'
-import { SvgIcon } from '@shared/components/atoms'
-import { todosRoute } from '@todo/routes/todo.route'
 import Button from 'primevue/button'
 import Sidebar from 'primevue/sidebar'
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import { todosRoute } from '#todo/routes/todo.route'
+import { SvgIcon } from '#shared/components/atoms'
+import { playgroundRoute } from '#playground/routes/playground.route'
+import { homeRoute } from '#home/routes/home.route'
+import { typesafeI18n } from '#i18n/i18n-vue'
 
 const props = defineProps<{
   visible: boolean

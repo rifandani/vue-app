@@ -1,18 +1,6 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
-import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
-import TheNavbar from '@shared/components/organisms/TheNavbar/TheNavbar.vue'
-import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
-import { todoApi, todoKeys } from '@todo/api/todo.api'
-import {
-  type UpdateTodoApiResponseSchema,
-  type UpdateTodoSchema,
-  updateTodoSchema,
-} from '@todo/api/todo.schema'
-import { useTodoDetailParams } from '@todo/composables/useTodoDetailParams.composable'
-import { todosRoute } from '@todo/routes/todo.route'
 import { toTypedSchema } from '@vee-validate/zod'
 import Button from 'primevue/button'
 import InlineMessage from 'primevue/inlinemessage'
@@ -24,6 +12,18 @@ import { computed } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { z } from 'zod'
 import { fromZodError } from 'zod-validation-error'
+import { todosRoute } from '#todo/routes/todo.route'
+import { useTodoDetailParams } from '#todo/composables/useTodoDetailParams.composable'
+import {
+  type UpdateTodoApiResponseSchema,
+  type UpdateTodoSchema,
+  updateTodoSchema,
+} from '#todo/api/todo.schema'
+import { todoApi, todoKeys } from '#todo/api/todo.api'
+import { useUserStorage } from '#shared/composables/useUserStorage/useUserStorage.composable'
+import TheNavbar from '#shared/components/organisms/TheNavbar/TheNavbar.vue'
+import type { ErrorApiResponseSchema } from '#shared/api/error.schema'
+import { typesafeI18n } from '#i18n/i18n-vue'
 
 // #region VALUES
 const route = useRoute()

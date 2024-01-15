@@ -1,6 +1,3 @@
-import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
-import type { ResourceParamsSchema } from '@shared/api/resource.schema'
-import { http } from '@shared/services/api/http.api'
 import {
   type CreateTodoApiResponseSchema,
   type CreateTodoSchema,
@@ -17,6 +14,9 @@ import {
   todoListApiResponseSchema,
   updateTodoApiResponseSchema,
 } from './todo.schema'
+import type { ErrorApiResponseSchema } from '#shared/api/error.schema'
+import type { ResourceParamsSchema } from '#shared/api/resource.schema'
+import { http } from '#shared/services/api/http.api'
 
 export const todoKeys = {
   all: ['todos'] as const,

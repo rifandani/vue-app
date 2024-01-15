@@ -1,11 +1,5 @@
 <script setup lang="ts">
-import { authApi } from '@auth/api/auth.api'
-import { type LoginApiResponseSchema, type LoginSchema, loginSchema } from '@auth/api/auth.schema'
-import { homeRoute } from '@home/routes/home.route'
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
-import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
-import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
 import { useMutation } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
 import Button from 'primevue/button'
@@ -15,6 +9,12 @@ import Password from 'primevue/password'
 import { twJoin } from 'tailwind-merge'
 import { useForm } from 'vee-validate'
 import { useRouter } from 'vue-router'
+import { useUserStorage } from '#shared/composables/useUserStorage/useUserStorage.composable'
+import type { ErrorApiResponseSchema } from '#shared/api/error.schema'
+import { typesafeI18n } from '#i18n/i18n-vue'
+import { homeRoute } from '#home/routes/home.route'
+import { type LoginApiResponseSchema, type LoginSchema, loginSchema } from '#auth/api/auth.schema'
+import { authApi } from '#auth/api/auth.api'
 
 const { LL } = typesafeI18n()
 const user = useUserStorage()

@@ -1,15 +1,15 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
-import type { TodoSchema } from '@todo/api/todo.schema'
-import { useTodoDeleteMutation } from '@todo/composables/useTodoDeleteMutation.composable'
-import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
-import { useTodoUpdateMutation } from '@todo/composables/useTodoUpdateMutation.composable'
-import { todosDetailRoute } from '@todo/routes/todo.route'
 import Button from 'primevue/button'
 import Checkbox from 'primevue/checkbox'
 import { twJoin } from 'tailwind-merge'
 import { RouterLink } from 'vue-router'
+import type { TodoSchema } from '#todo/api/todo.schema'
+import { useTodoDeleteMutation } from '#todo/composables/useTodoDeleteMutation.composable'
+import { useTodoListParams } from '#todo/composables/useTodoListParams.composable'
+import { useTodoUpdateMutation } from '#todo/composables/useTodoUpdateMutation.composable'
+import { todosDetailRoute } from '#todo/routes/todo.route'
+import { useUserStorage } from '#shared/composables/useUserStorage/useUserStorage.composable'
 
 // #region VALUES
 const props = defineProps<{

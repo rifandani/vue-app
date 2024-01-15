@@ -1,10 +1,10 @@
-import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
-import { http } from '@shared/services/api/http.api'
 import {
   type LoginApiResponseSchema,
   type LoginSchema,
   loginApiResponseSchema,
 } from './auth.schema'
+import type { ErrorApiResponseSchema } from '#shared/api/error.schema'
+import { http } from '#shared/services/api/http.api'
 
 export const authApi = {
   login: async (creds: LoginSchema) => {

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import starScatter from '@assets/star-scatter.svg'
-import LoginForm from '@auth/components/LoginForm/LoginForm.vue'
-import { homeRoute } from '@home/routes/home.route'
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
-import { WrapTranslation } from '@shared/components/atoms'
 import { RouterLink } from 'vue-router'
+import starScatter from '#assets/star-scatter.svg'
+import LoginForm from '#auth/components/LoginForm/LoginForm.vue'
+import { homeRoute } from '#home/routes/home.route'
+import { typesafeI18n } from '#i18n/i18n-vue'
+import { WrapTranslation } from '#shared/components/atoms'
 
 const { LL } = typesafeI18n()
 </script>

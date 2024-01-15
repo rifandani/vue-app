@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
-import { ListSlideTransition } from '@shared/components/atoms'
 import { useQuery } from '@tanstack/vue-query'
-import { todoApi } from '@todo/api/todo.api'
-import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
 import InlineMessage from 'primevue/inlinemessage'
 import TodosItem from '../TodosItem/TodosItem.vue'
+import { todoApi } from '#todo/api/todo.api'
+import { useTodoListParams } from '#todo/composables/useTodoListParams.composable'
+import { ListSlideTransition } from '#shared/components/atoms'
+import { typesafeI18n } from '#i18n/i18n-vue'
 
 // #region VALUES
 const { LL } = typesafeI18n()

@@ -1,12 +1,5 @@
 <script setup lang="ts">
-import { loginRoute } from '@auth/routes/auth.route'
-import { homeRoute } from '@home/routes/home.route'
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
-import { playgroundRoute } from '@playground/routes/playground.route'
-import { SvgIcon } from '@shared/components/atoms'
-import { useUserStorage } from '@shared/composables/useUserStorage/useUserStorage.composable'
-import { todosRoute } from '@todo/routes/todo.route'
 import Button from 'primevue/button'
 import Menubar from 'primevue/menubar'
 import type { MenuItem } from 'primevue/menuitem'
@@ -15,6 +8,13 @@ import { useRouter } from 'vue-router'
 import TheNavbarProfileMenu from './TheNavbarProfileMenu.vue'
 import TheNavbarSidebar from './TheNavbarSidebar.vue'
 import TheNavbarThemeMenu from './TheNavbarThemeMenu.vue'
+import { todosRoute } from '#todo/routes/todo.route'
+import { useUserStorage } from '#shared/composables/useUserStorage/useUserStorage.composable'
+import { SvgIcon } from '#shared/components/atoms'
+import { playgroundRoute } from '#playground/routes/playground.route'
+import { typesafeI18n } from '#i18n/i18n-vue'
+import { homeRoute } from '#home/routes/home.route'
+import { loginRoute } from '#auth/routes/auth.route'
 
 const { LL } = typesafeI18n()
 const { replace } = useRouter()

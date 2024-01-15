@@ -1,5 +1,5 @@
-import { todoKeys } from '@todo/api/todo.api'
 import { type ComputedRef, computed } from 'vue'
+import { todoKeys } from '#todo/api/todo.api'
 
 interface UseTodoDetailQuery {
   id: ComputedRef<number>

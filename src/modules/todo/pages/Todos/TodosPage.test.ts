@@ -1,6 +1,6 @@
-import { testWrapper } from '@shared/utils/test.util'
 import { screen } from '@testing-library/vue'
 import TodosPage from './TodosPage.vue'
+import { testWrapper } from '#shared/utils/test.util'
 
 describe('todosPage', () => {
   testWrapper('should render properly', ({ wrapper }) => {

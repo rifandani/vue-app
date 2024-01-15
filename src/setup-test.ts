@@ -1,6 +1,6 @@
-import { server } from '@mocks/http/server'
+import { server } from '#mocks/http/server'
 
-import '@mocks/module'
+import '#mocks/module'
 import '@testing-library/jest-dom/vitest'
 
 // Establish API mocking before all tests with MSW

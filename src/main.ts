@@ -1,10 +1,3 @@
-import App from '@app/entry.vue'
-import { router } from '@app/router'
-import { detectLocale } from '@i18n/i18n-util'
-import { loadLocale } from '@i18n/i18n-util.sync'
-import { i18nPlugin } from '@i18n/i18n-vue'
-import DarkModeSwitch from '@lib/wc/DarkModeSwitch.ce.vue'
-import MyCounter from '@lib/wc/MyCounter.ce.vue'
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
 import AnimateOnScroll from 'primevue/animateonscroll'
@@ -18,6 +11,13 @@ import {
   navigatorDetector,
 } from 'typesafe-i18n/detectors'
 import { createApp, defineCustomElement } from 'vue'
+import MyCounter from '#lib/wc/my-counter.ce.vue'
+import DarkModeSwitch from '#lib/wc/dark-mode-switch.ce.vue'
+import { i18nPlugin } from '#i18n/i18n-vue'
+import { loadLocale } from '#i18n/i18n-util.sync'
+import { detectLocale } from '#i18n/i18n-util'
+import { router } from '#app/router'
+import App from '#app/entry.vue'
 import './main.css'
 
 const root = document.getElementById('app')

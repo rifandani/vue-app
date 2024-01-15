@@ -4,7 +4,7 @@ import {
   type MyCounterProps,
   myCounterEventDecrement,
   myCounterEventIncrement,
-} from './MyCounter.constant'
+} from './my-counter.constant'
 
 const props = defineProps<MyCounterProps>()
 
@@ -85,6 +85,7 @@ watchEffect(() => {
   border-radius: 10px;
   background-color: var(--bg-normal);
 }
+
 .btn:hover {
   cursor: pointer;
   background-color: var(--bg-hover);

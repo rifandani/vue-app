@@ -1,14 +1,14 @@
-import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
-import type { todoKeys } from '@todo/api/todo.api'
-import { todoApi } from '@todo/api/todo.api'
+import type { ComputedRef } from 'vue'
+import type { todoKeys } from '#todo/api/todo.api'
+import { todoApi } from '#todo/api/todo.api'
 import type {
   CreateTodoApiResponseSchema,
   CreateTodoSchema,
   TodoListApiResponseSchema,
-} from '@todo/api/todo.schema'
-import { defaultLimit } from '@todo/constants/todos.constant'
-import type { ComputedRef } from 'vue'
+} from '#todo/api/todo.schema'
+import { defaultLimit } from '#todo/constants/todos.constant'
+import type { ErrorApiResponseSchema } from '#shared/api/error.schema'
 
 interface UseTodoCreateMutationProps {
   queryKey: ComputedRef<ReturnType<typeof todoKeys.list>>

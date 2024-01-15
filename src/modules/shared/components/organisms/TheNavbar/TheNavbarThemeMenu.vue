@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@i18n/i18n-vue'
 import { Icon } from '@iconify/vue'
-import { useTheme } from '@shared/composables/useTheme/useTheme'
 import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import type { MenuItem } from 'primevue/menuitem'
 import { ref } from 'vue'
+import { useColorMode } from '@vueuse/core'
+import { typesafeI18n } from '#i18n/i18n-vue'
 
 const { LL } = typesafeI18n()
-const { mode, changeTheme } = useTheme()
+const mode = useColorMode()
 
 const menuTheme = ref<InstanceType<typeof Menu> | null>(null)
 const menuItemsTheme = ref<MenuItem[]>([
@@ -18,25 +18,25 @@ const menuItemsTheme = ref<MenuItem[]>([
       {
         icon: 'lucide:computer',
         label: LL.value.common.system(),
-        showEndIcon: mode.value === 'auto',
+        showEndIcon: mode.store.value === 'auto', // FIXME: this is not reactive
         command: () => {
-          changeTheme('auto')
+          mode.value = 'auto'
         },
       },
       {
         icon: 'lucide:sun',
         label: LL.value.common.light(),
-        showEndIcon: mode.value === 'light',
+        showEndIcon: mode.store.value === 'light',
         command: () => {
-          changeTheme('light')
+          mode.value = 'light'
         },
       },
       {
         icon: 'lucide:moon',
         label: LL.value.common.dark(),
-        showEndIcon: mode.value === 'dark',
+        showEndIcon: mode.store.value === 'dark',
         command: () => {
-          changeTheme('dark')
+          mode.value = 'dark'
         },
       },
     ],
@@ -52,11 +52,10 @@ function toggleTheme(event: Event) {
   <Button
     aria-haspopup="true"
     aria-controls="menu-theme"
-    :label="LL.common.theme()"
     @click="toggleTheme"
   >
     <template #icon>
-      <Icon icon="lucide:computer" class="mr-2" />
+      <Icon icon="lucide:computer" />
     </template>
   </Button>
 

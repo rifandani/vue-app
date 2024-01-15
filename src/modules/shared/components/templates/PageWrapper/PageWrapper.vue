@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { NavBar } from '@shared/components/organisms'
 import { RouterView } from 'vue-router'
+import TheNavBar from '#shared/components/organisms/TheNavbar/TheNavbar.vue'
 </script>
 
 <template>
-  <NavBar><RouterView /></NavBar>
+  <TheNavBar><RouterView /></TheNavBar>
 </template>

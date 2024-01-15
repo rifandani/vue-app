@@ -1,6 +1,6 @@
-import { testWrapper } from '@shared/utils/test.util'
 import { screen } from '@testing-library/vue'
 import LoginPage from './LoginPage.vue'
+import { testWrapper } from '#shared/utils/test.util'
 
 describe('loginPage', () => {
   testWrapper('should render properly', ({ wrapper }) => {

@@ -2,8 +2,8 @@
 
 import type { SetupWorker } from 'msw'
 import type { RippleOptions } from 'primevue/ripple'
-import type DarkModeSwitch from './src/lib/wc/DarkModeSwitch.ce.vue'
-import type MyCounter from './src/lib/wc/MyCounter.ce.vue'
+import type DarkModeSwitch from './src/lib/wc/dark-mode-switch.ce.vue'
+import type MyCounter from './src/lib/wc/my-counter.ce.vue'
 
 interface ImportMetaEnv {
   readonly VITE_APP_TITLE: string // prefixed with "VITE_" -> exposed to our Vite-processed code

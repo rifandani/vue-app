@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import HomeClock from '@home/components/HomeClock/HomeClock.vue'
-import { typesafeI18n } from '@i18n/i18n-vue'
-import TheNavbar from '@shared/components/organisms/TheNavbar/TheNavbar.vue'
+import HomeClock from '#home/components/HomeClock/HomeClock.vue'
+import { typesafeI18n } from '#i18n/i18n-vue'
+import TheNavbar from '#shared/components/organisms/TheNavbar/TheNavbar.vue'
 
 const { LL } = typesafeI18n()
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TheDirectives from '@playground/components/TheDirectives.vue'
-import WebComponents from '@playground/components/WebComponents.vue'
+import TheDirectives from '#playground/components/TheDirectives.vue'
+import WebComponents from '#playground/components/WebComponents.vue'
 </script>
 
 <template>

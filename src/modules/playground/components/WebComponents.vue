@@ -1,11 +1,11 @@
 <script setup lang="ts">
+import Button from 'primevue/button'
+import { onMounted, onUnmounted, ref } from 'vue'
 import {
   type MyCounterEventDetail,
   myCounterEventDecrement,
   myCounterEventIncrement,
-} from '@lib/wc/MyCounter.constant'
-import Button from 'primevue/button'
-import { onMounted, onUnmounted, ref } from 'vue'
+} from '#lib/wc/my-counter.constant'
 
 const sectionRef = ref<HTMLDivElement>()
 const initialCount = ref('10')

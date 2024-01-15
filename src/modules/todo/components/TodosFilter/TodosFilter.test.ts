@@ -1,8 +1,8 @@
-import { testWrapper } from '@shared/utils/test.util'
 import userEvent from '@testing-library/user-event'
 import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import TodosFilter from './TodosFilter.vue'
+import { testWrapper } from '#shared/utils/test.util'
 
 describe('todosFilter', () => {
   const mockSelectFn = vi.fn()

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { typesafeI18n } from '@i18n/i18n-vue'
-import { useTodoListParams } from '@todo/composables/useTodoListParams.composable'
-import { limits } from '@todo/constants/todos.constant'
 import type { DropdownChangeEvent } from 'primevue/dropdown'
 import Dropdown from 'primevue/dropdown'
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
+import { limits } from '#todo/constants/todos.constant'
+import { useTodoListParams } from '#todo/composables/useTodoListParams.composable'
+import { typesafeI18n } from '#i18n/i18n-vue'
 
 // #region VALUES
 const router = useRouter()

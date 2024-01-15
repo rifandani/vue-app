@@ -1,5 +1,5 @@
-import { resourceListSchema } from '@shared/api/resource.schema'
 import { z } from 'zod'
+import { resourceListSchema } from '#shared/api/resource.schema'
 
 // #region MODEL SCHEMA
 export const todoSchema = z.object({

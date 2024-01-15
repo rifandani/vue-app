@@ -1,15 +1,15 @@
-import { typesafeI18n } from '@i18n/i18n-vue'
-import type { ErrorApiResponseSchema } from '@shared/api/error.schema'
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
-import type { todoKeys } from '@todo/api/todo.api'
-import { todoApi } from '@todo/api/todo.api'
+import { useToast } from 'primevue/usetoast'
+import type { ComputedRef } from 'vue'
+import type { todoKeys } from '#todo/api/todo.api'
+import { todoApi } from '#todo/api/todo.api'
 import type {
   TodoListApiResponseSchema,
   UpdateTodoApiResponseSchema,
   UpdateTodoSchema,
-} from '@todo/api/todo.schema'
-import { useToast } from 'primevue/usetoast'
-import type { ComputedRef } from 'vue'
+} from '#todo/api/todo.schema'
+import type { ErrorApiResponseSchema } from '#shared/api/error.schema'
+import { typesafeI18n } from '#i18n/i18n-vue'
 
 interface CreateTodoUpdateMutationProps {
   queryKey: ComputedRef<ReturnType<typeof todoKeys.list>>

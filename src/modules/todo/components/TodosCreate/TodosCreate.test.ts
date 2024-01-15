@@ -1,8 +1,8 @@
-import { testWrapper } from '@shared/utils/test.util'
 import userEvent from '@testing-library/user-event'
 import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import TodosCreate from './TodosCreate.vue'
+import { testWrapper } from '#shared/utils/test.util'
 
 describe('todosCreate', () => {
   const todoValue = 'new todo'
