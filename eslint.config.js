@@ -48,13 +48,3 @@ export default antfu(
   // jest-dom.configs.recommended,
   // testing-library/vue.configs.recommended,
 )
-
-// rules: {
-//   'testing-library/no-node-access': ['error', { allowContainerFirstChild: true }],
-//   'vuejs-accessibility/label-has-for': [
-//     'error',
-//     {
-//       controlComponents: ['InputText', 'Password', 'Dropdown']
-//     }
-//   ]
-// },
