@@ -2,7 +2,6 @@
 import Button from 'primevue/button'
 import Message from 'primevue/message'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
-import { Teleport } from 'vue'
 
 // replaced dynamically
 const buildDate = '__DATE__' as '__DATE__' | Omit<string, '__DATE__'>
