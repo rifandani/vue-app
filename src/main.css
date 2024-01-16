@@ -6,8 +6,13 @@
 }
 
 @layer primevue {
+  * {
+    min-width: 0;
+  }
+
   body {
     margin: 0; /* Remove the margin in all browsers. */
+    min-height: 100dvh;
   }
 }
 

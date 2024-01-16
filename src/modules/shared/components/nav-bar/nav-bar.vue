@@ -16,9 +16,9 @@ import NavBarThemeMenu from '#shared/components/nav-bar/nav-bar-theme-menu.vue'
 import NavBarProfileMenu from '#shared/components/nav-bar/nav-bar-profile-menu.vue'
 import SvgIcon from '#shared/components/svg-icon.vue'
 
+const user = useUserStorage()
 const { LL } = typesafeI18n()
 const { replace } = useRouter()
-const user = useUserStorage()
 
 const visible = ref(false)
 const items = ref<MenuItem[]>([

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Message from 'primevue/message'
 import ClockSection from '#home/components/clock-section/clock-section.vue'
 import { typesafeI18n } from '#i18n/i18n-vue'
 import NavBar from '#shared/components/nav-bar/nav-bar.vue'
@@ -17,8 +16,4 @@ const { LL } = typesafeI18n()
 
     <ClockSection />
   </main>
-
-  <Message severity="info">
-    Info Message
-  </Message>
 </template>

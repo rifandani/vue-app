@@ -1,5 +1,8 @@
 <script setup lang="ts">
+import Button from 'primevue/button'
+import Message from 'primevue/message'
 import { useRegisterSW } from 'virtual:pwa-register/vue'
+import { Teleport } from 'vue'
 
 // replaced dynamically
 const buildDate = '__DATE__' as '__DATE__' | Omit<string, '__DATE__'>
@@ -38,34 +41,26 @@ function onClose() {
 </script>
 
 <template>
-  <aside id="ReloadPromptSW" className="toast">
-    <div
-      v-if="offlineReady || needRefresh"
-      className="alert relative block min-w-[20rem] max-w-[20rem] overflow-hidden p-3 shadow-lg"
-    >
-      <h3 className="line-clamp-3 whitespace-pre-wrap break-words pb-3">
-        {{ offlineReady
-          ? 'App ready to work offline'
-          : 'New content available, click on reload button to update' }}
-      </h3>
+  <Teleport to="body">
+    <aside id="reload-prompt-sw">
+      <Message
+        v-if="offlineReady || needRefresh" severity="info"
+        :pt="{ root: 'absolute mt-0 mb-4 mr-4 bottom-0 right-0', wrapper: 'p-4', text: 'min-w-[20rem] max-w-[20rem] overflow-hidden pl-4' }"
+        @close="onClose"
+      >
+        <p class="line-clamp-3 whitespace-pre-wrap break-words">
+          {{ offlineReady
+            ? 'App ready to work offline'
+            : 'New content available, click on reload button to update' }}
+        </p>
 
-      <section className="flex justify-between">
-        <button
-          type="button" className="btn-outlined btn btn-sm w-1/2"
-          @click="onClose"
-        >
-          Close
-        </button>
-
-        <button
-          v-if="needRefresh" type="button" className="btn btn-primary btn-sm w-1/2"
+        <Button
+          v-if="needRefresh" severity="secondary" size="small" outlined label="Reload"
           @click="() => updateServiceWorker()"
-        >
-          Reload
-        </button>
-      </section>
-    </div>
+        />
+      </Message>
 
-    <span className="hidden">{{ buildDate }}</span>
-  </aside>
+      <span className="hidden">{{ buildDate }}</span>
+    </aside>
+  </Teleport>
 </template>

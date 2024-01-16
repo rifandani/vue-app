@@ -9,8 +9,8 @@ import ReloadPromptSw from '#app/reload-prompt-sw.vue'
 <template>
   <Listeners>
     <RouterView />
-    <Toast position="bottom-center" />
-    <VueQueryDevtools button-position="bottom-right" :initial-is-open="false" />
+    <Toast position="bottom-right" />
+    <VueQueryDevtools button-position="bottom-left" :initial-is-open="false" />
     <ReloadPromptSw />
   </Listeners>
 </template>
