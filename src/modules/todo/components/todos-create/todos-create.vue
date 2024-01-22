@@ -52,7 +52,7 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
       if (error)
-        queryClient.setQueryData(queryKey, context?.previousTodosQueryResponse)
+        queryClient.setQueryData(queryKey.value, context?.previousTodosQueryResponse)
     },
   })
 })

@@ -45,7 +45,7 @@ export function useTodoUpdate({ queryKey }: CreateTodoUpdateMutationProps) {
         = (queryClient.getQueryData(queryKey) as TodoListApiResponseSchema) ?? emptyResponse
 
       // Optimistically update to the new value
-      queryClient.setQueryData(queryKey, {
+      queryClient.setQueryData(queryKey.value, {
         ...previousTodosQueryResponse,
         todos: previousTodosQueryResponse.todos.map(_todo =>
           _todo.id === id ? { ..._todo, ...body } : _todo,
@@ -67,7 +67,7 @@ export function useTodoUpdate({ queryKey }: CreateTodoUpdateMutationProps) {
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
       if (error)
-        queryClient.setQueryData(queryKey, context?.previousTodosQueryResponse)
+        queryClient.setQueryData(queryKey.value, context?.previousTodosQueryResponse)
 
       // if we want to refetch after error or success:
       // await queryClient.invalidateQueries({ queryKey });

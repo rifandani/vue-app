@@ -43,7 +43,7 @@ export function useTodoCreate({ queryKey }: UseTodoCreateMutationProps) {
         = (queryClient.getQueryData(queryKey) as TodoListApiResponseSchema) ?? emptyResponse
 
       // Optimistically update to the new value & delete the last value
-      queryClient.setQueryData(queryKey, {
+      queryClient.setQueryData(queryKey.value, {
         ...previousTodosQueryResponse,
         todos: [newTodo, ...previousTodosQueryResponse.todos.slice(0, limit - 1)],
       })
