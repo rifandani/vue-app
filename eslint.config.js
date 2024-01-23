@@ -5,8 +5,6 @@ import testingLibrary from 'eslint-plugin-testing-library'
 import tailwindcss from 'eslint-plugin-tailwindcss'
 import vueA11y from 'eslint-plugin-vuejs-accessibility'
 
-// console.log(`🦌 ~ "eslint.config.js" at line 6: a11y -> `, { rules: vueA11y.rules, configs: vueA11y.configs.recommended })
-
 export default antfu(
   {
     ignores: [
@@ -120,8 +118,4 @@ export default antfu(
       'tailwindcss/no-custom-classname': 'off',
     },
   },
-  // vue/vue3-recommended.configs.recommended,
-  // vuejs-accessibility/recommended.configs.recommended,
-  // @vue/eslint-config-typescript.configs.recommended,
-  // @vue/eslint-config-prettier/skip-formatting.configs.recommended,
 )
