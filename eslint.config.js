@@ -1,5 +1,6 @@
 import antfu from '@antfu/eslint-config'
 import * as tanstackQuery from '@tanstack/eslint-plugin-query'
+import * as jestDom from 'eslint-plugin-jest-dom'
 
 export default antfu(
   {
@@ -53,7 +54,7 @@ export default antfu(
   },
   {
     name: '@tanstack/query',
-    files: ['src/**/*.{ts,vue}'],
+    files: ['src/**/*.{ts,tsx,vue}'],
     plugins: {
       '@tanstack/query': {
         rules: tanstackQuery.rules,
@@ -62,11 +63,21 @@ export default antfu(
     },
     rules: tanstackQuery.configs.recommended.rules,
   },
+  {
+    name: 'jest-dom',
+    files: ['src/**/*.test.{ts,tsx}'],
+    plugins: {
+      'jest-dom': {
+        rules: jestDom.rules,
+        configs: jestDom.configs.recommended,
+      },
+    },
+    rules: jestDom.configs.recommended.rules,
+  },
   // vue/vue3-recommended.configs.recommended,
   // vuejs-accessibility/recommended.configs.recommended,
   // @vue/eslint-config-typescript.configs.recommended,
   // @vue/eslint-config-prettier/skip-formatting.configs.recommended,
   // tailwindcss.configs.recommended,
-  // jest-dom.configs.recommended,
   // testing-library/vue.configs.recommended,
 )
