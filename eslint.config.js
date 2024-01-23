@@ -2,6 +2,7 @@ import antfu from '@antfu/eslint-config'
 import * as tanstackQuery from '@tanstack/eslint-plugin-query'
 import * as jestDom from 'eslint-plugin-jest-dom'
 import testingLibrary from 'eslint-plugin-testing-library'
+import tailwindcss from 'eslint-plugin-tailwindcss'
 
 export default antfu(
   {
@@ -86,10 +87,22 @@ export default antfu(
     },
     rules: testingLibrary.configs.react.rules,
   },
+  {
+    name: 'tailwindcss',
+    files: ['src/**/*.{ts,tsx,vue}'],
+    plugins: {
+      tailwindcss: {
+        rules: tailwindcss.rules,
+        configs: tailwindcss.configs.recommended,
+      },
+    },
+    rules: {
+      ...tailwindcss.configs.recommended.rules,
+      'tailwindcss/no-custom-classname': 'off',
+    },
+  },
   // vue/vue3-recommended.configs.recommended,
   // vuejs-accessibility/recommended.configs.recommended,
   // @vue/eslint-config-typescript.configs.recommended,
   // @vue/eslint-config-prettier/skip-formatting.configs.recommended,
-  // tailwindcss.configs.recommended,
-  // testing-library/vue.configs.recommended,
 )

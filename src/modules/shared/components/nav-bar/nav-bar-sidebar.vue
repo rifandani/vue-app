@@ -43,7 +43,7 @@ const visibleModel = computed({
       <div class="flex h-full flex-col">
         <div class="flex shrink-0 items-center justify-between p-4">
           <span class="inline-flex items-center gap-2">
-            <SvgIcon id="icon-vue" class="h-6 w-6" />
+            <SvgIcon id="icon-vue" class="size-6" />
             <span class="text-2xl font-semibold text-color-primary">{{ LL.common.appName() }}</span>
           </span>
 

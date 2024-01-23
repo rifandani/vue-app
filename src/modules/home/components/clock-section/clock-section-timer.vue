@@ -4,7 +4,7 @@ const props = defineProps<{ seconds: number, minutes: number, hours: number }>()
 
 <template>
   <section data-testid="clock-section-timer" class="mt-8">
-    <svg class="h-full w-full" viewBox="-50 -50 100 100">
+    <svg class="size-full" viewBox="-50 -50 100 100">
       <circle class="fill-white stroke-surface-900" r="48" />
 
       <!-- markers -->

@@ -51,7 +51,7 @@ function toggleSidebar() {
   <Menubar :model="items" :pt="{ root: 'rounded-none', popupIcon: 'hidden', button: 'hidden', menu: 'ml-auto' }">
     <template #start>
       <section class="flex items-center">
-        <SvgIcon id="icon-vue" class="h-8 w-8" />
+        <SvgIcon id="icon-vue" class="size-8" />
         <span class="ml-2 text-2xl font-semibold text-color-primary">{{
           LL.common.appName()
         }}</span>

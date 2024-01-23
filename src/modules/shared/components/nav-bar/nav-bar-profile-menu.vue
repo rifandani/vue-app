@@ -62,7 +62,7 @@ function toggleUser(event: Event) {
 
 <template>
   <Button aria-haspopup="true" aria-controls="menu-user" rounded text class="p-0" @click="toggleUser">
-    <Avatar :label="user?.username.slice(0, 2)" shape="circle" class="h-11 w-11 bg-surface-300 text-color" />
+    <Avatar :label="user?.username.slice(0, 2)" shape="circle" class="size-11 bg-surface-300 text-color" />
   </Button>
 
   <Menu id="menu-user" ref="menuUser" class="mt-2" :popup="true" :model="menuItemsUser">
