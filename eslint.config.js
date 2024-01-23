@@ -1,6 +1,7 @@
 import antfu from '@antfu/eslint-config'
 import * as tanstackQuery from '@tanstack/eslint-plugin-query'
 import * as jestDom from 'eslint-plugin-jest-dom'
+import testingLibrary from 'eslint-plugin-testing-library'
 
 export default antfu(
   {
@@ -73,6 +74,17 @@ export default antfu(
       },
     },
     rules: jestDom.configs.recommended.rules,
+  },
+  {
+    name: 'testing-library',
+    files: ['src/**/*.test.{ts,tsx}'],
+    plugins: {
+      'testing-library': {
+        rules: testingLibrary.rules,
+        configs: testingLibrary.configs.react,
+      },
+    },
+    rules: testingLibrary.configs.react.rules,
   },
   // vue/vue3-recommended.configs.recommended,
   // vuejs-accessibility/recommended.configs.recommended,

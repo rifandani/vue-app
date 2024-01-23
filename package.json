@@ -94,6 +94,7 @@
     "eslint": " ^8.56.0",
     "eslint-plugin-format": "^0.1.0",
     "eslint-plugin-jest-dom": "^5.1.0",
+    "eslint-plugin-testing-library": "^6.2.0",
     "https-localhost": "^4.7.1",
     "husky": "^8.0.3",
     "jsdom": "^24.0.0",

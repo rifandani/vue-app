@@ -1,5 +1,6 @@
-import { fireEvent, screen } from '@testing-library/vue'
+import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
+import userEvent from '@testing-library/user-event'
 import TodosItem from '#todo/components/todos-item/todos-item.vue'
 import type { TodoSchema } from '#todo/schemas/todo'
 import { testWrapper } from '#shared/utils/test'
@@ -26,6 +27,7 @@ describe('<TodosItem />', () => {
   testWrapper('should render, check checkbox correctly', async ({ wrapper }) => {
     // ARRANGE
     wrapper({ component: TodosItem, props: { todo } })
+    const user = userEvent.setup()
     const form: HTMLFormElement = await screen.findByRole('form', { name: /todo/i })
     const inputId: HTMLInputElement = await screen.findByTestId('input-todoId')
     const inputTodo: HTMLInputElement = await screen.findByRole('checkbox', { name: /todo/i })
@@ -40,7 +42,7 @@ describe('<TodosItem />', () => {
     expect(inputTodo).toBeInTheDocument()
     expect(inputTodo).not.toBeChecked()
     expect(link).toBeInTheDocument()
-    await fireEvent.click(inputTodo)
+    await user.click(inputTodo)
     expect(mockChangeTodo).toHaveBeenCalled()
   })
 

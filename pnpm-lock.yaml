@@ -127,6 +127,9 @@ devDependencies:
   eslint-plugin-jest-dom:
     specifier: ^5.1.0
     version: 5.1.0(@testing-library/dom@9.3.3)(eslint@8.56.0)
+  eslint-plugin-testing-library:
+    specifier: ^6.2.0
+    version: 6.2.0(eslint@8.56.0)(typescript@5.3.3)
   https-localhost:
     specifier: ^4.7.1
     version: 4.7.1
@@ -4729,6 +4732,19 @@ packages:
       minimatch: 9.0.3
       natural-compare-lite: 1.4.0
       vue-eslint-parser: 9.4.0(eslint@8.56.0)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
+    dev: true
+
+  /eslint-plugin-testing-library@6.2.0(eslint@8.56.0)(typescript@5.3.3):
+    resolution: {integrity: sha512-+LCYJU81WF2yQ+Xu4A135CgK8IszcFcyMF4sWkbiu6Oj+Nel0TrkZq/HvDw0/1WuO3dhDQsZA/OpEMGd0NfcUw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6'}
+    peerDependencies:
+      eslint: ^7.5.0 || ^8.0.0
+    dependencies:
+      '@typescript-eslint/utils': 5.62.0(eslint@8.56.0)(typescript@5.3.3)
+      eslint: 8.56.0
     transitivePeerDependencies:
       - supports-color
       - typescript
