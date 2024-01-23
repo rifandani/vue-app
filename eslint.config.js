@@ -3,6 +3,9 @@ import * as tanstackQuery from '@tanstack/eslint-plugin-query'
 import * as jestDom from 'eslint-plugin-jest-dom'
 import testingLibrary from 'eslint-plugin-testing-library'
 import tailwindcss from 'eslint-plugin-tailwindcss'
+import vueA11y from 'eslint-plugin-vuejs-accessibility'
+
+// console.log(`🦌 ~ "eslint.config.js" at line 6: a11y -> `, { rules: vueA11y.rules, configs: vueA11y.configs.recommended })
 
 export default antfu(
   {
@@ -86,6 +89,22 @@ export default antfu(
       },
     },
     rules: testingLibrary.configs.react.rules,
+  },
+  {
+    name: 'vuejs-accessibility',
+    files: ['src/**/*.{ts,tsx,vue}'],
+    plugins: {
+      'vuejs-accessibility': {
+        rules: vueA11y.rules,
+        configs: vueA11y.configs.recommended,
+      },
+    },
+    rules: { ...vueA11y.configs.recommended.rules, 'vuejs-accessibility/label-has-for': [
+      'error',
+      {
+        controlComponents: ['InputText', 'Password', 'Dropdown'],
+      },
+    ] },
   },
   {
     name: 'tailwindcss',

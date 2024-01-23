@@ -96,6 +96,7 @@
     "eslint-plugin-jest-dom": "^5.1.0",
     "eslint-plugin-tailwindcss": "^3.14.0",
     "eslint-plugin-testing-library": "^6.2.0",
+    "eslint-plugin-vuejs-accessibility": "^2.2.1",
     "https-localhost": "^4.7.1",
     "husky": "^8.0.3",
     "jsdom": "^24.0.0",
