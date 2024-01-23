@@ -1,4 +1,5 @@
 import antfu from '@antfu/eslint-config'
+import * as tanstackQuery from '@tanstack/eslint-plugin-query'
 
 export default antfu(
   {
@@ -50,11 +51,21 @@ export default antfu(
       markdown: 'prettier',
     },
   },
+  {
+    name: '@tanstack/query',
+    files: ['src/**/*.{ts,vue}'],
+    plugins: {
+      '@tanstack/query': {
+        rules: tanstackQuery.rules,
+        configs: tanstackQuery.configs.recommended,
+      },
+    },
+    rules: tanstackQuery.configs.recommended.rules,
+  },
   // vue/vue3-recommended.configs.recommended,
   // vuejs-accessibility/recommended.configs.recommended,
   // @vue/eslint-config-typescript.configs.recommended,
   // @vue/eslint-config-prettier/skip-formatting.configs.recommended,
-  // @tanstack/eslint-plugin-query.configs.recommended,
   // tailwindcss.configs.recommended,
   // jest-dom.configs.recommended,
   // testing-library/vue.configs.recommended,
