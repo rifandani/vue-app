@@ -67,6 +67,8 @@ const en = {
     create: 'Create',
     settings: 'Settings',
     account: 'Account',
+    language: 'Language',
+    english: 'English',
   },
   success: {
     action: '{module:string} successfully {action:string}',

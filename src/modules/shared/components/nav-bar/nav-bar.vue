@@ -14,12 +14,12 @@ import { todosRoute } from '#todo/routes'
 import NavBarSidebar from '#shared/components/nav-bar/nav-bar-sidebar.vue'
 import NavBarThemeMenu from '#shared/components/nav-bar/nav-bar-theme-menu.vue'
 import NavBarProfileMenu from '#shared/components/nav-bar/nav-bar-profile-menu.vue'
+import NavBarLanguageMenu from '#shared/components/nav-bar/nav-bar-language-menu.vue'
 import SvgIcon from '#shared/components/svg-icon.vue'
 
 const user = useUserStorage()
 const { LL } = typesafeI18n()
 const { replace } = useRouter()
-
 const visible = ref(false)
 const items = ref<MenuItem[]>([
   {
@@ -35,18 +35,15 @@ const items = ref<MenuItem[]>([
     route: playgroundRoute.path,
   },
 ])
-
-function logout(): void {
-  user.value = null // reset `user` store
-  replace(loginRoute.path) // back to login
-}
-function toggleSidebar() {
-  visible.value = true
-}
 </script>
 
 <template>
-  <NavBarSidebar v-model:visible="visible" @logout="logout" />
+  <NavBarSidebar
+    v-model:visible="visible" @logout="() => {
+      user = null // reset `user` store
+      replace(loginRoute.path) // back to login
+    }"
+  />
 
   <Menubar :model="items" :pt="{ root: 'rounded-none', popupIcon: 'hidden', button: 'hidden', menu: 'ml-auto' }">
     <template #start>
@@ -67,7 +64,11 @@ function toggleSidebar() {
     </template>
 
     <template #end>
-      <Button aria-label="Toggle Sidebar" class="sm:hidden" @click="toggleSidebar">
+      <Button
+        aria-label="Toggle Sidebar" class="sm:hidden" @click="() => {
+          visible = true
+        }"
+      >
         <template #icon>
           <Icon icon="lucide:menu" />
         </template>
@@ -75,6 +76,7 @@ function toggleSidebar() {
 
       <div class="hidden items-center space-x-2 sm:flex">
         <NavBarThemeMenu />
+        <NavBarLanguageMenu />
         <NavBarProfileMenu />
       </div>
     </template>

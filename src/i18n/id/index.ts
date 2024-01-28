@@ -67,6 +67,8 @@ const id = {
     create: 'Buat',
     settings: 'Pengaturan',
     account: 'Akun',
+    language: 'Bahasa',
+    english: 'Inggris',
   },
   success: {
     action: '{module} berhasil {action}',

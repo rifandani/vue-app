@@ -6,37 +6,34 @@ import type { MenuItem } from 'primevue/menuitem'
 import { ref } from 'vue'
 import { useColorMode } from '@vueuse/core'
 import { typesafeI18n } from '#i18n/i18n-vue'
+import { loadLocale } from '#i18n/i18n-util.sync'
 
-const { LL } = typesafeI18n()
-const mode = useColorMode()
-
+const { LL, locale, setLocale } = typesafeI18n()
 const menuTheme = ref<InstanceType<typeof Menu> | null>(null)
 const menuItemsTheme = ref<MenuItem[]>([
   {
-    label: LL.value.common.theme(),
+    label: LL.value.common.language(),
     items: [
       {
-        icon: 'lucide:computer',
-        label: LL.value.common.system(),
-        showEndIcon: mode.store.value === 'auto', // FIXME: this is not reactive
+        icon: 'flag:us-1x1',
+        label: LL.value.common.english(),
+        showEndIcon: locale.value === 'en', // FIXME: this is not reactive
         command: () => {
-          mode.value = 'auto'
+          // update dictionaries and update formatters
+          loadLocale('en')
+          // change locale store
+          setLocale('en')
         },
       },
       {
-        icon: 'lucide:sun',
-        label: LL.value.common.light(),
-        showEndIcon: mode.store.value === 'light',
+        icon: 'flag:id-1x1',
+        label: 'Indonesia',
+        showEndIcon: locale.value === 'id',
         command: () => {
-          mode.value = 'light'
-        },
-      },
-      {
-        icon: 'lucide:moon',
-        label: LL.value.common.dark(),
-        showEndIcon: mode.store.value === 'dark',
-        command: () => {
-          mode.value = 'dark'
+          // update dictionaries and update formatters
+          loadLocale('id')
+          // change locale store
+          setLocale('id')
         },
       },
     ],
@@ -51,7 +48,7 @@ const menuItemsTheme = ref<MenuItem[]>([
     }"
   >
     <template #icon>
-      <Icon icon="lucide:computer" />
+      <Icon icon="lucide:globe" />
     </template>
   </Button>
 

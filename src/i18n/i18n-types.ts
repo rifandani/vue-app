@@ -258,6 +258,14 @@ type RootTranslation = {
 		 * A​c​c​o​u​n​t
 		 */
 		account: string
+		/**
+		 * L​a​n​g​u​a​g​e
+		 */
+		language: string
+		/**
+		 * E​n​g​l​i​s​h
+		 */
+		english: string
 	}
 	success: {
 		/**
@@ -519,6 +527,14 @@ export type TranslationFunctions = {
 		 * Account
 		 */
 		account: () => LocalizedString
+		/**
+		 * Language
+		 */
+		language: () => LocalizedString
+		/**
+		 * English
+		 */
+		english: () => LocalizedString
 	}
 	success: {
 		/**
