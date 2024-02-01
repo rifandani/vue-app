@@ -2,7 +2,7 @@ import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import userEvent from '@testing-library/user-event'
 import TodosItem from '#todo/components/todos-item/todos-item.vue'
-import type { TodoSchema } from '#todo/schemas/todo'
+import type { TodoSchema } from '#todo/apis/todo'
 import { testWrapper } from '#shared/utils/test'
 import { mockTodo } from '#mocks/http/entities'
 

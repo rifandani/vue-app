@@ -17,9 +17,10 @@ import { useTodoDetailParams } from '#todo/composables/use-todo-detail-params'
 import {
   type UpdateTodoApiResponseSchema,
   type UpdateTodoSchema,
+  todoApi,
+  todoKeys,
   updateTodoSchema,
-} from '#todo/schemas/todo'
-import { todoApi, todoKeys } from '#todo/apis/todo'
+} from '#todo/apis/todo'
 import { useUserStorage } from '#shared/composables/use-user-storage'
 import NavBar from '#shared/components/nav-bar/nav-bar.vue'
 import type { ErrorApiResponseSchema } from '#shared/schemas/error'

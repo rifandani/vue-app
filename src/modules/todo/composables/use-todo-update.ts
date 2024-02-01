@@ -1,13 +1,8 @@
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
 import { useToast } from 'primevue/usetoast'
 import type { ComputedRef } from 'vue'
-import type { todoKeys } from '#todo/apis/todo'
+import type { TodoListApiResponseSchema, UpdateTodoApiResponseSchema, UpdateTodoSchema, todoKeys } from '#todo/apis/todo'
 import { todoApi } from '#todo/apis/todo'
-import type {
-  TodoListApiResponseSchema,
-  UpdateTodoApiResponseSchema,
-  UpdateTodoSchema,
-} from '#todo/schemas/todo'
 import type { ErrorApiResponseSchema } from '#shared/schemas/error'
 import { typesafeI18n } from '#i18n/i18n-vue'
 

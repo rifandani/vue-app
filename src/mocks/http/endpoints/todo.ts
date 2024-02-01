@@ -7,7 +7,7 @@ import type {
   DeleteTodoApiResponseSchema,
   TodoSchema,
   UpdateTodoSchema,
-} from '#todo/schemas/todo'
+} from '#todo/apis/todo'
 
 function getTodos(length: number) {
   return Array.from({ length }, (_, idx) =>

@@ -1,12 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
 import type { ComputedRef } from 'vue'
-import type { todoKeys } from '#todo/apis/todo'
+import type { CreateTodoApiResponseSchema, CreateTodoSchema, TodoListApiResponseSchema, todoKeys } from '#todo/apis/todo'
 import { todoApi } from '#todo/apis/todo'
-import type {
-  CreateTodoApiResponseSchema,
-  CreateTodoSchema,
-  TodoListApiResponseSchema,
-} from '#todo/schemas/todo'
 import { defaultLimit } from '#todo/constants/todos'
 import type { ErrorApiResponseSchema } from '#shared/schemas/error'
 

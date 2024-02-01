@@ -13,8 +13,7 @@ import type { ErrorApiResponseSchema } from '#shared/schemas/error'
 import { useUserStorage } from '#shared/composables/use-user-storage'
 import { typesafeI18n } from '#i18n/i18n-vue'
 import { homeRoute } from '#home/routes'
-import { type LoginApiResponseSchema, type LoginSchema, loginSchema } from '#auth/schemas/auth'
-import { authApi } from '#auth/apis/auth'
+import { type LoginApiResponseSchema, type LoginSchema, authApi, loginSchema } from '#auth/apis/auth'
 
 const { LL } = typesafeI18n()
 const user = useUserStorage()

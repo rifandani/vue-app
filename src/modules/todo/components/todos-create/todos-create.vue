@@ -8,7 +8,7 @@ import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
 import { useTodoListParams } from '#todo/composables/use-todo-list-params'
 import { useTodoCreate } from '#todo/composables/use-todo-create'
-import { todoSchema } from '#todo/schemas/todo'
+import { todoSchema } from '#todo/apis/todo'
 import { useUserStorage } from '#shared/composables/use-user-storage'
 import { typesafeI18n } from '#i18n/i18n-vue'
 
