@@ -4,7 +4,6 @@ import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import type { MenuItem } from 'primevue/menuitem'
 import { ref } from 'vue'
-import { useColorMode } from '@vueuse/core'
 import { typesafeI18n } from '#i18n/i18n-vue'
 import { loadLocale } from '#i18n/i18n-util.sync'
 
