@@ -57,7 +57,7 @@ export function useTodoUpdate({ queryKey }: CreateTodoUpdateMutationProps) {
         severity: error ? 'error' : 'success',
         detail: error
           ? t('common.xUpdateError', { feature: 'Todo' })
-          : t('common.xUpdateSuccess', { feature: 'Todo' })
+          : t('common.xUpdateSuccess', { feature: 'Todo' }),
       })
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
