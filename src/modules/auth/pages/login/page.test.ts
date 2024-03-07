@@ -12,12 +12,12 @@ describe('<LoginPage />', () => {
     // ARRANGE
     wrapper({ component: LoginPage })
     const linkHome: HTMLAnchorElement = screen.getByRole('link', { name: /home/i })
-    const linkRegister: HTMLAnchorElement = screen.getByRole('link', { name: /register/i })
+    // const linkRegister: HTMLAnchorElement = screen.getByRole('link', { name: /register/i })
     const imgCover: HTMLImageElement = screen.getByRole('img', { name: /cover/i })
 
     // ASSERT
     expect(linkHome).toBeInTheDocument()
-    expect(linkRegister).toBeInTheDocument()
+    // expect(linkRegister).toBeInTheDocument()
     expect(imgCover).toBeInTheDocument()
   })
 })

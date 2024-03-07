@@ -17,8 +17,8 @@ describe('<TodosCreate />', () => {
     'should be able to type the inputs and submit the create todo form',
     async ({ wrapper }) => {
       // ARRANGE
-      const user = userEvent.setup()
       wrapper({ component: TodosCreate })
+      const user = userEvent.setup()
       const formCreate: HTMLFormElement = screen.getByTestId('form-create')
       const inputTodo: HTMLInputElement = screen.getByTestId('input-create')
       const buttonSubmit: HTMLButtonElement = screen.getByTestId('button-create')

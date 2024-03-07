@@ -4,11 +4,11 @@ import Button from 'primevue/button'
 import Sidebar from 'primevue/sidebar'
 import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { todosRoute } from '#todo/routes'
 import SvgIcon from '#shared/components/svg-icon.vue'
 import { playgroundRoute } from '#playground/routes'
 import { homeRoute } from '#home/routes'
-import { typesafeI18n } from '#i18n/i18n-vue'
 
 const props = defineProps<{
   visible: boolean
@@ -18,7 +18,7 @@ const emit = defineEmits<{
   'update:visible': [value: boolean]
 }>()
 
-const { LL } = typesafeI18n()
+const { t } = useI18n()
 
 /**
  * "visible" is read-only, to make it works with v-model we need a setter
@@ -44,7 +44,7 @@ const visibleModel = computed({
         <div class="flex shrink-0 items-center justify-between p-4">
           <span class="inline-flex items-center gap-2">
             <SvgIcon id="icon-vue" class="size-6" />
-            <span class="text-2xl font-semibold text-color-primary">{{ LL.common.appName() }}</span>
+            <span class="text-2xl font-semibold text-color-primary">{{ t("common.appName") }}</span>
           </span>
 
           <Button text rounded class="p-2" @click="closeCallback">
@@ -76,7 +76,7 @@ const visibleModel = computed({
         </ul>
 
         <div class="mt-auto p-4">
-          <Button rounded outlined class="w-full" severity="danger" :label="LL.auth.logout()" @click="emit('logout')">
+          <Button rounded outlined class="w-full" severity="danger" :label="t('auth.logout')" @click="emit('logout')">
             <template #icon>
               <Icon icon="lucide:log-out" />
             </template>

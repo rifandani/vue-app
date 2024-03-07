@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
 import { useToast } from 'primevue/usetoast'
 import type { ComputedRef } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { DeleteTodoApiResponseSchema, DeleteTodoSchema, TodoListApiResponseSchema, todoKeys } from '#todo/apis/todo'
 import { todoApi } from '#todo/apis/todo'
 import type { ErrorApiResponseSchema } from '#shared/schemas/error'
-import { typesafeI18n } from '#i18n/i18n-vue'
 
 interface CreateTodoDeleteMutationProps {
   queryKey: ComputedRef<ReturnType<typeof todoKeys.list>>
@@ -15,7 +15,7 @@ interface CreateTodoDeleteMutationProps {
  */
 export function useTodoDelete({ queryKey }: CreateTodoDeleteMutationProps) {
   const queryClient = useQueryClient()
-  const { LL } = typesafeI18n()
+  const { t } = useI18n()
   const toast = useToast()
 
   return useMutation<
@@ -54,8 +54,8 @@ export function useTodoDelete({ queryKey }: CreateTodoDeleteMutationProps) {
         life: 3_000,
         severity: error ? 'error' : 'success',
         detail: error
-          ? LL.value.error.action({ module: 'Todo', action: 'delete' })
-          : LL.value.success.action({ module: 'Todo', action: 'deleted' }),
+          ? t('common.xDeleteError', { feature: 'Todo' })
+          : t('common.xDeleteSuccess', { feature: 'Todo' }),
       })
 
       // If the mutation fails, use the context returned from `onMutate` to roll back

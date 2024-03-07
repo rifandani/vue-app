@@ -1,0 +1,69 @@
+{
+  "auth": {
+    "404": "404: Tidak Ditemukan",
+    "welcome": "Selamat datang kembali",
+    "logout": "Keluar",
+    "dontHaveAccount": "Tidak punya akun? ",
+    "registerHere": "Daftar disini",
+    "gone": "Halaman kosong",
+    "backTo": "Kembali ke {path}"
+  },
+  "home": {
+    "sortBtn": "Sortir tombol",
+    "clock": "Jam",
+    "toggleClock": "Beralih Jam",
+    "clickToggleClock": "Klik beralih jam untuk mengulang kalkulasi jam",
+    "getStarted": "Mulai"
+  },
+  "todo": {
+    "todoPlaceholder": "Apa yang akan anda lakukan selanjutnya...",
+    "backTo": "Kembali ke {target}"
+  },
+  "common": {
+    "username": "Username",
+    "usernamePlaceholder": "Username anda...",
+    "password": "Password",
+    "passwordPlaceholder": "Password anda...",
+    "error": "Error",
+    "loginLoading": "Sedang masuk...",
+    "login": "Masuk",
+    "register": "Daftar",
+    "add": "Tambah",
+    "update": "Ubah",
+    "remove": "Hapus",
+    "limit": "Batas",
+    "loading": "Menunggu...",
+    "list": "Daftar {feature}",
+    "xDetail": "Detail {feature}",
+    "xCreateSuccess": "{feature} berhasil dibuat",
+    "xCreateError": "{feature} gagal dibuat",
+    "xUpdateSuccess": "{feature} berhasil diubah",
+    "xUpdateError": "{feature} gagal diubah",
+    "xDeleteSuccess": "{feature} berhasil dihapus",
+    "xDeleteError": "{feature} gagal dihapus",
+    "xError": "{feature} error",
+    "noPageContent": "Tidak ada konten",
+    "appName": "Templat Vue 3",
+    "theme": "Tema",
+    "empty": "Tidak ada data",
+    "unauthorized": "Tidak ada akses. Silahkan masuk terlebih dahulu",
+    "authorized": "Sudah ada akses",
+    "unsavedChanges": "Buang perubahan yang belum disimpan - anda yakin?",
+    "system": "Sistem",
+    "light": "Terang",
+    "dark": "Gelap",
+    "create": "Buat",
+    "settings": "Pengaturan",
+    "account": "Akun",
+    "language": "Bahasa",
+    "english": "Inggris",
+    "errorMinLength": "{field} harus memiliki minimal {length} karakter",
+    "action": "{module} gagal di {action}"
+  },
+  "user": {
+    "preferences": "Preferensi",
+    "likedTodos": "Todos disukai",
+    "savedTodos": "Todos disimpan",
+    "yourComments": "Komentar anda"
+  }
+}

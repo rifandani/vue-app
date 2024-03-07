@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { RouterLink } from 'vue-router'
+import { I18nT, useI18n } from 'vue-i18n'
 import starScatter from '#assets/star-scatter.svg'
 import LoginForm from '#auth/components/login-form/login-form.vue'
 import { homeRoute } from '#home/routes'
-import { typesafeI18n } from '#i18n/i18n-vue'
-import WrapTranslation from '#shared/components/wrap-translation.vue'
 
-const { LL } = typesafeI18n()
+const { t } = useI18n()
 </script>
 
 <template>
@@ -26,18 +25,16 @@ const { LL } = typesafeI18n()
 
         <div class="my-auto flex flex-col justify-center px-8 pt-8 md:justify-start md:px-24 md:pt-0 lg:px-32">
           <h1 class="text-center text-3xl text-color-primary">
-            {{ LL.auth.welcome() }}
+            {{ t('auth.welcome') }}
           </h1>
 
           <LoginForm />
 
-          <p class="py-12 text-center">
-            <WrapTranslation v-slot="{ infix }" :message="LL.auth.registerHere()">
-              <RouterLink role="link" aria-label="link-register" to="/register" class="no-underline">
-                {{ infix }}
-              </RouterLink>
-            </WrapTranslation>
-          </p>
+          <I18nT keypath="auth.dontHaveAccount" tag="p" class="py-12 text-center">
+            <RouterLink role="link" aria-label="link-register" to="/register" class="no-underline">
+              {{ t('auth.registerHere') }}
+            </RouterLink>
+          </I18nT>
         </div>
       </section>
 

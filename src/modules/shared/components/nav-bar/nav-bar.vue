@@ -5,9 +5,9 @@ import Menubar from 'primevue/menubar'
 import type { MenuItem } from 'primevue/menuitem'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { loginRoute } from '#auth/routes'
 import { homeRoute } from '#home/routes'
-import { typesafeI18n } from '#i18n/i18n-vue'
 import { playgroundRoute } from '#playground/routes'
 import { useUserStorage } from '#shared/composables/use-user-storage'
 import { todosRoute } from '#todo/routes'
@@ -18,7 +18,7 @@ import NavBarLanguageMenu from '#shared/components/nav-bar/nav-bar-language-menu
 import SvgIcon from '#shared/components/svg-icon.vue'
 
 const user = useUserStorage()
-const { LL } = typesafeI18n()
+const { t } = useI18n()
 const { replace } = useRouter()
 const visible = ref(false)
 const items = ref<MenuItem[]>([
@@ -50,7 +50,7 @@ const items = ref<MenuItem[]>([
       <section class="flex items-center">
         <SvgIcon id="icon-vue" class="size-8" />
         <span class="ml-2 text-2xl font-semibold text-color-primary">{{
-          LL.common.appName()
+          t("common.appName")
         }}</span>
       </section>
     </template>

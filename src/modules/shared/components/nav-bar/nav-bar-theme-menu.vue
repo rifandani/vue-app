@@ -5,19 +5,18 @@ import Menu from 'primevue/menu'
 import type { MenuItem } from 'primevue/menuitem'
 import { ref } from 'vue'
 import { useColorMode } from '@vueuse/core'
-import { typesafeI18n } from '#i18n/i18n-vue'
+import { useI18n } from 'vue-i18n'
 
-const { LL } = typesafeI18n()
+const { t } = useI18n()
 const mode = useColorMode()
-
 const menuTheme = ref<InstanceType<typeof Menu> | null>(null)
 const menuItemsTheme = ref<MenuItem[]>([
   {
-    label: LL.value.common.theme(),
+    label: t('common.theme'),
     items: [
       {
         icon: 'lucide:computer',
-        label: LL.value.common.system(),
+        label: t('common.system'),
         showEndIcon: mode.store.value === 'auto', // FIXME: this is not reactive
         command: () => {
           mode.value = 'auto'
@@ -25,7 +24,7 @@ const menuItemsTheme = ref<MenuItem[]>([
       },
       {
         icon: 'lucide:sun',
-        label: LL.value.common.light(),
+        label: t('common.light'),
         showEndIcon: mode.store.value === 'light',
         command: () => {
           mode.value = 'light'
@@ -33,7 +32,7 @@ const menuItemsTheme = ref<MenuItem[]>([
       },
       {
         icon: 'lucide:moon',
-        label: LL.value.common.dark(),
+        label: t('common.dark'),
         showEndIcon: mode.store.value === 'dark',
         command: () => {
           mode.value = 'dark'

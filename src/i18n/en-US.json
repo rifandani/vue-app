@@ -1,0 +1,69 @@
+{
+  "auth": {
+    "welcome": "Welcome back",
+    "logout": "Logout",
+    "dontHaveAccount": "Don't have an account? ",
+    "registerHere": "Register here",
+    "404": "404: Not Found",
+    "gone": "It's gone",
+    "backTo": "Go back to {path}"
+  },
+  "home": {
+    "sortBtn": "Sort Buttons",
+    "clock": "Clock",
+    "toggleClock": "Toggle Clock",
+    "clickToggleClock": "Click toggle clock to restart the clock",
+    "getStarted": "Get Started"
+  },
+  "todo": {
+    "todoPlaceholder": "What should you do next...",
+    "backTo": "Go back to {target}"
+  },
+  "common": {
+    "username": "Username",
+    "usernamePlaceholder": "Your username...",
+    "password": "Password",
+    "passwordPlaceholder": "Your password...",
+    "error": "Error",
+    "loginLoading": "Logging in...",
+    "login": "Login",
+    "register": "Register",
+    "add": "Add",
+    "update": "Update",
+    "remove": "Remove",
+    "limit": "Limit",
+    "loading": "Loading...",
+    "list": "{feature} List",
+    "xDetail": "{feature} Detail",
+    "xCreateSuccess": "{feature} successfully created",
+    "xCreateError": "{feature} failed to create",
+    "xUpdateSuccess": "{feature} successfully updated",
+    "xUpdateError": "{feature} failed to update",
+    "xDeleteSuccess": "{feature} successfully deleted",
+    "xDeleteError": "{feature} failed to delete",
+    "xError": "{feature} error",
+    "noPageContent": "No Page Content",
+    "appName": "Vue 3 Template",
+    "theme": "Theme",
+    "empty": "Empty Data",
+    "unauthorized": "Unauthorized. Please login first",
+    "authorized": "Already authorized",
+    "unsavedChanges": "Discard unsaved changes - are you sure?",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark",
+    "create": "Create",
+    "settings": "Settings",
+    "account": "Account",
+    "language": "Language",
+    "english": "English",
+    "errorMinLength": "{field} must contain at least {length} characters",
+    "action": "{module} failed to {action}"
+  },
+  "user": {
+    "preferences": "Preferences",
+    "likedTodos": "Liked todos",
+    "savedTodos": "saved todos",
+    "yourComments": "Your comments"
+  }
+}

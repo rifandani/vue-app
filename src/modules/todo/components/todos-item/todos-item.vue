@@ -23,10 +23,6 @@ const todoDeleteMutation = useTodoDelete({ queryKey })
 // #endregion
 
 // #region HANDLERS
-function onChangeTodo() {
-  todoUpdateMutation.mutate({ ...props.todo, completed: !props.todo.completed })
-}
-
 function onDeleteTodo(evt: Event) {
   // don't allow if not the correct auth user
   if (props.todo.userId !== user.value?.id)
@@ -51,7 +47,9 @@ function onDeleteTodo(evt: Event) {
 
     <Checkbox
       binary aria-label="checkbox-todo" :name="`todo-${props.todo.id}`" :input-id="`todo-${props.todo.id}`"
-      :model-value="props.todo.completed" @change="onChangeTodo"
+      :model-value="props.todo.completed" @change="() => {
+        todoUpdateMutation.mutate({ ...props.todo, completed: !props.todo.completed })
+      }"
     />
 
     <RouterLink

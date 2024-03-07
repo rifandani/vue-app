@@ -1,16 +1,17 @@
 <script setup lang="ts">
+import { watchEffect } from 'vue'
+
 const props = defineProps<{
   log: any
   dir?: any
 }>()
 
-// eslint-disable-next-line no-console
-console.log('🚀 ~ file: LogConsole.vue:7 ~ props.log:', props)
-if (props?.dir)
+watchEffect(() => {
   // eslint-disable-next-line no-console
-  console.dir('🚀 ~ file: LogConsole.vue:8 ~ props.dir:', props)
-</script>
+  console.log('🚀 ~ file: LogConsole.vue:7 ~ props.log:', props)
 
-<template>
-  {{ null }}
-</template>
+  if (props?.dir)
+    // eslint-disable-next-line no-console
+    console.dir('🚀 ~ file: LogConsole.vue:8 ~ props.dir:', props)
+})
+</script>

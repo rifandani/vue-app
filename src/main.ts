@@ -5,19 +5,14 @@ import PrimeVue from 'primevue/config'
 import Ripple from 'primevue/ripple'
 import StyleClass from 'primevue/styleclass'
 import ToastService from 'primevue/toastservice'
-import {
-  htmlLangAttributeDetector,
-  localStorageDetector,
-  navigatorDetector,
-} from 'typesafe-i18n/detectors'
 import { createApp, defineCustomElement } from 'vue'
+import { createI18n } from 'vue-i18n'
 import MyCounter from '#lib/wc/my-counter.ce.vue'
 import DarkModeSwitch from '#lib/wc/dark-mode-switch.ce.vue'
-import { i18nPlugin } from '#i18n/i18n-vue'
-import { loadLocale } from '#i18n/i18n-util.sync'
-import { detectLocale } from '#i18n/i18n-util'
 import { router } from '#app/router'
 import App from '#app/entry.vue'
+import enUS from '#i18n/en-US.json'
+import idID from '#i18n/id-ID.json'
 import './main.css'
 
 const root = document.getElementById('app')
@@ -32,18 +27,22 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 customElements.define('my-counter', defineCustomElement(MyCounter))
 customElements.define('dark-mode-switch', defineCustomElement(DarkModeSwitch))
 
-// detect locale. The detectors order matters.
-const detectedLocale = detectLocale(
-  navigatorDetector,
-  htmlLangAttributeDetector,
-  localStorageDetector,
-)
+// Type-define 'en-US' as the master schema for the resource
+type MessageSchema = typeof enUS
+
+const i18n = createI18n<[MessageSchema], 'en-US' | 'id-ID'>({
+  legacy: false, // you must set `false`, to use Composition API
+  locale: 'en-US',
+  fallbackLocale: 'en-US', // set fallback locale
+  messages: {
+    'en-US': enUS,
+    'id-ID': idID,
+  },
+})
 const pinia = createPinia()
 const app = createApp(App)
 
-loadLocale(detectedLocale)
-
-app.use(i18nPlugin, detectedLocale)
+app.use(i18n)
 app.use(router)
 app.use(pinia)
 app.use(VueQueryPlugin, {

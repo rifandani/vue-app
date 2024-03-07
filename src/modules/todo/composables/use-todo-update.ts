@@ -1,10 +1,10 @@
 import { useMutation, useQueryClient } from '@tanstack/vue-query'
 import { useToast } from 'primevue/usetoast'
 import type { ComputedRef } from 'vue'
+import { useI18n } from 'vue-i18n'
 import type { TodoListApiResponseSchema, UpdateTodoApiResponseSchema, UpdateTodoSchema, todoKeys } from '#todo/apis/todo'
 import { todoApi } from '#todo/apis/todo'
 import type { ErrorApiResponseSchema } from '#shared/schemas/error'
-import { typesafeI18n } from '#i18n/i18n-vue'
 
 interface CreateTodoUpdateMutationProps {
   queryKey: ComputedRef<ReturnType<typeof todoKeys.list>>
@@ -15,7 +15,7 @@ interface CreateTodoUpdateMutationProps {
  */
 export function useTodoUpdate({ queryKey }: CreateTodoUpdateMutationProps) {
   const queryClient = useQueryClient()
-  const { LL } = typesafeI18n()
+  const { t } = useI18n()
   const toast = useToast()
 
   return useMutation<
@@ -56,8 +56,8 @@ export function useTodoUpdate({ queryKey }: CreateTodoUpdateMutationProps) {
         life: 3_000,
         severity: error ? 'error' : 'success',
         detail: error
-          ? LL.value.error.action({ module: 'Todo', action: 'update' })
-          : LL.value.success.action({ module: 'Todo', action: 'updated' }),
+          ? t('common.xUpdateError', { feature: 'Todo' })
+          : t('common.xUpdateSuccess', { feature: 'Todo' }),
       })
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
