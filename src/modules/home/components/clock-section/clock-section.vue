@@ -4,31 +4,30 @@ import Button from 'primevue/button'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useIntervalFn } from '@vueuse/core'
+import { useI18n } from 'vue-i18n'
 import ClockSectionTimer from '#home/components/clock-section/clock-section-timer.vue'
-import type { Translation } from '#i18n/i18n-types'
-import { typesafeI18n } from '#i18n/i18n-vue'
 import { todosRoute } from '#todo/routes'
 import FadeTransition from '#shared/components/fade-transition.vue'
 
+const { t } = useI18n()
 const { push } = useRouter()
-const { LL } = typesafeI18n()
 const showClock = ref(false)
 const time = ref(new Date())
 const buttons = ref([
   {
     id: 'sort' as const,
     severity: 'info',
-    text: 'sortBtn' as keyof Translation['home'],
+    text: 'home.sortBtn' as const,
   },
   {
     id: 'clock' as const,
     severity: 'help',
-    text: 'toggleClock' as keyof Translation['home'],
+    text: 'home.toggleClock' as const,
   },
   {
     id: 'start' as const,
     severity: 'warning',
-    text: 'getStarted' as keyof Translation['home'],
+    text: 'home.getStarted' as const,
   },
 ])
 
@@ -56,7 +55,7 @@ useIntervalFn(
     class="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-3"
   >
     <Button
-      v-for="btn in buttons" :key="btn.id" type="button" :label="LL.home[btn.text]()" :severity="btn.severity"
+      v-for="btn in buttons" :key="btn.id" type="button" :label="t(btn.text)" :severity="btn.severity"
       :data-testid="`home-clock-button-${btn.id}`" @click="() => {
         if (btn.id === 'sort') buttons = shuffle(buttons)
         else if (btn.id === 'clock') showClock = !showClock

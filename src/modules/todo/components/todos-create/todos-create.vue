@@ -6,15 +6,15 @@ import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
+import { useI18n } from 'vue-i18n'
 import { useTodoListParams } from '#todo/composables/use-todo-list-params'
 import { useTodoCreate } from '#todo/composables/use-todo-create'
 import { todoSchema } from '#todo/apis/todo'
 import { useUserStorage } from '#shared/composables/use-user-storage'
-import { typesafeI18n } from '#i18n/i18n-vue'
 
 // #region VALUES
+const { t } = useI18n()
 const toast = useToast()
-const { LL } = typesafeI18n()
 const user = useUserStorage()
 const queryClient = useQueryClient()
 const { queryKey } = useTodoListParams()
@@ -46,8 +46,8 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
         life: 3_000,
         severity: error ? 'error' : 'success',
         detail: error
-          ? LL.value.error.action({ module: 'Todo', action: 'create' })
-          : LL.value.success.action({ module: 'Todo', action: 'created' }),
+          ? t('common.xCreateError', { feature: 'Todo' })
+          : t('common.xCreateSuccess', { feature: 'Todo' }),
       })
 
       // If the mutation fails, use the context returned from `onMutate` to roll back
@@ -63,12 +63,12 @@ const onSubmit = handleSubmit((values, { resetForm }) => {
   <form data-testid="form-create" class="mb-3 flex w-full flex-col duration-300 lg:flex-row" @submit="onSubmit">
     <InputText
       v-bind="todo" id="todo" name="todo" type="text" class="w-full lg:w-10/12" data-testid="input-create"
-      :required="true" :placeholder="LL.forms.todoPlaceholder()" :class="{ 'p-invalid': !!errors.todo }"
+      :required="true" :placeholder="t('todo.todoPlaceholder')" :class="{ 'p-invalid': !!errors.todo }"
     />
 
     <Button
       data-testid="button-create" class="ml-0 mt-2 w-full normal-case lg:ml-2 lg:mt-0 lg:w-2/12" type="submit"
-      :label="LL.forms.add()" :disabled="isSubmitting"
+      :label="t('common.add')" :disabled="isSubmitting"
     />
   </form>
 </template>

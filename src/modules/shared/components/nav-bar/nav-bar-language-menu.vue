@@ -4,24 +4,20 @@ import Button from 'primevue/button'
 import Menu from 'primevue/menu'
 import type { MenuItem } from 'primevue/menuitem'
 import { ref } from 'vue'
-import { typesafeI18n } from '#i18n/i18n-vue'
-import { loadLocale } from '#i18n/i18n-util.sync'
+import { useI18n } from 'vue-i18n'
 
-const { LL, locale, setLocale } = typesafeI18n()
+const { t, locale } = useI18n()
 const menuTheme = ref<InstanceType<typeof Menu> | null>(null)
 const menuItemsTheme = ref<MenuItem[]>([
   {
-    label: LL.value.common.language(),
+    label: t('common.language'),
     items: [
       {
         icon: 'flag:us-1x1',
-        label: LL.value.common.english(),
+        label: t('common.english'),
         showEndIcon: locale.value === 'en', // FIXME: this is not reactive
         command: () => {
-          // update dictionaries and update formatters
-          loadLocale('en')
-          // change locale store
-          setLocale('en')
+          locale.value = 'en-US'
         },
       },
       {
@@ -29,10 +25,7 @@ const menuItemsTheme = ref<MenuItem[]>([
         label: 'Indonesia',
         showEndIcon: locale.value === 'id',
         command: () => {
-          // update dictionaries and update formatters
-          loadLocale('id')
-          // change locale store
-          setLocale('id')
+          locale.value = 'id-ID'
         },
       },
     ],

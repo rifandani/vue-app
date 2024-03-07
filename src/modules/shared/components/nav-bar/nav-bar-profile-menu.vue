@@ -6,45 +6,44 @@ import Menu from 'primevue/menu'
 import type { MenuItem } from 'primevue/menuitem'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useI18n } from 'vue-i18n'
 import { useUserStorage } from '#shared/composables/use-user-storage'
 import { loginRoute } from '#auth/routes'
-import { typesafeI18n } from '#i18n/i18n-vue'
 
-const { LL } = typesafeI18n()
+const { t } = useI18n()
 const user = useUserStorage()
 const { replace } = useRouter()
-
 const menuUser = ref<InstanceType<typeof Menu> | null>(null)
 const menuItemsUser = ref<MenuItem[]>([
   {
     separator: true,
   },
   {
-    label: LL.value.user.preferences(),
+    label: t('user.preferences'),
     items: [
       {
-        label: LL.value.user.likedTodos(),
+        label: t('user.likedTodos'),
         icon: 'lucide:heart',
       },
       {
-        label: LL.value.user.savedTodos(),
+        label: t('user.savedTodos'),
         icon: 'lucide:star',
       },
       {
-        label: LL.value.user.yourComments(),
+        label: t('user.yourComments'),
         icon: 'lucide:messages-square',
       },
     ],
   },
   {
-    label: LL.value.common.settings(),
+    label: t('common.settings'),
     items: [
       {
-        label: LL.value.common.account(),
+        label: t('common.account'),
         icon: 'lucide:settings',
       },
       {
-        label: LL.value.auth.logout(),
+        label: t('auth.logout'),
         icon: 'lucide:log-out',
         command: () => {
           user.value = null // reset `user` store & localStorage
@@ -54,14 +53,14 @@ const menuItemsUser = ref<MenuItem[]>([
     ],
   },
 ])
-
-function toggleUser(event: Event) {
-  menuUser.value?.toggle(event)
-}
 </script>
 
 <template>
-  <Button aria-haspopup="true" aria-controls="menu-user" rounded text class="p-0" @click="toggleUser">
+  <Button
+    aria-haspopup="true" aria-controls="menu-user" rounded text class="p-0" @click="(evt) => {
+      menuUser?.toggle(evt)
+    }"
+  >
     <Avatar :label="user?.username.slice(0, 2)" shape="circle" class="size-11 bg-surface-300 text-color" />
   </Button>
 

@@ -3,22 +3,30 @@ import { type RenderResult, render } from '@testing-library/vue'
 import type { AnyFn } from '@vueuse/core'
 import PrimeVue from 'primevue/config'
 import ToastService from 'primevue/toastservice'
-import { localStorageDetector } from 'typesafe-i18n/detectors'
 import { type TestAPI, test } from 'vitest'
 import { createApp } from 'vue'
-import { i18nPlugin } from '#i18n/i18n-vue'
-import { loadLocaleAsync } from '#i18n/i18n-util.async'
-import { detectLocale } from '#i18n/i18n-util'
-import type { Locales } from '#i18n/i18n-types'
+import { createI18n } from 'vue-i18n'
+import enUS from '#i18n/en-US.json'
+import idID from '#i18n/id-ID.json'
 
-export interface RenderWrapperParams {
-  locales: Locales
-}
 export interface WrapperParams {
   component: any
   stubs?: string[]
   props?: any
 }
+
+// Type-define 'en-US' as the master schema for the resource
+type MessageSchema = typeof enUS
+
+const i18n = createI18n<[MessageSchema], 'en-US' | 'id-ID'>({
+  legacy: false, // you must set `false`, to use Composition API
+  locale: 'en-US',
+  fallbackLocale: 'en-US', // set fallback locale
+  messages: {
+    'en-US': enUS,
+    'id-ID': idID,
+  },
+})
 
 /**
  * A composable that relies on lifecycle hooks or Provide / Inject needs to be wrapped in a host component to be tested
@@ -62,13 +70,13 @@ export function composableWrapper(composable: AnyFn) {
  * const detectedLocale = detectLocale(navigatorDetector)
  * const wrapper = renderWrapper({ locales: detectedLocale })
  */
-export function renderWrapper({ locales }: RenderWrapperParams) {
+export function renderWrapper() {
   return ({ component, stubs, props }: WrapperParams) =>
     render(component, {
       global: {
         stubs: (stubs ?? []).concat(['router-link', 'RouterLink']),
         plugins: [
-          [i18nPlugin, locales],
+          [i18n],
           [
             VueQueryPlugin,
             {
@@ -100,10 +108,7 @@ export const testWrapper: TestAPI<{
 }> = test.extend<{ wrapper: (props: WrapperParams) => RenderResult }>({
   wrapper: async ({ task: _task }, use) => {
     // setup the fixture before each test function
-    const locales = detectLocale(localStorageDetector) // detect user's preferred locale
-    const view = renderWrapper({ locales })
-
-    await loadLocaleAsync(locales)
+    const view = renderWrapper()
 
     // use the fixture value
     await use(view)

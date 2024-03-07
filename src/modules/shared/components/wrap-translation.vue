@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import type { LocalizedString } from 'typesafe-i18n'
 import { ref, toValue, watchEffect } from 'vue'
 
 interface Props {
-  message: LocalizedString
+  message: string
 }
 
 const props = defineProps<Props>()
@@ -17,7 +16,7 @@ watchEffect(() => {
   // render infix only if the message doesn't have any split characters
   if (!infix.value && !postfix.value) {
     infix.value = prefix.value
-    prefix.value = '' as LocalizedString
+    prefix.value = ''
   }
 })
 </script>

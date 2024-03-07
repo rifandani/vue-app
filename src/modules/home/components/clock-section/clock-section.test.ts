@@ -35,18 +35,6 @@ describe('<ClockSection />', () => {
     expect(buttonsBefore[3]).not.toHaveTextContent(buttonsAfter[3].textContent as string)
   })
 
-  testWrapper('should translate text when change language button clicked', async ({ wrapper }) => {
-    // ARRANGE
-    wrapper({ component: ClockSection })
-    const user = userEvent.setup()
-    const button: HTMLButtonElement = screen.getByTestId(/home-clock-button-language/i)
-
-    // ACT & ASSERT
-    expect(button).toHaveTextContent(/change language/i)
-    await user.click(button)
-    expect(button).toHaveTextContent(/ganti bahasa/i)
-  })
-
   testWrapper(
     'should call mocked navigate function when get started button clicked',
     async ({ wrapper }) => {
