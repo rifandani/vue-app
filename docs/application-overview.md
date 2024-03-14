@@ -2,20 +2,20 @@
 
 The application built with:
 
-- `vite` + `typescript` + `eslint` + `prettier` -> development productivity
+- `vite` + `typescript` + `eslint` -> development productivity
 - `vitest` + `@testing-library/vue` -> unit test, integration test, coverage
 - `msw` -> browser and server mocking
-- `tailwindcss` + `tailwind-merge` -> easy styling
+- `tailwindcss` + `tailwind-merge` + `class-variance-authority` -> easy styling
+- `radix-vue` + `vue-sonner` + `vaul-vue` + `v-calendar` + `@tanstack/vue-table` -> UI component library
 - `axios` + `@tanstack/vue-query` -> server state management + data fetching
 - `zod` -> runtime schema validation
 - `@iconify/vue` -> icon on demand
-- `primevue` -> styled/unstyled, responsive, accessible, and feature-rich UI component library
 - `vee-validate` + `@vee-validate/zod` -> form management
 - `pinia` -> performant global state management
 - `type-fest` -> useful type helpers
 - `vue-router` -> client routing
 - `@vueuse/core` -> useful composables
-- `typesafe-i18n` -> typesafe i18n
+- `vue-i18n` -> i18n
 
 [Demo App](https://vue-app-rifandani.vercel.app)
 
@@ -76,18 +76,3 @@ $ pnpm build
 
 For now only supports deployment to Vercel.
 Check out `vercel.json` file fo further details.
-
-## Type Support for `.vue` Imports in TS (from the `create-vue` template)
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).

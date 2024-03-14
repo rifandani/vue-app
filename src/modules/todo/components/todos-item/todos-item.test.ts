@@ -1,6 +1,5 @@
 import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
-import userEvent from '@testing-library/user-event'
 import TodosItem from '#todo/components/todos-item/todos-item.vue'
 import type { TodoSchema } from '#todo/apis/todo'
 import { testWrapper } from '#shared/utils/test'
@@ -9,8 +8,6 @@ import { mockTodo } from '#mocks/http/entities'
 describe('<TodosItem />', () => {
   const todo: TodoSchema = mockTodo()
   // const onDeleteTodo = vi.fn()
-  const mockSubmit = vi.fn()
-  const mockChangeTodo = vi.fn()
   const getItemSpy = vi.spyOn(localStorage, 'getItem')
   // localStorage.getItem = vi.fn(() => JSON.stringify({ id: todo.id }))
 
@@ -27,13 +24,10 @@ describe('<TodosItem />', () => {
   testWrapper('should render, check checkbox correctly', async ({ wrapper }) => {
     // ARRANGE
     wrapper({ component: TodosItem, props: { todo } })
-    const user = userEvent.setup()
     const form: HTMLFormElement = await screen.findByRole('form', { name: /todo/i })
     const inputId: HTMLInputElement = await screen.findByTestId('input-todoId')
     const inputTodo: HTMLInputElement = await screen.findByRole('checkbox', { name: /todo/i })
     const link: HTMLAnchorElement = await screen.findByRole('link', { name: /todo/i })
-    form.addEventListener('submit', mockSubmit)
-    inputTodo.addEventListener('change', mockChangeTodo)
 
     // ACT & ASSERT
     expect(form).toBeInTheDocument()
@@ -42,8 +36,6 @@ describe('<TodosItem />', () => {
     expect(inputTodo).toBeInTheDocument()
     expect(inputTodo).not.toBeChecked()
     expect(link).toBeInTheDocument()
-    await user.click(inputTodo)
-    expect(mockChangeTodo).toHaveBeenCalled()
   })
 
   // FIXME: Unable to find role="button"

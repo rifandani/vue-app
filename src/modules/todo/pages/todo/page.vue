@@ -2,17 +2,13 @@
 import { Icon } from '@iconify/vue'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import { toTypedSchema } from '@vee-validate/zod'
-import Button from 'primevue/button'
-import InlineMessage from 'primevue/inlinemessage'
-import InputGroup from 'primevue/inputgroup'
-import InputText from 'primevue/inputtext'
-import { useToast } from 'primevue/usetoast'
 import { useForm } from 'vee-validate'
 import { computed, watch } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 import { z } from 'zod'
 import { fromZodError } from 'zod-validation-error'
 import { useI18n } from 'vue-i18n'
+import { toast } from 'vue-sonner'
 import { todosRoute } from '#todo/routes'
 import { useTodoDetailParams } from '#todo/composables/use-todo-detail-params'
 import {
@@ -23,15 +19,18 @@ import {
   updateTodoSchema,
 } from '#todo/apis/todo'
 import { useUserStorage } from '#shared/composables/use-user-storage'
-import NavBar from '#shared/components/nav-bar/nav-bar.vue'
+import NavBar from '#shared/components/nav-bar.vue'
 import type { ErrorApiResponseSchema } from '#shared/schemas/error'
+import { Input } from '#shared/components/ui/input'
+import { Button } from '#shared/components/ui/button'
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '#shared/components/ui/breadcrumb'
+import { homeRoute } from '#home/routes'
 
 // #region VALUES
 const route = useRoute()
 const { push } = useRouter()
 const queryClient = useQueryClient()
 const user = useUserStorage()
-const toast = useToast()
 const { t } = useI18n()
 const id = computed(() => {
   // initial load, `route.params === undefined`
@@ -61,13 +60,14 @@ const { error: mutationError, mutate } = useMutation<
     await queryClient.invalidateQueries({ queryKey: todoKeys.lists() })
   },
   onSettled: (_updateTodo, error) => {
-    toast.add({
-      life: 3_000,
-      severity: error ? 'error' : 'success',
-      detail: error
+    toast(
+      error
         ? t('common.xUpdateError', { feature: 'Todo' })
         : t('common.xUpdateSuccess', { feature: 'Todo' }),
-    })
+      {
+        closeButton: true,
+      },
+    )
   },
 })
 
@@ -113,12 +113,29 @@ watch([data], () => {
 
   <main class="container mx-auto flex flex-col items-center py-5 duration-300">
     <div class="mb-10 flex w-full flex-col space-y-2">
-      <RouterLink
-        aria-label="go-back" role="link" class="w-fit normal-case text-color-primary no-underline hover:text-green-700"
-        :to="todosRoute.path"
-      >
-        ⬅ {{ t("todo.backTo", { target: 'Todos' }) }}
-      </RouterLink>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink as-child>
+              <RouterLink :to="homeRoute.path">
+                Home
+              </RouterLink>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink as-child>
+              <RouterLink :to="todosRoute.path">
+                Todos
+              </RouterLink>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>{{ id }}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
       <h1 class="text-3xl font-medium sm:text-4xl">
         {{ t("common.xDetail", { feature: 'Todo' }) }}
@@ -126,43 +143,41 @@ watch([data], () => {
     </div>
 
     <div v-if="!!mutationError" data-testid="todo-mutationError" class="flex flex-col items-center">
-      <InlineMessage severity="error">
+      <p class="text-destructive">
         {{ t("common.xError", { feature: 'Todo mutation' }) }}
-      </InlineMessage>
-      <pre class="text-red-500">{{ JSON.stringify(mutationError, null, 2) }}</pre>
+      </p>
+      <pre>{{ JSON.stringify(mutationError, null, 2) }}</pre>
     </div>
 
     <div v-if="isLoading" data-testid="todo-loading" class="flex items-center justify-center py-5">
-      <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-color-primary" />
+      <Icon icon="svg-spinners:3-dots-fade" height="5em" />
     </div>
 
     <div v-if="error" data-testid="todo-error" class="flex flex-col items-center">
-      <InlineMessage severity="error">
+      <p class="text-destructive">
         {{ t("common.xError", { feature: 'Todo detail' }) }}:
-      </InlineMessage>
-      <pre class="text-red-500">{{
-          JSON.stringify(
-            error instanceof z.ZodError ? fromZodError(error).message : error.message,
-            null,
-            2,
-          )
+      </p>
+      <pre>{{
+        JSON.stringify(
+          error instanceof z.ZodError ? fromZodError(error).message : error.message,
+          null,
+          2,
+        )
       }}</pre>
     </div>
 
-    <form v-if="isSuccess && data" aria-label="form-todo" class="w-full" @submit="onSubmit">
-      <InputGroup>
-        <InputText
-          id="todo" v-model="todo" v-bind="todoAttrs" name="todo" type="text" aria-label="textbox-todo"
-          class="w-full lg:w-10/12" :required="true"
-        />
+    <form v-if="isSuccess && data" aria-label="form-todo" class="flex w-full gap-x-2" @submit="onSubmit">
+      <Input
+        id="todo" v-bind="todoAttrs" v-model="todo" name="todo" type="text" aria-label="textbox-todo"
+        class="w-8/12 sm:w-9/12 lg:w-10/12" :required="true"
+      />
 
-        <Button
-          v-if="user?.id === data.userId" aria-label="button-submit" class="min-w-fit normal-case" type="submit"
-          :disabled="isSubmitting"
-        >
-          {{ t("common.update") }}
-        </Button>
-      </InputGroup>
+      <Button
+        v-if="user?.id === data.userId" aria-label="button-submit" class="w-4/12 sm:w-3/12 lg:w-2/12" type="submit"
+        :disabled="isSubmitting"
+      >
+        {{ t("common.update") }}
+      </Button>
     </form>
   </main>
 </template>

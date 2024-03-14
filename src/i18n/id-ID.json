@@ -1,12 +1,11 @@
 {
   "auth": {
-    "404": "404: Tidak Ditemukan",
+    "notFound": "Tidak Ditemukan",
     "welcome": "Selamat datang kembali",
     "logout": "Keluar",
     "dontHaveAccount": "Tidak punya akun? ",
     "registerHere": "Daftar disini",
-    "gone": "Halaman kosong",
-    "backTo": "Kembali ke {path}"
+    "gone": "Halaman kosong"
   },
   "home": {
     "sortBtn": "Sortir tombol",
@@ -16,8 +15,7 @@
     "getStarted": "Mulai"
   },
   "todo": {
-    "todoPlaceholder": "Apa yang akan anda lakukan selanjutnya...",
-    "backTo": "Kembali ke {target}"
+    "todoPlaceholder": "Apa yang akan anda lakukan selanjutnya..."
   },
   "common": {
     "username": "Username",
@@ -43,7 +41,7 @@
     "xDeleteError": "{feature} gagal dihapus",
     "xError": "{feature} error",
     "noPageContent": "Tidak ada konten",
-    "appName": "Templat Vue 3",
+    "appName": "Templat Vue",
     "theme": "Tema",
     "empty": "Tidak ada data",
     "unauthorized": "Tidak ada akses. Silahkan masuk terlebih dahulu",
@@ -57,8 +55,13 @@
     "account": "Akun",
     "language": "Bahasa",
     "english": "Inggris",
+    "profile": "Profil",
     "errorMinLength": "{field} harus memiliki minimal {length} karakter",
-    "action": "{module} gagal di {action}"
+    "action": "{module} gagal di {action}",
+    "reload": "Muat ulang",
+    "appReady": "Aplikasi siap digunakan secara offline",
+    "newContentAvailable": "Konten baru tersedia, klik tombol muat ulang untuk memperbarui",
+    "backTo": "Kembali ke {path}"
   },
   "user": {
     "preferences": "Preferensi",

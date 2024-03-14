@@ -22,7 +22,7 @@ Feel free to explore the codebase to get the most value out of the repo.
 
 ## Table of Contents
 
-- [Application Overview](https://github.com/rifandani/vue-app/tree/main/docs/application-verview.md)
+- [Application Overview](https://github.com/rifandani/vue-app/tree/main/docs/application-overview.md)
 - [](https://github.com/rifandani/vue-app/tree/main/docs/.md)
 
 ## License

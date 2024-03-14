@@ -17,7 +17,7 @@ describe('<TodosFilter />', () => {
     const user = userEvent.setup()
     wrapper({ component: TodosFilter })
     const form: HTMLFormElement = screen.getByRole('form')
-    const combobox: HTMLInputElement = screen.getByRole('combobox')
+    const combobox = screen.getByTestId('combobox-btn')
     combobox.addEventListener('click', mockSelectFn)
 
     // ACT & ASSERT

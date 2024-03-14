@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
-import Button from 'primevue/button'
-import Checkbox from 'primevue/checkbox'
 import { twJoin } from 'tailwind-merge'
 import { RouterLink } from 'vue-router'
 import type { TodoSchema } from '#todo/apis/todo'
@@ -10,6 +8,8 @@ import { useTodoListParams } from '#todo/composables/use-todo-list-params'
 import { useTodoUpdate } from '#todo/composables/use-todo-update'
 import { todosDetailRoute } from '#todo/routes'
 import { useUserStorage } from '#shared/composables/use-user-storage'
+import { Button } from '#shared/components/ui/button'
+import { Checkbox } from '#shared/components/ui/checkbox'
 
 // #region VALUES
 const props = defineProps<{
@@ -46,8 +46,8 @@ function onDeleteTodo(evt: Event) {
     <input id="todoId" name="todoId" type="hidden" data-testid="input-todoId" :value="props.todo.id">
 
     <Checkbox
-      binary aria-label="checkbox-todo" :name="`todo-${props.todo.id}`" :input-id="`todo-${props.todo.id}`"
-      :model-value="props.todo.completed" @change="() => {
+      :id="`todo-${props.todo.id}`" aria-label="checkbox-todo" :name="`todo-${props.todo.id}`"
+      :checked="props.todo.completed" @update:checked="() => {
         todoUpdateMutation.mutate({ ...props.todo, completed: !props.todo.completed })
       }"
     />
@@ -56,7 +56,6 @@ function onDeleteTodo(evt: Event) {
       role="link" aria-label="todo" :to="{ name: todosDetailRoute.name, params: { id: props.todo.id } }" :class="twJoin(
         'ml-5 w-full text-left text-lg hover:font-bold',
         props.todo.completed ? 'line-through' : 'no-underline',
-        props.todo.userId === user?.id ? 'text-color-primary' : 'text-color',
       )
       "
     >
@@ -64,8 +63,8 @@ function onDeleteTodo(evt: Event) {
     </RouterLink>
 
     <Button
-      v-if="props.todo.userId === user?.id" outlined rounded aria-label="button-submit"
-      class="min-w-fit p-2 normal-case" type="submit" size="small" severity="danger"
+      v-if="props.todo.userId === user?.id" aria-label="button-submit"
+      class="min-w-fit" type="submit" size="sm" variant="ghost"
       :disabled="todoDeleteMutation.isPending.value"
     >
       <Icon icon="lucide:trash-2" class="text-red-500" />

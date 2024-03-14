@@ -3,7 +3,7 @@ import { useI18n } from 'vue-i18n'
 import TodosCreate from '#todo/components/todos-create/todos-create.vue'
 import TodosFilter from '#todo/components/todos-filter/todos-filter.vue'
 import TodosList from '#todo/components/todos-list/todos-list.vue'
-import NavBar from '#shared/components/nav-bar/nav-bar.vue'
+import NavBar from '#shared/components/nav-bar.vue'
 
 const { t } = useI18n()
 </script>
@@ -11,16 +11,14 @@ const { t } = useI18n()
 <template>
   <NavBar />
 
-  <main class="container mx-auto flex flex-col items-center py-5 duration-300">
+  <main class="container mx-auto flex flex-col py-5 duration-300">
     <h1 class="text-3xl font-medium sm:text-4xl">
       {{ t("common.list", { feature: "Todo" }) }}
     </h1>
 
-    <section class="w-full p-5">
+    <section class="w-full pt-5">
       <TodosCreate />
-
       <TodosFilter />
-
       <TodosList />
     </section>
   </main>

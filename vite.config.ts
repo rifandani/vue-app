@@ -11,6 +11,8 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { configDefaults } from 'vitest/config'
 import type { ManifestOptions, VitePWAOptions } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
+import tailwind from 'tailwindcss'
+import autoprefixer from 'autoprefixer'
 
 const sw = process.env.SW === 'true'
 const claims = process.env.CLAIMS === 'true'
@@ -79,6 +81,11 @@ export default defineConfig({
   },
   build: {
     sourcemap: process.env.SOURCE_MAP === 'true',
+  },
+  css: {
+    postcss: {
+      plugins: [tailwind(), autoprefixer()],
+    },
   },
   plugins: [
     tsconfigPaths({ loose: true }),

@@ -4,9 +4,8 @@
     "logout": "Logout",
     "dontHaveAccount": "Don't have an account? ",
     "registerHere": "Register here",
-    "404": "404: Not Found",
-    "gone": "It's gone",
-    "backTo": "Go back to {path}"
+    "notFound": "Not Found",
+    "gone": "It's gone"
   },
   "home": {
     "sortBtn": "Sort Buttons",
@@ -16,8 +15,7 @@
     "getStarted": "Get Started"
   },
   "todo": {
-    "todoPlaceholder": "What should you do next...",
-    "backTo": "Go back to {target}"
+    "todoPlaceholder": "What should you do next..."
   },
   "common": {
     "username": "Username",
@@ -43,7 +41,7 @@
     "xDeleteError": "{feature} failed to delete",
     "xError": "{feature} error",
     "noPageContent": "No Page Content",
-    "appName": "Vue 3 Template",
+    "appName": "Vue Template",
     "theme": "Theme",
     "empty": "Empty Data",
     "unauthorized": "Unauthorized. Please login first",
@@ -57,8 +55,13 @@
     "account": "Account",
     "language": "Language",
     "english": "English",
+    "profile": "Profile",
     "errorMinLength": "{field} must contain at least {length} characters",
-    "action": "{module} failed to {action}"
+    "action": "{module} failed to {action}",
+    "reload": "Reload",
+    "appReady": "App ready to work offline",
+    "newContentAvailable": "New content available, click on reload button to update",
+    "backTo": "Go back to {path}"
   },
   "user": {
     "preferences": "Preferences",

@@ -11,11 +11,11 @@ describe('<TodoPage />', () => {
   testWrapper('should render role contents correctly', ({ wrapper }) => {
     // ARRANGE
     wrapper({ component: TodoPage })
-    const link: HTMLAnchorElement = screen.getByRole('link', { name: /go-back/i })
+    const breadcrumb = screen.getByRole('navigation', { name: 'breadcrumb' })
     const title: HTMLHeadingElement = screen.getByRole('heading', { name: /detail/i })
 
     // ACT & ASSERT
-    expect(link).toBeInTheDocument()
+    expect(breadcrumb).toBeInTheDocument()
     expect(title).toBeInTheDocument()
   })
 })
