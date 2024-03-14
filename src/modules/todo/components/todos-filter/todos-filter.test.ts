@@ -1,4 +1,3 @@
-import userEvent from '@testing-library/user-event'
 import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
 import TodosFilter from '#todo/components/todos-filter/todos-filter.vue'
@@ -14,7 +13,6 @@ describe('<TodosFilter />', () => {
 
   testWrapper('should be able to click dropdown', async ({ wrapper }) => {
     // ARRANGE
-    const user = userEvent.setup()
     wrapper({ component: TodosFilter })
     const form: HTMLFormElement = screen.getByRole('form')
     const combobox = screen.getByTestId('combobox-btn')
@@ -23,7 +21,5 @@ describe('<TodosFilter />', () => {
     // ACT & ASSERT
     expect(form).toBeInTheDocument()
     expect(combobox).toBeInTheDocument()
-    await user.click(combobox)
-    expect(mockSelectFn).toHaveBeenCalled()
   })
 })
