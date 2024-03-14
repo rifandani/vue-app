@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Button from 'primevue/button'
 import { onMounted, onUnmounted, ref } from 'vue'
 import {
   type MyCounterEventDetail,
   myCounterEventDecrement,
   myCounterEventIncrement,
 } from '#lib/wc/my-counter.constant'
+import { Button } from '#shared/components/ui/button'
 
 const sectionRef = ref<HTMLDivElement>()
 const initialCount = ref('10')
@@ -39,7 +39,9 @@ onUnmounted(() => {
   <section ref="sectionRef" class="flex w-full flex-col items-center gap-3 rounded-md p-5 shadow-md">
     <h4>Web Components</h4>
 
-    <Button label="Increment from parent" @click="handleClickTambah" />
+    <Button @click="handleClickTambah">
+      Increment from parent
+    </Button>
 
     <my-counter :initial-count="initialCount" />
 

@@ -1,101 +1,93 @@
-const forms = require('@tailwindcss/forms')
-const typography = require('@tailwindcss/typography')
 const animate = require('tailwindcss-animate')
-const plugin = require('tailwindcss/plugin')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  corePlugins: {
-    preflight: false,
-  },
+  darkMode: ['class'],
+  safelist: ['dark'],
+  prefix: '',
+
   content: [
-    './index.html',
-    './src/**/*.{vue,js,ts,jsx,tsx}',
-    './node_modules/primevue/**/*.{vue,js,ts,jsx,tsx}',
+    './pages/**/*.{ts,tsx,vue}',
+    './components/**/*.{ts,tsx,vue}',
+    './app/**/*.{ts,tsx,vue}',
+    './src/**/*.{ts,tsx,vue}',
   ],
-  darkMode: 'class', // default 'media'
+
   theme: {
+    container: {
+      center: true,
+      padding: '2rem',
+      screens: {
+        '2xl': '1400px',
+      },
+    },
     extend: {
       colors: {
-        surface: {
-          a: 'var(--surface-a)',
-          b: 'var(--surface-b)',
-          c: 'var(--surface-c)',
-          d: 'var(--surface-d)',
-          e: 'var(--surface-e)',
-          f: 'var(--surface-f)',
-          0: 'var(--surface-0)',
-          50: 'var(--surface-50)',
-          100: 'var(--surface-100)',
-          200: 'var(--surface-200)',
-          300: 'var(--surface-300)',
-          400: 'var(--surface-400)',
-          500: 'var(--surface-500)',
-          600: 'var(--surface-600)',
-          700: 'var(--surface-700)',
-          800: 'var(--surface-800)',
-          900: 'var(--surface-900)',
-        },
-        color: {
-          'DEFAULT': 'var(--text-color)',
-          'secondary': 'var(--text-color-secondary)',
-          'primary': 'var(--primary-color)',
-          'primary-text': 'var(--primary-color-text)',
-        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
         primary: {
-          0: 'var(--primary-0)',
-          50: 'var(--primary-50)',
-          100: 'var(--primary-100)',
-          200: 'var(--primary-200)',
-          300: 'var(--primary-300)',
-          400: 'var(--primary-400)',
-          500: 'var(--primary-500)',
-          600: 'var(--primary-600)',
-          700: 'var(--primary-700)',
-          800: 'var(--primary-800)',
-          900: 'var(--primary-900)',
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
         },
       },
-      lineClamp: {
-        7: '7',
-        8: '8',
-        9: '9',
-        10: '10',
+      borderRadius: {
+      	xl: 'calc(var(--radius) + 4px)',
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
-        'progressbar-indeterminate': {
-          from: { transform: 'translate(0)' },
-          to: { transform: 'translate(175%)' },
+        'accordion-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
+        'accordion-up': {
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: 0 },
+        },
+        'collapsible-down': {
+          from: { height: 0 },
+          to: { height: 'var(--radix-collapsible-content-height)' },
+        },
+        'collapsible-up': {
+          from: { height: 'var(--radix-collapsible-content-height)' },
+          to: { height: 0 },
         },
       },
       animation: {
-        'progressbar-indeterminate':
-          'progressbar-indeterminate 1.5s ease-in-out infinite',
+        'accordion-down': 'accordion-down 0.2s ease-out',
+        'accordion-up': 'accordion-up 0.2s ease-out',
+        'collapsible-down': 'collapsible-down 0.2s ease-in-out',
+        'collapsible-up': 'collapsible-up 0.2s ease-in-out',
       },
     },
   },
-  plugins: [
-    typography,
-    forms,
-    animate,
-    plugin(({ matchUtilities, addUtilities }) => {
-      matchUtilities({
-        vg: value => ({
-          [`@apply ${value.replaceAll(',', ' ')}`]: {},
-        }),
-      })
-
-      addUtilities({
-        '.content-v-auto': {
-          'content-visibility': 'auto',
-        },
-        '.content-v-hidden': {
-          'content-visibility': 'hidden',
-        },
-        '.content-v-visible': {
-          'content-visibility': 'visible',
-        },
-      })
-    }),
-  ],
+  plugins: [animate],
 }

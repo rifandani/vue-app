@@ -1,8 +1,6 @@
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { type RenderResult, render } from '@testing-library/vue'
 import type { AnyFn } from '@vueuse/core'
-import PrimeVue from 'primevue/config'
-import ToastService from 'primevue/toastservice'
 import { type TestAPI, test } from 'vitest'
 import { createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
@@ -90,8 +88,6 @@ export function renderWrapper() {
               },
             },
           ],
-          [PrimeVue, { ripple: true }],
-          [ToastService],
         ],
       },
       props,

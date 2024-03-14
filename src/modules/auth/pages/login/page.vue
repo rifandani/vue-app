@@ -17,14 +17,14 @@ const { t } = useI18n()
         <div class="flex justify-center pt-12 md:-mb-24 md:justify-start md:pl-12">
           <RouterLink
             role="link" aria-label="link-home"
-            class="relative cursor-pointer rounded-full hover:text-color-primary" :to="homeRoute.path"
+            class="relative cursor-pointer rounded-full" :to="homeRoute.path"
           >
             <Icon icon="lucide:home" height="1.5em" />
           </RouterLink>
         </div>
 
         <div class="my-auto flex flex-col justify-center px-8 pt-8 md:justify-start md:px-24 md:pt-0 lg:px-32">
-          <h1 class="text-center text-3xl text-color-primary">
+          <h1 class="text-center text-3xl">
             {{ t('auth.welcome') }}
           </h1>
 

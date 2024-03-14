@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { Icon } from '@iconify/vue'
 import { useQuery } from '@tanstack/vue-query'
-import InlineMessage from 'primevue/inlinemessage'
 import { useI18n } from 'vue-i18n'
 import TodosItem from '#todo/components/todos-item/todos-item.vue'
 import { todoApi } from '#todo/apis/todo'
@@ -20,16 +19,14 @@ const { isLoading, isError, error, isSuccess, data } = useQuery({
 
 <template>
   <div v-if="isLoading" data-testid="list-loading" class="flex items-center justify-center py-5">
-    <Icon icon="svg-spinners:3-dots-fade" height="5em" class="text-color-primary" />
+    <Icon icon="svg-spinners:3-dots-fade" height="5em" />
   </div>
 
-  <div v-if="isError" data-testid="list-error" class="mt-2">
-    <div class="flex flex-col items-center">
-      <InlineMessage severity="error">
-        {{ t("common.xError", { feature: 'Todos' }) }}
-      </InlineMessage>
-      <pre class="text-red-500">{{ JSON.stringify(error, null, 2) }}</pre>
-    </div>
+  <div v-if="isError" data-testid="list-error" class="mt-2 flex flex-col items-center">
+    <p class="text-destructive">
+      {{ t("common.xError", { feature: 'Todos' }) }}
+    </p>
+    <pre>{{ JSON.stringify(error, null, 2) }}</pre>
   </div>
 
   <template v-if="isSuccess && data">

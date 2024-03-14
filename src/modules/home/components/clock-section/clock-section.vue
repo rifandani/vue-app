@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { shuffle } from '@rifandani/nxact-yutiriti'
-import Button from 'primevue/button'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useIntervalFn } from '@vueuse/core'
@@ -8,6 +7,7 @@ import { useI18n } from 'vue-i18n'
 import ClockSectionTimer from '#home/components/clock-section/clock-section-timer.vue'
 import { todosRoute } from '#todo/routes'
 import FadeTransition from '#shared/components/fade-transition.vue'
+import { Button, type ButtonVariants } from '#shared/components/ui/button'
 
 const { t } = useI18n()
 const { push } = useRouter()
@@ -16,22 +16,22 @@ const time = ref(new Date())
 const buttons = ref([
   {
     id: 'sort' as const,
-    severity: 'info',
+    variant: 'default' as ButtonVariants['variant'],
     text: 'home.sortBtn' as const,
   },
   {
     id: 'clock' as const,
-    severity: 'help',
+    variant: 'secondary' as ButtonVariants['variant'],
     text: 'home.toggleClock' as const,
   },
   {
     id: 'start' as const,
-    severity: 'warning',
+    variant: 'outline' as ButtonVariants['variant'],
     text: 'home.getStarted' as const,
   },
 ])
 
-// recalculate `seconds` every 1_000 ms
+// recalculate `time` every second
 useIntervalFn(
   () => {
     if (showClock.value)
@@ -50,18 +50,17 @@ useIntervalFn(
     />
   </FadeTransition>
 
-  <TransitionGroup
-    name="list" tag="ul"
-    class="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-3"
-  >
+  <TransitionGroup name="list" tag="ul" class="mt-8 grid grid-cols-1 gap-2 duration-300 sm:grid-cols-3">
     <Button
-      v-for="btn in buttons" :key="btn.id" type="button" :label="t(btn.text)" :severity="btn.severity"
-      :data-testid="`home-clock-button-${btn.id}`" @click="() => {
+      v-for="btn in buttons" :key="btn.id" type="button" :variant="btn.variant"
+      :data-testid="`home-clock-button-${btn.id}`" @click="async () => {
         if (btn.id === 'sort') buttons = shuffle(buttons)
         else if (btn.id === 'clock') showClock = !showClock
-        else void push(todosRoute.path)
+        else await push(todosRoute.path)
       }"
-    />
+    >
+      {{ t(btn.text) }}
+    </Button>
   </TransitionGroup>
 </template>
 

@@ -1,0 +1,34 @@
+<script setup lang="ts">
+import { type HTMLAttributes, computed } from 'vue'
+import {
+  ScrollAreaCorner,
+  ScrollAreaRoot,
+  type ScrollAreaRootProps,
+  ScrollAreaViewport,
+} from 'radix-vue'
+import { twMerge } from 'tailwind-merge'
+import ScrollBar from './ScrollBar.vue'
+
+const props = defineProps<ScrollAreaRootProps & { class?: HTMLAttributes['class'] }>()
+
+const delegatedProps = computed(() => {
+  const { class: _, ...delegated } = props
+
+  return delegated
+})
+</script>
+
+<template>
+  <ScrollAreaRoot
+    v-bind="delegatedProps" :class="twMerge(
+      'relative overflow-hidden',
+      props.class,
+    )"
+  >
+    <ScrollAreaViewport class="size-full rounded-[inherit]">
+      <slot />
+    </ScrollAreaViewport>
+    <ScrollBar />
+    <ScrollAreaCorner />
+  </ScrollAreaRoot>
+</template>

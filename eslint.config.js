@@ -21,6 +21,7 @@ export default antfu(
       'src/i18n/*.ts',
       'commitlint.config.js',
       'commitlint.config.cjs',
+      'tailwind.config.cjs',
     ],
     // typescript: {
     //   overrides: {

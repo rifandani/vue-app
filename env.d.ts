@@ -5,7 +5,6 @@
 /// <reference lib="webworker" />
 
 import type { SetupWorker } from 'msw'
-import type { RippleOptions } from 'primevue/ripple'
 import type DarkModeSwitch from './src/lib/wc/dark-mode-switch.ce.vue'
 import type MyCounter from './src/lib/wc/my-counter.ce.vue'
 
@@ -38,10 +37,10 @@ declare module 'vue' {
   // }
 }
 
-declare module '@vue/runtime-core' {
-  export interface ComponentCustomProperties {
-    vRipple: RippleOptions
-    // vRipple: typeof Ripple
-    // vStyleclass: StyleClassOptions
-  }
-}
+// declare module '@vue/runtime-core' {
+//   export interface ComponentCustomProperties {
+//     vRipple: RippleOptions
+//     vRipple: typeof Ripple
+//     vStyleclass: StyleClassOptions
+//   }
+// }

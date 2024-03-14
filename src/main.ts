@@ -1,10 +1,5 @@
 import { VueQueryPlugin } from '@tanstack/vue-query'
 import { createPinia } from 'pinia'
-import AnimateOnScroll from 'primevue/animateonscroll'
-import PrimeVue from 'primevue/config'
-import Ripple from 'primevue/ripple'
-import StyleClass from 'primevue/styleclass'
-import ToastService from 'primevue/toastservice'
 import { createApp, defineCustomElement } from 'vue'
 import { createI18n } from 'vue-i18n'
 import MyCounter from '#lib/wc/my-counter.ce.vue'
@@ -56,12 +51,6 @@ app.use(VueQueryPlugin, {
     },
   },
 })
-// primevue
-app.use(PrimeVue, { ripple: true })
-app.use(ToastService)
-app.directive('animateonscroll', AnimateOnScroll)
-app.directive('styleclass', StyleClass)
-app.directive('ripple', Ripple)
 
 // ONLY include browser worker on 'development' env
 if (import.meta.env.DEV) {
