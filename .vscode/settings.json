@@ -78,5 +78,6 @@
   "i18n-ally.localesPaths": "./src/i18n",
   "i18n-ally.enabledFrameworks": ["vue"],
   "veco.packager.versionTarget": "latest",
+  "veco.packager.exclude": ["v-calendar"],
   "typescript.tsdk": "node_modules/typescript/lib",
 }
