@@ -3,7 +3,7 @@
     "notFound": "Tidak Ditemukan",
     "welcome": "Selamat datang kembali",
     "logout": "Keluar",
-    "dontHaveAccount": "Tidak punya akun? ",
+    "dontHaveAccount": "Tidak punya akun? {0}",
     "registerHere": "Daftar disini",
     "gone": "Halaman kosong"
   },

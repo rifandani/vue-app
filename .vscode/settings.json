@@ -72,9 +72,9 @@
   "[typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
-  "i18n-ally.keystyle": "flat",
+  "i18n-ally.keystyle": "nested",
   "i18n-ally.sourceLanguage": "en-US",
-  "i18n-ally.regex.key": ".*?",
+  // "i18n-ally.regex.key": ".*?",
   "i18n-ally.localesPaths": "./src/i18n",
   "i18n-ally.enabledFrameworks": ["vue"],
   "veco.packager.versionTarget": "latest",

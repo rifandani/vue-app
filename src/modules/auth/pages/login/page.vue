@@ -30,8 +30,8 @@ const { t } = useI18n()
 
           <LoginForm />
 
-          <I18nT keypath="auth.dontHaveAccount" tag="p" class="py-12 text-center">
-            <RouterLink role="link" aria-label="link-register" to="/register" class="no-underline">
+          <I18nT keypath="auth.dontHaveAccount" tag="span" class="py-12 text-center">
+            <RouterLink role="link" aria-label="link-register" to="/register" class="underline">
               {{ t('auth.registerHere') }}
             </RouterLink>
           </I18nT>

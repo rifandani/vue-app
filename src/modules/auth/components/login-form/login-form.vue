@@ -33,7 +33,7 @@ const { isPending, isError, mutate } = useMutation<
 <template>
   <!-- examples of using composed Form component -->
   <Form
-    data-testid="form-login" class="form-control pt-3 md:pt-8"
+    data-testid="form-login" class="flex flex-col gap-y-3 pt-3 md:pt-8"
     :validation-schema="toTypedSchema(loginSchema)" @submit="(values, context) => {
       mutate(values as LoginSchema, {
         onError: () => {
@@ -77,7 +77,7 @@ const { isPending, isError, mutate } = useMutation<
       </p>
     </div>
 
-    <Button data-testid="button-login" type="submit" class="flex space-x-2" :disabled="isPending">
+    <Button data-testid="button-login" type="submit" class="flex w-full space-x-2" :disabled="isPending">
       <p>{{ isPending ? t('common.loginLoading') : t('common.login') }} (0lelplR)</p>
       <Icon v-if="isPending" icon="svg-spinners:90-ring" />
     </Button>

@@ -27,12 +27,12 @@ function logout() {
 
 <template>
   <nav class="flex items-center justify-between border-b p-2.5 shadow-sm">
-    <section class="flex items-center">
+    <RouterLink :to="homeRoute.path" class="flex items-center">
       <SvgIcon id="icon-vue" class="size-6" />
       <span class="ml-2 text-2xl font-semibold">
         {{ t("common.appName") }}
       </span>
-    </section>
+    </RouterLink>
 
     <section class="hidden items-center gap-x-2 sm:flex">
       <!-- languages -->

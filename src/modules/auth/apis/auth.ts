@@ -24,16 +24,28 @@ export type LoginApiResponseSchema = z.infer<typeof loginApiResponseSchema>
 
 export const authApi = {
   login: async (creds: LoginSchema) => {
-    const resp = await http.post<LoginApiResponseSchema | ErrorApiResponseSchema>(
+    const resp = await http.post(
       `auth/login`,
-      creds,
-    )
+      {
+        throwHttpErrors: false, // i'm expecting error response from the backend
+        json: creds,
+        hooks: {
+          afterResponse: [
+            async (request, _options, response) => {
+              if (response.status === 200) {
+                const data = (await response.json()) as LoginApiResponseSchema
+                // set 'Authorization' headers
+                request.headers.set('Authorization', `Bearer ${data.token}`)
+              }
+            },
+          ],
+        },
+      },
+    ).json<LoginApiResponseSchema>()
 
     // `parse` will throw if `resp.data` is not correct
-    const loginApiResponse = loginApiResponseSchema.parse(resp.data)
-    // set 'Authorization' headers to
-    http.defaults.headers.common.Authorization = `Bearer ${loginApiResponse.token}`
+    // const loginApiResponse = loginApiResponseSchema.parse(resp.data)
 
-    return loginApiResponse
+    return resp
   },
 } as const

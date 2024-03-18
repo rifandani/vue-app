@@ -7,7 +7,7 @@ The application built with:
 - `msw` -> browser and server mocking
 - `tailwindcss` + `tailwind-merge` + `class-variance-authority` -> easy styling
 - `radix-vue` + `vue-sonner` + `vaul-vue` + `v-calendar` + `@tanstack/vue-table` -> UI component library
-- `axios` + `@tanstack/vue-query` -> server state management + data fetching
+- `ky` + `@tanstack/vue-query` -> server state management + data fetching
 - `zod` -> runtime schema validation
 - `@iconify/vue` -> icon on demand
 - `vee-validate` + `@vee-validate/zod` -> form management

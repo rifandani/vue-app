@@ -51,39 +51,41 @@ export const todoKeys = {
 
 export const todoApi = {
   list: async (params: ResourceParamsSchema) => {
-    const resp = await http.get<TodoListApiResponseSchema | ErrorApiResponseSchema>('todos', {
-      params,
-    })
+    const resp = await http.get('todos', {
+      searchParams: params,
+    }).json<TodoListApiResponseSchema>()
 
-    // `parse` will throw if `resp.data` is not correct
-    return todoListApiResponseSchema.parse(resp.data)
+    // we also can use `parse` here. `parse` will throw if `json` is not correct
+    // const response = todoListApiResponseSchema.parse(json);
+
+    return resp
   },
   detail: async (id: TodoSchema['id']) => {
-    const resp = await http.get<TodoDetailApiResponseSchema | ErrorApiResponseSchema>(`todos/${id}`)
+    const resp = await http.get(`todos/${id}`).json<TodoDetailApiResponseSchema>()
 
-    return todoDetailApiResponseSchema.parse(resp.data)
+    return resp
   },
   create: async (todo: CreateTodoSchema) => {
-    const resp = await http.post<CreateTodoApiResponseSchema | ErrorApiResponseSchema>(
+    const resp = await http.post(
       `todos/add`,
-      todo,
-    )
+      { json: todo },
+    ).json<CreateTodoApiResponseSchema>()
 
-    return createTodoApiResponseSchema.parse(resp.data)
+    return resp
   },
   update: async ({ id, ...body }: UpdateTodoSchema) => {
-    const resp = await http.put<UpdateTodoApiResponseSchema | ErrorApiResponseSchema>(
+    const resp = await http.put(
       `todos/${id}`,
-      body,
-    )
+      { json: body },
+    ).json<UpdateTodoApiResponseSchema>()
 
-    return updateTodoApiResponseSchema.parse(resp.data)
+    return resp
   },
   delete: async (id: DeleteTodoSchema['id']) => {
-    const resp = await http.delete<DeleteTodoApiResponseSchema | ErrorApiResponseSchema>(
+    const resp = await http.delete(
       `todos/${id}`,
-    )
+    ).json<DeleteTodoApiResponseSchema>()
 
-    return deleteTodoApiResponseSchema.parse(resp.data)
+    return resp
   },
 } as const
