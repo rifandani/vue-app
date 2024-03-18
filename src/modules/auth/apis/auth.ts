@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import type { ErrorApiResponseSchema } from '#shared/schemas/error'
 import { http } from '#shared/services/http'
 
 export const loginSchema = z.object({

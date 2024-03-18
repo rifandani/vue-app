@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import type { ErrorApiResponseSchema } from '#shared/schemas/error'
 import type { ResourceParamsSchema } from '#shared/schemas/resource'
 import { http } from '#shared/services/http'
 import { resourceListSchema } from '#shared/schemas/resource'
