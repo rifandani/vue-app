@@ -5,7 +5,15 @@ import { testWrapper } from '#shared/utils/test'
 describe('<ClockSectionTimer />', () => {
   testWrapper('should render clock timer', async ({ wrapper }) => {
     // ARRANGE
-    wrapper({ component: ClockSectionTimer })
+    const date = new Date()
+    wrapper<typeof ClockSectionTimer>({
+      component: ClockSectionTimer,
+      props: {
+        hours: date.getHours(),
+        minutes: date.getMinutes(),
+        seconds: date.getSeconds(),
+      },
+    })
 
     // ASSERT
     expect(screen.getByTestId('clock-section-timer')).toBeInTheDocument()

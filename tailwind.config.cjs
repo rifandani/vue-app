@@ -5,14 +5,12 @@ module.exports = {
   darkMode: ['class'],
   safelist: ['dark'],
   prefix: '',
-
   content: [
     './pages/**/*.{ts,tsx,vue}',
     './components/**/*.{ts,tsx,vue}',
     './app/**/*.{ts,tsx,vue}',
     './src/**/*.{ts,tsx,vue}',
   ],
-
   theme: {
     container: {
       center: true,
@@ -87,6 +85,9 @@ module.exports = {
         'collapsible-down': 'collapsible-down 0.2s ease-in-out',
         'collapsible-up': 'collapsible-up 0.2s ease-in-out',
       },
+      // fontFamily: {
+      //   sans: ["var(--font-sans)", ...fontFamily.sans],
+      // },
     },
   },
   plugins: [animate],

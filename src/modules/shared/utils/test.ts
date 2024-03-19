@@ -2,15 +2,15 @@ import { VueQueryPlugin } from '@tanstack/vue-query'
 import { type RenderResult, render } from '@testing-library/vue'
 import type { AnyFn } from '@vueuse/core'
 import { type TestAPI, test } from 'vitest'
-import { createApp } from 'vue'
+import { type ComponentInstance, createApp } from 'vue'
 import { createI18n } from 'vue-i18n'
 import enUS from '#i18n/en-US.json'
 import idID from '#i18n/id-ID.json'
 
-export interface WrapperParams {
+export interface WrapperParams<T> {
   component: any
   stubs?: string[]
-  props?: any
+  props?: ComponentInstance<T>['$props']
 }
 
 // Type-define 'en-US' as the master schema for the resource
@@ -68,8 +68,8 @@ export function composableWrapper(composable: AnyFn) {
  * const detectedLocale = detectLocale(navigatorDetector)
  * const wrapper = renderWrapper({ locales: detectedLocale })
  */
-export function renderWrapper() {
-  return ({ component, stubs, props }: WrapperParams) =>
+export function renderWrapper<T>() {
+  return ({ component, stubs, props }: WrapperParams<T>) =>
     render(component, {
       global: {
         stubs: (stubs ?? []).concat(['router-link', 'RouterLink']),
@@ -100,8 +100,8 @@ export function renderWrapper() {
  * We can also do it in the `beforeAll` by mutating it's context.
  */
 export const testWrapper: TestAPI<{
-  wrapper: (props: WrapperParams) => RenderResult
-}> = test.extend<{ wrapper: (props: WrapperParams) => RenderResult }>({
+  wrapper: <T>(props: WrapperParams<T>) => RenderResult
+}> = test.extend<{ wrapper: <T>(props: WrapperParams<T>) => RenderResult }>({
   wrapper: async ({ task: _task }, use) => {
     // setup the fixture before each test function
     const view = renderWrapper()

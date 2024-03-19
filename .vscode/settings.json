@@ -72,6 +72,16 @@
   "[typescript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
+  "tailwindCSS.experimental.classRegex": [
+    [
+      "cva\\(([^)]*)\\)",
+      "[\"'`]([^\"'`]*).*?[\"'`]"
+    ],
+    [
+      "cx\\(([^)]*)\\)",
+      "(?:'|\"|`)([^']*)(?:'|\"|`)"
+    ]
+  ],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sourceLanguage": "en-US",
   // "i18n-ally.regex.key": ".*?",

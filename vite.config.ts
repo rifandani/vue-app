@@ -18,7 +18,7 @@ const sw = process.env.SW === 'true'
 const claims = process.env.CLAIMS === 'true'
 const pwaOptions: Partial<VitePWAOptions> = {
   base: '/',
-  mode: 'development',
+  mode: process.env.SW_DEV === 'true' ? 'development' : 'production',
   includeAssets: ['*.ico', '*.svg', '*.png'],
   selfDestroying: process.env.SW_DESTROY === 'true',
   registerType: claims ? 'autoUpdate' : 'prompt',

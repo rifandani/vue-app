@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event'
 import { screen } from '@testing-library/vue'
 import { vi } from 'vitest'
-import LoginForm from '#auth/pages/login/page.vue'
+import LoginForm from '#auth/components/login-form/login-form.vue'
 import { testWrapper } from '#shared/utils/test'
 
 describe('<LoginForm />', () => {

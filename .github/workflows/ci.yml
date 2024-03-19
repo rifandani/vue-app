@@ -88,3 +88,11 @@ jobs:
 
       - name: Test
         run: nr test
+
+      - name: Save test report as artifact on failure
+        uses: actions/upload-artifact@v4.3.1
+        if: failure()
+        with:
+          name: test-report
+          path: html/
+          retention-days: 2
