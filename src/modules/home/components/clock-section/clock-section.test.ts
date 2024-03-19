@@ -9,7 +9,7 @@ describe('<ClockSection />', () => {
 
   testWrapper('should render clock when toggle clock button clicked', async ({ wrapper }) => {
     // ARRANGE
-    wrapper({ component: ClockSection })
+    wrapper<typeof ClockSection>({ component: ClockSection })
     const user = userEvent.setup()
     const button: HTMLButtonElement = screen.getByTestId(/home-clock-button-clock/i)
 
@@ -21,7 +21,7 @@ describe('<ClockSection />', () => {
   // TODO: figure out how to solve the randomness
   testWrapper.todo('should shuffle buttons when sort button clicked', async ({ wrapper }) => {
     // ARRANGE
-    wrapper({ component: ClockSection })
+    wrapper<typeof ClockSection>({ component: ClockSection })
     const user = userEvent.setup()
     const buttonsBefore: HTMLButtonElement[] = screen.queryAllByTestId(/home-clock-button/i)
     const button: HTMLButtonElement = screen.getByTestId(/home-clock-button-sort/i)
@@ -39,7 +39,7 @@ describe('<ClockSection />', () => {
     'should call mocked navigate function when get started button clicked',
     async ({ wrapper }) => {
       // ARRANGE
-      wrapper({ component: ClockSection })
+      wrapper<typeof ClockSection>({ component: ClockSection })
       const user = userEvent.setup()
       const button: HTMLButtonElement = screen.getByTestId(/home-clock-button-start/i)
       button.addEventListener('click', mockButtonFn)

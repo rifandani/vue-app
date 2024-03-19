@@ -17,13 +17,13 @@ describe('<TodosItem />', () => {
   })
 
   testWrapper('should render properly', ({ wrapper }) => {
-    const result = wrapper({ component: TodosItem, props: { todo } })
+    const result = wrapper<typeof TodosItem>({ component: TodosItem, props: { todo } })
     expect(() => result).not.toThrow()
   })
 
   testWrapper('should render, check checkbox correctly', async ({ wrapper }) => {
     // ARRANGE
-    wrapper({ component: TodosItem, props: { todo } })
+    wrapper<typeof TodosItem>({ component: TodosItem, props: { todo } })
     const form: HTMLFormElement = await screen.findByRole('form', { name: /todo/i })
     const inputId: HTMLInputElement = await screen.findByTestId('input-todoId')
     const inputTodo: HTMLInputElement = await screen.findByRole('checkbox', { name: /todo/i })
@@ -41,7 +41,7 @@ describe('<TodosItem />', () => {
   // FIXME: Unable to find role="button"
   testWrapper.todo('should remove todo item correctly', async ({ wrapper }) => {
     // ARRANGE
-    wrapper({ component: TodosItem, props: { todo } })
+    wrapper<typeof TodosItem>({ component: TodosItem, props: { todo } })
     const removeBtn: HTMLButtonElement = await screen.findByRole('button')
 
     // ACT & ASSERT

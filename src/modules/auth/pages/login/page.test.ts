@@ -4,13 +4,13 @@ import { testWrapper } from '#shared/utils/test'
 
 describe('<LoginPage />', () => {
   testWrapper('should render properly', ({ wrapper }) => {
-    const result = wrapper({ component: LoginPage })
+    const result = wrapper<typeof LoginPage>({ component: LoginPage })
     expect(() => result).not.toThrow()
   })
 
   testWrapper('should render content roles correctly', ({ wrapper }) => {
     // ARRANGE
-    wrapper({ component: LoginPage })
+    wrapper<typeof LoginPage>({ component: LoginPage })
     const linkHome: HTMLAnchorElement = screen.getByRole('link', { name: /home/i })
     // const linkRegister: HTMLAnchorElement = screen.getByRole('link', { name: /register/i })
     const imgCover: HTMLImageElement = screen.getByRole('img', { name: /cover/i })

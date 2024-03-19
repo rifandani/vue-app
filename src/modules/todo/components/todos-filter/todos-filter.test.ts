@@ -7,13 +7,13 @@ describe('<TodosFilter />', () => {
   const mockSelectFn = vi.fn()
 
   testWrapper('should render properly', ({ wrapper }) => {
-    const result = wrapper({ component: TodosFilter })
+    const result = wrapper<typeof TodosFilter>({ component: TodosFilter })
     expect(() => result).not.toThrow()
   })
 
   testWrapper('should be able to click dropdown', async ({ wrapper }) => {
     // ARRANGE
-    wrapper({ component: TodosFilter })
+    wrapper<typeof TodosFilter>({ component: TodosFilter })
     const form: HTMLFormElement = screen.getByRole('form')
     const combobox = screen.getByTestId('combobox-btn')
     combobox.addEventListener('click', mockSelectFn)

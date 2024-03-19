@@ -14,7 +14,7 @@ describe('<LoginForm />', () => {
     async ({ wrapper }) => {
       // ARRANGE
       const user = userEvent.setup()
-      wrapper({ component: LoginForm })
+      wrapper<typeof LoginForm>({ component: LoginForm })
       const formLogin: HTMLFormElement = screen.getByTestId('form-login')
       const inputUsername: HTMLInputElement = screen.getByTestId('input-username')
       const inputPassword: HTMLInputElement = screen.getByTestId('input-password')

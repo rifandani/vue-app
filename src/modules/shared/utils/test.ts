@@ -9,8 +9,8 @@ import idID from '#i18n/id-ID.json'
 
 export interface WrapperParams<T> {
   component: any
-  stubs?: string[]
   props?: ComponentInstance<T>['$props']
+  stubs?: string[]
 }
 
 // Type-define 'en-US' as the master schema for the resource

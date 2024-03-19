@@ -9,7 +9,7 @@ describe('<TodosCreate />', () => {
   const mockCreateSubmitFn = vi.fn()
 
   testWrapper('should render properly', ({ wrapper }) => {
-    const result = wrapper({ component: TodosCreate })
+    const result = wrapper<typeof TodosCreate>({ component: TodosCreate })
     expect(() => result).not.toThrow()
   })
 
@@ -17,7 +17,7 @@ describe('<TodosCreate />', () => {
     'should be able to type the inputs and submit the create todo form',
     async ({ wrapper }) => {
       // ARRANGE
-      wrapper({ component: TodosCreate })
+      wrapper<typeof TodosCreate>({ component: TodosCreate })
       const user = userEvent.setup()
       const formCreate: HTMLFormElement = screen.getByTestId('form-create')
       const inputTodo: HTMLInputElement = screen.getByTestId('input-create')

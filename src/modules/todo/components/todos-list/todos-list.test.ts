@@ -9,7 +9,7 @@ describe('<TodosList />', () => {
   const loadingId = 'list-loading'
 
   testWrapper('should render properly', ({ wrapper }) => {
-    const result = wrapper({ component: TodosList })
+    const result = wrapper<typeof TodosList>({ component: TodosList })
     expect(() => result).not.toThrow()
   })
 
@@ -29,7 +29,7 @@ describe('<TodosList />', () => {
         { once: true },
       ),
     )
-    wrapper({ component: TodosList })
+    wrapper<typeof TodosList>({ component: TodosList })
 
     // ASSERT
     await waitFor(() => {
