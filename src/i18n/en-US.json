@@ -54,7 +54,6 @@
     "settings": "Settings",
     "account": "Account",
     "language": "Language",
-    "english": "English",
     "profile": "Profile",
     "errorMinLength": "{field} must contain at least {length} characters",
     "action": "{module} failed to {action}",

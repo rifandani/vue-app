@@ -54,7 +54,6 @@
     "settings": "Pengaturan",
     "account": "Akun",
     "language": "Bahasa",
-    "english": "Inggris",
     "profile": "Profil",
     "errorMinLength": "{field} harus memiliki minimal {length} karakter",
     "action": "{module} gagal di {action}",

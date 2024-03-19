@@ -46,7 +46,7 @@ function logout() {
         <DropdownMenuContent>
           <DropdownMenuRadioGroup v-model="locale">
             <DropdownMenuRadioItem value="en-US" @select="locale = 'en-US'">
-              {{ t("common.english") }}
+              English
             </DropdownMenuRadioItem>
             <DropdownMenuRadioItem value="id-ID" @select="locale = 'id-ID'">
               Indonesia
