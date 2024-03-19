@@ -6,8 +6,13 @@ export const envSchema = z.object({
 })
 
 export const env = (() => {
-  const appTitle = envSchema.shape.VITE_APP_TITLE.parse(import.meta.env.VITE_APP_TITLE ?? 'unknown-VITE_APP_TITLE')
-  const apiBaseUrl = envSchema.shape.VITE_API_BASE_URL.parse(import.meta.env.VITE_API_BASE_URL ?? 'unknown-VITE_API_BASE_URL')
+  let appTitle = 'unknown-VITE_APP_TITLE'
+  let apiBaseUrl = 'unknown-VITE_API_BASE_URL'
+
+  if (import.meta.env.VITE_APP_TITLE)
+    appTitle = envSchema.shape.VITE_APP_TITLE.parse(import.meta.env.VITE_APP_TITLE)
+  if (import.meta.env.VITE_API_BASE_URL)
+    apiBaseUrl = envSchema.shape.VITE_API_BASE_URL.parse(import.meta.env.VITE_API_BASE_URL)
 
   return {
     appTitle,
