@@ -3,7 +3,8 @@ import * as tanstackQuery from '@tanstack/eslint-plugin-query'
 import * as jestDom from 'eslint-plugin-jest-dom'
 import testingLibrary from 'eslint-plugin-testing-library'
 import tailwindcss from 'eslint-plugin-tailwindcss'
-import vueA11y from 'eslint-plugin-vuejs-accessibility'
+import a11y from 'eslint-plugin-vuejs-accessibility'
+import * as storybook from 'eslint-plugin-storybook'
 
 export default antfu(
   {
@@ -93,15 +94,10 @@ export default antfu(
     files: ['src/**/*.{ts,tsx,vue}'],
     plugins: {
       'vuejs-accessibility': {
-        rules: vueA11y.rules,
+        rules: a11y.rules,
       },
     },
-    rules: { ...vueA11y.configs.recommended.rules, 'vuejs-accessibility/label-has-for': [
-      'error',
-      {
-        controlComponents: ['InputText', 'Password', 'Dropdown'],
-      },
-    ] },
+    rules: a11y.configs.recommended.rules,
   },
   {
     name: 'tailwindcss',
@@ -114,6 +110,28 @@ export default antfu(
     rules: {
       ...tailwindcss.configs.recommended.rules,
       'tailwindcss/no-custom-classname': 'off',
+    },
+  },
+  {
+    name: 'storybook',
+    files: storybook.configs.recommended.overrides[0].files,
+    plugins: {
+      storybook: {
+        rules: storybook.rules,
+      },
+    },
+    rules: storybook.configs.recommended.overrides[0].rules,
+  },
+  {
+    name: 'storybook-main',
+    files: storybook.configs.recommended.overrides[1].files,
+    plugins: {
+      'storybook-main': {
+        rules: storybook.rules,
+      },
+    },
+    rules: {
+      'storybook-main/no-uninstalled-addons': 'error',
     },
   },
 )
