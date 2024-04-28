@@ -2,7 +2,7 @@ const animate = require('tailwindcss-animate')
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ['class'],
+  darkMode: ['class', '[data-mode="dark"]'],
   safelist: ['dark'],
   prefix: '',
   content: [

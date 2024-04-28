@@ -107,9 +107,6 @@ export default defineConfig({
   ],
   test: {
     root: fileURLToPath(new URL('./', import.meta.url)),
-    deps: {
-      inline: ['@vue', '@vueuse'],
-    },
     // to see how your tests are running in real time in the terminal, add "default"
     // to generate HTML output and preview the results of your tests, add "html"
     reporters: ['default', 'html'],

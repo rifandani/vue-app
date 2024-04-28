@@ -2,7 +2,7 @@
 import { type HTMLAttributes, computed } from 'vue'
 import { AlertDialogCancel, type AlertDialogCancelProps } from 'radix-vue'
 import { twMerge } from 'tailwind-merge'
-import { buttonVariants } from '#shared/components/ui/button'
+import { buttonVariants } from '../button'
 
 const props = defineProps<AlertDialogCancelProps & { class?: HTMLAttributes['class'] }>()
 

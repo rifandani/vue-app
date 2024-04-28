@@ -2,7 +2,7 @@
 import { type HTMLAttributes, computed } from 'vue'
 import { AlertDialogAction, type AlertDialogActionProps } from 'radix-vue'
 import { twMerge } from 'tailwind-merge'
-import { buttonVariants } from '#shared/components/ui/button'
+import { buttonVariants } from '../button'
 
 const props = defineProps<AlertDialogActionProps & { class?: HTMLAttributes['class'] }>()
 

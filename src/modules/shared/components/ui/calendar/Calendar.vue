@@ -5,8 +5,8 @@ import type { Calendar } from 'v-calendar'
 import { DatePicker } from 'v-calendar'
 import { computed, nextTick, onMounted, ref, useSlots } from 'vue'
 import { twMerge } from 'tailwind-merge'
+import { buttonVariants } from '../button'
 import { isVCalendarSlot } from '.'
-import { buttonVariants } from '#shared/components/ui/button'
 
 /* Extracted from v-calendar */
 type DatePickerModel = DatePickerDate | DatePickerRangeObject
@@ -79,34 +79,34 @@ onMounted(async () => {
 <template>
   <div class="relative">
     <div v-if="$attrs.mode !== 'time'" class="absolute top-3 z-[1] flex w-full justify-between px-4">
-      <button :class="twMerge(buttonVariants({ variant: 'outline' }), 'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100')" @click="handleNav('prev')">
+      <button
+        :class="twMerge(buttonVariants({ variant: 'outline' }), 'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100')"
+        @click="handleNav('prev')"
+      >
         <Icon icon="lucide:chevron-left" class="size-4" />
       </button>
-      <button :class="twMerge(buttonVariants({ variant: 'outline' }), 'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100')" @click="handleNav('next')">
+      <button
+        :class="twMerge(buttonVariants({ variant: 'outline' }), 'h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100')"
+        @click="handleNav('next')"
+      >
         <Icon icon="lucide:chevron-right" class="size-4" />
       </button>
     </div>
 
     <DatePicker
-      ref="datePicker"
-      v-bind="$attrs"
-      v-model="modelValue"
-      :model-modifiers="modelModifiers"
-      class="calendar"
-      trim-weeks
-      transition="none"
-      :columns="columns"
+      ref="datePicker" v-bind="$attrs" v-model="modelValue" :model-modifiers="modelModifiers" class="calendar"
+      trim-weeks transition="none" :columns="columns"
     >
       <template v-for="(_, slot) of vCalendarSlots" #[slot]="scope">
         <slot :name="slot" v-bind="scope" />
       </template>
 
       <template #nav-prev-button>
-        <ChevronLeft />
+        <Icon icon="lucide:chevron-left" />
       </template>
 
       <template #nav-next-button>
-        <ChevronRight />
+        <Icon icon="lucide:chevron-right" />
       </template>
     </DatePicker>
   </div>

@@ -29,8 +29,10 @@ Prerequisites:
 To set up the app execute the following commands:
 
 ```bash
-# clone the template OR you can click "Use this template" in https://github.com/rifandani/vue-app.com
+# clone the template OR you can click "Use this template" in github
 $ git clone https://github.com/rifandani/vue-app.git
+# OR use degit
+$ npx degit rifandani/vue-app#main
 
 $ cd vue-app
 
@@ -71,6 +73,10 @@ $ pnpm build:staging
 # build app in "production" mode
 $ pnpm build
 ```
+
+## Maintaining
+
+- Update dependencies weekly using dependencies updater. I recommend using Vscode extensions: [Vscode Ecosystem](https://marketplace.visualstudio.com/items?itemName=rifandani.vscode-ecosystem) (also maintained by myself)
 
 ## Deployment
 

@@ -1,19 +1,39 @@
-import type { StorybookConfig } from "@storybook/vue3-vite";
+import type { AddonOptionsVite } from '@storybook/addon-coverage'
+import type { StorybookConfig } from '@storybook/vue3-vite'
+
+const coverageConfig: AddonOptionsVite = {
+  istanbul: {
+    // exclude: ['**/exampleDirectory/**'],
+  },
+}
 
 const config: StorybookConfig = {
-  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  stories: ['../docs/**/*.mdx', '../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  staticDirs: ['../docs/assets'],
   addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "@chromatic-com/storybook",
-    "@storybook/addon-interactions",
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/addon-interactions',
+    '@storybook/addon-a11y',
+    {
+      name: '@storybook/addon-coverage',
+      options: coverageConfig,
+    },
+    '@storybook/addon-themes',
+    '@storybook/addon-designs',
   ],
   framework: {
-    name: "@storybook/vue3-vite",
-    options: {},
+    name: '@storybook/vue3-vite',
+    options: {
+      docgen: 'vue-component-meta',
+    },
   },
   docs: {
-    autodocs: "tag",
+    autodocs: 'tag',
   },
-};
-export default config;
+  core: {
+    disableTelemetry: true, // 👈 Disables telemetry
+  },
+}
+
+export default config
