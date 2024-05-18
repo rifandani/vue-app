@@ -1,0 +1,24 @@
+import { Meta } from "@storybook/blocks";
+
+<Meta title="Docs/Testing" />
+
+# Testing
+
+## Type Checking
+
+This project uses TypeScript.<br />
+It's recommended to get TypeScript set up for your editor to get a really great in-editor experience with type checking and auto-complete.<br />
+To run type checking across the whole project, run `pnpm typecheck`.
+
+## Vitest
+
+For lower level tests of utils/helpers pure functions, we use `vitest`.<br />
+To run the tests, run `pnpm test:quiet`.<br />
+To run & watch the tests, run `pnpm test`.<br />
+To run and spin up the test UI, run `pnpm test:ui`.<br />
+To run coverage, run `pnpm test:coverage`.<br />
+
+## Storybook
+
+For component and story tests, we use `@storybook/test-runner`.<br />
+To run the tests, run `pnpm storybook:test`.<br />

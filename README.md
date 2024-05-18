@@ -18,13 +18,7 @@ This repo attempts to present a way of creating Vue applications using some of t
 
 The goal here is to serve as a collection of resources and best practices when developing Vue applications. It is supposed to showcase solving most of the real-world problems of an application in a practical way and help developers write better applications.
 
-Feel free to explore the codebase to get the most value out of the repo.
-
-## Table of Contents
-
-- [Application Overview](https://github.com/rifandani/vue-app/tree/main/docs/application-overview.md)
-- [Linting and Formatting](https://github.com/rifandani/vue-app/tree/main/docs/linting-and-formatting.md)
-- [Testing](https://github.com/rifandani/vue-app/tree/main/docs/testing.md)
+Feel free to explore the codebase to get the most value out of the repo. For a full documentation, check out the `docs` folder in the root of the repo.
 
 ## License
 
