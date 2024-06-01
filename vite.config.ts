@@ -12,6 +12,7 @@ import { configDefaults } from 'vitest/config'
 import type { ManifestOptions, VitePWAOptions } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 import tailwind from 'tailwindcss'
+import tailwindNesting from 'tailwindcss/nesting'
 import autoprefixer from 'autoprefixer'
 
 const sw = process.env.SW === 'true'
@@ -84,7 +85,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [tailwind(), autoprefixer()],
+      plugins: [tailwindNesting(), tailwind(), autoprefixer()],
     },
   },
   plugins: [

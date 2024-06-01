@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
 import { RouterView } from 'vue-router'
 import Listeners from '#app/listeners.vue'
+import Devtools from '#app/devtools.vue'
 import { Toaster } from '#shared/components/ui/sonner'
 </script>
 
@@ -9,6 +9,7 @@ import { Toaster } from '#shared/components/ui/sonner'
   <Listeners>
     <RouterView />
   </Listeners>
+
   <Toaster :duration="3_000" position="bottom-right" />
-  <VueQueryDevtools button-position="bottom-left" />
+  <Devtools />
 </template>
