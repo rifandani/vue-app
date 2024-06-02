@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@internationalized/date':
+        specifier: ^3.5.4
+        version: 3.5.4
       '@rifandani/nxact-yutiriti':
         specifier: ^1.2.2
         version: 1.2.2
@@ -29,6 +32,12 @@ importers:
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
+      embla-carousel:
+        specifier: ^8.1.3
+        version: 8.1.3
+      embla-carousel-vue:
+        specifier: ^8.1.3
+        version: 8.1.3(vue@3.4.21(typescript@5.4.3))
       ky:
         specifier: ^1.2.3
         version: 1.2.3
@@ -36,17 +45,14 @@ importers:
         specifier: ^2.1.7
         version: 2.1.7(typescript@5.4.3)(vue@3.4.21(typescript@5.4.3))
       radix-vue:
-        specifier: ^1.5.3
-        version: 1.5.3(vue@3.4.21(typescript@5.4.3))
+        specifier: ^1.8.2
+        version: 1.8.2(vue@3.4.21(typescript@5.4.3))
       tailwind-merge:
         specifier: ^2.2.2
         version: 2.2.2
       type-fest:
         specifier: ^4.14.0
         version: 4.14.0
-      v-calendar:
-        specifier: ^3.1.2
-        version: 3.1.2(@popperjs/core@2.11.8)(vue@3.4.21(typescript@5.4.3))
       vaul-vue:
         specifier: ^0.1.0
         version: 0.1.0(typescript@5.4.3)
@@ -1456,8 +1462,8 @@ packages:
   '@floating-ui/core@1.6.0':
     resolution: {integrity: sha512-PcF++MykgmTj3CIyOQbKA/hDzOAiqI3mhuoN44WRCopIs1sgoDoU4oty4Jtqaj/y3oDU6fnVSm4QG0a3t5i0+g==}
 
-  '@floating-ui/dom@1.6.3':
-    resolution: {integrity: sha512-RnDthu3mzPlQ31Ss/BTwQ1zjzIhr3lk1gZB1OC56h/1vEtaXkESrOqL5fQVMfXpwGtRwX+YsZBdyHtJMQnkArw==}
+  '@floating-ui/dom@1.6.5':
+    resolution: {integrity: sha512-Nsdud2X65Dz+1RHjAIP0t8z5e2ff/IRbei6BqFrl1urT8sDVzM1HMQ+R0XcU5ceRfyO3I6ayeqIfh+6Wb8LGTw==}
 
   '@floating-ui/utils@0.2.1':
     resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
@@ -1502,8 +1508,11 @@ packages:
     resolution: {integrity: sha512-/vvkUkYhrjbm+RolU7V1aUFDydZVKNKqKHR5TsE+j5DXgXFwrsOPcoGUJ02K0O7q7O53CU2DOTMYCHeGZ25WHA==}
     engines: {node: '>=18'}
 
-  '@internationalized/date@3.5.2':
-    resolution: {integrity: sha512-vo1yOMUt2hzp63IutEaTUxROdvQg1qlMRsbCvbay2AK2Gai7wIgCyK5weEX3nHkiLgo4qCXHijFNC/ILhlRpOQ==}
+  '@internationalized/date@3.5.4':
+    resolution: {integrity: sha512-qoVJVro+O0rBaw+8HPjUB1iH8Ihf8oziEnqMnvhJUSuVIrHOuZ6eNLHNvzXJKUvAtaDiqMnRlg8Z2mgh09BlUw==}
+
+  '@internationalized/number@3.5.3':
+    resolution: {integrity: sha512-rd1wA3ebzlp0Mehj5YTuTI50AQEx80gWFyHcQu+u91/5NgdwBecO8BH6ipPfE+lmQ9d63vpB3H9SHoIUiupllw==}
 
   '@intlify/core-base@9.10.2':
     resolution: {integrity: sha512-HGStVnKobsJL0DoYIyRCGXBH63DMQqEZxDUGrkNI05FuTcruYUtOAxyL3zoAZu/uDGO6mcUvm3VXBaHG2GdZCg==}
@@ -1704,9 +1713,6 @@ packages:
 
   '@polka/url@1.0.0-next.24':
     resolution: {integrity: sha512-2LuNTFBIO0m7kKIQvvPHN6UE63VjpmL9rnEEaOOaiSPbZK+zUOYIzBAWcED+3XYzhYsd/0mD57VdxAEqqV52CQ==}
-
-  '@popperjs/core@2.11.8':
-    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
 
   '@radix-ui/primitive@1.0.1':
     resolution: {integrity: sha512-yQ8oGX2GVsEYMWGxcovu1uGWPCxV5BFfeeYxqPmuAzUyLT9qmaMXSAhXpb0WrspIeqYzdJpkh2vHModJPgRIaw==}
@@ -2376,6 +2382,9 @@ packages:
     resolution: {integrity: sha512-wDhpKJahGHWhmRt4RxtV3pES63CoeadljGWS/xeS9OJr1HBl2NB+OO44ht3sxDH5j5TRDAbQzC0NvSlsUfn7lQ==}
     engines: {node: '>=12'}
 
+  '@tanstack/virtual-core@3.5.0':
+    resolution: {integrity: sha512-KnPRCkQTyqhanNC0K63GBG3wA8I+D1fQuVnAvcBF8f13akOKeQp1gSbu6f77zCxhEk727iV5oQnbHLYzHrECLg==}
+
   '@tanstack/vue-query-devtools@5.28.7':
     resolution: {integrity: sha512-ohjxkNUTBlIbvKxyyfVNckcyiI3ZKhvzLocrot2HeffQZfOdoWTOvye8/Qen7I0+JDAjaYAoRRPNe2l8WXR9rQ==}
     peerDependencies:
@@ -2396,6 +2405,11 @@ packages:
     engines: {node: '>=12'}
     peerDependencies:
       vue: '>=3.2'
+
+  '@tanstack/vue-virtual@3.5.0':
+    resolution: {integrity: sha512-wvRQ8sFxn/NDr3WvI5XabhFovZ5MBmpEck2GHpTxYunmV63Ovpl30lRu6W5BPQo35a1GqDZ+Pvzlz6WDWRNqqw==}
+    peerDependencies:
+      vue: ^2.7.0 || ^3.0.0
 
   '@testing-library/dom@9.3.3':
     resolution: {integrity: sha512-fB0R+fa3AUqbLHWyxXa2kGVtf1Fe1ZZFr0Zp6AIbIAzXb2mKbEXl+PCQNUOaq5lbTab5tfctfXRNsWXxa2f7Aw==}
@@ -2585,9 +2599,6 @@ packages:
 
   '@types/react@18.2.69':
     resolution: {integrity: sha512-W1HOMUWY/1Yyw0ba5TkCV+oqynRjG7BnteBB+B7JmAK7iw3l2SW+VGOxL+akPweix6jk2NNJtyJKpn4TkpfK3Q==}
-
-  '@types/resize-observer-browser@0.1.11':
-    resolution: {integrity: sha512-cNw5iH8JkMkb3QkCoe7DaZiawbDQEUX8t7iuQaRTyLOyQCR2h+ibBD4GJt7p5yhUHrlOeL7ZtbxNHeipqNsBzQ==}
 
   '@types/resolve@1.17.1':
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
@@ -3600,15 +3611,6 @@ packages:
     resolution: {integrity: sha512-ZYP5VBHshaDAiVZxjbRVcFJpc+4xGgT0bK3vzy1HLN8jTO975HEbuYzZJcHoQEY5K1a0z8YayJkyVETa08eNTg==}
     engines: {node: '>=18'}
 
-  date-fns-tz@2.0.0:
-    resolution: {integrity: sha512-OAtcLdB9vxSXTWHdT8b398ARImVwQMyjfYGkKD2zaGpHseG2UPHbHjXELReErZFxWdSLph3c2zOaaTyHfOhERQ==}
-    peerDependencies:
-      date-fns: '>=2.0.0'
-
-  date-fns@2.30.0:
-    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
-    engines: {node: '>=0.11'}
-
   de-indent@1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
 
@@ -3836,6 +3838,19 @@ packages:
 
   electron-to-chromium@1.4.695:
     resolution: {integrity: sha512-eMijZmeqPtm774pCZIOrfUHMs/7ls++W1sLhxwqgu8KQ8E2WmMtzwyqOMt0XXUJ3HTIPfuwlfwF+I5cwnfItBA==}
+
+  embla-carousel-reactive-utils@8.1.3:
+    resolution: {integrity: sha512-D8tAK6NRQVEubMWb+b/BJ3VvGPsbEeEFOBM6cCCwfiyfLzNlacOAt0q2dtUEA9DbGxeWkB8ExgXzFRxhGV2Hig==}
+    peerDependencies:
+      embla-carousel: 8.1.3
+
+  embla-carousel-vue@8.1.3:
+    resolution: {integrity: sha512-29JuRyLGIOu3RQ5jTF35Za3EDBT3XRdjPHlmJKnhsqpqWoiZghQSepw1CAgC1WwaBc/z4XgWNzV3u02HmqMeiA==}
+    peerDependencies:
+      vue: ^3.2.37
+
+  embla-carousel@8.1.3:
+    resolution: {integrity: sha512-GiRpKtzidV3v50oVMly8S+D7iE1r96ttt7fSlvtyKHoSkzrAnVcu8fX3c4j8Ol2hZSQlVfDqDIqdrFPs0u5TWQ==}
 
   emittery@0.13.1:
     resolution: {integrity: sha512-DeWwawk6r5yR9jFgnDKYt4sLS0LmHJJi3ZOnb5/JdbYwj3nW+FxQnHIjhBKz8YLC7oRNPVM9NQ47I3CVx34eqQ==}
@@ -6192,8 +6207,10 @@ packages:
   queue-tick@1.0.1:
     resolution: {integrity: sha512-kJt5qhMxoszgU/62PLP1CJytzd2NKetjSRnyuj31fDd3Rlcz3fzlFdFLD1SItunPwyqEOkca6GbV612BWfaBag==}
 
-  radix-vue@1.5.3:
-    resolution: {integrity: sha512-K1JF8P238jGKRwwlWe0LNCd80bamfWFnDhLNBAgoWvSRORRIsoo7DODnC4TLE62JE55tf/6ABSs5JIvp2BvYPA==}
+  radix-vue@1.8.2:
+    resolution: {integrity: sha512-ey6jG1rPAD/521PsXGrNkjztvh7PRw6Wwbk7LsHjsKqRoy/S4k58ryzmQ0tmoNOiUALfX92+MOnd5F3ONmuZ/w==}
+    peerDependencies:
+      vue: '>= 3.2.0'
 
   ramda@0.29.0:
     resolution: {integrity: sha512-BBea6L67bYLtdbOqfp8f58fPMqEwx0doL+pAi8TZyp2YWz8R9G8z9x75CZI8W+ftqhFHCpEX2cRnUUXK130iKA==}
@@ -7198,12 +7215,6 @@ packages:
     resolution: {integrity: sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==}
     hasBin: true
 
-  v-calendar@3.1.2:
-    resolution: {integrity: sha512-QDWrnp4PWCpzUblctgo4T558PrHgHzDtQnTeUNzKxfNf29FkCeFpwGd9bKjAqktaa2aJLcyRl45T5ln1ku34kg==}
-    peerDependencies:
-      '@popperjs/core': ^2.0.0
-      vue: ^3.2.0
-
   v8-compile-cache-lib@3.0.1:
     resolution: {integrity: sha512-wa7YjyUGfNZngI/vtK0UHAN+lgDCxBPCylVXGp0zu59Fz5aiGtNXaq3DhIov063MorB+VfufLh3JlF2KdTK3xg==}
 
@@ -7380,11 +7391,6 @@ packages:
 
   vue-router@4.3.0:
     resolution: {integrity: sha512-dqUcs8tUeG+ssgWhcPbjHvazML16Oga5w34uCUmsk7i0BcnskoLGwjpa15fqMr2Fa5JgVBrdL2MEgqz6XZ/6IQ==}
-    peerDependencies:
-      vue: ^3.2.0
-
-  vue-screen-utils@1.0.0-beta.13:
-    resolution: {integrity: sha512-EJ/8TANKhFj+LefDuOvZykwMr3rrLFPLNb++lNBqPOpVigT2ActRg6icH9RFQVm4nHwlHIHSGm5OY/Clar9yIg==}
     peerDependencies:
       vue: ^3.2.0
 
@@ -9044,7 +9050,7 @@ snapshots:
     dependencies:
       '@floating-ui/utils': 0.2.1
 
-  '@floating-ui/dom@1.6.3':
+  '@floating-ui/dom@1.6.5':
     dependencies:
       '@floating-ui/core': 1.6.0
       '@floating-ui/utils': 0.2.1
@@ -9053,7 +9059,7 @@ snapshots:
 
   '@floating-ui/vue@1.0.6(vue@3.4.21(typescript@5.4.3))':
     dependencies:
-      '@floating-ui/dom': 1.6.3
+      '@floating-ui/dom': 1.6.5
       '@floating-ui/utils': 0.2.1
       vue-demi: 0.14.7(vue@3.4.21(typescript@5.4.3))
     transitivePeerDependencies:
@@ -9109,7 +9115,11 @@ snapshots:
 
   '@inquirer/type@1.2.0': {}
 
-  '@internationalized/date@3.5.2':
+  '@internationalized/date@3.5.4':
+    dependencies:
+      '@swc/helpers': 0.5.6
+
+  '@internationalized/number@3.5.3':
     dependencies:
       '@swc/helpers': 0.5.6
 
@@ -9424,8 +9434,6 @@ snapshots:
   '@pkgr/core@0.1.0': {}
 
   '@polka/url@1.0.0-next.24': {}
-
-  '@popperjs/core@2.11.8': {}
 
   '@radix-ui/primitive@1.0.1':
     dependencies:
@@ -10512,6 +10520,8 @@ snapshots:
 
   '@tanstack/table-core@8.14.0': {}
 
+  '@tanstack/virtual-core@3.5.0': {}
+
   '@tanstack/vue-query-devtools@5.28.7(@tanstack/vue-query@5.28.7(vue@3.4.21(typescript@5.4.3)))(vue@3.4.21(typescript@5.4.3))':
     dependencies:
       '@tanstack/query-devtools': 5.28.6
@@ -10529,6 +10539,11 @@ snapshots:
   '@tanstack/vue-table@8.15.0(vue@3.4.21(typescript@5.4.3))':
     dependencies:
       '@tanstack/table-core': 8.14.0
+      vue: 3.4.21(typescript@5.4.3)
+
+  '@tanstack/vue-virtual@3.5.0(vue@3.4.21(typescript@5.4.3))':
+    dependencies:
+      '@tanstack/virtual-core': 3.5.0
       vue: 3.4.21(typescript@5.4.3)
 
   '@testing-library/dom@9.3.3':
@@ -10737,8 +10752,6 @@ snapshots:
       '@types/prop-types': 15.7.12
       '@types/scheduler': 0.16.8
       csstype: 3.1.3
-
-  '@types/resize-observer-browser@0.1.11': {}
 
   '@types/resolve@1.17.1':
     dependencies:
@@ -11933,14 +11946,6 @@ snapshots:
       whatwg-mimetype: 4.0.0
       whatwg-url: 14.0.0
 
-  date-fns-tz@2.0.0(date-fns@2.30.0):
-    dependencies:
-      date-fns: 2.30.0
-
-  date-fns@2.30.0:
-    dependencies:
-      '@babel/runtime': 7.23.7
-
   de-indent@1.0.2: {}
 
   debug@2.6.9:
@@ -12141,6 +12146,18 @@ snapshots:
       jake: 10.8.7
 
   electron-to-chromium@1.4.695: {}
+
+  embla-carousel-reactive-utils@8.1.3(embla-carousel@8.1.3):
+    dependencies:
+      embla-carousel: 8.1.3
+
+  embla-carousel-vue@8.1.3(vue@3.4.21(typescript@5.4.3)):
+    dependencies:
+      embla-carousel: 8.1.3
+      embla-carousel-reactive-utils: 8.1.3(embla-carousel@8.1.3)
+      vue: 3.4.21(typescript@5.4.3)
+
+  embla-carousel@8.1.3: {}
 
   emittery@0.13.1: {}
 
@@ -14943,16 +14960,22 @@ snapshots:
 
   queue-tick@1.0.1: {}
 
-  radix-vue@1.5.3(vue@3.4.21(typescript@5.4.3)):
+  radix-vue@1.8.2(vue@3.4.21(typescript@5.4.3)):
     dependencies:
-      '@floating-ui/dom': 1.6.3
+      '@floating-ui/dom': 1.6.5
       '@floating-ui/vue': 1.0.6(vue@3.4.21(typescript@5.4.3))
-      '@internationalized/date': 3.5.2
+      '@internationalized/date': 3.5.4
+      '@internationalized/number': 3.5.3
+      '@tanstack/vue-virtual': 3.5.0(vue@3.4.21(typescript@5.4.3))
+      '@vueuse/core': 10.9.0(vue@3.4.21(typescript@5.4.3))
+      '@vueuse/shared': 10.9.0(vue@3.4.21(typescript@5.4.3))
+      aria-hidden: 1.2.4
+      defu: 6.1.4
       fast-deep-equal: 3.1.3
       nanoid: 5.0.6
+      vue: 3.4.21(typescript@5.4.3)
     transitivePeerDependencies:
       - '@vue/composition-api'
-      - vue
 
   ramda@0.29.0: {}
 
@@ -16067,17 +16090,6 @@ snapshots:
 
   uuid@9.0.1: {}
 
-  v-calendar@3.1.2(@popperjs/core@2.11.8)(vue@3.4.21(typescript@5.4.3)):
-    dependencies:
-      '@popperjs/core': 2.11.8
-      '@types/lodash': 4.14.202
-      '@types/resize-observer-browser': 0.1.11
-      date-fns: 2.30.0
-      date-fns-tz: 2.0.0(date-fns@2.30.0)
-      lodash: 4.17.21
-      vue: 3.4.21(typescript@5.4.3)
-      vue-screen-utils: 1.0.0-beta.13(vue@3.4.21(typescript@5.4.3))
-
   v8-compile-cache-lib@3.0.1: {}
 
   v8-to-istanbul@9.2.0:
@@ -16096,7 +16108,7 @@ snapshots:
   vaul-vue@0.1.0(typescript@5.4.3):
     dependencies:
       '@vueuse/core': 10.9.0(vue@3.4.21(typescript@5.4.3))
-      radix-vue: 1.5.3(vue@3.4.21(typescript@5.4.3))
+      radix-vue: 1.8.2(vue@3.4.21(typescript@5.4.3))
       vue: 3.4.21(typescript@5.4.3)
     transitivePeerDependencies:
       - '@vue/composition-api'
@@ -16284,10 +16296,6 @@ snapshots:
   vue-router@4.3.0(vue@3.4.21(typescript@5.4.3)):
     dependencies:
       '@vue/devtools-api': 6.5.1
-      vue: 3.4.21(typescript@5.4.3)
-
-  vue-screen-utils@1.0.0-beta.13(vue@3.4.21(typescript@5.4.3)):
-    dependencies:
       vue: 3.4.21(typescript@5.4.3)
 
   vue-sonner@1.1.2: {}

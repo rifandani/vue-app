@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
-import { ref } from 'vue'
+import { type DateValue, getLocalTimeZone, today } from '@internationalized/date'
+import { type Ref, ref } from 'vue'
 import Calendar from './Calendar.vue'
 
 const meta = {
@@ -14,26 +15,12 @@ export const Default: Story = {
   render: args => ({
     components: { Calendar },
     setup() {
-      const date = ref(new Date(2024, 0, 1))
+      const value = ref(today(getLocalTimeZone())) as Ref<DateValue>
 
-      return { args, date }
+      return { args, value }
     },
     template: `
-      <Calendar v-model="date" class="rounded-md border" v-bind="args" />
-    `,
-  }),
-}
-
-export const DatePicker: Story = {
-  render: args => ({
-    components: { Calendar },
-    setup() {
-      const date = ref(new Date(2024, 0, 1))
-
-      return { args, date }
-    },
-    template: `
-      <Calendar v-model="date" class="rounded-md border" v-bind="args" />
+      <Calendar v-model="value" :weekday-format="'short'" class="rounded-md border" v-bind="args" />
     `,
   }),
 }

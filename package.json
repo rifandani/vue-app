@@ -55,6 +55,7 @@
     "release": "bumpp"
   },
   "dependencies": {
+    "@internationalized/date": "^3.5.4",
     "@rifandani/nxact-yutiriti": "^1.2.2",
     "@tanstack/vue-query": "^5.28.7",
     "@tanstack/vue-query-devtools": "^5.28.7",
@@ -62,12 +63,13 @@
     "@vee-validate/zod": "^4.12.6",
     "@vueuse/core": "^10.9.0",
     "class-variance-authority": "^0.7.0",
+    "embla-carousel": "^8.1.3",
+    "embla-carousel-vue": "^8.1.3",
     "ky": "^1.2.3",
     "pinia": "^2.1.7",
-    "radix-vue": "^1.5.3",
+    "radix-vue": "^1.8.2",
     "tailwind-merge": "^2.2.2",
     "type-fest": "^4.14.0",
-    "v-calendar": "^3.1.2",
     "vaul-vue": "^0.1.0",
     "vee-validate": "^4.12.6",
     "vue": "^3.4.21",
