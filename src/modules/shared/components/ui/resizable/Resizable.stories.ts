@@ -16,13 +16,16 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
+  args: {
+    direction: 'horizontal',
+  },
   render: args => ({
     components: { ResizablePanelGroup, ...subcomponents },
     setup() {
       return { args }
     },
     template: `
-      <ResizablePanelGroup direction="horizontal" v-bind="args">
+      <ResizablePanelGroup v-bind="args">
         <ResizablePanel>One</ResizablePanel>
         <ResizableHandle />
         <ResizablePanel>Two</ResizablePanel>
@@ -36,6 +39,9 @@ export const Default: Story = {
 }
 
 export const Vertical: Story = {
+  args: {
+    direction: 'vertical',
+  },
   render: args => ({
     components: { ResizablePanelGroup, ...subcomponents },
     setup() {
@@ -43,8 +49,6 @@ export const Vertical: Story = {
     },
     template: `
       <ResizablePanelGroup
-        id="vertical-demo-group-1"
-        direction="vertical"
         class="min-h-[200px] max-w-md rounded-lg border"
         v-bind="args"
       >
@@ -69,13 +73,16 @@ export const Vertical: Story = {
 }
 
 export const WithHandle: Story = {
+  args: {
+    direction: 'horizontal',
+  },
   render: args => ({
     components: { ResizablePanelGroup, ...subcomponents },
     setup() {
       return { args }
     },
     template: `
-      <ResizablePanelGroup direction="horizontal" v-bind="args">
+      <ResizablePanelGroup v-bind="args">
         <ResizablePanel>One</ResizablePanel>
         <ResizableHandle with-handle />
         <ResizablePanel>Two</ResizablePanel>
