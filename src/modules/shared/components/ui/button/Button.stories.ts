@@ -4,7 +4,6 @@ import Button from './Button.vue'
 
 const meta = {
   title: 'UI/Button',
-  tags: ['autodocs'],
   component: Button,
   parameters: {
     // see: https://storybook.js.org/addons/storybook-addon-designs

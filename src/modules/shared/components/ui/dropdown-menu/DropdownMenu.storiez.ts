@@ -10,7 +10,6 @@ const subcomponents = { DropdownMenuContent, DropdownMenuTrigger, DropdownMenuLa
 
 const meta = {
   title: 'UI/DropdownMenu',
-  tags: ['autodocs'],
   component: DropdownMenu,
   subcomponents,
 } satisfies Meta<typeof DropdownMenu>

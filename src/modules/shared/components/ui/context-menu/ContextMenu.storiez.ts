@@ -28,7 +28,6 @@ const subcomponents = {
 
 const meta = {
   title: 'UI/ContextMenu',
-  tags: ['autodocs'],
   component: ContextMenu,
   subcomponents,
 } satisfies Meta<typeof ContextMenu>

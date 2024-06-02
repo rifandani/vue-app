@@ -12,7 +12,6 @@ const subcomponents = { DrawerContent, DrawerDescription, DrawerFooter, DrawerHe
 
 const meta = {
   title: 'UI/Drawer',
-  tags: ['autodocs'],
   component: Drawer,
   subcomponents,
 } satisfies Meta<typeof Drawer>

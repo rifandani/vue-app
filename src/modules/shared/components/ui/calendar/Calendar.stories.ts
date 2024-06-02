@@ -4,7 +4,6 @@ import Calendar from './Calendar.vue'
 
 const meta = {
   title: 'UI/Calendar',
-  tags: ['autodocs'],
   component: Calendar,
 } satisfies Meta<typeof Calendar>
 

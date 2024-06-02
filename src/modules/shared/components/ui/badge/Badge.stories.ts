@@ -4,7 +4,6 @@ import Badge from './Badge.vue'
 
 const meta = {
   title: 'UI/Badge',
-  tags: ['autodocs'],
   component: Badge,
   render: args => ({
     components: { Badge },

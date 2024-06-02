@@ -19,7 +19,6 @@ const subcomponents = {
 
 const meta = {
   title: 'UI/Card',
-  tags: ['autodocs'],
   component: Card,
   subcomponents,
   render: args => ({

@@ -7,7 +7,6 @@ import AccordionTrigger from './AccordionTrigger.vue'
 
 const meta = {
   title: 'UI/Accordion',
-  tags: ['autodocs'],
   component: Accordion,
   subcomponents: { AccordionItem, AccordionTrigger },
   render: args => ({

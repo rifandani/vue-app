@@ -11,7 +11,6 @@ const subcomponents = {
 
 const meta = {
   title: 'UI/Avatar',
-  tags: ['autodocs'],
   component: Avatar,
   subcomponents,
   render: args => ({

@@ -24,7 +24,6 @@ const subcomponents = {
 
 const meta = {
   title: 'UI/AlertDialog',
-  tags: ['autodocs'],
   component: AlertDialog,
   subcomponents,
   render: args => ({

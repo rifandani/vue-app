@@ -14,7 +14,6 @@ const subcomponents = {
 
 const meta = {
   title: 'UI/Collapsible',
-  tags: ['autodocs'],
   component: Collapsible,
   subcomponents,
 } satisfies Meta<typeof Collapsible>

@@ -23,7 +23,6 @@ const subcomponents = {
 
 const meta = {
   title: 'UI/Command',
-  tags: ['autodocs'],
   component: Command,
   subcomponents,
 } satisfies Meta<typeof Command>

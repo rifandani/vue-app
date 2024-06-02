@@ -4,7 +4,6 @@ import AspectRatio from './AspectRatio.vue'
 
 const meta = {
   title: 'UI/AspectRatio',
-  tags: ['autodocs'],
   component: AspectRatio,
   render: args => ({
     components: { AspectRatio },

@@ -25,7 +25,6 @@ const subcomponents = {
 
 const meta = {
   title: 'UI/Dialog',
-  tags: ['autodocs'],
   component: Dialog,
   subcomponents,
 } satisfies Meta<typeof Dialog>

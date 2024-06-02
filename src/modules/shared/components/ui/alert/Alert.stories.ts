@@ -7,7 +7,6 @@ import AlertTitle from './AlertTitle.vue'
 
 const meta = {
   title: 'UI/Alert',
-  tags: ['autodocs'],
   component: Alert,
   subcomponents: { AlertTitle, AlertDescription },
   render: args => ({

@@ -20,7 +20,6 @@ const subcomponents = {
 
 const meta = {
   title: 'UI/Breadcrumb',
-  tags: ['autodocs'],
   component: Breadcrumb,
   subcomponents,
 } satisfies Meta<typeof Breadcrumb>

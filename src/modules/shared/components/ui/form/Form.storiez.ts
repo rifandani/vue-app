@@ -12,7 +12,6 @@ const subcomponents = { FormField, FormItem, FormLabel, FormControl, FormDescrip
 
 const meta = {
   title: 'UI/Form',
-  tags: ['autodocs'],
   component: Form,
   subcomponents,
 } satisfies Meta<typeof Form>
