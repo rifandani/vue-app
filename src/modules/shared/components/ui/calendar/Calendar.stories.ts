@@ -1,11 +1,26 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
 import { type DateValue, getLocalTimeZone, today } from '@internationalized/date'
 import { type Ref, ref } from 'vue'
-import Calendar from './Calendar.vue'
+import { Calendar, CalendarCell, CalendarCellTrigger, CalendarGrid, CalendarGridBody, CalendarGridHead, CalendarGridRow, CalendarHeadCell, CalendarHeader, CalendarHeading, CalendarNextButton, CalendarPrevButton } from '.'
+
+const subcomponents = {
+  CalendarCell,
+  CalendarCellTrigger,
+  CalendarGrid,
+  CalendarGridBody,
+  CalendarGridHead,
+  CalendarGridRow,
+  CalendarHeadCell,
+  CalendarHeader,
+  CalendarHeading,
+  CalendarNextButton,
+  CalendarPrevButton,
+}
 
 const meta = {
   title: 'UI/Calendar',
   component: Calendar,
+  subcomponents,
 } satisfies Meta<typeof Calendar>
 
 export default meta

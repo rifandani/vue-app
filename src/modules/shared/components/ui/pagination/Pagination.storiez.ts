@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/vue3'
+import { PaginationRoot as Pagination, PaginationList, PaginationListItem } from 'radix-vue'
 import { Button } from '../button'
-import { Pagination, PaginationEllipsis, PaginationFirst, PaginationLast, PaginationNext, PaginationPrev } from '.'
+import { PaginationEllipsis, PaginationFirst, PaginationLast, PaginationNext, PaginationPrev } from '.'
 
 const subcomponents = {
   PaginationEllipsis,
@@ -8,6 +9,8 @@ const subcomponents = {
   PaginationLast,
   PaginationNext,
   PaginationPrev,
+  PaginationList,
+  PaginationListItem,
 }
 
 const meta = {

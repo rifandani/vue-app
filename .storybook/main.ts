@@ -32,6 +32,7 @@ const config: StorybookConfig = {
     defaultName: 'Documentation',
   },
   core: {
+    builder: '@storybook/builder-vite',
     disableTelemetry: true, // 👈 Disables telemetry
   },
 }
