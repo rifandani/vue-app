@@ -4,7 +4,9 @@ import type { ComboboxContentEmits, ComboboxContentProps } from 'radix-vue'
 import { ComboboxContent, useForwardPropsEmits } from 'radix-vue'
 import { twMerge } from 'tailwind-merge'
 
-const props = defineProps<ComboboxContentProps & { class?: HTMLAttributes['class'] }>()
+const props = withDefaults(defineProps<ComboboxContentProps & { class?: HTMLAttributes['class'] }>(), {
+  dismissable: false,
+})
 const emits = defineEmits<ComboboxContentEmits>()
 
 const delegatedProps = computed(() => {

@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge'
 import { Icon } from '@iconify/vue'
 import {
   Button,
-} from '#shared/components/ui/button'
+} from '../button'
 
 const props = withDefaults(defineProps<PaginationPrevProps & { class?: HTMLAttributes['class'] }>(), {
   asChild: true,

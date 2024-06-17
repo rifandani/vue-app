@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useForwardPropsEmits } from 'radix-vue'
 import type { DialogRootEmits, DialogRootProps } from 'radix-vue'
+import { Dialog, DialogContent } from '../dialog'
 import Command from './Command.vue'
-import { Dialog, DialogContent } from '#shared/components/ui/dialog'
 
 const props = defineProps<DialogRootProps>()
 const emits = defineEmits<DialogRootEmits>()

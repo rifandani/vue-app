@@ -1,5 +1,5 @@
 import ky from 'ky'
-import { env } from '#shared/configs/env'
+import { env } from '#shared/constants/env'
 
 // Set config defaults when creating the instance
 export const http = ky.create({

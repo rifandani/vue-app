@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { provide } from 'vue'
+import { type HTMLAttributes, provide } from 'vue'
 import { useId } from 'radix-vue'
-import type { HTMLAttributes } from 'vue'
 import { twMerge } from 'tailwind-merge'
-import { FORM_ITEM_INJECTION_KEY } from './useFormField'
+import { FORM_ITEM_INJECTION_KEY } from './injectionKeys'
 
 const props = defineProps<{
   class?: HTMLAttributes['class']

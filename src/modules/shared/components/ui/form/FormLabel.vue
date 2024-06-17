@@ -2,8 +2,8 @@
 import type { HTMLAttributes } from 'vue'
 import type { LabelProps } from 'radix-vue'
 import { twMerge } from 'tailwind-merge'
+import { Label } from '../label'
 import { useFormField } from './useFormField'
-import { Label } from '#shared/components/ui/label'
 
 const props = defineProps<LabelProps & { class?: HTMLAttributes['class'] }>()
 

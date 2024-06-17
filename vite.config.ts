@@ -12,6 +12,7 @@ import { configDefaults } from 'vitest/config'
 import type { ManifestOptions, VitePWAOptions } from 'vite-plugin-pwa'
 import { VitePWA } from 'vite-plugin-pwa'
 import tailwind from 'tailwindcss'
+import tailwindNesting from 'tailwindcss/nesting'
 import autoprefixer from 'autoprefixer'
 
 const sw = process.env.SW === 'true'
@@ -84,7 +85,7 @@ export default defineConfig({
   },
   css: {
     postcss: {
-      plugins: [tailwind(), autoprefixer()],
+      plugins: [tailwindNesting(), tailwind(), autoprefixer()],
     },
   },
   plugins: [
@@ -107,9 +108,6 @@ export default defineConfig({
   ],
   test: {
     root: fileURLToPath(new URL('./', import.meta.url)),
-    deps: {
-      inline: ['@vue', '@vueuse'],
-    },
     // to see how your tests are running in real time in the terminal, add "default"
     // to generate HTML output and preview the results of your tests, add "html"
     reporters: ['default', 'html'],

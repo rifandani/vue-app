@@ -22,6 +22,10 @@ declare global {
     msw: {
       worker: SetupWorker
     }
+    /**
+     * Toggle react query devtools in production
+     */
+    toggleRqDevtools: () => void
   }
 }
 

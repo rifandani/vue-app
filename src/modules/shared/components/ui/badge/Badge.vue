@@ -1,9 +1,12 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from 'vue'
 import { twMerge } from 'tailwind-merge'
+import type { HTMLAttributes } from 'vue'
 import { type BadgeVariants, badgeVariants } from '.'
 
 const props = defineProps<{
+  /**
+   * The color variant
+   */
   variant?: BadgeVariants['variant']
   class?: HTMLAttributes['class']
 }>()
