@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { VueQueryDevtools } from '@tanstack/vue-query-devtools'
-import { Suspense, defineAsyncComponent, onMounted, ref } from 'vue'
+import { defineAsyncComponent, onMounted, ref } from 'vue'
 
 const VueQueryDevtoolsProduction = defineAsyncComponent(() =>
   import('@tanstack/vue-query-devtools'),
@@ -8,7 +8,9 @@ const VueQueryDevtoolsProduction = defineAsyncComponent(() =>
 const showDevtools = ref(false)
 
 onMounted(() => {
-  window.toggleRqDevtools = () => { showDevtools.value = !showDevtools.value }
+  window.toggleRqDevtools = () => {
+    showDevtools.value = !showDevtools.value
+  }
 })
 </script>
 
