@@ -117,9 +117,6 @@ importers:
       '@storybook/blocks':
         specifier: ^8.1.5
         version: 8.1.5(@types/react@18.2.69)(prettier@3.2.5)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/builder-vite':
-        specifier: ^8.1.5
-        version: 8.1.5(prettier@3.2.5)(typescript@5.4.3)(vite@5.2.6(@types/node@20.11.30)(terser@5.26.0))
       '@storybook/manager-api':
         specifier: ^8.1.5
         version: 8.1.5(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
@@ -222,9 +219,6 @@ importers:
       pnpm:
         specifier: ^8.15.5
         version: 8.15.5
-      prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
@@ -7339,8 +7333,8 @@ packages:
   vue-component-type-helpers@2.0.10:
     resolution: {integrity: sha512-FC5fKJjDks3Ue/KRSYBdsiCaZa0kUPQfs8yQpb8W9mlO6BenV8G1z58xobeRMzevnmEcDa09LLwuXDwb4f6NMQ==}
 
-  vue-component-type-helpers@2.0.19:
-    resolution: {integrity: sha512-cN3f1aTxxKo4lzNeQAkVopswuImUrb5Iurll9Gaw5cqpnbTAxtEMM1mgi6ou4X79OCyqYv1U1mzBHJkzmiK82w==}
+  vue-component-type-helpers@2.0.21:
+    resolution: {integrity: sha512-3NaicyZ7N4B6cft4bfb7dOnPbE9CjLcx+6wZWAg5zwszfO4qXRh+U52dN5r5ZZfc6iMaxKCEcoH9CmxxoFZHLg==}
 
   vue-demi@0.14.5:
     resolution: {integrity: sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==}
@@ -10367,7 +10361,7 @@ snapshots:
       ts-dedent: 2.2.0
       type-fest: 2.19.0
       vue: 3.4.21(typescript@5.4.3)
-      vue-component-type-helpers: 2.0.19
+      vue-component-type-helpers: 2.0.21
     transitivePeerDependencies:
       - encoding
       - prettier
@@ -16233,7 +16227,7 @@ snapshots:
 
   vue-component-type-helpers@2.0.10: {}
 
-  vue-component-type-helpers@2.0.19: {}
+  vue-component-type-helpers@2.0.21: {}
 
   vue-demi@0.14.5(vue@3.4.21(typescript@5.4.3)):
     dependencies:

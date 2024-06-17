@@ -38,4 +38,5 @@ export const Default: Story = {
       <Calendar v-model="value" :weekday-format="'short'" class="rounded-md border" v-bind="args" />
     `,
   }),
+  play: async () => {},
 }

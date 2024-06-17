@@ -26,13 +26,15 @@ const config: StorybookConfig = {
     name: '@storybook/vue3-vite',
     options: {
       docgen: 'vue-component-meta',
+      builder: {
+        viteConfigPath: './vite-storybook.config.ts',
+      },
     },
   },
   docs: {
     defaultName: 'Documentation',
   },
   core: {
-    builder: '@storybook/builder-vite',
     disableTelemetry: true, // 👈 Disables telemetry
   },
 }

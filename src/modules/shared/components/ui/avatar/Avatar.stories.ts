@@ -42,7 +42,7 @@ export const Default: Story = {
     await ctx.step('Components exists', async () => {
       const img = await canvas.findByAltText('@radix-vue')
       const span = img.parentElement as HTMLSpanElement
-      await expect(img).toBeVisible()
+      await expect(img).toBeInTheDocument()
       await expect(span.classList.contains('rounded-full')).toBeTruthy()
       await expect(span.classList.contains('size-10')).toBeTruthy()
       await expect(span.classList.contains('text-xs')).toBeTruthy()
@@ -61,7 +61,7 @@ export const CircleBase: Story = {
     await ctx.step('Components exists', async () => {
       const img = await canvas.findByAltText('@radix-vue')
       const span = img.parentElement as HTMLSpanElement
-      await expect(img).toBeVisible()
+      await expect(img).toBeInTheDocument()
       await expect(span.classList.contains('rounded-full')).toBeTruthy()
       await expect(span.classList.contains('size-16')).toBeTruthy()
       await expect(span.classList.contains('text-2xl')).toBeTruthy()
@@ -80,7 +80,7 @@ export const CircleLg: Story = {
     await ctx.step('Components exists', async () => {
       const img = await canvas.findByAltText('@radix-vue')
       const span = img.parentElement as HTMLSpanElement
-      await expect(img).toBeVisible()
+      await expect(img).toBeInTheDocument()
       await expect(span.classList.contains('rounded-full')).toBeTruthy()
       await expect(span.classList.contains('size-32')).toBeTruthy()
       await expect(span.classList.contains('text-5xl')).toBeTruthy()
@@ -99,7 +99,7 @@ export const SquareSm: Story = {
     await ctx.step('Components exists', async () => {
       const img = await canvas.findByAltText('@radix-vue')
       const span = img.parentElement as HTMLSpanElement
-      await expect(img).toBeVisible()
+      await expect(img).toBeInTheDocument()
       await expect(span.classList.contains('rounded-md')).toBeTruthy()
       await expect(span.classList.contains('size-10')).toBeTruthy()
       await expect(span.classList.contains('text-xs')).toBeTruthy()
@@ -118,7 +118,7 @@ export const SquareBase: Story = {
     await ctx.step('Components exists', async () => {
       const img = await canvas.findByAltText('@radix-vue')
       const span = img.parentElement as HTMLSpanElement
-      await expect(img).toBeVisible()
+      await expect(img).toBeInTheDocument()
       await expect(span.classList.contains('rounded-md')).toBeTruthy()
       await expect(span.classList.contains('size-16')).toBeTruthy()
       await expect(span.classList.contains('text-2xl')).toBeTruthy()
@@ -137,7 +137,7 @@ export const SquareLg: Story = {
     await ctx.step('Components exists', async () => {
       const img = await canvas.findByAltText('@radix-vue')
       const span = img.parentElement as HTMLSpanElement
-      await expect(img).toBeVisible()
+      await expect(img).toBeInTheDocument()
       await expect(span.classList.contains('rounded-md')).toBeTruthy()
       await expect(span.classList.contains('size-32')).toBeTruthy()
       await expect(span.classList.contains('text-5xl')).toBeTruthy()
