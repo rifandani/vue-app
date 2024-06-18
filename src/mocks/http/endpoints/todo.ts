@@ -62,7 +62,6 @@ export const todoHandlers: RequestHandler[] = [
     )
   }),
 
-  // @ts-expect-error ignore
   http.post(getBaseUrl('todos/add'), async ({ request }) => {
     const todoPayload = (await request.json()) as CreateTodoSchema
     const todoId = todos.at(-1)?.id
@@ -82,7 +81,6 @@ export const todoHandlers: RequestHandler[] = [
     )
   }),
 
-  // @ts-expect-error ignore
   http.put(getBaseUrl('todos/:id'), async ({ request, params }) => {
     const todoPayload = (await request.json()) as UpdateTodoSchema
     const { id } = params
@@ -106,7 +104,6 @@ export const todoHandlers: RequestHandler[] = [
     )
   }),
 
-  // @ts-expect-error ignore
   http.delete(getBaseUrl('todos/:id'), ({ params }) => {
     const { id } = params
     const todoId = Number.parseInt(id as string, 10)

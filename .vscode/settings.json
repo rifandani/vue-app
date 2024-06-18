@@ -1,6 +1,4 @@
 {
-  // Enable the ESlint flat config support
-  "eslint.experimental.useFlatConfig": true,
   // Disable the default formatter, use eslint instead
   "prettier.enable": false,
   "editor.formatOnSave": false,
@@ -64,7 +62,16 @@
     "json",
     "jsonc",
     "yaml",
-    "toml"
+    "toml",
+    "xml",
+    "gql",
+    "graphql",
+    "astro",
+    "css",
+    "less",
+    "scss",
+    "pcss",
+    "postcss"
   ],
   "[javascript]": {
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
@@ -88,6 +95,6 @@
   "i18n-ally.localesPaths": "./src/i18n",
   "i18n-ally.enabledFrameworks": ["vue"],
   "veco.packager.versionTarget": "latest",
-  "veco.packager.exclude": ["@storybook/*"],
+  "veco.packager.exclude": ["@storybook/*", "storybook"],
   "typescript.tsdk": "node_modules/typescript/lib",
 }

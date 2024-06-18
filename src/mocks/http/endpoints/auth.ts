@@ -5,7 +5,6 @@ const validEmail = 'email@email.com'
 const validPassword = 'password'
 
 export const authHandlers: RequestHandler[] = [
-  // @ts-expect-error ignore
   http.post(getBaseUrl('auth/login'), async ({ request }) => {
     const { email, password } = (await request.json()) as {
       email: string
